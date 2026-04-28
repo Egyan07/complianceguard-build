@@ -29,19 +29,31 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ComplianceGuard — On-Premise SOC 2 Compliance for Bootstrapped SaaS" },
+      {
+        name: "description",
+        content:
+          "Stop paying $10,000/year for SOC 2 compliance. ComplianceGuard scans your machines and AWS environment to generate auditor-ready evidence packs — on-premise, $49/month.",
+      },
+      { name: "author", content: "ComplianceGuard" },
+      { property: "og:title", content: "ComplianceGuard — On-Premise SOC 2 for Bootstrapped SaaS" },
+      {
+        property: "og:description",
+        content:
+          "Auditor-ready SOC 2 evidence packs without sending a byte to our servers. Free to start. $49/month to finish an audit.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "alternate icon", href: "/favicon.ico" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),
