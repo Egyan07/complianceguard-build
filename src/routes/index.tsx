@@ -282,8 +282,8 @@ function LandingPage() {
 
           <div className="mt-14 grid md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] gap-6 items-start">
             {steps.map((s, i) => (
-              <>
-                <FadeUp key={s.n} delay={i * 0.05} className="md:col-auto">
+              <Fragment key={s.n}>
+                <FadeUp delay={i * 0.05} className="md:col-auto">
                   <div className="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center font-bold">
                     {s.n}
                   </div>
@@ -291,11 +291,11 @@ function LandingPage() {
                   <p className="mt-2 text-[15px] text-text-secondary leading-[1.65]">{s.body}</p>
                 </FadeUp>
                 {i < steps.length - 1 && (
-                  <div key={`arr-${s.n}`} className="hidden md:flex pt-2 text-text-secondary/60">
+                  <div className="hidden md:flex pt-2 text-text-secondary/60">
                     <ArrowRight size={20} />
                   </div>
                 )}
-              </>
+              </Fragment>
             ))}
           </div>
         </div>
