@@ -1,9 +1,18 @@
 {
   "version": 2,
-  "rewrites": [
+  "functions": {
+    "server/index.js": {
+      "runtime": "vercel-node@latest"
+    }
+  },
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/server/index.js"
+      "src": "/_assets/(.*)",
+      "dest": "/client/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server/index.js"
     }
   ]
 }
