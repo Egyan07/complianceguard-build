@@ -35,6 +35,9 @@ export const Route = createFileRoute("/")({
         content:
           "ComplianceGuard generates auditor-ready SOC 2 evidence packs on your machine. No cloud upload. $49/month.",
       },
+      { property: "og:url", content: "https://complianceguard.dev/" },
+      { property: "og:image", content: "https://complianceguard.dev/og-image.png" },
+      { name: "twitter:image", content: "https://complianceguard.dev/og-image.png" },
     ],
   }),
   component: LandingPage,
@@ -159,7 +162,7 @@ function LandingPage() {
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />AWS evidence auto-collection</span>
             </div>
           </div>
-          <div>
+          <div className="overflow-hidden -mx-4 px-4 lg:mx-0 lg:px-0">
             <ProductMockup />
           </div>
         </div>

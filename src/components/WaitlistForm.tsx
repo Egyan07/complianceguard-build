@@ -40,30 +40,32 @@ export function WaitlistForm({ source = "landing_cta" }: { source?: string }) {
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto"
-    >
-      <input
-        type="email"
-        required
-        placeholder="your@email.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="flex-1 px-4 py-3 rounded-md bg-white text-foreground placeholder:text-foreground/40 outline-none focus:ring-2 focus:ring-teal"
-      />
-      <button
-        type="submit"
-        disabled={state === "loading"}
-        className="btn-on-navy disabled:opacity-60"
+    <div className="w-full max-w-md mx-auto">
+      <form
+        onSubmit={onSubmit}
+        className="flex flex-col sm:flex-row gap-3 w-full"
       >
-        {state === "loading" ? "Joining..." : "Get Early Access"}
-      </button>
+        <input
+          type="email"
+          required
+          placeholder="your@email.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="flex-1 px-4 py-3 rounded-md bg-white text-foreground placeholder:text-foreground/40 outline-none focus:ring-2 focus:ring-teal"
+        />
+        <button
+          type="submit"
+          disabled={state === "loading"}
+          className="btn-on-navy disabled:opacity-60"
+        >
+          {state === "loading" ? "Joining..." : "Get Early Access"}
+        </button>
+      </form>
       {errMsg && (
-        <p className="text-[13px] text-[#FCA5A5] sm:absolute sm:mt-14 w-full">
+        <p className="mt-3 text-[13px] text-[#FCA5A5] text-left">
           {errMsg}
         </p>
       )}
-    </form>
+    </div>
   );
 }

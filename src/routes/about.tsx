@@ -13,6 +13,9 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:title", content: "Built by a founder who got quoted $11,000 for Vanta" },
       { property: "og:description", content: "ComplianceGuard is self-funded and priced for real teams." },
+      { property: "og:url", content: "https://complianceguard.dev/about" },
+      { property: "og:image", content: "https://complianceguard.dev/og-image.png" },
+      { name: "twitter:image", content: "https://complianceguard.dev/og-image.png" },
     ],
   }),
   component: AboutPage,
@@ -77,7 +80,7 @@ function AboutPage() {
             {[
               { n: "v3.1.0", l: "Current release" },
               { n: "29", l: "SOC 2 controls covered" },
-              { n: "$149/yr", l: "Pro plan, billed annually" },
+              { n: "$399/yr", l: "Pro plan, billed annually" },
             ].map((f) => (
               <div key={f.l}>
                 <div className="text-[40px] font-bold text-teal leading-none">{f.n}</div>
