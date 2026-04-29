@@ -90,6 +90,7 @@ export function CostCalculator() {
                 min={1}
                 max={200}
                 value={team}
+                aria-label="Team size"
                 onChange={(e) => setTeamClamped(parseInt(e.target.value, 10))}
                 className="w-24 text-center text-[32px] font-bold text-navy bg-transparent border-0 focus:outline-none focus:ring-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
@@ -138,6 +139,7 @@ export function CostCalculator() {
 
             {/* Savings callout */}
             <div
+              aria-live="polite"
               className="mt-6 rounded-[8px] p-4 text-[16px] text-navy"
               style={{ background: "#F0FDF4", border: "1px solid #BBF7D0" }}
             >
