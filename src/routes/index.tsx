@@ -21,6 +21,7 @@ import { FadeUp } from "@/components/FadeUp";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
+import { CostCalculator } from "@/components/CostCalculator";
 
 export const Route = createFileRoute("/")({
   head: () => ({
