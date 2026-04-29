@@ -19,6 +19,8 @@ import { Footer } from "@/components/Footer";
 import { ProductMockup } from "@/components/ProductMockup";
 import { FadeUp } from "@/components/FadeUp";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { TechCredibilityBar } from "@/components/TechCredibilityBar";
+import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,7 +29,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Stop paying $10,000/year for SOC 2 compliance. Auditor-ready evidence packs that never leave your network. Free to start. $49/month.",
+          "Stop paying $10,000/year for SOC 2 compliance. ComplianceGuard scans your endpoints and AWS environment to generate auditor-ready evidence packs. Free tier available.",
       },
       { property: "og:title", content: "Stop Paying $10,000/Year to Prove You're Secure." },
       {
@@ -134,7 +136,7 @@ function LandingPage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="bg-background pt-16 md:pt-24 pb-16 md:pb-24">
+      <section data-hero className="bg-background pt-16 md:pt-24 pb-16 md:pb-24">
         <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
           <div>
             <p className="eyebrow mb-4">On-Premise SOC 2 Compliance</p>
@@ -167,6 +169,9 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* TECH CREDIBILITY */}
+      <TechCredibilityBar />
 
       {/* PROBLEM */}
       <section className="bg-navy text-white py-24">
