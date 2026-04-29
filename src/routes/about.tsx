@@ -88,6 +88,22 @@ function AboutPage() {
               </div>
             ))}
           </div>
+
+          <div
+            className="mt-8 rounded-[12px] grid grid-cols-1 sm:grid-cols-3 gap-8 text-center"
+            style={{ backgroundColor: "#F8F9FA", padding: 24 }}
+          >
+            {[
+              { n: "311+", l: "Tests passing across backend, frontend, and Electron" },
+              { n: "4", l: "Green CI workflows on every commit" },
+              { n: "8", l: "Evidence categories collected from your OS" },
+            ].map((f) => (
+              <div key={f.l}>
+                <div className="text-[40px] font-bold text-teal leading-none">{f.n}</div>
+                <p className="mt-3 text-[14px] text-text-secondary">{f.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
