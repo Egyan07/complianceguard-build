@@ -280,6 +280,9 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* COST CALCULATOR */}
+      <CostCalculator />
+
       {/* HOW IT WORKS */}
       <section id="how-it-works" className="bg-background py-24">
         <div className="container-cg">
