@@ -178,7 +178,7 @@ function ChangelogPage() {
               No marketing emails. Release notes only.
             </p>
             <div className="mt-5">
-              <WaitlistForm source="changelog_updates" />
+              <WaitlistForm source="changelog_updates" buttonLabel="Notify Me" />
             </div>
           </div>
         </div>
