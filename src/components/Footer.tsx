@@ -13,7 +13,7 @@ export function Footer() {
             <Link to="/pricing" className="hover:text-navy">Pricing</Link>
             <Link to="/changelog" className="hover:text-navy">Changelog</Link>
             <Link to="/about" className="hover:text-navy">About</Link>
-            <a href="https://github.com/" className="hover:text-navy">GitHub</a>
+            <a href="https://github.com/Egyan07/ComplianceGuard" className="hover:text-navy">GitHub</a>
           </nav>
         </div>
         <div className="mt-8 pt-6 border-t border-border flex flex-col md:flex-row gap-3 md:gap-6 items-start md:items-center justify-between text-[13px] text-foreground/60">

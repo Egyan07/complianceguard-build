@@ -149,7 +149,7 @@ function LandingPage() {
               to our servers. Free to start. $49/month to finish an audit.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <a href="https://github.com/" className="btn-primary">
+              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-primary">
                 Download Free — Windows & Mac
               </a>
               <a href="#how-it-works" className="text-teal font-semibold hover:underline">
@@ -329,7 +329,7 @@ function LandingPage() {
                     <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
                   ))}
                 </ul>
-                <a href="https://github.com/" className="btn-ghost mt-8 w-full">Download Free</a>
+                <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost mt-8 w-full">Download Free</a>
               </div>
             </FadeUp>
 
@@ -351,7 +351,7 @@ function LandingPage() {
                     <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
                   ))}
                 </ul>
-                <Link to="/pricing" className="btn-primary mt-8 w-full">Start Pro Trial</Link>
+                <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary mt-8 w-full">Start Pro Trial</a>
               </div>
             </FadeUp>
 
@@ -369,7 +369,7 @@ function LandingPage() {
                     <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
                   ))}
                 </ul>
-                <a href="mailto:hello@complianceguard.dev" className="btn-ghost mt-8 w-full">Contact Us</a>
+                <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
               </div>
             </FadeUp>
           </div>
@@ -420,7 +420,7 @@ function LandingPage() {
               audit-ready without the $10,000 bill.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://github.com/" className="btn-on-navy">Download Free</a>
+              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-on-navy">Download Free</a>
               <Link to="/pricing" className="btn-ghost-on-navy">See Pricing</Link>
             </div>
             <p className="mt-6 text-[14px] text-white/50">

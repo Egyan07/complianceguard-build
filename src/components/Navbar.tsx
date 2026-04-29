@@ -44,14 +44,17 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://github.com/"
+            href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
             className="btn-ghost !py-2 !px-4 !text-sm"
           >
             Download Free
           </a>
-          <Link to="/pricing" className="btn-primary !py-2 !px-4 !text-sm">
+          <a
+            href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial"
+            className="btn-primary !py-2 !px-4 !text-sm"
+          >
             Get Pro
-          </Link>
+          </a>
         </div>
 
         <button
@@ -77,8 +80,8 @@ export function Navbar() {
               </Link>
             ))}
             <div className="flex flex-col gap-2 pt-2">
-              <a href="https://github.com/" className="btn-ghost">Download Free</a>
-              <Link to="/pricing" className="btn-primary">Get Pro</Link>
+              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost">Download Free</a>
+              <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary">Get Pro</a>
             </div>
           </div>
         </div>
