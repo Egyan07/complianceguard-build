@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://complianceguard.alexisegyan1232.workers.dev/sitemap.xml

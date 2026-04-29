@@ -136,7 +136,7 @@ function PricingPage() {
                 <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
               ))}
             </ul>
-            <a href="https://github.com/" className="btn-ghost mt-8 w-full">Download Free</a>
+            <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost mt-8 w-full">Download Free</a>
           </div>
 
           {/* Pro */}
@@ -156,7 +156,7 @@ function PricingPage() {
                 <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
               ))}
             </ul>
-            <a href="https://github.com/" className="btn-primary mt-8 w-full">Start Pro Trial</a>
+            <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary mt-8 w-full">Start Pro Trial</a>
           </div>
 
           {/* Managed */}
@@ -173,7 +173,7 @@ function PricingPage() {
                 <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
               ))}
             </ul>
-            <a href="mailto:hello@complianceguard.dev" className="btn-ghost mt-8 w-full">Contact Us</a>
+            <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
           </div>
         </div>
       </section>
