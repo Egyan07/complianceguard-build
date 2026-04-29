@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-export function WaitlistForm({ source = "landing_cta" }: { source?: string }) {
+export function WaitlistForm({
+  source = "landing_cta",
+  buttonLabel = "Get Early Access",
+}: {
+  source?: string;
+  buttonLabel?: string;
+}) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errMsg, setErrMsg] = useState<string | null>(null);
