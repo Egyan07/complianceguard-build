@@ -1,7 +1,9 @@
+import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FadeUp } from "@/components/FadeUp";
+import { WaitlistForm } from "@/components/WaitlistForm";
 
 export const Route = createFileRoute("/changelog")({
   head: () => ({
@@ -73,12 +75,22 @@ const toneClass: Record<Tag["tone"], string> = {
   blue: "bg-navy/10 text-navy",
 };
 
+const FILTERS = ["All", "Feature", "Security", "Performance", "Fixed", "Breaking"] as const;
+type Filter = (typeof FILTERS)[number];
+
 function ChangelogPage() {
+  const [filter, setFilter] = useState<Filter>("All");
+
+  const visible = useMemo(() => {
+    if (filter === "All") return entries;
+    return entries.filter((e) => e.tags.some((t) => t.label === filter));
+  }, [filter]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <section className="bg-background pt-20 pb-12">
+      <section className="bg-background pt-20 pb-8">
         <div className="container-cg max-w-3xl">
           <FadeUp>
             <h1 className="text-[36px] md:text-[48px] font-bold text-navy">Changelog</h1>
@@ -86,44 +98,89 @@ function ChangelogPage() {
               Every change to ComplianceGuard, documented.
             </p>
           </FadeUp>
+
+          <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter changelog by tag">
+            {FILTERS.map((f) => {
+              const active = filter === f;
+              return (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => setFilter(active && f !== "All" ? "All" : f)}
+                  aria-pressed={active}
+                  className="text-[13px] px-3 py-1.5 rounded-[4px] border transition-colors duration-200"
+                  style={{
+                    borderColor: "#E2E8F0",
+                    backgroundColor: active ? "#1B3A6B" : "#ffffff",
+                    color: active ? "#ffffff" : "#1B3A6B",
+                  }}
+                >
+                  {f}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background pb-16">
+        <div className="container-cg max-w-3xl space-y-6">
+          {visible.length === 0 ? (
+            <p className="text-[15px] text-text-secondary">No releases match this filter yet.</p>
+          ) : (
+            visible.map((e, i) => (
+              <FadeUp key={e.version} delay={i * 0.05}>
+                <article
+                  className="bg-white border border-border rounded-[12px] overflow-hidden"
+                  style={{ borderLeft: "3px solid #1A8C5F" }}
+                >
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                      <span className="bg-teal text-white text-[13px] font-semibold px-2.5 py-1 rounded">
+                        {e.date}
+                      </span>
+                      <span className="bg-navy text-white text-[13px] font-semibold px-2.5 py-1 rounded">
+                        {e.version}
+                      </span>
+                      {e.tags.map((t) => (
+                        <span
+                          key={t.label}
+                          className={`text-[12px] font-semibold px-2 py-0.5 rounded ${toneClass[t.tone]}`}
+                        >
+                          {t.label}
+                        </span>
+                      ))}
+                    </div>
+                    <h2 className="text-[22px] md:text-[24px] font-bold text-navy">{e.title}</h2>
+                    <ul className="mt-5 space-y-2.5 text-[15px] text-text-secondary leading-[1.7] list-disc pl-5">
+                      {e.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </FadeUp>
+            ))
+          )}
         </div>
       </section>
 
       <section className="bg-background pb-24">
-        <div className="container-cg max-w-3xl space-y-6">
-          {entries.map((e, i) => (
-            <FadeUp key={e.version} delay={i * 0.05}>
-              <article
-                className="bg-white border border-border rounded-[12px] overflow-hidden"
-                style={{ borderLeft: "3px solid #1A8C5F" }}
-              >
-                <div className="p-6 md:p-8">
-                  <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="bg-teal text-white text-[13px] font-semibold px-2.5 py-1 rounded">
-                      {e.date}
-                    </span>
-                    <span className="bg-navy text-white text-[13px] font-semibold px-2.5 py-1 rounded">
-                      {e.version}
-                    </span>
-                    {e.tags.map((t) => (
-                      <span
-                        key={t.label}
-                        className={`text-[12px] font-semibold px-2 py-0.5 rounded ${toneClass[t.tone]}`}
-                      >
-                        {t.label}
-                      </span>
-                    ))}
-                  </div>
-                  <h2 className="text-[22px] md:text-[24px] font-bold text-navy">{e.title}</h2>
-                  <ul className="mt-5 space-y-2.5 text-[15px] text-text-secondary leading-[1.7] list-disc pl-5">
-                    {e.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            </FadeUp>
-          ))}
+        <div className="container-cg max-w-3xl">
+          <div
+            className="rounded-[12px] bg-white"
+            style={{ border: "1px solid #E2E8F0", padding: 32 }}
+          >
+            <p className="text-[16px] font-semibold text-navy">
+              Get notified when new versions ship.
+            </p>
+            <p className="mt-1 text-[14px] text-text-secondary">
+              No marketing emails. Release notes only.
+            </p>
+            <div className="mt-5">
+              <WaitlistForm source="changelog_updates" />
+            </div>
+          </div>
         </div>
       </section>
 
