@@ -176,6 +176,10 @@ function PricingPage() {
             <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
           </div>
         </div>
+
+        <p className="mt-10 text-center text-[15px] text-text-secondary max-w-2xl mx-auto">
+          30-day money-back guarantee on Pro and Managed. No questions asked. Email us and we&apos;ll refund within 24 hours.
+        </p>
       </section>
 
       {/* FAQ */}
