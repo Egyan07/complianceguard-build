@@ -440,6 +440,7 @@ function LandingPage() {
       </section>
 
       <Footer />
+      <MobileStickyCTA />
     </div>
   );
 }

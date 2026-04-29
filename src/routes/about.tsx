@@ -9,7 +9,7 @@ export const Route = createFileRoute("/about")({
       { title: "About — ComplianceGuard" },
       {
         name: "description",
-        content: "Built by a founder who got quoted $11,000 for Vanta. ComplianceGuard makes SOC 2 prep accessible for real teams.",
+        content: "ComplianceGuard was built by a founder who got quoted $11,000 for Vanta. On-premise SOC 2 compliance for bootstrapped teams.",
       },
       { property: "og:title", content: "Built by a founder who got quoted $11,000 for Vanta" },
       { property: "og:description", content: "ComplianceGuard is self-funded and priced for real teams." },

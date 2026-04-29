@@ -12,7 +12,7 @@ export const Route = createFileRoute("/pricing")({
       { title: "Pricing — ComplianceGuard" },
       {
         name: "description",
-        content: "$49/month flat. No per-seat tax. No enterprise minimums. Free tier with no credit card required.",
+        content: "ComplianceGuard pricing: Free forever, Pro at $49/month, Managed at $79/month. No per-seat fees. No enterprise minimums. Cancel anytime.",
       },
       { property: "og:title", content: "ComplianceGuard Pricing — $49/month, not $10,000/year" },
       { property: "og:description", content: "Flat pricing for SOC 2 readiness. Free tier, Pro at $49/mo, Managed at $79/mo." },

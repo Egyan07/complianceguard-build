@@ -7,7 +7,7 @@ export const Route = createFileRoute("/changelog")({
   head: () => ({
     meta: [
       { title: "Changelog — ComplianceGuard" },
-      { name: "description", content: "Every change to ComplianceGuard, documented." },
+      { name: "description", content: "ComplianceGuard changelog — every release documented. Latest: v3.1.0 with JTI token revocation and streaming file uploads." },
       { property: "og:title", content: "ComplianceGuard Changelog" },
       { property: "og:description", content: "Every change to ComplianceGuard, documented." },
       { property: "og:url", content: "https://complianceguard.dev/changelog" },
