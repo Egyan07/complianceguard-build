@@ -64,7 +64,7 @@ export function WaitlistForm({
           disabled={state === "loading"}
           className="btn-on-navy disabled:opacity-60"
         >
-          {state === "loading" ? "Joining..." : "Get Early Access"}
+          {state === "loading" ? "Joining..." : buttonLabel}
         </button>
       </form>
       {errMsg && (
