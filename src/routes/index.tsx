@@ -448,6 +448,18 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* WHAT'S NOT INCLUDED */}
+      <NotIncluded />
+
+      {/* CODE SNIPPET DEMO */}
+      <CodeSnippet />
+
+      {/* FOUNDER NOTE */}
+      <FounderNote />
+
+      {/* HOMEPAGE FAQ */}
+      <HomepageFAQ />
+
       {/* FINAL CTA */}
       <section className="bg-navy text-white py-24">
         <div className="container-cg text-center">
@@ -460,7 +472,12 @@ function LandingPage() {
               audit-ready without the $10,000 bill.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-on-navy">Download Free</a>
+              <MagneticButton
+                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
+                className="btn-on-navy"
+              >
+                Download Free
+              </MagneticButton>
               <Link to="/pricing" className="btn-ghost-on-navy">See Pricing</Link>
             </div>
             <p className="mt-6 text-[14px] text-white/50">
@@ -476,6 +493,7 @@ function LandingPage() {
 
       <Footer />
       <MobileStickyCTA />
+      <ExitIntentModal />
     </div>
   );
 }
