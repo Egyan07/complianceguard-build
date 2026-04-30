@@ -2,6 +2,32 @@ import { useEffect, useRef, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { FadeUp } from "./FadeUp";
 
+function SavingsCallout({ team, savings }: { team: number; savings: number }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.classList.remove("cg-savings-flash");
+    // Force reflow then re-add to retrigger
+    void el.offsetWidth;
+    el.classList.add("cg-savings-flash");
+  }, [savings]);
+  return (
+    <div
+      ref={ref}
+      aria-live="polite"
+      className="mt-6 rounded-[8px] p-4 text-[16px] text-navy"
+      style={{ background: "#F0FDF4", border: "1px solid #BBF7D0" }}
+    >
+      With ComplianceGuard, a team of <span className="font-semibold">{team}</span> saves{" "}
+      <span className="font-bold text-teal">
+        {savings.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}
+      </span>{" "}
+      per year compared to Vanta.
+    </div>
+  );
+}
+
 const CG_ANNUAL = 588; // $49 * 12
 
 const formatCurrency = (n: number) =>
