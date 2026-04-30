@@ -30,7 +30,7 @@ export function FounderNote() {
                   className="text-[22px] text-navy"
                   style={{ fontFamily: "'Caveat', 'Brush Script MT', cursive", fontWeight: 600 }}
                 >
-                  Alexis Egyan
+                  Egyan
                 </div>
                 <div className="text-[13px] text-text-secondary">Founder, ComplianceGuard</div>
               </div>
