@@ -149,14 +149,20 @@ function LandingPage() {
       <Navbar />
 
       {/* HERO */}
-      <section data-hero className="bg-background pt-16 md:pt-24 pb-16 md:pb-24">
-        <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
+      <section data-hero className="bg-background pt-16 md:pt-24 pb-16 md:pb-24 relative overflow-hidden">
+        <CursorBlob />
+        <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center relative z-10">
           <div>
             <p className="eyebrow mb-4">On-Premise SOC 2 Compliance</p>
             <h1 className="text-[36px] md:text-[56px] font-bold text-navy leading-[1.05] tracking-tight">
-              Stop Paying $10,000<br />
-              a Year to Prove<br />
-              You're Secure.
+              <TypingHeadline
+                lines={[
+                  "Stop Paying $10,000",
+                  "a Year to Prove",
+                  "You're Secure.",
+                ]}
+                speed={32}
+              />
             </h1>
             <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[480px]">
               ComplianceGuard scans your machines and AWS environment to generate
@@ -164,14 +170,20 @@ function LandingPage() {
               to our servers. Free to start. $49/month to finish an audit.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-primary">
+              <MagneticButton
+                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
+                className="btn-primary"
+              >
                 Download Free — Windows & Mac
-              </a>
+              </MagneticButton>
               <a href="#how-it-works" className="text-teal font-semibold hover:underline">
                 See how it works ↓
               </a>
             </div>
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text-secondary">
+            <div className="mt-4">
+              <DownloadCounter />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text-secondary">
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />No cloud storage of your evidence</span>
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />Auditor-ready PDF export</span>
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />AWS evidence auto-collection</span>
