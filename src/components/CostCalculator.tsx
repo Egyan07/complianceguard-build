@@ -164,14 +164,7 @@ export function CostCalculator() {
             </div>
 
             {/* Savings callout */}
-            <div
-              aria-live="polite"
-              className="mt-6 rounded-[8px] p-4 text-[16px] text-navy"
-              style={{ background: "#F0FDF4", border: "1px solid #BBF7D0" }}
-            >
-              With ComplianceGuard, a team of <span className="font-semibold">{team}</span> saves{" "}
-              <span className="font-bold text-teal">{formatCurrency(savings)}</span> per year compared to Vanta.
-            </div>
+            <SavingsCallout team={team} savings={savings} />
           </div>
 
           <div className="mt-8 flex flex-col items-center gap-3">
