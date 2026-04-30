@@ -198,6 +198,9 @@ function LandingPage() {
       {/* TECH CREDIBILITY */}
       <TechCredibilityBar />
 
+      {/* GITHUB LIVE STATS */}
+      <GitHubStats />
+
       {/* PROBLEM */}
       <section className="bg-navy text-white py-24">
         <div className="container-cg">
