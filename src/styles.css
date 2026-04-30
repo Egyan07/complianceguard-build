@@ -72,6 +72,40 @@
   --ring: #1B3A6B;
 }
 
+.dark {
+  /* Brand stays roughly the same; teal lightens for contrast on dark */
+  --navy: #E2E8F0;
+  --teal: #34D399;
+  --surface: #111827;
+  --text-secondary: #94A3B8;
+  --danger: #F87171;
+
+  --background: #0B1220;
+  --foreground: #E2E8F0;
+  --card: #111827;
+  --card-foreground: #E2E8F0;
+  --popover: #111827;
+  --popover-foreground: #E2E8F0;
+  --primary: #E2E8F0;
+  --primary-foreground: #0B1220;
+  --secondary: #111827;
+  --secondary-foreground: #E2E8F0;
+  --muted: #111827;
+  --muted-foreground: #94A3B8;
+  --accent: #34D399;
+  --accent-foreground: #0B1220;
+  --destructive: #F87171;
+  --destructive-foreground: #0B1220;
+  --border: #1E293B;
+  --input: #1E293B;
+  --ring: #34D399;
+}
+
+.dark .btn-primary { background-color: #34D399; color: #0B1220; }
+.dark .btn-primary:hover { background-color: #6EE7B7; }
+.dark .btn-ghost { color: #E2E8F0; border-color: #334155; }
+.dark .btn-ghost:hover { background-color: #111827; }
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -216,4 +250,70 @@
   cursor: pointer;
   border: 2px solid #fff;
   box-shadow: 0 0 0 1px var(--teal);
+}
+
+/* ============================================
+   Typing caret + page transitions + flash + dark
+   ============================================ */
+@keyframes cg-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cg-caret {
+  display: inline-block;
+  margin-left: 2px;
+  animation: cg-blink 0.9s steps(1) infinite;
+  font-weight: 400;
+}
+
+@keyframes cg-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cg-scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+.cg-page-transition {
+  animation: cg-fade-in 0.35s ease-out;
+}
+
+@keyframes cg-savings-flash {
+  0% { background: #F0FDF4; }
+  40% { background: #BBF7D0; }
+  100% { background: #F0FDF4; }
+}
+.cg-savings-flash { animation: cg-savings-flash 0.6s ease-out; }
+
+/* Score gauge animation — fills from 0 to a CSS variable target */
+@keyframes cg-gauge-fill {
+  from { stroke-dashoffset: var(--cg-gauge-circumference); }
+  to { stroke-dashoffset: var(--cg-gauge-offset); }
+}
+.cg-gauge-stroke {
+  animation: cg-gauge-fill 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Stagger fade-in for table rows */
+@keyframes cg-row-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.cg-row-anim {
+  opacity: 0;
+  animation: cg-row-in 0.4s ease-out forwards;
+}
+
+/* Magnetic button hover lift */
+.cg-magnetic { transition: transform 0.18s ease-out; }
+
+/* Caveat handwriting font for founder signature */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap');
+
+/* Dark-mode adjustments for surfaces inline-styled with hex */
+.dark .bg-white { background-color: var(--card) !important; }
+.dark [style*="background-color: rgb(255, 255, 255)"],
+.dark [style*="background:#FFFFFF"],
+.dark [style*="background-color: #FFFFFF"] {
+  background-color: var(--card) !important;
 }

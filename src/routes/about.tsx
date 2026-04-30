@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FadeUp } from "@/components/FadeUp";
+import { AnimatedStat } from "@/components/AnimatedStat";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -78,12 +79,18 @@ function AboutPage() {
         <div className="container-cg max-w-3xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             {[
-              { n: "v3.1.0", l: "Current release" },
-              { n: "29", l: "SOC 2 controls covered" },
-              { n: "$399/yr", l: "Pro plan, billed annually" },
-            ].map((f) => (
-              <div key={f.l}>
-                <div className="text-[40px] font-bold text-teal leading-none">{f.n}</div>
+              { type: "static" as const, n: "v3.1.0", l: "Current release" },
+              { type: "num" as const, value: 29, l: "SOC 2 controls covered" },
+              { type: "static" as const, n: "$399/yr", l: "Pro plan, billed annually" },
+            ].map((f, i) => (
+              <div key={i}>
+                <div className="text-[40px] font-bold text-teal leading-none tabular-nums">
+                  {f.type === "static" ? (
+                    f.n
+                  ) : (
+                    <AnimatedStat value={f.value} />
+                  )}
+                </div>
                 <p className="mt-3 text-[14px] text-text-secondary">{f.l}</p>
               </div>
             ))}
@@ -94,12 +101,14 @@ function AboutPage() {
             style={{ backgroundColor: "#F8F9FA", padding: 24 }}
           >
             {[
-              { n: "311+", l: "Tests passing across backend, frontend, and Electron" },
-              { n: "4", l: "Green CI workflows on every commit" },
-              { n: "8", l: "Evidence categories collected from your OS" },
-            ].map((f) => (
-              <div key={f.l}>
-                <div className="text-[40px] font-bold text-teal leading-none">{f.n}</div>
+              { value: 311, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
+              { value: 4, l: "Green CI workflows on every commit" },
+              { value: 8, l: "Evidence categories collected from your OS" },
+            ].map((f, i) => (
+              <div key={i}>
+                <div className="text-[40px] font-bold text-teal leading-none tabular-nums">
+                  <AnimatedStat value={f.value} suffix={f.suffix ?? ""} />
+                </div>
                 <p className="mt-3 text-[14px] text-text-secondary">{f.l}</p>
               </div>
             ))}

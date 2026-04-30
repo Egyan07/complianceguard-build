@@ -22,6 +22,18 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { CostCalculator } from "@/components/CostCalculator";
+import { TypingHeadline } from "@/components/TypingHeadline";
+import { MagneticButton } from "@/components/MagneticButton";
+import { CursorBlob } from "@/components/CursorBlob";
+import { GitHubStats } from "@/components/GitHubStats";
+import { ControlsExplorer } from "@/components/ControlsExplorer";
+import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
+import { FounderNote } from "@/components/FounderNote";
+import { NotIncluded } from "@/components/NotIncluded";
+import { HomepageFAQ } from "@/components/HomepageFAQ";
+import { CodeSnippet } from "@/components/CodeSnippet";
+import { DownloadCounter } from "@/components/DownloadCounter";
+import { ExitIntentModal } from "@/components/ExitIntentModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -137,14 +149,20 @@ function LandingPage() {
       <Navbar />
 
       {/* HERO */}
-      <section data-hero className="bg-background pt-16 md:pt-24 pb-16 md:pb-24">
-        <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
+      <section data-hero className="bg-background pt-16 md:pt-24 pb-16 md:pb-24 relative overflow-hidden">
+        <CursorBlob />
+        <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center relative z-10">
           <div>
             <p className="eyebrow mb-4">On-Premise SOC 2 Compliance</p>
             <h1 className="text-[36px] md:text-[56px] font-bold text-navy leading-[1.05] tracking-tight">
-              Stop Paying $10,000<br />
-              a Year to Prove<br />
-              You're Secure.
+              <TypingHeadline
+                lines={[
+                  "Stop Paying $10,000",
+                  "a Year to Prove",
+                  "You're Secure.",
+                ]}
+                speed={32}
+              />
             </h1>
             <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[480px]">
               ComplianceGuard scans your machines and AWS environment to generate
@@ -152,14 +170,20 @@ function LandingPage() {
               to our servers. Free to start. $49/month to finish an audit.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-primary">
+              <MagneticButton
+                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
+                className="btn-primary"
+              >
                 Download Free — Windows & Mac
-              </a>
+              </MagneticButton>
               <a href="#how-it-works" className="text-teal font-semibold hover:underline">
                 See how it works ↓
               </a>
             </div>
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text-secondary">
+            <div className="mt-4">
+              <DownloadCounter />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text-secondary">
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />No cloud storage of your evidence</span>
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />Auditor-ready PDF export</span>
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />AWS evidence auto-collection</span>
@@ -173,6 +197,9 @@ function LandingPage() {
 
       {/* TECH CREDIBILITY */}
       <TechCredibilityBar />
+
+      {/* GITHUB LIVE STATS */}
+      <GitHubStats />
 
       {/* PROBLEM */}
       <section className="bg-navy text-white py-24">
@@ -263,7 +290,11 @@ function LandingPage() {
                 </thead>
                 <tbody>
                   {compareRows.map((row, idx) => (
-                    <tr key={idx} className="border-t border-border" style={{ height: 52 }}>
+                    <tr
+                      key={idx}
+                      className="border-t border-border cg-row-anim"
+                      style={{ height: 52, animationDelay: `${idx * 60}ms` }}
+                    >
                       <td className="px-6 font-medium text-foreground">{row[0]}</td>
                       <td className="px-6"><CompareCell value={row[1]} isCG /></td>
                       <td className="px-6"><CompareCell value={row[2]} isCG={false} /></td>
@@ -282,6 +313,12 @@ function LandingPage() {
 
       {/* COST CALCULATOR */}
       <CostCalculator />
+
+      {/* ARCHITECTURE DIAGRAM */}
+      <ArchitectureDiagram />
+
+      {/* CONTROLS EXPLORER */}
+      <ControlsExplorer />
 
       {/* HOW IT WORKS */}
       <section id="how-it-works" className="bg-background py-24">
@@ -417,6 +454,18 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* WHAT'S NOT INCLUDED */}
+      <NotIncluded />
+
+      {/* CODE SNIPPET DEMO */}
+      <CodeSnippet />
+
+      {/* FOUNDER NOTE */}
+      <FounderNote />
+
+      {/* HOMEPAGE FAQ */}
+      <HomepageFAQ />
+
       {/* FINAL CTA */}
       <section className="bg-navy text-white py-24">
         <div className="container-cg text-center">
@@ -429,7 +478,12 @@ function LandingPage() {
               audit-ready without the $10,000 bill.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-on-navy">Download Free</a>
+              <MagneticButton
+                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
+                className="btn-on-navy"
+              >
+                Download Free
+              </MagneticButton>
               <Link to="/pricing" className="btn-ghost-on-navy">See Pricing</Link>
             </div>
             <p className="mt-6 text-[14px] text-white/50">
@@ -445,6 +499,7 @@ function LandingPage() {
 
       <Footer />
       <MobileStickyCTA />
+      <ExitIntentModal />
     </div>
   );
 }

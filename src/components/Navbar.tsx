@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { to: "/", label: "Features" },
@@ -43,6 +44,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <a
             href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
             className="btn-ghost !py-2 !px-4 !text-sm"
