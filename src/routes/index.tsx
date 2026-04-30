@@ -22,6 +22,18 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { CostCalculator } from "@/components/CostCalculator";
+import { TypingHeadline } from "@/components/TypingHeadline";
+import { MagneticButton } from "@/components/MagneticButton";
+import { CursorBlob } from "@/components/CursorBlob";
+import { GitHubStats } from "@/components/GitHubStats";
+import { ControlsExplorer } from "@/components/ControlsExplorer";
+import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
+import { FounderNote } from "@/components/FounderNote";
+import { NotIncluded } from "@/components/NotIncluded";
+import { HomepageFAQ } from "@/components/HomepageFAQ";
+import { CodeSnippet } from "@/components/CodeSnippet";
+import { DownloadCounter } from "@/components/DownloadCounter";
+import { ExitIntentModal } from "@/components/ExitIntentModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
