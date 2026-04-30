@@ -287,7 +287,11 @@ function LandingPage() {
                 </thead>
                 <tbody>
                   {compareRows.map((row, idx) => (
-                    <tr key={idx} className="border-t border-border" style={{ height: 52 }}>
+                    <tr
+                      key={idx}
+                      className="border-t border-border cg-row-anim"
+                      style={{ height: 52, animationDelay: `${idx * 60}ms` }}
+                    >
                       <td className="px-6 font-medium text-foreground">{row[0]}</td>
                       <td className="px-6"><CompareCell value={row[1]} isCG /></td>
                       <td className="px-6"><CompareCell value={row[2]} isCG={false} /></td>
