@@ -314,6 +314,12 @@ function LandingPage() {
       {/* COST CALCULATOR */}
       <CostCalculator />
 
+      {/* ARCHITECTURE DIAGRAM */}
+      <ArchitectureDiagram />
+
+      {/* CONTROLS EXPLORER */}
+      <ControlsExplorer />
+
       {/* HOW IT WORKS */}
       <section id="how-it-works" className="bg-background py-24">
         <div className="container-cg">
