@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FadeUp } from "@/components/FadeUp";
+import { AnimatedStat } from "@/components/AnimatedStat";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
