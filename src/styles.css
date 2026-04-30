@@ -72,6 +72,40 @@
   --ring: #1B3A6B;
 }
 
+.dark {
+  /* Brand stays roughly the same; teal lightens for contrast on dark */
+  --navy: #E2E8F0;
+  --teal: #34D399;
+  --surface: #111827;
+  --text-secondary: #94A3B8;
+  --danger: #F87171;
+
+  --background: #0B1220;
+  --foreground: #E2E8F0;
+  --card: #111827;
+  --card-foreground: #E2E8F0;
+  --popover: #111827;
+  --popover-foreground: #E2E8F0;
+  --primary: #E2E8F0;
+  --primary-foreground: #0B1220;
+  --secondary: #111827;
+  --secondary-foreground: #E2E8F0;
+  --muted: #111827;
+  --muted-foreground: #94A3B8;
+  --accent: #34D399;
+  --accent-foreground: #0B1220;
+  --destructive: #F87171;
+  --destructive-foreground: #0B1220;
+  --border: #1E293B;
+  --input: #1E293B;
+  --ring: #34D399;
+}
+
+.dark .btn-primary { background-color: #34D399; color: #0B1220; }
+.dark .btn-primary:hover { background-color: #6EE7B7; }
+.dark .btn-ghost { color: #E2E8F0; border-color: #334155; }
+.dark .btn-ghost:hover { background-color: #111827; }
+
 @layer base {
   * {
     border-color: var(--color-border);
