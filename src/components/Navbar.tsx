@@ -147,6 +147,21 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
+            <div className="pt-1 border-t border-[#E2E8F0]">
+              <p className="text-[12px] uppercase font-semibold text-[#9CA3AF] tracking-[0.1em] mb-2 mt-3">
+                Resources
+              </p>
+              {resourceLinks.map((r) => (
+                <Link
+                  key={r.to}
+                  to={r.to}
+                  onClick={() => setOpen(false)}
+                  className="block py-1.5 text-[15px] text-foreground/80"
+                >
+                  {r.label}
+                </Link>
+              ))}
+            </div>
             <div className="flex flex-col gap-2 pt-2">
               <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost">Download Free</a>
               <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary">Get Pro</a>
