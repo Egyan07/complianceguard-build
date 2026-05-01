@@ -9,11 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesWhatIsSoc2RouteImport } from './routes/resources/what-is-soc2'
+import { Route as ResourcesSoc2ChecklistRouteImport } from './routes/resources/soc2-checklist'
 
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -34,18 +48,36 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesWhatIsSoc2Route = ResourcesWhatIsSoc2RouteImport.update({
+  id: '/resources/what-is-soc2',
+  path: '/resources/what-is-soc2',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesSoc2ChecklistRoute = ResourcesSoc2ChecklistRouteImport.update({
+  id: '/resources/soc2-checklist',
+  path: '/resources/soc2-checklist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/changelog': typeof ChangelogRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/security': typeof SecurityRoute
+  '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
+  '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/changelog': typeof ChangelogRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/security': typeof SecurityRoute
+  '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
+  '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +85,42 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/changelog': typeof ChangelogRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/security': typeof SecurityRoute
+  '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
+  '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/changelog' | '/pricing'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/changelog'
+    | '/pricing'
+    | '/privacy'
+    | '/security'
+    | '/resources/soc2-checklist'
+    | '/resources/what-is-soc2'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/changelog' | '/pricing'
-  id: '__root__' | '/' | '/about' | '/changelog' | '/pricing'
+  to:
+    | '/'
+    | '/about'
+    | '/changelog'
+    | '/pricing'
+    | '/privacy'
+    | '/security'
+    | '/resources/soc2-checklist'
+    | '/resources/what-is-soc2'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/changelog'
+    | '/pricing'
+    | '/privacy'
+    | '/security'
+    | '/resources/soc2-checklist'
+    | '/resources/what-is-soc2'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +128,28 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ChangelogRoute: typeof ChangelogRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SecurityRoute: typeof SecurityRoute
+  ResourcesSoc2ChecklistRoute: typeof ResourcesSoc2ChecklistRoute
+  ResourcesWhatIsSoc2Route: typeof ResourcesWhatIsSoc2Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -99,6 +178,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/what-is-soc2': {
+      id: '/resources/what-is-soc2'
+      path: '/resources/what-is-soc2'
+      fullPath: '/resources/what-is-soc2'
+      preLoaderRoute: typeof ResourcesWhatIsSoc2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/soc2-checklist': {
+      id: '/resources/soc2-checklist'
+      path: '/resources/soc2-checklist'
+      fullPath: '/resources/soc2-checklist'
+      preLoaderRoute: typeof ResourcesSoc2ChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,16 +200,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ChangelogRoute: ChangelogRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
+  SecurityRoute: SecurityRoute,
+  ResourcesSoc2ChecklistRoute: ResourcesSoc2ChecklistRoute,
+  ResourcesWhatIsSoc2Route: ResourcesWhatIsSoc2Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

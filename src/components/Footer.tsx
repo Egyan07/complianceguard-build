@@ -16,12 +16,12 @@ const companyLinks = [
   { label: "Contact", href: "mailto:alexisegyan1232@gmail.com", external: true },
 ];
 
-const trustItems = [
-  "BSL 1.1 Open Core",
-  "311 Tests Passing",
-  "4 Green CI Workflows",
-  "Ed25519 License Signing",
-  "AICPA TSC-Mapped",
+const resourceLinks = [
+  { label: "What is SOC 2?", to: "/resources/what-is-soc2", external: false },
+  { label: "SOC 2 Readiness Checklist", to: "/resources/soc2-checklist", external: false },
+  { label: "Documentation", href: "https://github.com/Egyan07/ComplianceGuard#readme", external: true },
+  { label: "Releases", href: "https://github.com/Egyan07/ComplianceGuard/releases", external: true },
+  { label: "Report a Vulnerability", to: "/security", hash: "disclosure", external: false },
 ];
 
 const colHeading = "text-[12px] uppercase font-semibold text-[#9CA3AF] tracking-[0.1em] mb-4";
@@ -81,14 +81,26 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Trust */}
+          {/* Resources */}
           <div className="md:col-span-3">
-            <h3 className={colHeading}>Trust</h3>
+            <h3 className={colHeading}>Resources</h3>
             <ul className="space-y-2.5">
-              {trustItems.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-[14px] text-foreground/70">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0" />
-                  {item}
+              {resourceLinks.map((l) => (
+                <li key={l.label}>
+                  {l.external ? (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClass}
+                    >
+                      {l.label}
+                    </a>
+                  ) : (
+                    <Link to={l.to!} hash={l.hash} className={linkClass}>
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
