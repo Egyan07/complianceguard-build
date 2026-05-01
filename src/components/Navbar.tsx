@@ -48,15 +48,65 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <Link
-              key={l.to + l.label}
-              to={l.to}
-              hash={l.label === "Features" ? "features" : undefined}
-              className="text-[15px] text-foreground/80 hover:text-navy transition-colors"
-            >
-              {l.label}
-            </Link>
+          {links.map((l, i) => (
+            <>
+              <Link
+                key={l.to + l.label}
+                to={l.to}
+                hash={l.label === "Features" ? "features" : undefined}
+                className="text-[15px] text-foreground/80 hover:text-navy transition-colors"
+              >
+                {l.label}
+              </Link>
+              {l.label === "Changelog" && (
+                <div
+                  key="resources-dd"
+                  ref={resourcesRef}
+                  className="relative"
+                  onMouseEnter={() => setResourcesOpen(true)}
+                  onMouseLeave={() => setResourcesOpen(false)}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setResourcesOpen((v) => !v)}
+                    className="inline-flex items-center gap-1 text-[15px] text-foreground/80 hover:text-navy transition-colors"
+                    aria-haspopup="menu"
+                    aria-expanded={resourcesOpen}
+                  >
+                    Resources
+                    <ChevronDown size={14} />
+                  </button>
+                  <div
+                    className="absolute left-0 top-full pt-2 min-w-[200px]"
+                    style={{
+                      pointerEvents: resourcesOpen ? "auto" : "none",
+                    }}
+                  >
+                    <div
+                      role="menu"
+                      className="bg-background rounded-[8px] p-2 transition-all duration-150 origin-top"
+                      style={{
+                        border: "1px solid #E2E8F0",
+                        boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+                        opacity: resourcesOpen ? 1 : 0,
+                        transform: resourcesOpen ? "translateY(0)" : "translateY(-4px)",
+                      }}
+                    >
+                      {resourceLinks.map((r) => (
+                        <Link
+                          key={r.to}
+                          to={r.to}
+                          onClick={() => setResourcesOpen(false)}
+                          className="block px-3 py-2 text-[14px] text-foreground/80 hover:text-navy hover:bg-[#F8F9FA] rounded-[4px] transition-colors"
+                        >
+                          {r.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
           ))}
         </nav>
 
