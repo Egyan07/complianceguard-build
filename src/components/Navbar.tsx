@@ -48,10 +48,9 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((l, i) => (
-            <>
+          {links.map((l) => (
+            <div key={l.to + l.label} className="contents">
               <Link
-                key={l.to + l.label}
                 to={l.to}
                 hash={l.label === "Features" ? "features" : undefined}
                 className="text-[15px] text-foreground/80 hover:text-navy transition-colors"
