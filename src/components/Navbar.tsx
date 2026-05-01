@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
@@ -8,6 +8,11 @@ const links = [
   { to: "/pricing", label: "Pricing" },
   { to: "/changelog", label: "Changelog" },
   { to: "/about", label: "About" },
+] as const;
+
+const resourceLinks = [
+  { to: "/resources/what-is-soc2", label: "What is SOC 2?" },
+  { to: "/resources/soc2-checklist", label: "SOC 2 Checklist" },
 ] as const;
 
 export function Navbar() {
