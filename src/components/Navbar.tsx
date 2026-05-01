@@ -105,7 +105,7 @@ export function Navbar() {
                   </div>
                 </div>
               )}
-            </>
+            </div>
           ))}
         </nav>
 
