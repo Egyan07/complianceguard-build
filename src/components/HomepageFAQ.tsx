@@ -16,6 +16,10 @@ const FAQS = [
     a: "You shouldn't trust me — you should trust the code. ComplianceGuard is BSL 1.1 source-available: read every line that touches your machine. The crypto uses Ed25519 signing and HKDF-derived Fernet encryption (industry standard). 311+ tests run on every commit. And critically: we never receive your evidence, so even if I disappeared tomorrow, your data is on your disk, not on a server I control.",
   },
   {
+    q: "Can't I just collect evidence manually in a spreadsheet?",
+    a: "You can. Most first SOC 2 audits start that way. ComplianceGuard doesn't replace that process — it automates the collection part. Instead of manually checking firewall settings, running PowerShell scripts, and copying output into a spreadsheet, ComplianceGuard reads it all in 30 seconds and formats it exactly how your auditor needs it.",
+  },
+  {
     q: "What happens to my data?",
     a: "Nothing. It stays on your machine. ComplianceGuard reads from your OS and your AWS account, writes to a local SQLite database, and exports a PDF when you ask. There is no upload step. There is no telemetry. There is no 'sync to cloud' unless you explicitly enable the optional Pro fleet dashboard.",
   },
