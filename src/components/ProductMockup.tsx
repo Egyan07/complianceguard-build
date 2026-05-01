@@ -8,7 +8,7 @@ const OFFSET = CIRC * (1 - SCORE / 100);
 
 export function ProductMockup() {
   return (
-    <div className="w-full max-w-[520px] mx-auto md:rotate-[-3deg] transition-transform">
+    <div className="w-full md:max-w-[520px] mx-auto md:rotate-[-3deg] transition-transform">
       <div className="rounded-[12px] border border-border bg-white overflow-hidden shadow-sm">
         {/* Window chrome */}
         <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-[#FAFBFC]">
@@ -113,6 +113,9 @@ export function ProductMockup() {
           </div>
         </div>
       </div>
+      <p className="md:hidden mt-3 text-center text-[12px] text-text-secondary">
+        Tap to see full score →
+      </p>
     </div>
   );
 }

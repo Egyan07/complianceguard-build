@@ -34,6 +34,7 @@ import { HomepageFAQ } from "@/components/HomepageFAQ";
 import { CodeSnippet } from "@/components/CodeSnippet";
 import { DownloadCounter } from "@/components/DownloadCounter";
 import { ExitIntentModal } from "@/components/ExitIntentModal";
+import { GitHubStarButton } from "@/components/GitHubStarButton";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -180,7 +181,8 @@ function LandingPage() {
                 See how it works ↓
               </a>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <GitHubStarButton />
               <DownloadCounter />
             </div>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text-secondary">

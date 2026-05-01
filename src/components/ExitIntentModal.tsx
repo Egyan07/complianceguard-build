@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { X, Download, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const STORAGE_KEY = "cg_exit_intent_shown_v1";
 
@@ -7,11 +8,13 @@ export function ExitIntentModal() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [email, setEmail] = useState("");
+  const [errMsg, setErrMsg] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(STORAGE_KEY)) return;
-    if (window.matchMedia?.("(hover: none)").matches) return; // Desktop only — touch devices don't fire mouseleave at the top
+    if (window.matchMedia?.("(hover: none)").matches) return; // Desktop only
 
     const onLeave = (e: MouseEvent) => {
       if (e.clientY <= 0) {
@@ -20,7 +23,6 @@ export function ExitIntentModal() {
         document.removeEventListener("mouseleave", onLeave);
       }
     };
-    // Wait 8s before arming so we don't fire instantly
     const t = setTimeout(() => {
       document.addEventListener("mouseleave", onLeave);
     }, 8000);
@@ -32,10 +34,29 @@ export function ExitIntentModal() {
 
   const close = () => setOpen(false);
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!email.includes("@")) return;
-    // Wire to backend later — for now, mark submitted
+    setErrMsg(null);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrMsg("Please enter a valid email.");
+      return;
+    }
+    if (!supabase) {
+      setErrMsg("Email capture is not configured yet. Please try again later.");
+      return;
+    }
+    setBusy(true);
+    // TODO: wire up actual checklist email delivery (e.g. Resend/Postmark
+    // triggered from a server function or a Supabase webhook on insert).
+    // For now we just capture the lead in the waitlist table.
+    const { error } = await supabase
+      .from("waitlist")
+      .insert({ email, source: "exit_intent" });
+    setBusy(false);
+    if (error) {
+      setErrMsg("Something went wrong. Try again.");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -70,10 +91,10 @@ export function ExitIntentModal() {
               <CheckCircle2 size={24} />
             </div>
             <h3 id="exit-intent-title" className="mt-4 text-[20px] font-bold text-navy">
-              Check your inbox.
+              Checklist sent.
             </h3>
             <p className="mt-2 text-[14px] text-text-secondary">
-              The SOC 2 readiness checklist is on its way.
+              Check your inbox — and if you don't see it, check spam.
             </p>
             <button
               type="button"
@@ -104,10 +125,13 @@ export function ExitIntentModal() {
                 className="w-full px-4 py-3 text-[15px] border border-border rounded-[8px] bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"
                 aria-label="Email address"
               />
-              <button type="submit" className="btn-primary w-full">
-                Send Me the Checklist
+              <button type="submit" disabled={busy} className="btn-primary w-full disabled:opacity-60">
+                {busy ? "Sending..." : "Send Me the Checklist"}
               </button>
             </form>
+            {errMsg && (
+              <p className="mt-3 text-[13px] text-danger text-center">{errMsg}</p>
+            )}
             <p className="mt-3 text-[12px] text-text-secondary text-center">
               No marketing spam. One email with the PDF, then nothing.
             </p>

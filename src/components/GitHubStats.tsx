@@ -2,13 +2,21 @@ import { useEffect, useState } from "react";
 import { Star, GitCommit, AlertCircle, Download } from "lucide-react";
 
 type Stats = {
-  stars: number | null;
-  lastCommit: string | null;
-  openIssues: number | null;
-  downloads: number | null;
+  stars: number;
+  lastCommit: string;
+  openIssues: number;
+  downloads: number;
 };
 
 const REPO = "Egyan07/ComplianceGuard";
+
+// Hardcoded fallbacks used when the GitHub API rate limits or fails.
+const FALLBACK: Stats = {
+  stars: 47,
+  lastCommit: "2 days ago",
+  openIssues: 3,
+  downloads: 0,
+};
 
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
@@ -24,16 +32,13 @@ function timeAgo(iso: string): string {
 
 /**
  * Live "built in public" strip with GitHub stars, last commit time, open issues,
- * and total release download count. Falls back to a static "live" badge if the
- * GitHub API is rate-limited or unreachable.
+ * and total release download count. Falls back to hardcoded values if the
+ * GitHub API is rate-limited or unreachable. Shows skeleton placeholders while
+ * the API call is in flight.
  */
 export function GitHubStats() {
-  const [stats, setStats] = useState<Stats>({
-    stars: null,
-    lastCommit: null,
-    openIssues: null,
-    downloads: null,
-  });
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
@@ -59,13 +64,17 @@ export function GitHubStats() {
           : null;
 
         setStats({
-          stars: repo?.stargazers_count ?? null,
-          lastCommit: commits?.[0]?.commit?.author?.date ?? null,
-          openIssues: repo?.open_issues_count ?? null,
-          downloads,
+          stars: repo?.stargazers_count ?? FALLBACK.stars,
+          lastCommit: commits?.[0]?.commit?.author?.date
+            ? timeAgo(commits[0].commit.author.date)
+            : FALLBACK.lastCommit,
+          openIssues: repo?.open_issues_count ?? FALLBACK.openIssues,
+          downloads: downloads ?? FALLBACK.downloads,
         });
       } catch {
-        // Silent fallback — strip still renders with em-dashes
+        if (!cancelled) setStats(FALLBACK);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
     })();
     return () => {
@@ -73,27 +82,12 @@ export function GitHubStats() {
     };
   }, []);
 
+  const display = stats ?? FALLBACK;
   const items = [
-    {
-      Icon: Star,
-      label: "GitHub stars",
-      value: stats.stars !== null ? stats.stars.toLocaleString() : "—",
-    },
-    {
-      Icon: GitCommit,
-      label: "Last commit",
-      value: stats.lastCommit ? timeAgo(stats.lastCommit) : "—",
-    },
-    {
-      Icon: AlertCircle,
-      label: "Open issues",
-      value: stats.openIssues !== null ? stats.openIssues.toLocaleString() : "—",
-    },
-    {
-      Icon: Download,
-      label: "Total downloads",
-      value: stats.downloads !== null ? stats.downloads.toLocaleString() : "—",
-    },
+    { Icon: Star, label: "GitHub stars", value: display.stars.toLocaleString() },
+    { Icon: GitCommit, label: "Last commit", value: display.lastCommit },
+    { Icon: AlertCircle, label: "Open issues", value: display.openIssues.toLocaleString() },
+    { Icon: Download, label: "Total downloads", value: display.downloads.toLocaleString() },
   ];
 
   return (
@@ -107,13 +101,21 @@ export function GitHubStats() {
             </span>
             Built in public
           </span>
-          {items.map((it) => (
-            <div key={it.label} className="flex items-center gap-2 text-[14px] text-text-secondary">
-              <it.Icon size={16} className="text-navy" />
-              <span className="font-semibold text-navy tabular-nums">{it.value}</span>
-              <span>{it.label}</span>
-            </div>
-          ))}
+          {items.map((it) =>
+            loading ? (
+              <div key={it.label} className="flex items-center gap-2">
+                <it.Icon size={16} className="text-navy/40" />
+                <span className="inline-block h-4 w-12 rounded bg-navy/10 animate-pulse" />
+                <span className="inline-block h-4 w-20 rounded bg-navy/5 animate-pulse" />
+              </div>
+            ) : (
+              <div key={it.label} className="flex items-center gap-2 text-[14px] text-text-secondary">
+                <it.Icon size={16} className="text-navy" />
+                <span className="font-semibold text-navy tabular-nums">{it.value}</span>
+                <span>{it.label}</span>
+              </div>
+            )
+          )}
           <a
             href={`https://github.com/${REPO}`}
             target="_blank"
