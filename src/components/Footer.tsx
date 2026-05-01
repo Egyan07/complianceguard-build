@@ -81,14 +81,26 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Trust */}
+          {/* Resources */}
           <div className="md:col-span-3">
-            <h3 className={colHeading}>Trust</h3>
+            <h3 className={colHeading}>Resources</h3>
             <ul className="space-y-2.5">
-              {trustItems.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-[14px] text-foreground/70">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0" />
-                  {item}
+              {resourceLinks.map((l) => (
+                <li key={l.label}>
+                  {l.external ? (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClass}
+                    >
+                      {l.label}
+                    </a>
+                  ) : (
+                    <Link to={l.to!} hash={l.hash} className={linkClass}>
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
