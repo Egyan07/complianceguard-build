@@ -16,12 +16,12 @@ const companyLinks = [
   { label: "Contact", href: "mailto:alexisegyan1232@gmail.com", external: true },
 ];
 
-const trustItems = [
-  "BSL 1.1 Open Core",
-  "311 Tests Passing",
-  "4 Green CI Workflows",
-  "Ed25519 License Signing",
-  "AICPA TSC-Mapped",
+const resourceLinks = [
+  { label: "What is SOC 2?", to: "/resources/what-is-soc2", external: false },
+  { label: "SOC 2 Readiness Checklist", to: "/resources/soc2-checklist", external: false },
+  { label: "Documentation", href: "https://github.com/Egyan07/ComplianceGuard#readme", external: true },
+  { label: "Releases", href: "https://github.com/Egyan07/ComplianceGuard/releases", external: true },
+  { label: "Report a Vulnerability", to: "/security", hash: "disclosure", external: false },
 ];
 
 const colHeading = "text-[12px] uppercase font-semibold text-[#9CA3AF] tracking-[0.1em] mb-4";
