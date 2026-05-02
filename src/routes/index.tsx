@@ -171,6 +171,40 @@ function LandingPage() {
       {/* CHAPTER 2 — THE GAP */}
       <ChapterTheGap />
 
+      {/* PROBLEM */}
+      <section className="bg-navy text-white py-24">
+        <div className="container-cg">
+          <FadeUp>
+            <p className="eyebrow mb-4">The Problem</p>
+            <h2 className="text-[32px] md:text-[40px] font-bold leading-tight max-w-3xl">
+              Enterprise compliance tools were<br />built for enterprise budgets.
+            </h2>
+            <p className="mt-6 text-[18px] text-white/75 max-w-2xl">
+              Vanta starts at $10,000/year. Drata starts at $10,000/year.
+              Secureframe won't even show you a price until you book a call.
+              <br /><br />
+              If you're a 3-person SaaS doing $8K MRR trying to close your first
+              enterprise deal, this is extortion with a compliance badge on it.
+            </p>
+          </FadeUp>
+
+          <div className="mt-12 grid md:grid-cols-3 gap-6">
+            {[
+              { stat: "$10,000+", label: "Average cost of Vanta or Drata per year" },
+              { stat: "4–8 weeks", label: "Typical setup time for cloud-based compliance tools" },
+              { stat: "100%", label: "Of your evidence uploaded to their servers" },
+            ].map((c, i) => (
+              <FadeUp key={c.stat} delay={i * 0.08}>
+                <div className="bg-white rounded-[12px] p-8">
+                  <div className="text-[48px] font-bold text-navy leading-none">{c.stat}</div>
+                  <p className="mt-3 text-[15px] text-text-secondary">{c.label}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CHAPTER 3 — THE SCAN */}
       <ChapterTheScan />
 
