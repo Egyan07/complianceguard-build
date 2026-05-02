@@ -58,39 +58,6 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const features = [
-  {
-    icon: Terminal,
-    title: "OS-Level Evidence Collection",
-    body: "ComplianceGuard reads directly from Windows Registry, macOS system preferences, and Linux configs. No agent. No API key. No cloud permission required.",
-  },
-  {
-    icon: CloudCheck,
-    title: "AWS Evidence Auto-Sync",
-    body: "Connect your AWS account once. ComplianceGuard pulls CloudTrail logs, S3 bucket policies, IAM configurations, and security group rules into your evidence pack automatically.",
-  },
-  {
-    icon: FileText,
-    title: "Auditor-Ready PDF Export",
-    body: "Every evidence pack exports in the exact CSV, PDF, and JSON format used in successful SOC 2 Type I and Type II audits. Hand it to your auditor on day one.",
-  },
-  {
-    icon: Lock,
-    title: "Zero-Knowledge Architecture",
-    body: "Your AWS credentials are encrypted at rest with HKDF-SHA256 derived keys. Evidence data stays in your local database. Our servers never see it.",
-  },
-  {
-    icon: Gauge,
-    title: "SOC 2 Readiness Score",
-    body: "See your compliance score across all 29 SOC 2 Trust Services Criteria the moment you install. Know exactly what's passing and what needs work.",
-  },
-  {
-    icon: WifiOff,
-    title: "Offline Operation",
-    body: "ComplianceGuard runs fully offline. No internet connection required to collect evidence or generate reports. Works in air-gapped environments.",
-  },
-];
-
 const compareRows = [
   ["Starting price", "$49/month", "$10,000+/year", "$10,000+/year"],
   ["Data stays on your machine", "yes", "no", "no"],
