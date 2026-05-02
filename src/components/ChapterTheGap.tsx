@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
 
-const stats = [
-  { stat: "$10,000+", label: "Average cost of Vanta or Drata per year" },
-  { stat: "4–8 weeks", label: "Typical setup time for cloud-based compliance tools" },
-  { stat: "100%", label: "Of your evidence uploaded to their servers" },
-];
 
 export function ChapterTheGap() {
   return (
