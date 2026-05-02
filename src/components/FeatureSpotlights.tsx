@@ -51,6 +51,20 @@ const SPOTLIGHTS: Spotlight[] = [
     bg: FileText,
     fg: Download,
   },
+  {
+    eyebrow: "Data Privacy",
+    title: "Your credentials never leave your machine.",
+    body: "AWS credentials are encrypted at rest using HKDF-SHA256 derived Fernet keys before being stored locally. They are never transmitted to ComplianceGuard servers. Your evidence stays in your local database.",
+    bg: Lock,
+    fg: Shield,
+  },
+  {
+    eyebrow: "Air-Gap Ready",
+    title: "Works without an internet connection.",
+    body: "ComplianceGuard runs fully offline. No internet connection required to collect evidence or generate reports. Works in air-gapped environments and restricted networks.",
+    bg: WifiOff,
+    fg: Server,
+  },
 ];
 
 function Visual({ Bg, Fg }: { Bg: LucideIcon; Fg: LucideIcon }) {
