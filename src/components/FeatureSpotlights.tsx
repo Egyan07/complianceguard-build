@@ -8,6 +8,9 @@ import {
   CheckCircle,
   FileText,
   Download,
+  Lock,
+  WifiOff,
+  Server,
   type LucideIcon,
 } from "lucide-react";
 
