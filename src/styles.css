@@ -307,6 +307,10 @@
 /* Magnetic button hover lift */
 .cg-magnetic { transition: transform 0.18s ease-out; }
 
+/* Used by ChapterTheResult to neutralise the hero mockup tilt + helper label */
+.cg-no-tilt > div { transform: none !important; }
+.cg-no-tilt p.md\:hidden { display: none !important; }
+
 /* Caveat handwriting font for founder signature */
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap');
 
