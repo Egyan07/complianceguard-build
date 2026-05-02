@@ -49,9 +49,9 @@ export const Route = createFileRoute("/")({
         content:
           "ComplianceGuard generates auditor-ready SOC 2 evidence packs on your machine. No cloud upload. $49/month.",
       },
-      { property: "og:url", content: "https://complianceguard.dev/" },
-      { property: "og:image", content: "https://complianceguard.dev/og-image.png" },
-      { name: "twitter:image", content: "https://complianceguard.dev/og-image.png" },
+      { property: "og:url", content: "https://complianceguard.alexisegyan1232.workers.dev/" },
+      { property: "og:image", content: "https://complianceguard.alexisegyan1232.workers.dev/favicon.svg" },
+      { name: "twitter:image", content: "https://complianceguard.alexisegyan1232.workers.dev/favicon.svg" },
     ],
   }),
   component: LandingPage,
@@ -94,7 +94,7 @@ const steps = [
 function CompareCell({ value, isCG }: { value: string; isCG: boolean }) {
   if (value === "yes") {
     return (
-      <span className={`inline-flex items-center justify-center ${isCG ? "text-teal" : "text-teal"}`}>
+      <span className={`inline-flex items-center justify-center ${isCG ? "text-teal" : "text-text-secondary"}`}>
         <Check size={18} strokeWidth={3} />
       </span>
     );
