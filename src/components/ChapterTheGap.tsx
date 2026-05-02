@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export function ChapterTheGap() {
   return (
-    <section className="bg-navy text-white py-28">
+    <section className="bg-navy text-white pt-28 pb-0">
       <div className="container-cg max-w-4xl">
         <p className="eyebrow mb-6">The Gap</p>
 
