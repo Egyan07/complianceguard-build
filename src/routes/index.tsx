@@ -1,12 +1,7 @@
 import { Fragment } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Terminal,
-  CloudCheck,
   FileText,
-  Lock,
-  Gauge,
-  WifiOff,
   Check,
   X,
   ArrowRight,
