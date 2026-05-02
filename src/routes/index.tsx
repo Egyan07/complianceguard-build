@@ -35,6 +35,10 @@ import { CodeSnippet } from "@/components/CodeSnippet";
 import { DownloadCounter } from "@/components/DownloadCounter";
 import { ExitIntentModal } from "@/components/ExitIntentModal";
 import { GitHubStarButton } from "@/components/GitHubStarButton";
+import { ChapterTheGap } from "@/components/ChapterTheGap";
+import { ChapterTheScan } from "@/components/ChapterTheScan";
+import { ChapterTheResult } from "@/components/ChapterTheResult";
+import { FeatureSpotlights } from "@/components/FeatureSpotlights";
 
 export const Route = createFileRoute("/")({
   head: () => ({
