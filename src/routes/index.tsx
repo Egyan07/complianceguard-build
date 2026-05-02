@@ -49,9 +49,9 @@ export const Route = createFileRoute("/")({
         content:
           "ComplianceGuard generates auditor-ready SOC 2 evidence packs on your machine. No cloud upload. $49/month.",
       },
-      { property: "og:url", content: "https://complianceguard.alexisegyan1232.workers.dev/" },
-      { property: "og:image", content: "https://complianceguard.alexisegyan1232.workers.dev/og-image.png" },
-      { name: "twitter:image", content: "https://complianceguard.alexisegyan1232.workers.dev/og-image.png" },
+      { property: "og:url", content: "https://complianceguard.cguard.workers.dev/" },
+      { property: "og:image", content: "https://complianceguard.cguard.workers.dev/og-image.png" },
+      { name: "twitter:image", content: "https://complianceguard.cguard.workers.dev/og-image.png" },
     ],
   }),
   component: LandingPage,
