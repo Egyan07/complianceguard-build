@@ -207,71 +207,17 @@ function LandingPage() {
       {/* GITHUB LIVE STATS */}
       <GitHubStats />
 
-      {/* PROBLEM */}
-      <section className="bg-navy text-white py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <p className="eyebrow mb-4">The Problem</p>
-            <h2 className="text-[32px] md:text-[40px] font-bold leading-tight max-w-3xl">
-              Enterprise compliance tools were<br />built for enterprise budgets.
-            </h2>
-            <p className="mt-6 text-[18px] text-white/75 max-w-2xl">
-              Vanta starts at $10,000/year. Drata starts at $10,000/year.
-              Secureframe won't even show you a price until you book a call.
-              <br /><br />
-              If you're a 3-person SaaS doing $8K MRR trying to close your first
-              enterprise deal, this is extortion with a compliance badge on it.
-            </p>
-          </FadeUp>
+      {/* CHAPTER 2 — THE GAP */}
+      <ChapterTheGap />
 
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {[
-              { stat: "$10,000+", label: "Average cost of Vanta or Drata per year" },
-              { stat: "4–8 weeks", label: "Typical setup time for cloud-based compliance tools" },
-              { stat: "100%", label: "Of your evidence uploaded to their servers" },
-            ].map((c, i) => (
-              <FadeUp key={c.stat} delay={i * 0.08}>
-                <div className="bg-white rounded-[12px] p-8">
-                  <div className="text-[48px] font-bold text-navy leading-none">{c.stat}</div>
-                  <p className="mt-3 text-[15px] text-text-secondary">{c.label}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* CHAPTER 3 — THE SCAN */}
+      <ChapterTheScan />
 
-      {/* SOLUTION + features */}
-      <section id="features" className="bg-background py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <p className="eyebrow mb-4">The Solution</p>
-            <h2 className="text-[32px] md:text-[40px] font-bold text-navy max-w-3xl leading-tight">
-              Professional SOC 2 readiness.<br />
-              On your machine. Under your control.
-            </h2>
-            <p className="mt-6 text-[18px] text-text-secondary max-w-2xl">
-              ComplianceGuard installs in 60 seconds and immediately scans your
-              OS and AWS environment. Your evidence never leaves your network.
-              Your auditor gets exactly the file format they need.
-            </p>
-          </FadeUp>
+      {/* CHAPTER 4 — THE RESULT */}
+      <ChapterTheResult />
 
-          <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <FadeUp key={f.title} delay={i * 0.05}>
-                <div className="border border-border rounded-[12px] p-6 h-full">
-                  <div className="w-10 h-10 rounded-md bg-teal flex items-center justify-center text-white">
-                    <f.icon size={20} />
-                  </div>
-                  <h3 className="mt-5 text-[18px] font-semibold text-navy">{f.title}</h3>
-                  <p className="mt-2 text-[15px] text-text-secondary leading-[1.65]">{f.body}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FEATURE SPOTLIGHTS (replaces old 3x2 grid) */}
+      <FeatureSpotlights />
 
       {/* COMPARISON */}
       <section className="bg-surface py-24">
