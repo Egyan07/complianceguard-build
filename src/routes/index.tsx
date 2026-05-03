@@ -214,6 +214,9 @@ function LandingPage() {
       {/* CHAPTER 4 — THE RESULT */}
       <ChapterTheResult />
 
+      {/* FRAMEWORKS */}
+      <FrameworksSection />
+
       {/* FEATURE SPOTLIGHTS (replaces old 3x2 grid) */}
       <FeatureSpotlights />
 
