@@ -101,8 +101,8 @@ function AboutPage() {
             style={{ backgroundColor: "#F8F9FA", padding: 24 }}
           >
             {[
-              { value: 311, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
-              { value: 4, l: "Green CI workflows on every commit" },
+              { value: 355, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
+              { value: 5, l: "Green CI workflows on every commit" },
               { value: 8, l: "Evidence categories collected from your OS" },
             ].map((f, i) => (
               <div key={i}>

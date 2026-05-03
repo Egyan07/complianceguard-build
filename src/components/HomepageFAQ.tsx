@@ -4,6 +4,10 @@ import { FadeUp } from "./FadeUp";
 
 const FAQS = [
   {
+    q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
+    a: "Yes. ComplianceGuard now supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001:2013 (47 Annex A controls), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence collection feeds all three.",
+  },
+  {
     q: "Is this really audit-ready, or is it a toy?",
     a: "Every evidence pack is mapped to the AICPA Trust Services Criteria — the exact framework SOC 2 auditors use. The PDF, CSV, and JSON exports follow the format used in successful SOC 2 Type I and Type II reports. You hand it to your auditor; they don't ask you to reformat anything.",
   },

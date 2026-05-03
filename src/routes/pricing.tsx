@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
-    a: "Not yet. v3.1.0 covers SOC 2 Trust Services Criteria. ISO 27001 and HIPAA frameworks are on the roadmap.",
+    a: "Yes. ComplianceGuard now supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001:2013 (47 Annex A controls), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence collection feeds all three.",
   },
   {
     q: "Do you store my AWS credentials?",
