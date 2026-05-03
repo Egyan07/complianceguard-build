@@ -101,8 +101,8 @@ function AboutPage() {
             style={{ backgroundColor: "#F8F9FA", padding: 24 }}
           >
             {[
-              { value: 311, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
-              { value: 4, l: "Green CI workflows on every commit" },
+              { value: 355, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
+              { value: 5, l: "Green CI workflows on every commit" },
               { value: 8, l: "Evidence categories collected from your OS" },
             ].map((f, i) => (
               <div key={i}>
@@ -133,6 +133,10 @@ function AboutPage() {
             <p>
               <span className="font-bold text-navy">Small teams deserve professional tools. </span>
               The market has a $10,000 floor. Below that, there's almost nothing. That gap is intentional — we're building in it.
+            </p>
+            <p>
+              <span className="font-bold text-navy">Your data. Your infrastructure. </span>
+              Self-host ComplianceGuard anywhere — Docker, Railway, Render, or DigitalOcean. One command, your evidence, your control plane.
             </p>
           </div>
         </div>

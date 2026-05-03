@@ -33,6 +33,7 @@ import { ChapterTheGap } from "@/components/ChapterTheGap";
 import { ChapterTheScan } from "@/components/ChapterTheScan";
 import { ChapterTheResult } from "@/components/ChapterTheResult";
 import { FeatureSpotlights } from "@/components/FeatureSpotlights";
+import { FrameworksSection } from "@/components/FrameworksSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -63,6 +64,7 @@ const compareRows = [
   ["Works offline", "yes", "no", "no"],
   ["Per-seat pricing", "No", "Yes", "Yes"],
   ["OS-level evidence collection", "yes", "no", "no"],
+  ["Compliance frameworks", "SOC 2 · ISO 27001 · HIPAA", "SOC 2 · ISO 27001", "SOC 2 · ISO 27001"],
   ["Setup time", "60 seconds", "Weeks", "Weeks"],
   ["Auditable codebase", "BSL 1.1", "Proprietary", "Proprietary"],
   ["Free tier", "yes", "no", "no"],
@@ -119,7 +121,7 @@ function LandingPage() {
         <CursorBlob />
         <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center relative z-10">
           <div>
-            <p className="eyebrow mb-4">On-Premise SOC 2 Compliance</p>
+            <p className="eyebrow mb-4">SOC 2 · ISO 27001 · HIPAA Compliance</p>
             <h1 className="text-[36px] md:text-[56px] font-bold text-navy leading-[1.05] tracking-tight">
               <TypingHeadline
                 lines={[
@@ -132,8 +134,9 @@ function LandingPage() {
             </h1>
             <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[480px]">
               ComplianceGuard scans your machines and AWS environment to generate
-              auditor-ready SOC 2 evidence packs — without sending a single byte
-              to our servers. Free to start. $49/month to finish an audit.
+              auditor-ready evidence packs for SOC 2, ISO 27001, and HIPAA — without
+              sending a single byte to our servers. Free to start. $49/month to
+              finish an audit.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <MagneticButton
@@ -210,6 +213,9 @@ function LandingPage() {
 
       {/* CHAPTER 4 — THE RESULT */}
       <ChapterTheResult />
+
+      {/* FRAMEWORKS */}
+      <FrameworksSection />
 
       {/* FEATURE SPOTLIGHTS (replaces old 3x2 grid) */}
       <FeatureSpotlights />

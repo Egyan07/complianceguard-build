@@ -21,7 +21,7 @@ export function AnnouncementBanner() {
     <div className="bg-navy text-white text-[13px] md:text-[14px]">
       <div className="container-cg flex items-center justify-between gap-4 py-2">
         <p className="flex-1 text-center">
-          v3.1.0 is live — JTI token revocation, streaming uploads, and YAML-driven SOC 2 controls.{" "}
+          ISO 27001 and HIPAA frameworks now live — plus 355 tests passing.{" "}
           <Link to="/changelog" className="text-teal font-semibold hover:underline whitespace-nowrap">
             See what&apos;s new →
           </Link>

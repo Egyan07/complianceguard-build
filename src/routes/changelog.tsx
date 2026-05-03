@@ -30,6 +30,30 @@ const entries: {
   bullets: string[];
 }[] = [
   {
+    date: "May 2026",
+    version: "Unreleased",
+    title: "Framework expansion and API completion",
+    tags: [
+      { label: "Feature", tone: "blue" },
+      { label: "Fixed", tone: "green" },
+    ],
+    bullets: [
+      "Added ISO 27001:2013 framework — 47 controls across all 14 Annex A domains (A.5–A.18)",
+      "Added HIPAA Security Rule framework — 47 safeguards across all five 45 CFR Part 164 sections, including required/addressable specification type per control",
+      "Added GET /api/v1/auth/me — returns authenticated user profile for frontend state re-hydration",
+      "Added POST /api/v1/auth/resend-verification — re-sends verification email, rate-limited to 3/minute",
+      "Added PATCH /api/v1/auth/profile — updates first_name and last_name, rate-limited to 10/minute",
+      "Added DELETE /api/v1/auth/account — GDPR Article 17 hard-delete with password confirmation, cascades all user data",
+      "Added evidence search and status filter — GET /api/v1/evidence/items now accepts ?status= and ?search= params",
+      "Added GET /api/v1/evidence/items/{id}/controls — returns SOC 2 controls an evidence item contributes to",
+      "Added POST /api/v1/compliance/evaluate-from-evidence — web-mode compliance evaluation from stored evidence",
+      "Added Railway one-click deploy via railway.toml",
+      "Fixed auth API routing — 7 call sites corrected from /api/auth/* to /api/v1/auth/*",
+      "Fixed naive datetime in compliance service — 4 datetime.now() calls replaced with timezone-aware equivalents",
+      "22 new backend tests — total now 355 (231 backend + 119 frontend + 5 Playwright)",
+    ],
+  },
+  {
     date: "April 2026",
     version: "v3.1.0",
     title: "Security hardening and architecture completion",
@@ -102,7 +126,7 @@ const entries: {
       "Sync to Cloud button on the Electron Dashboard when cloud sync is configured",
       "Cloud Sync settings section in Electron Settings; JWT tokens stored in SQLite",
       "New machines table with Alembic migration 2b7e3f4a9c1d",
-      "17 new tests added — total now 311",
+      "17 new tests added — total now 355",
     ],
   },
   {
@@ -351,7 +375,7 @@ function ChangelogPage() {
                       <span className="bg-teal text-white text-[13px] font-semibold px-2.5 py-1 rounded">
                         {e.date}
                       </span>
-                      <span className="bg-navy text-white text-[13px] font-semibold px-2.5 py-1 rounded">
+                      <span className={`${e.version === "Unreleased" ? "bg-text-secondary" : "bg-navy"} text-white text-[13px] font-semibold px-2.5 py-1 rounded`}>
                         {e.version}
                       </span>
                       {e.tags.map((t) => (
