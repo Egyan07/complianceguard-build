@@ -104,6 +104,15 @@ function WhatIsSoc2Page() {
               accept. The free tier shows your readiness score in under 2 minutes.
             </p>
           </Section>
+
+          <Section title="Beyond SOC 2: ISO 27001 and HIPAA">
+            <p>
+              If your clients are in Europe, they may require ISO 27001 certification instead of —
+              or in addition to — SOC 2. If you work with healthcare data, HIPAA compliance is
+              mandatory. ComplianceGuard now supports all three frameworks from the same evidence
+              collection run. One scan, three reports.
+            </p>
+          </Section>
         </div>
 
         {/* Final CTA */}
