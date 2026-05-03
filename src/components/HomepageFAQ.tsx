@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: "Why should I trust a one-person project with my compliance?",
-    a: "You shouldn't trust me — you should trust the code. ComplianceGuard is BSL 1.1 source-available: read every line that touches your machine. The crypto uses Ed25519 signing and HKDF-derived Fernet encryption (industry standard). 311+ tests run on every commit. And critically: we never receive your evidence, so even if I disappeared tomorrow, your data is on your disk, not on a server I control.",
+    a: "You shouldn't trust me — you should trust the code. ComplianceGuard is BSL 1.1 source-available: read every line that touches your machine. The crypto uses Ed25519 signing and HKDF-derived Fernet encryption (industry standard). 355+ tests run on every commit. And critically: we never receive your evidence, so even if I disappeared tomorrow, your data is on your disk, not on a server I control.",
   },
   {
     q: "Can't I just collect evidence manually in a spreadsheet?",
