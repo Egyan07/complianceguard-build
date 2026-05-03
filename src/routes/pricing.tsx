@@ -180,6 +180,9 @@ function PricingPage() {
         <p className="mt-10 text-center text-[15px] text-text-secondary max-w-2xl mx-auto">
           30-day money-back guarantee on Pro and Managed. No questions asked. Email us and we&apos;ll refund within 24 hours.
         </p>
+        <p className="mt-3 text-center text-[14px] text-text-secondary max-w-2xl mx-auto">
+          Self-hosting? Deploy to Railway, Render, or any Docker host in one command. Full instructions in the GitHub README.
+        </p>
       </section>
 
       {/* FAQ */}
