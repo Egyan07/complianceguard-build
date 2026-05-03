@@ -33,6 +33,7 @@ import { ChapterTheGap } from "@/components/ChapterTheGap";
 import { ChapterTheScan } from "@/components/ChapterTheScan";
 import { ChapterTheResult } from "@/components/ChapterTheResult";
 import { FeatureSpotlights } from "@/components/FeatureSpotlights";
+import { FrameworksSection } from "@/components/FrameworksSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
