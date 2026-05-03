@@ -134,6 +134,10 @@ function AboutPage() {
               <span className="font-bold text-navy">Small teams deserve professional tools. </span>
               The market has a $10,000 floor. Below that, there's almost nothing. That gap is intentional — we're building in it.
             </p>
+            <p>
+              <span className="font-bold text-navy">Your data. Your infrastructure. </span>
+              Self-host ComplianceGuard anywhere — Docker, Railway, Render, or DigitalOcean. One command, your evidence, your control plane.
+            </p>
           </div>
         </div>
       </section>
