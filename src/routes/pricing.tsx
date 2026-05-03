@@ -52,7 +52,7 @@ const faqs = [
 ];
 
 const proFeatures = [
-  "All 29 SOC 2 Trust Services Criteria",
+  "SOC 2 (29) · ISO 27001 (47) · HIPAA (47)",
   "Unlimited evidence collection runs",
   "Full PDF, CSV, and JSON export",
   "AWS CloudTrail + IAM + S3 evidence",

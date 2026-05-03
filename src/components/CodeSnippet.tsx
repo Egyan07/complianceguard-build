@@ -6,7 +6,7 @@ const LINES = [
   { p: "", t: "→ Scanning Windows registry…           ✓", c: "#94A3B8" },
   { p: "", t: "→ Reading firewall configuration…      ✓", c: "#94A3B8" },
   { p: "", t: "→ Pulling CloudTrail (last 90 days)…   ✓", c: "#94A3B8" },
-  { p: "", t: "→ Evaluating 29 SOC 2 controls…        ✓", c: "#94A3B8" },
+  { p: "", t: "→ Evaluating SOC 2, ISO 27001 + HIPAA controls… ✓", c: "#94A3B8" },
   { p: "", t: "", c: "" },
   { p: "", t: "Readiness score: 67% (19 of 29 passing)", c: "#1A8C5F" },
   { p: "", t: "Evidence pack written to ./evidence-2026-04-30.pdf", c: "#E2E8F0" },
