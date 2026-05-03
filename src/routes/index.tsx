@@ -346,7 +346,7 @@ function LandingPage() {
                 <p className="mt-1 text-[14px] text-text-secondary">or $399/year — save 32%</p>
                 <p className="mt-3 text-[15px] text-text-secondary">Everything you need to hand an auditor a complete evidence pack.</p>
                 <ul className="mt-6 space-y-3 text-[15px] flex-1">
-                  {["All 29 SOC 2 controls","Full PDF + CSV export","AWS evidence auto-sync","Evidence history (90 days)","Email support"].map((x) => (
+                  {["SOC 2 (29) · ISO 27001 (47) · HIPAA (47)","Full PDF + CSV export","AWS evidence auto-sync","Evidence history (90 days)","Email support"].map((x) => (
                     <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
                   ))}
                 </ul>

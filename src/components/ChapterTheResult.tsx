@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const results = [
-  { stat: "29", label: "SOC 2 Trust Services Criteria", sub: "All mapped and scored automatically" },
+  { stat: "123", label: "Controls across all frameworks", sub: "SOC 2 · ISO 27001 · HIPAA" },
   { stat: "< 2min", label: "From install to readiness score", sub: "No configuration required" },
   { stat: "3", label: "Export formats", sub: "PDF, CSV, and JSON — auditor-ready" },
 ];
@@ -17,7 +17,7 @@ export function ChapterTheResult() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center text-[36px] md:text-[48px] font-bold text-navy leading-tight"
         >
-          29 controls. 2 minutes. Audit-ready.
+          123 controls. 3 frameworks. Audit-ready.
         </motion.h2>
 
         <div className="mt-14 grid md:grid-cols-3 gap-6">

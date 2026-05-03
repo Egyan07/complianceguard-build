@@ -11,8 +11,8 @@ const ITEMS = [
     body: "If you need 40 integrations, you're not our customer. We do SOC 2 evidence — that's it.",
   },
   {
-    title: "No SOC 2 + ISO + HIPAA combo",
-    body: "We don't bundle frameworks you don't need. SOC 2 only, done well.",
+    title: "No auditor lock-in",
+    body: "We don't take a referral cut for sending you to an auditor. Use whoever you want, whenever you're ready.",
   },
   {
     title: "No sales calls or demos",
