@@ -375,7 +375,7 @@ function ChangelogPage() {
                       <span className="bg-teal text-white text-[13px] font-semibold px-2.5 py-1 rounded">
                         {e.date}
                       </span>
-                      <span className="bg-navy text-white text-[13px] font-semibold px-2.5 py-1 rounded">
+                      <span className={`${e.version === "Unreleased" ? "bg-text-secondary" : "bg-navy"} text-white text-[13px] font-semibold px-2.5 py-1 rounded`}>
                         {e.version}
                       </span>
                       {e.tags.map((t) => (
