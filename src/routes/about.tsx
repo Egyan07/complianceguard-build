@@ -116,6 +116,15 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="bg-background py-20">
+        <div className="container-cg max-w-5xl">
+          <FadeUp>
+            <h2 className="text-[32px] font-bold text-navy mb-8">The product</h2>
+          </FadeUp>
+          <ScreenshotShowcase variant="grid" />
+        </div>
+      </section>
+
       <section className="bg-background py-24">
         <div className="container-cg max-w-[720px]">
           <FadeUp>
