@@ -11,8 +11,8 @@ const ITEMS = [
     body: "If you need 40 integrations, you're not our customer. We do SOC 2 evidence — that's it.",
   },
   {
-    title: "No auditor lock-in",
-    body: "We don't take a referral cut for sending you to an auditor. Use whoever you want, whenever you're ready.",
+    title: "No vendor lock-in on your data",
+    body: "Your evidence is stored locally in SQLite. Export it anytime as PDF, CSV, or JSON. Switch tools whenever you want — your data leaves with you.",
   },
   {
     title: "No sales calls or demos",
