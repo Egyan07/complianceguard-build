@@ -160,7 +160,7 @@ function LandingPage() {
             </div>
           </div>
           <div className="overflow-hidden -mx-4 px-4 lg:mx-0 lg:px-0">
-            <ProductMockup />
+            <ScreenshotShowcase />
           </div>
         </div>
       </section>
