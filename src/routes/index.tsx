@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ProductMockup } from "@/components/ProductMockup";
+import { ScreenshotShowcase } from "@/components/ScreenshotShowcase";
 import { FadeUp } from "@/components/FadeUp";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
