@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FadeUp } from "@/components/FadeUp";
 import { AnimatedStat } from "@/components/AnimatedStat";
+import { ScreenshotShowcase } from "@/components/ScreenshotShowcase";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
