@@ -2,10 +2,8 @@ type Props = {
   variant?: "hero" | "grid";
 };
 
-const DASHBOARD_URL =
-  "https://raw.githubusercontent.com/Egyan07/ComplianceGuard/main/assets/screenshots/Dashboard.png";
-const EVIDENCE_URL =
-  "https://raw.githubusercontent.com/Egyan07/ComplianceGuard/main/assets/screenshots/EvidenceCollection.png";
+const DASHBOARD_URL = "/screenshots/Dashboard.png";
+const EVIDENCE_URL = "/screenshots/EvidenceCollection.png";
 
 function WindowFrame({
   label,
