@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { FadeUp } from "@/components/FadeUp";
 import { AnimatedStat } from "@/components/AnimatedStat";
-import { ScreenshotShowcase } from "@/components/ScreenshotShowcase";
+import { ProductMockup } from "@/components/ProductMockup";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -122,7 +122,7 @@ function AboutPage() {
           <FadeUp>
             <h2 className="text-[32px] font-bold text-navy mb-8">The product</h2>
           </FadeUp>
-          <ScreenshotShowcase variant="grid" />
+          <ProductMockup />
         </div>
       </section>
 
