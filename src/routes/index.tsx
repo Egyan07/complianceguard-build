@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ScreenshotShowcase } from "@/components/ScreenshotShowcase";
+import { ProductMockup } from "@/components/ProductMockup";
 import { FadeUp } from "@/components/FadeUp";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
@@ -160,7 +160,7 @@ function LandingPage() {
             </div>
           </div>
           <div className="overflow-hidden -mx-4 px-4 lg:mx-0 lg:px-0">
-            <ScreenshotShowcase />
+            <ProductMockup />
           </div>
         </div>
       </section>
