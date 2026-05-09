@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { useCountUpOnTrigger } from "@/hooks/use-count-up";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
