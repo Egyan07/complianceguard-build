@@ -56,7 +56,7 @@ export function HomepageFAQ() {
             const isOpen = open === i;
             return (
               <FadeUp key={f.q} delay={i * 0.03}>
-                <div className="border border-border rounded-[12px] bg-white overflow-hidden">
+                <HoverCard className="border border-border rounded-[12px] bg-white overflow-hidden">
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
@@ -78,7 +78,7 @@ export function HomepageFAQ() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </HoverCard>
               </FadeUp>
             );
           })}
