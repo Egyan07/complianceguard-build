@@ -1,21 +1,34 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "@tanstack/react-router";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 
 /**
- * Wrap children to fade in on every route change.
- * Lightweight — just a CSS class swap on pathname change.
+ * Fades the route outlet out (150ms) and the new route in (200ms) on
+ * pathname change. Skips the animation when prefers-reduced-motion is set.
  */
 export function PageTransition({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const [key, setKey] = useState(location.pathname);
+  const reduced = usePrefersReducedMotion();
 
-  useEffect(() => {
-    setKey(location.pathname);
-  }, [location.pathname]);
+  if (reduced) {
+    return <>{children}</>;
+  }
 
   return (
-    <div key={key} className="cg-page-transition">
-      {children}
-    </div>
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: 0.2,
+          ease: "easeOut",
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 }
