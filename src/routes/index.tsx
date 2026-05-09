@@ -9,6 +9,10 @@ import {
   Code2,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { ParallaxMockup } from "@/components/ParallaxMockup";
+import { HoverCard } from "@/components/HoverCard";
+import { AnimatedStat } from "@/components/AnimatedStatValue";
+import { motion } from "framer-motion";
 import { Footer } from "@/components/Footer";
 import { ProductMockup } from "@/components/ProductMockup";
 import { FadeUp } from "@/components/FadeUp";
