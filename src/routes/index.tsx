@@ -16,7 +16,7 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { CostCalculator } from "@/components/CostCalculator";
-import { TypingHeadline } from "@/components/TypingHeadline";
+import { WordReveal } from "@/components/WordReveal";
 import { MagneticButton } from "@/components/MagneticButton";
 import { CursorBlob } from "@/components/CursorBlob";
 import { GitHubStats } from "@/components/GitHubStats";
