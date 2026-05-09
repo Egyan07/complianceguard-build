@@ -84,6 +84,3 @@ function NumberCounter({
 
 // Re-export to keep import surface stable if the older AnimatedStat is referenced.
 export default AnimatedStat;
-
-// Suppress unused import warning when tree-shaking dev builds.
-export const __noop = useEffect && useRef && useState;
