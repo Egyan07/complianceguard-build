@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { FadeUp } from "./FadeUp";
+import { HoverCard } from "./HoverCard";
 
 const FAQS = [
   {
