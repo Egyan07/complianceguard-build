@@ -85,13 +85,12 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <div key={l.to + l.label} className="contents">
-              <Link
+              <NavUnderlineLink
                 to={l.to}
                 hash={l.label === "Features" ? "features" : undefined}
-                className="text-[15px] text-foreground/80 hover:text-navy transition-colors"
               >
                 {l.label}
-              </Link>
+              </NavUnderlineLink>
               {l.label === "Changelog" && (
                 <div
                   key="resources-dd"
