@@ -123,13 +123,12 @@ function LandingPage() {
           <div>
             <p className="eyebrow mb-4">SOC 2 · ISO 27001 · HIPAA Compliance</p>
             <h1 className="text-[36px] md:text-[56px] font-bold text-navy leading-[1.05] tracking-tight">
-              <TypingHeadline
+              <WordReveal
                 lines={[
                   "Stop Paying $10,000",
                   "a Year to Prove",
                   "You're Secure.",
                 ]}
-                speed={32}
               />
             </h1>
             <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[480px]">
@@ -159,9 +158,9 @@ function LandingPage() {
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />AWS evidence auto-collection</span>
             </div>
           </div>
-          <div className="overflow-hidden -mx-4 px-4 lg:mx-0 lg:px-0">
+          <ParallaxMockup>
             <ProductMockup />
-          </div>
+          </ParallaxMockup>
         </div>
       </section>
 
