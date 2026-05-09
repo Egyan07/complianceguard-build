@@ -201,10 +201,12 @@ function LandingPage() {
               { stat: "100%", label: "Of your evidence uploaded to their servers" },
             ].map((c, i) => (
               <FadeUp key={c.stat} delay={i * 0.08}>
-                <div className="bg-white rounded-[12px] p-8">
-                  <div className="text-[48px] font-bold text-navy leading-none">{c.stat}</div>
+                <HoverCard className="bg-white rounded-[12px] p-8 border border-transparent">
+                  <div className="text-[48px] font-bold text-navy leading-none">
+                    <AnimatedStat value={c.stat} />
+                  </div>
                   <p className="mt-3 text-[15px] text-text-secondary">{c.label}</p>
-                </div>
+                </HoverCard>
               </FadeUp>
             ))}
           </div>
