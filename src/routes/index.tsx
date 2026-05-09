@@ -325,7 +325,7 @@ function LandingPage() {
           <div className="mt-14 grid md:grid-cols-3 gap-6">
             {/* Free */}
             <FadeUp>
-              <div className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
+              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
                 <h3 className="text-[18px] font-bold text-navy">Free</h3>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-[48px] font-bold text-navy leading-none">$0</span>
@@ -338,12 +338,12 @@ function LandingPage() {
                   ))}
                 </ul>
                 <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost mt-8 w-full">Download Free</a>
-              </div>
+              </HoverCard>
             </FadeUp>
 
             {/* Pro - featured */}
             <FadeUp delay={0.05}>
-              <div className="relative bg-white rounded-[12px] p-8 h-full flex flex-col" style={{ boxShadow: "0 0 0 2px #1A8C5F" }}>
+              <HoverCard className="relative bg-white rounded-[12px] p-8 h-full flex flex-col" style={{ boxShadow: "0 0 0 2px #1A8C5F" }}>
                 <span className="absolute -top-3 left-8 bg-teal text-white text-[13px] font-semibold px-3 py-1 rounded">
                   Most Popular
                 </span>
@@ -360,12 +360,12 @@ function LandingPage() {
                   ))}
                 </ul>
                 <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary mt-8 w-full">Start Pro Trial</a>
-              </div>
+              </HoverCard>
             </FadeUp>
 
             {/* Managed */}
             <FadeUp delay={0.1}>
-              <div className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
+              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
                 <h3 className="text-[18px] font-bold text-navy">Managed</h3>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-[48px] font-bold text-navy leading-none">$79</span>
@@ -378,7 +378,7 @@ function LandingPage() {
                   ))}
                 </ul>
                 <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
-              </div>
+              </HoverCard>
             </FadeUp>
           </div>
         </div>
