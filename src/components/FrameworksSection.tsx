@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { FadeUp } from "./FadeUp";
+import { HoverCard } from "./HoverCard";
 
 const frameworks = [
   {
@@ -40,8 +42,14 @@ export function FrameworksSection() {
 
         <div className="mt-14 grid md:grid-cols-3 gap-6">
           {frameworks.map((f, i) => (
-            <FadeUp key={f.name} delay={i * 0.06}>
-              <div className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
+            <motion.div
+              key={f.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.15 }}
+            >
+              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
                 <div className="text-[48px] font-bold text-teal leading-none">{f.n}</div>
                 <h3 className="mt-4 text-[16px] font-semibold text-navy">{f.title}</h3>
                 <p className="mt-1 text-[13px] uppercase tracking-wider text-text-secondary">{f.name}</p>
@@ -49,8 +57,8 @@ export function FrameworksSection() {
                 <span className="mt-6 inline-flex self-start bg-teal text-white text-[12px] font-semibold px-2 py-1 rounded-[4px]">
                   Available Now
                 </span>
-              </div>
-            </FadeUp>
+              </HoverCard>
+            </motion.div>
           ))}
         </div>
       </div>
