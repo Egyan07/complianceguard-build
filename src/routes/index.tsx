@@ -403,13 +403,13 @@ function LandingPage() {
               { Icon: Code2, title: "BSL 1.1 Open Core", body: "You can read the code that reads your system. No black boxes." },
             ].map((t, i) => (
               <FadeUp key={t.title} delay={i * 0.05}>
-                <div className="border border-border rounded-[12px] p-6 h-full">
+                <HoverCard className="border border-border rounded-[12px] p-6 h-full bg-background">
                   <div className="w-10 h-10 rounded-md bg-teal flex items-center justify-center text-white">
                     <t.Icon size={20} />
                   </div>
                   <h4 className="mt-5 text-[18px] font-semibold text-navy">{t.title}</h4>
                   <p className="mt-2 text-[15px] text-text-secondary">{t.body}</p>
-                </div>
+                </HoverCard>
               </FadeUp>
             ))}
           </div>
