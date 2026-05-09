@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { AnimatedStat } from "./AnimatedStatValue";
+import { HoverCard } from "./HoverCard";
 
 const results = [
   { stat: "123", label: "Controls across all frameworks", sub: "SOC 2 · ISO 27001 · HIPAA" },
@@ -28,11 +30,14 @@ export function ChapterTheResult() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
-              className="bg-white rounded-[12px] border border-border p-8 text-center"
             >
-              <div className="text-[48px] font-bold text-teal leading-none">{r.stat}</div>
-              <div className="mt-3 text-[16px] font-semibold text-navy">{r.label}</div>
-              <div className="mt-1 text-[14px] text-text-secondary">{r.sub}</div>
+              <HoverCard className="bg-white rounded-[12px] border border-border p-8 text-center h-full">
+                <div className="text-[48px] font-bold text-teal leading-none">
+                  <AnimatedStat value={r.stat} />
+                </div>
+                <div className="mt-3 text-[16px] font-semibold text-navy">{r.label}</div>
+                <div className="mt-1 text-[14px] text-text-secondary">{r.sub}</div>
+              </HoverCard>
             </motion.div>
           ))}
         </div>
