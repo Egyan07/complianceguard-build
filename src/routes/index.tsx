@@ -9,6 +9,10 @@ import {
   Code2,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { ParallaxMockup } from "@/components/ParallaxMockup";
+import { HoverCard } from "@/components/HoverCard";
+import { AnimatedStat } from "@/components/AnimatedStatValue";
+import { motion } from "framer-motion";
 import { Footer } from "@/components/Footer";
 import { ProductMockup } from "@/components/ProductMockup";
 import { FadeUp } from "@/components/FadeUp";
@@ -16,7 +20,7 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 import { TechCredibilityBar } from "@/components/TechCredibilityBar";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { CostCalculator } from "@/components/CostCalculator";
-import { TypingHeadline } from "@/components/TypingHeadline";
+import { WordReveal } from "@/components/WordReveal";
 import { MagneticButton } from "@/components/MagneticButton";
 import { CursorBlob } from "@/components/CursorBlob";
 import { GitHubStats } from "@/components/GitHubStats";
@@ -123,13 +127,12 @@ function LandingPage() {
           <div>
             <p className="eyebrow mb-4">SOC 2 · ISO 27001 · HIPAA Compliance</p>
             <h1 className="text-[36px] md:text-[56px] font-bold text-navy leading-[1.05] tracking-tight">
-              <TypingHeadline
+              <WordReveal
                 lines={[
                   "Stop Paying $10,000",
                   "a Year to Prove",
                   "You're Secure.",
                 ]}
-                speed={32}
               />
             </h1>
             <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[480px]">
@@ -159,9 +162,9 @@ function LandingPage() {
               <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />AWS evidence auto-collection</span>
             </div>
           </div>
-          <div className="overflow-hidden -mx-4 px-4 lg:mx-0 lg:px-0">
+          <ParallaxMockup>
             <ProductMockup />
-          </div>
+          </ParallaxMockup>
         </div>
       </section>
 
@@ -198,10 +201,12 @@ function LandingPage() {
               { stat: "100%", label: "Of your evidence uploaded to their servers" },
             ].map((c, i) => (
               <FadeUp key={c.stat} delay={i * 0.08}>
-                <div className="bg-white rounded-[12px] p-8">
-                  <div className="text-[48px] font-bold text-navy leading-none">{c.stat}</div>
+                <HoverCard className="bg-white rounded-[12px] p-8 border border-transparent">
+                  <div className="text-[48px] font-bold text-navy leading-none">
+                    <AnimatedStat value={c.stat} />
+                  </div>
                   <p className="mt-3 text-[15px] text-text-secondary">{c.label}</p>
-                </div>
+                </HoverCard>
               </FadeUp>
             ))}
           </div>
@@ -243,16 +248,20 @@ function LandingPage() {
                 </thead>
                 <tbody>
                   {compareRows.map((row, idx) => (
-                    <tr
+                    <motion.tr
                       key={idx}
-                      className="border-t border-border cg-row-anim"
-                      style={{ height: 52, animationDelay: `${idx * 60}ms` }}
+                      className="border-t border-border"
+                      style={{ height: 52 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ duration: 0.3, ease: "easeOut", delay: idx * 0.04 }}
                     >
                       <td className="px-6 font-medium text-foreground">{row[0]}</td>
                       <td className="px-6"><CompareCell value={row[1]} isCG /></td>
                       <td className="px-6"><CompareCell value={row[2]} isCG={false} /></td>
                       <td className="px-6"><CompareCell value={row[3]} isCG={false} /></td>
-                    </tr>
+                    </motion.tr>
                   ))}
                 </tbody>
               </table>
@@ -316,7 +325,7 @@ function LandingPage() {
           <div className="mt-14 grid md:grid-cols-3 gap-6">
             {/* Free */}
             <FadeUp>
-              <div className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
+              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
                 <h3 className="text-[18px] font-bold text-navy">Free</h3>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-[48px] font-bold text-navy leading-none">$0</span>
@@ -329,12 +338,12 @@ function LandingPage() {
                   ))}
                 </ul>
                 <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost mt-8 w-full">Download Free</a>
-              </div>
+              </HoverCard>
             </FadeUp>
 
             {/* Pro - featured */}
             <FadeUp delay={0.05}>
-              <div className="relative bg-white rounded-[12px] p-8 h-full flex flex-col" style={{ boxShadow: "0 0 0 2px #1A8C5F" }}>
+              <HoverCard className="relative bg-white rounded-[12px] p-8 h-full flex flex-col" style={{ boxShadow: "0 0 0 2px #1A8C5F" }}>
                 <span className="absolute -top-3 left-8 bg-teal text-white text-[13px] font-semibold px-3 py-1 rounded">
                   Most Popular
                 </span>
@@ -351,12 +360,12 @@ function LandingPage() {
                   ))}
                 </ul>
                 <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary mt-8 w-full">Start Pro Trial</a>
-              </div>
+              </HoverCard>
             </FadeUp>
 
             {/* Managed */}
             <FadeUp delay={0.1}>
-              <div className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
+              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
                 <h3 className="text-[18px] font-bold text-navy">Managed</h3>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-[48px] font-bold text-navy leading-none">$79</span>
@@ -369,7 +378,7 @@ function LandingPage() {
                   ))}
                 </ul>
                 <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
-              </div>
+              </HoverCard>
             </FadeUp>
           </div>
         </div>
@@ -394,13 +403,13 @@ function LandingPage() {
               { Icon: Code2, title: "BSL 1.1 Open Core", body: "You can read the code that reads your system. No black boxes." },
             ].map((t, i) => (
               <FadeUp key={t.title} delay={i * 0.05}>
-                <div className="border border-border rounded-[12px] p-6 h-full">
+                <HoverCard className="border border-border rounded-[12px] p-6 h-full bg-background">
                   <div className="w-10 h-10 rounded-md bg-teal flex items-center justify-center text-white">
                     <t.Icon size={20} />
                   </div>
                   <h4 className="mt-5 text-[18px] font-semibold text-navy">{t.title}</h4>
                   <p className="mt-2 text-[15px] text-text-secondary">{t.body}</p>
-                </div>
+                </HoverCard>
               </FadeUp>
             ))}
           </div>

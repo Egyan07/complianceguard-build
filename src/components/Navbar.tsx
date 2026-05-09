@@ -1,7 +1,42 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+
+function NavUnderlineLink({
+  to,
+  hash,
+  children,
+}: {
+  to: string;
+  hash?: string;
+  children: React.ReactNode;
+}) {
+  const [hover, setHover] = useState(false);
+  return (
+    <span
+      className="relative inline-block"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <Link
+        to={to}
+        hash={hash}
+        className="text-[15px] text-foreground/80 hover:text-navy transition-colors"
+      >
+        {children}
+      </Link>
+      <motion.div
+        className="absolute left-0 right-0 -bottom-1 origin-left"
+        style={{ height: 2, background: "#1A8C5F" }}
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: hover ? 1 : 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      />
+    </span>
+  );
+}
 
 const links = [
   { to: "/", label: "Features" },
@@ -50,13 +85,12 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <div key={l.to + l.label} className="contents">
-              <Link
+              <NavUnderlineLink
                 to={l.to}
                 hash={l.label === "Features" ? "features" : undefined}
-                className="text-[15px] text-foreground/80 hover:text-navy transition-colors"
               >
                 {l.label}
-              </Link>
+              </NavUnderlineLink>
               {l.label === "Changelog" && (
                 <div
                   key="resources-dd"
