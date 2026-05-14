@@ -16,7 +16,12 @@ export const Route = createFileRoute("/resources/soc2-checklist")({
         property: "og:description",
         content: "Use this checklist to assess your SOC 2 readiness before engaging an auditor.",
       },
+      { property: "og:url", content: "/resources/soc2-checklist" },
+      { property: "og:type", content: "article" },
+      { property: "og:image", content: "/og-image.png" },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/resources/soc2-checklist" }],
   }),
   component: Soc2ChecklistPage,
 });

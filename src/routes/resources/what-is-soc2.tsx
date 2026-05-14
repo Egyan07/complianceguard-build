@@ -16,7 +16,12 @@ export const Route = createFileRoute("/resources/what-is-soc2")({
         property: "og:description",
         content: "An accessible guide to SOC 2 for SaaS founders.",
       },
+      { property: "og:url", content: "/resources/what-is-soc2" },
+      { property: "og:type", content: "article" },
+      { property: "og:image", content: "/og-image.png" },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/resources/what-is-soc2" }],
   }),
   component: WhatIsSoc2Page,
 });
