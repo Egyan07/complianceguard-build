@@ -13,7 +13,11 @@ export const Route = createFileRoute("/privacy")({
       },
       { property: "og:title", content: "Privacy Policy — ComplianceGuard" },
       { property: "og:description", content: "Zero-knowledge by design. We don't collect your evidence." },
+      { property: "og:url", content: "/privacy" },
+      { property: "og:image", content: "/og-image.png" },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/privacy" }],
   }),
   component: PrivacyPage,
 });

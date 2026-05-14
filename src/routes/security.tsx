@@ -13,7 +13,11 @@ export const Route = createFileRoute("/security")({
       },
       { property: "og:title", content: "Security — ComplianceGuard" },
       { property: "og:description", content: "Zero-knowledge architecture. Your data never leaves your machine." },
+      { property: "og:url", content: "/security" },
+      { property: "og:image", content: "/og-image.png" },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/security" }],
   }),
   component: SecurityPage,
 });
