@@ -147,7 +147,7 @@ function LandingPage() {
                 href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
                 className="btn-primary"
               >
-                Download Free — Windows & Mac
+                Download Free — Windows
               </MagneticButton>
               <a href="#how-it-works" className="text-teal font-semibold hover:underline">
                 See how it works ↓

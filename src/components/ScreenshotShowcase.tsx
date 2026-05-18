@@ -67,7 +67,7 @@ export function ScreenshotShowcase({ variant = "hero" }: Props) {
           />
         </div>
         <p className="mt-4 text-center italic text-[14px] text-text-secondary">
-          Screenshots from ComplianceGuard v3.1.0 running on Windows 11.
+          Screenshots from ComplianceGuard v3.2.0 running on Windows 11.
         </p>
       </div>
     );
