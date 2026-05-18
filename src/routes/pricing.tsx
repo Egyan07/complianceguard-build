@@ -184,6 +184,29 @@ function PricingPage() {
         <p className="mt-3 text-center text-[14px] text-text-secondary max-w-2xl mx-auto">
           Self-hosting? Deploy to Railway, Render, or any Docker host in one command. Full instructions in the GitHub README.
         </p>
+
+        <div className="container-cg mt-12">
+          <FadeUp>
+            <div className="bg-navy text-white rounded-[12px] p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="max-w-2xl">
+                <p className="eyebrow text-teal mb-2">New in v3.2.0</p>
+                <h3 className="text-[24px] md:text-[28px] font-bold">Enterprise — Air-Gapped Deployment</h3>
+                <p className="mt-3 text-[15px] text-white/75">
+                  Tamper-evident SHA-256 audit log, RBAC (admin + auditor), custom PDF branding,
+                  NDJSON data export, and a fully offline Docker bundle with hardened Nginx.
+                  For regulated industries, government, NHS/healthcare, legal, and financial services
+                  that need full data sovereignty.
+                </p>
+              </div>
+              <a
+                href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Enterprise%20(Air-Gapped)"
+                className="btn-on-navy shrink-0"
+              >
+                Contact Sales
+              </a>
+            </div>
+          </FadeUp>
+        </div>
       </section>
 
       {/* FAQ */}
