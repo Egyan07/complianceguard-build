@@ -25,7 +25,7 @@ export function ProductMockup() {
             <span className="text-[13px] font-semibold uppercase tracking-wider text-foreground/60">
               Readiness Score
             </span>
-            <span className="text-[12px] text-foreground/50 font-mono">v3.1.0</span>
+            <span className="text-[12px] text-foreground/50 font-mono">v3.2.0</span>
           </div>
 
           {/* Animated circular gauge + label */}

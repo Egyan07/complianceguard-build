@@ -81,7 +81,7 @@ function AboutPage() {
         <div className="container-cg max-w-3xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             {[
-              { type: "static" as const, n: "v3.1.0", l: "Current release" },
+              { type: "static" as const, n: "v3.2.0", l: "Current release" },
               { type: "num" as const, value: 29, l: "SOC 2 controls covered" },
               { type: "static" as const, n: "$399/yr", l: "Pro plan, billed annually" },
             ].map((f, i) => (
@@ -103,7 +103,7 @@ function AboutPage() {
             style={{ backgroundColor: "#F8F9FA", padding: 24 }}
           >
             {[
-              { value: 355, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
+              { value: 530, suffix: "+", l: "Tests passing across backend, frontend, and Electron" },
               { value: 5, l: "Green CI workflows on every commit" },
               { value: 8, l: "Evidence categories collected from your OS" },
             ].map((f, i) => (

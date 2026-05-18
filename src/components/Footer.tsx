@@ -116,7 +116,7 @@ export function Footer() {
             © 2026 ComplianceGuard. Made by a bootstrapped founder who got tired of paying $10K/year.
           </p>
           <span className="inline-flex items-center px-2.5 py-1 rounded-[4px] border border-[#E2E8F0] text-[12px] text-[#9CA3AF]">
-            v3.1.0
+            v3.2.0
           </span>
         </div>
       </div>
