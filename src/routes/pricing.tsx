@@ -57,11 +57,11 @@ const proFeatures = [
   "Unlimited evidence collection runs",
   "Full PDF, CSV, and JSON export",
   "AWS CloudTrail + IAM + S3 evidence",
-  "OS-level evidence (Windows, Mac, Linux)",
+  "OS-level evidence (Windows; Mac & Linux on roadmap)",
   "Evidence history: 90 days",
   "Audit-ready report formatting",
   "Email support (48hr response)",
-  "Installer for Windows & Mac",
+  "Installer for Windows 10/11 (64-bit)",
 ];
 
 const managedFeatures = [
