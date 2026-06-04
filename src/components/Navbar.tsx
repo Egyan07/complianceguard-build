@@ -37,12 +37,12 @@ function NavLink({
   );
 }
 
-const links = [
-  { to: "/", label: "Product", hash: undefined },
+const links: ReadonlyArray<{ to: string; label: string; hash?: string }> = [
+  { to: "/", label: "Product" },
   { to: "/pricing", label: "Pricing" },
   { to: "/changelog", label: "Changelog" },
   { to: "/about", label: "About" },
-] as const;
+];
 
 const resourceLinks = [
   { to: "/resources/what-is-soc2", label: "What is SOC 2?" },
