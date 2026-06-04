@@ -98,7 +98,7 @@ export function Navbar() {
 
         <nav className="hidden md:flex items-center gap-7">
           {links.map((l) => (
-            <NavLink key={l.label} to={l.to} hash={l.hash}>
+            <NavLink key={l.label} to={l.to as "/"} hash={l.hash}>
               {l.label}
             </NavLink>
           ))}
@@ -173,7 +173,7 @@ export function Navbar() {
             {links.map((l) => (
               <Link
                 key={l.label}
-                to={l.to}
+                to={l.to as "/"}
                 onClick={() => setOpen(false)}
                 className="text-[15px] text-starlight py-1"
               >
