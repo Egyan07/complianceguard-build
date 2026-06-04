@@ -122,52 +122,8 @@ function LandingPage() {
       <Navbar />
 
       {/* HERO */}
-      <section data-hero className="bg-background pt-16 md:pt-24 pb-16 md:pb-24 relative overflow-hidden">
-        <CursorBlob />
-        <div className="container-cg grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center relative z-10">
-          <div>
-            <p className="eyebrow mb-4">SOC 2 · ISO 27001 · HIPAA Compliance</p>
-            <h1 className="text-[36px] md:text-[56px] font-bold text-navy leading-[1.05] tracking-tight">
-              <WordReveal
-                lines={[
-                  "Stop Paying $10,000",
-                  "a Year to Prove",
-                  "You're Secure.",
-                ]}
-              />
-            </h1>
-            <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[480px]">
-              ComplianceGuard scans your machines and AWS environment to generate
-              auditor-ready evidence packs for SOC 2, ISO 27001, and HIPAA — without
-              sending a single byte to our servers. Free to start. $49/month to
-              finish an audit.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <MagneticButton
-                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-                className="btn-primary"
-              >
-                Download Free — Windows
-              </MagneticButton>
-              <a href="#how-it-works" className="text-teal font-semibold hover:underline">
-                See how it works ↓
-              </a>
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <GitHubStarButton />
-              <DownloadCounter />
-            </div>
-            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-text-secondary">
-              <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />No cloud storage of your evidence</span>
-              <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />Auditor-ready PDF export</span>
-              <span className="inline-flex items-center gap-2"><Check size={16} className="text-teal" />AWS evidence auto-collection</span>
-            </div>
-          </div>
-          <ParallaxMockup>
-            <ProductMockup />
-          </ParallaxMockup>
-        </div>
-      </section>
+      <Hero />
+
 
       {/* TECH CREDIBILITY */}
       <TechCredibilityBar />
