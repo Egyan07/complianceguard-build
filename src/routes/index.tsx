@@ -272,6 +272,9 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* ENTERPRISE / AIR-GAPPED */}
+      <EnterpriseSection />
+
       {/* PRICING PREVIEW */}
       <section className="bg-surface py-24">
         <div className="container-cg">
