@@ -4,22 +4,20 @@ import appCss from "../styles.css?url";
 import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { PageTransition } from "@/components/PageTransition";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-deepspace px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="mono-tag mb-3">404 · route not found</p>
+        <h1 className="display-2">This page hasn't been deployed.</h1>
+        <p className="mt-4 text-[15px] text-text-secondary">
+          Either the URL is wrong, or we haven't built it yet.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+        <div className="mt-8">
+          <Link to="/" className="btn-primary">
+            Back to home
           </Link>
         </div>
       </div>
@@ -33,6 +31,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: "ComplianceGuard" },
+      { name: "theme-color", content: "#171721" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "ComplianceGuard" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -45,7 +44,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap",
       },
     ],
     scripts: [
@@ -58,7 +57,7 @@ export const Route = createRootRoute({
           url: "/",
           logo: "/favicon.svg",
           description:
-            "On-premise SOC 2, ISO 27001 and HIPAA compliance tooling for bootstrapped SaaS teams.",
+            "Endpoint-level SOC 2, ISO 27001 and HIPAA compliance evidence — on your machine, on your terms.",
         }),
       },
     ],
@@ -74,7 +73,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="bg-deepspace text-starlight antialiased">
         {children}
         <Scripts />
       </body>
@@ -84,12 +83,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <>
+    <SmoothScroll>
       <ScrollProgress />
       <AnnouncementBanner />
       <PageTransition>
         <Outlet />
       </PageTransition>
-    </>
+    </SmoothScroll>
   );
 }
+
