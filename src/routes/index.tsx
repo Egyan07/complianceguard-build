@@ -9,6 +9,8 @@ import {
   Code2,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { EnterpriseSection } from "@/components/EnterpriseSection";
 import { ParallaxMockup } from "@/components/ParallaxMockup";
 import { HoverCard } from "@/components/HoverCard";
 import { AnimatedStat } from "@/components/AnimatedStatValue";
