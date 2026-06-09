@@ -19,10 +19,10 @@ export function MobileStickyCTA() {
   return (
     <a
       href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-      className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-navy text-white text-center py-4 font-semibold text-[15px]"
-      style={{ borderTop: "1px solid #2D4E8A" }}
+      className="md:hidden fixed bottom-3 inset-x-3 z-50 bg-azure text-snow text-center py-3 font-normal text-[15px] rounded-full"
+      style={{ letterSpacing: "-0.022em", boxShadow: "0 8px 24px -8px rgba(0,113,227,0.4)" }}
     >
-      Download Free — No account required
+      Download &mdash; Free, no account required
     </a>
   );
 }

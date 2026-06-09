@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-const KEY = "cg_announce_v320_dismissed";
+const KEY = "cg_announce_v331_dismissed";
 
 export function AnnouncementBanner() {
   const [visible, setVisible] = useState(false);
@@ -18,23 +18,23 @@ export function AnnouncementBanner() {
   if (!visible) return null;
 
   return (
-    <div className="bg-navy text-white text-[13px] md:text-[14px]">
-      <div className="container-cg flex items-center justify-between gap-4 py-2">
-        <p className="flex-1 text-center">
-          v3.2.0 is out — Enterprise air-gapped tier, multi-framework scoring, 530 tests passing.{" "}
-          <Link to="/changelog" className="text-teal font-semibold hover:underline whitespace-nowrap">
-            See what&apos;s new →
+    <div className="bg-ink text-snow text-[12px]" style={{ paddingTop: 0 }}>
+      <div className="container-cg flex items-center justify-between gap-4 py-2.5">
+        <p className="flex-1 text-center" style={{ letterSpacing: "-0.003em" }}>
+          v3.3.1 ships macOS support &middot; multi-framework scoring &middot; ~568 tests passing.{" "}
+          <Link to="/changelog" className="text-snow underline underline-offset-2 hover:opacity-80 whitespace-nowrap font-medium">
+            See what&apos;s new &rsaquo;
           </Link>
         </p>
         <button
           aria-label="Dismiss announcement"
           onClick={() => {
-            try { sessionStorage.setItem(KEY, "1"); } catch {}
+            try { sessionStorage.setItem(KEY, "1"); } catch { /* noop */ }
             setVisible(false);
           }}
-          className="text-teal hover:text-white transition-colors shrink-0"
+          className="text-snow/70 hover:text-snow transition-colors shrink-0"
         >
-          <X size={18} />
+          <X size={14} />
         </button>
       </div>
     </div>

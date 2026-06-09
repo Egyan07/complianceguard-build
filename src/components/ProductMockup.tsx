@@ -1,66 +1,86 @@
 import { Check, X } from "lucide-react";
 
 const SCORE = 67;
-const RADIUS = 52;
-const STROKE = 8;
+const RADIUS = 58;
+const STROKE = 9;
 const CIRC = 2 * Math.PI * RADIUS;
 const OFFSET = CIRC * (1 - SCORE / 100);
-const ACCENT = "#5266EB";
+const AZURE = "#0071e3";
 
 export function ProductMockup() {
   return (
-    <div className="w-full md:max-w-[540px] mx-auto md:rotate-[-2deg] transition-transform">
+    <div className="w-full mx-auto" id="product">
       <div
-        className="rounded-[14px] border border-hairline overflow-hidden"
+        className="overflow-hidden bg-snow"
         style={{
-          background: "linear-gradient(180deg, #1E1E2A 0%, #1A1A24 100%)",
-          boxShadow:
-            "0 40px 80px -32px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)",
+          borderRadius: 22,
+          border: "1px solid #e8e8ed",
         }}
       >
         {/* Window chrome */}
         <div
-          className="flex items-center gap-2 px-4 py-3 border-b border-hairline"
-          style={{ background: "rgba(15,15,24,0.6)" }}
+          className="flex items-center gap-2 px-4 py-3 border-b"
+          style={{ background: "#f5f5f7", borderColor: "#e8e8ed" }}
         >
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#FF5F57" }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#FEBC2E" }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28C840" }} />
-          <span className="ml-3 mono-tag">complianceguard — soc 2</span>
-          <span className="ml-auto mono-tag" style={{ color: "var(--accent-color)" }}>
+          <span className="w-3 h-3 rounded-full" style={{ background: "#ff5f57" }} />
+          <span className="w-3 h-3 rounded-full" style={{ background: "#febc2e" }} />
+          <span className="w-3 h-3 rounded-full" style={{ background: "#28c840" }} />
+          <span
+            className="mx-auto text-[12px] font-medium"
+            style={{ color: "#86868b", letterSpacing: "-0.003em" }}
+          >
+            ComplianceGuard &mdash; SOC 2 readiness
+          </span>
+          <span
+            className="text-[11px] font-mono"
+            style={{ color: "#86868b" }}
+          >
             v3.3.1
           </span>
         </div>
 
-        <div className="p-7">
-          <div className="flex items-baseline justify-between mb-5">
-            <span className="mono-tag">Readiness · SOC 2</span>
-            <span className="mono-tag">29 controls</span>
+        <div className="p-7 md:p-10">
+          {/* Headline row */}
+          <div className="flex items-baseline justify-between mb-7">
+            <div>
+              <p className="text-[13px] font-medium" style={{ color: "#86868b", letterSpacing: 0 }}>
+                Readiness score
+              </p>
+              <p
+                className="text-[28px] font-semibold text-ink"
+                style={{ letterSpacing: "-0.016em" }}
+              >
+                SOC 2 Type II &middot; 29 controls
+              </p>
+            </div>
+            <span
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium"
+              style={{
+                background: "rgba(0, 113, 227, 0.08)",
+                color: AZURE,
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: AZURE }} />
+              Scanned 2 min ago
+            </span>
           </div>
 
-          {/* Gauge + label */}
-          <div className="flex items-center gap-6 mb-7">
-            <div className="relative shrink-0" style={{ width: 132, height: 132 }}>
+          {/* Gauge */}
+          <div className="flex flex-col md:flex-row md:items-center md:gap-10 mb-8">
+            <div className="relative shrink-0 mx-auto md:mx-0" style={{ width: 160, height: 160 }}>
               <svg
-                width={132}
-                height={132}
-                viewBox="0 0 132 132"
+                width={160}
+                height={160}
+                viewBox="0 0 160 160"
                 style={{ transform: "rotate(-90deg)" }}
                 aria-label={`SOC 2 readiness ${SCORE}%`}
               >
+                <circle cx={80} cy={80} r={RADIUS} stroke="#e8e8ed" strokeWidth={STROKE} fill="none" />
                 <circle
-                  cx={66}
-                  cy={66}
+                  cx={80}
+                  cy={80}
                   r={RADIUS}
-                  stroke="rgba(255,255,255,0.06)"
-                  strokeWidth={STROKE}
-                  fill="none"
-                />
-                <circle
-                  cx={66}
-                  cy={66}
-                  r={RADIUS}
-                  stroke={ACCENT}
+                  stroke={AZURE}
                   strokeWidth={STROKE}
                   fill="none"
                   strokeLinecap="round"
@@ -71,77 +91,65 @@ export function ProductMockup() {
                     {
                       "--cg-gauge-circumference": `${CIRC}`,
                       "--cg-gauge-offset": `${OFFSET}`,
-                      filter: `drop-shadow(0 0 8px ${ACCENT}66)`,
                     } as React.CSSProperties
                   }
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span
-                  className="text-[40px] leading-none font-light text-starlight"
-                  style={{ letterSpacing: "-0.04em", fontVariantNumeric: "tabular-nums" }}
+                  className="text-[56px] leading-none font-semibold text-ink"
+                  style={{ letterSpacing: "-0.022em", fontVariantNumeric: "tabular-nums" }}
                 >
                   {SCORE}
-                  <span className="text-[20px] text-text-secondary">%</span>
+                  <span className="text-[24px] font-normal" style={{ color: "#86868b" }}>%</span>
                 </span>
-                <span className="mono-tag mt-1">on track</span>
               </div>
             </div>
-            <div>
-              <div className="text-[14px] text-starlight">
-                19 of 29 controls passing
-              </div>
-              <div className="text-[13px] text-text-secondary mt-1">
-                10 need attention before audit
-              </div>
-              <div
-                className="mt-3 inline-flex items-center gap-1.5 px-2 py-1 rounded mono-tag"
-                style={{
-                  background: "rgba(82,102,235,0.12)",
-                  color: ACCENT,
-                  border: "1px solid rgba(82,102,235,0.24)",
-                }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-                scan · 2 min ago
-              </div>
+            <div className="mt-6 md:mt-0 text-center md:text-left">
+              <p className="text-[24px] font-semibold text-ink" style={{ letterSpacing: "-0.016em" }}>
+                19 of 29 controls passing.
+              </p>
+              <p className="mt-2 text-[17px]" style={{ color: "#707070", letterSpacing: "-0.003em" }}>
+                10 need attention before audit. Estimated 4&ndash;6 hours of remediation work,
+                fully documented in your evidence pack.
+              </p>
             </div>
           </div>
 
-          <div className="space-y-1.5">
+          {/* Control rows */}
+          <div className="space-y-2">
             {[
-              { name: "CC6.1 · Logical Access", pass: true },
-              { name: "CC6.5 · Network Security", pass: true },
-              { name: "CC7.1 · Event Logging", pass: false },
-              { name: "CC7.2 · Vulnerability Mgmt", pass: true },
-              { name: "C1.2 · Data Protection", pass: false },
-              { name: "A1.4 · Backup & Recovery", pass: true },
+              { name: "CC6.1 — Logical Access", pass: true },
+              { name: "CC6.5 — Network Security", pass: true },
+              { name: "CC7.1 — Event Logging", pass: false },
+              { name: "CC7.2 — Vulnerability Mgmt", pass: true },
+              { name: "C1.2 — Data Protection", pass: false },
+              { name: "A1.4 — Backup & Recovery", pass: true },
             ].map((c) => (
               <div
                 key={c.name}
-                className="flex items-center justify-between py-2.5 px-3.5 rounded-md border border-hairline"
-                style={{ background: "rgba(39,39,53,0.4)" }}
+                className="flex items-center justify-between py-3 px-4 rounded-[14px]"
+                style={{ background: "#f5f5f7" }}
               >
-                <span className="font-mono text-[12.5px] text-text-secondary">
+                <span className="text-[14px] font-medium text-ink" style={{ letterSpacing: "-0.003em" }}>
                   {c.name}
                 </span>
                 <span
-                  className="inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded mono-tag"
+                  className="inline-flex items-center gap-1.5 text-[12px] font-medium px-2.5 py-1 rounded-full"
                   style={
                     c.pass
-                      ? { color: ACCENT, background: "rgba(82,102,235,0.10)" }
-                      : { color: "#F87171", background: "rgba(248,113,113,0.10)" }
+                      ? { color: "#0a8619", background: "rgba(10, 134, 25, 0.08)" }
+                      : { color: "#b64400", background: "rgba(182, 68, 0, 0.08)" }
                   }
                 >
-                  {c.pass ? <Check size={10} /> : <X size={10} />}
-                  {c.pass ? "pass" : "fail"}
+                  {c.pass ? <Check size={12} strokeWidth={2.5} /> : <X size={12} strokeWidth={2.5} />}
+                  {c.pass ? "Pass" : "Needs work"}
                 </span>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <p className="md:hidden mt-3 text-center mono-tag">tap to expand →</p>
     </div>
   );
 }
