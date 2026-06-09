@@ -1,47 +1,31 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 function NavLink({
   to,
-  hash,
   children,
 }: {
   to: string;
-  hash?: string;
   children: React.ReactNode;
 }) {
-  const [hover, setHover] = useState(false);
   return (
-    <span
-      className="relative inline-block"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+    <Link
+      to={to}
+      className="text-[12px] text-ink/80 hover:text-ink transition-colors"
+      style={{ letterSpacing: "-0.003em" }}
     >
-      <Link
-        to={to}
-        hash={hash}
-        className="text-[13.5px] text-text-secondary hover:text-starlight transition-colors"
-      >
-        {children}
-      </Link>
-      <motion.div
-        className="absolute left-0 right-0 -bottom-1 origin-left"
-        style={{ height: 1, background: "var(--accent-color)" }}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: hover ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-      />
-    </span>
+      {children}
+    </Link>
   );
 }
 
-const links: ReadonlyArray<{ to: string; label: string; hash?: string }> = [
+const links: ReadonlyArray<{ to: string; label: string }> = [
   { to: "/", label: "Product" },
   { to: "/pricing", label: "Pricing" },
   { to: "/changelog", label: "Changelog" },
   { to: "/about", label: "About" },
+  { to: "/security", label: "Security" },
 ];
 
 const resourceLinks = [
@@ -76,29 +60,34 @@ export function Navbar() {
     <header
       className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
       style={{
-        backgroundColor: scrolled ? "rgba(23,23,33,0.72)" : "transparent",
-        backdropFilter: scrolled ? "blur(18px) saturate(140%)" : "none",
-        borderBottom: scrolled ? "1px solid var(--hairline)" : "1px solid transparent",
+        backgroundColor: scrolled ? "rgba(245,245,247,0.82)" : "rgba(245,245,247,0.72)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        borderBottom: scrolled ? "1px solid #e8e8ed" : "1px solid transparent",
       }}
     >
-      <div className="container-cg flex h-16 items-center justify-between">
+      <div className="container-cg flex h-11 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span
-            className="inline-block h-5 w-5 rounded-[5px] border border-hairline"
-            style={{
-              background:
-                "linear-gradient(135deg, #5266EB 0%, #3a4ed1 60%, #272735 100%)",
-              boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)",
-            }}
-          />
-          <span className="text-[15px] font-medium text-starlight tracking-tight">
+          <svg
+            width="14"
+            height="18"
+            viewBox="0 0 14 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
+          >
+            <path
+              d="M7 0L0 3v6c0 5.25 3.5 8.25 7 9 3.5-.75 7-3.75 7-9V3L7 0z"
+              fill="#1d1d1f"
+            />
+          </svg>
+          <span className="text-[13px] font-medium text-ink" style={{ letterSpacing: "-0.003em" }}>
             ComplianceGuard
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <NavLink key={l.label} to={l.to as "/"} hash={l.hash}>
+            <NavLink key={l.label} to={l.to as "/"}>
               {l.label}
             </NavLink>
           ))}
@@ -111,19 +100,19 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setResourcesOpen((v) => !v)}
-              className="inline-flex items-center gap-1 text-[13.5px] text-text-secondary hover:text-starlight transition-colors"
+              className="inline-flex items-center gap-1 text-[12px] text-ink/80 hover:text-ink transition-colors"
             >
               Resources
-              <ChevronDown size={13} />
+              <ChevronDown size={11} />
             </button>
             <div
-              className="absolute left-0 top-full pt-3 min-w-[200px]"
+              className="absolute right-0 top-full pt-3 min-w-[200px]"
               style={{ pointerEvents: resourcesOpen ? "auto" : "none" }}
             >
               <div
-                className="bg-midnight rounded-[10px] p-2 transition-all duration-150 origin-top border border-hairline"
+                className="bg-snow rounded-[16px] p-2 transition-all duration-200 origin-top"
                 style={{
-                  boxShadow: "0 24px 48px -16px rgba(0,0,0,0.6)",
+                  border: "1px solid #e8e8ed",
                   opacity: resourcesOpen ? 1 : 0,
                   transform: resourcesOpen ? "translateY(0)" : "translateY(-4px)",
                 }}
@@ -133,7 +122,7 @@ export function Navbar() {
                     key={r.to}
                     to={r.to}
                     onClick={() => setResourcesOpen(false)}
-                    className="block px-3 py-2 text-[13.5px] text-text-secondary hover:text-starlight hover:bg-graphite rounded-[6px] transition-colors"
+                    className="block px-3 py-2 text-[13px] text-ink hover:bg-fog rounded-[10px] transition-colors"
                   >
                     {r.label}
                   </Link>
@@ -143,64 +132,65 @@ export function Navbar() {
           </div>
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-3">
           <a
             href="https://github.com/Egyan07/ComplianceGuard"
-            className="text-[13.5px] text-text-secondary hover:text-starlight transition-colors px-3 py-1.5"
+            className="text-[12px] text-ink/80 hover:text-ink transition-colors"
           >
             GitHub
           </a>
           <a
             href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-            className="btn-primary !text-[13px] !py-1.5 !px-3.5"
+            className="bg-azure text-snow text-[12px] font-normal px-3 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
+            style={{ letterSpacing: "-0.003em" }}
           >
             Download
           </a>
         </div>
 
         <button
-          className="md:hidden p-2 text-starlight"
+          className="md:hidden p-2 text-ink"
           aria-label="Open menu"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={20} /> : <Menu size={20} />}
+          {open ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-hairline bg-midnight/95 backdrop-blur-xl">
+        <div className="md:hidden border-t border-silver-mist bg-snow">
           <div className="container-cg py-4 flex flex-col gap-3">
             {links.map((l) => (
               <Link
                 key={l.label}
                 to={l.to as "/"}
                 onClick={() => setOpen(false)}
-                className="text-[15px] text-starlight py-1"
+                className="text-[17px] text-ink py-1.5"
               >
                 {l.label}
               </Link>
             ))}
-            <div className="pt-3 mt-1 border-t border-hairline">
-              <p className="mono-tag mb-2">Resources</p>
+            <div className="pt-3 mt-1 border-t border-silver-mist">
+              <p className="text-[12px] uppercase tracking-wider text-text-dim mb-2" style={{ color: "var(--text-dim)" }}>
+                Resources
+              </p>
               {resourceLinks.map((r) => (
                 <Link
                   key={r.to}
                   to={r.to}
                   onClick={() => setOpen(false)}
-                  className="block py-1.5 text-[14px] text-text-secondary"
+                  className="block py-1.5 text-[15px] text-ink"
                 >
                   {r.label}
                 </Link>
               ))}
             </div>
-            <div className="flex flex-col gap-2 pt-3">
-              <a
-                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-                className="btn-primary"
-              >
-                Download free
-              </a>
-            </div>
+            <a
+              href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
+              className="btn-primary mt-2"
+            >
+              Download
+            </a>
           </div>
         </div>
       )}

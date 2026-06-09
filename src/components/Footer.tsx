@@ -39,41 +39,52 @@ const resourceLinks = [
   },
 ] as const;
 
-const heading = "mono-tag mb-5";
+const heading = "text-[12px] font-semibold text-ink mb-3";
 const linkClass =
-  "text-[13.5px] text-text-secondary hover:text-starlight transition-colors block py-1";
+  "text-[12px] text-ink/70 hover:text-ink hover:underline transition-colors block py-1";
 
 export function Footer() {
   return (
     <footer
-      className="bg-deepspace border-t border-hairline"
-      style={{ paddingTop: 96, paddingBottom: 40 }}
+      className="bg-fog"
+      style={{ paddingTop: 28, paddingBottom: 28, borderTop: "1px solid #e8e8ed" }}
     >
       <div className="container-cg">
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-10">
+        <p className="text-[12px] text-ink/60 mb-6">
+          More ways to get compliant:{" "}
+          <a
+            href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
+            className="text-cobalt-link hover:underline"
+          >
+            Download ComplianceGuard
+          </a>{" "}
+          or{" "}
+          <a href="mailto:alexisegyan1232@gmail.com" className="text-cobalt-link hover:underline">
+            Talk to sales
+          </a>.
+        </p>
+
+        <div className="border-t border-silver-mist pt-8 grid grid-cols-2 md:grid-cols-12 gap-8">
           <div className="col-span-2 md:col-span-5">
             <Link to="/" className="flex items-center gap-2">
-              <span
-                className="inline-block h-5 w-5 rounded-[5px] border border-hairline"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #5266EB 0%, #3a4ed1 60%, #272735 100%)",
-                }}
-              />
-              <span className="text-[15px] font-medium text-starlight tracking-tight">
-                ComplianceGuard
-              </span>
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" aria-hidden>
+                <path
+                  d="M7 0L0 3v6c0 5.25 3.5 8.25 7 9 3.5-.75 7-3.75 7-9V3L7 0z"
+                  fill="#1d1d1f"
+                />
+              </svg>
+              <span className="text-[13px] font-medium text-ink">ComplianceGuard</span>
             </Link>
-            <p className="mt-4 text-[13.5px] text-text-secondary max-w-[320px] leading-[1.7]">
-              Endpoint-level evidence for SOC 2, ISO 27001 and HIPAA. Runs on
-              your machine. Stays under your control.
+            <p className="mt-3 text-[12px] text-ink/60 max-w-[320px] leading-[1.5]">
+              Endpoint-level evidence for SOC 2, ISO 27001 and HIPAA. Runs on your
+              machine. Stays under your control.
             </p>
             <a
               href="https://github.com/Egyan07/ComplianceGuard"
               aria-label="GitHub"
-              className="inline-flex mt-6 text-text-secondary hover:text-starlight transition-colors"
+              className="inline-flex mt-4 text-ink/60 hover:text-ink transition-colors"
             >
-              <Github size={18} />
+              <Github size={16} />
             </a>
           </div>
 
@@ -83,13 +94,9 @@ export function Footer() {
               {productLinks.map((l) => (
                 <li key={l.label}>
                   {l.external ? (
-                    <a href={l.href} className={linkClass}>
-                      {l.label}
-                    </a>
+                    <a href={l.href} className={linkClass}>{l.label}</a>
                   ) : (
-                    <Link to={l.to!} className={linkClass}>
-                      {l.label}
-                    </Link>
+                    <Link to={l.to!} className={linkClass}>{l.label}</Link>
                   )}
                 </li>
               ))}
@@ -102,13 +109,9 @@ export function Footer() {
               {companyLinks.map((l) => (
                 <li key={l.label}>
                   {l.external ? (
-                    <a href={l.href} className={linkClass}>
-                      {l.label}
-                    </a>
+                    <a href={l.href} className={linkClass}>{l.label}</a>
                   ) : (
-                    <Link to={l.to!} className={linkClass}>
-                      {l.label}
-                    </Link>
+                    <Link to={l.to!} className={linkClass}>{l.label}</Link>
                   )}
                 </li>
               ))}
@@ -130,9 +133,7 @@ export function Footer() {
                       {l.label}
                     </a>
                   ) : (
-                    <Link to={l.to!} className={linkClass}>
-                      {l.label}
-                    </Link>
+                    <Link to={l.to!} className={linkClass}>{l.label}</Link>
                   )}
                 </li>
               ))}
@@ -140,19 +141,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div
-          className="mt-16 border-t border-hairline flex flex-col md:flex-row gap-3 md:gap-6 items-start md:items-center justify-between"
-          style={{ paddingTop: 28 }}
-        >
-          <p className="text-[12.5px] text-text-secondary">
-            © 2026 ComplianceGuard · BSL 1.1
+        <div className="mt-10 pt-5 border-t border-silver-mist flex flex-col md:flex-row gap-3 md:gap-6 items-start md:items-center justify-between">
+          <p className="text-[12px] text-ink/60">
+            Copyright &copy; 2026 ComplianceGuard. BSL 1.1. All rights reserved.
           </p>
-          <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-[6px] border border-hairline mono-tag">
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ background: "var(--accent-color)" }}
-            />
-            v3.3.1 · all systems operational
+          <span className="inline-flex items-center gap-2 text-[12px] text-ink/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-azure" />
+            v3.3.1 &middot; all systems operational
           </span>
         </div>
       </div>
