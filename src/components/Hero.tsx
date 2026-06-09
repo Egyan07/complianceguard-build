@@ -75,7 +75,8 @@ export function Hero() {
           initial={reduced ? false : { opacity: 0, y: 16 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.65 }}
-          className="mt-3 text-[17px] text-graphite-text text-center"
+          className="mt-3 text-[17px] text-center"
+          style={{ color: "#707070" }}
         >
           From <span className="text-ink font-medium">Free</span> &middot; available on Windows &amp; macOS
         </motion.p>
