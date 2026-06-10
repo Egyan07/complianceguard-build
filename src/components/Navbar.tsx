@@ -67,20 +67,27 @@ export function Navbar() {
     >
       <div className="container-cg flex h-11 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <svg
-            width="14"
-            height="18"
-            viewBox="0 0 14 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden
-          >
+          <svg width="20" height="20" viewBox="0 0 64 64" fill="none" aria-hidden>
+            <defs>
+              <linearGradient id="nav-cg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#0A84FF" />
+                <stop offset="100%" stopColor="#0040DD" />
+              </linearGradient>
+            </defs>
             <path
-              d="M7 0L0 3v6c0 5.25 3.5 8.25 7 9 3.5-.75 7-3.75 7-9V3L7 0z"
-              fill="#1d1d1f"
+              d="M32 3 L57 12 V31 C57 47 46 57 32 61 C18 57 7 47 7 31 V12 Z"
+              fill="url(#nav-cg)"
+            />
+            <path
+              d="M20 33 L29 42 L46 23"
+              stroke="#ffffff"
+              strokeWidth={5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
             />
           </svg>
-          <span className="text-[13px] font-medium text-ink" style={{ letterSpacing: "-0.003em" }}>
+          <span className="text-[14px] font-semibold text-ink" style={{ letterSpacing: "-0.012em" }}>
             ComplianceGuard
           </span>
         </Link>
