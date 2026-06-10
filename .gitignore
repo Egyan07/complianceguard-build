@@ -30,3 +30,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment Variables & Sensitive Configs
+.env
+.env.*
+!.env.example
+wrangler.jsonc
+wrangler.toml
