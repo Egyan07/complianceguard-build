@@ -29,10 +29,21 @@ function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <section className="bg-background pt-20 pb-12">
-        <div className="container-cg max-w-3xl">
+      <section className="bg-snow pt-32 pb-16">
+        <div className="container-cg max-w-4xl">
           <FadeUp>
-            <h1 className="text-[36px] md:text-[48px] font-bold text-navy leading-[1.1]">
+            <p className="text-[13px] font-mono uppercase tracking-[0.12em] text-text-dim mb-6">
+              Our story
+            </p>
+            <h1
+              className="font-semibold text-ink"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(44px, 7vw, 88px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.035em",
+              }}
+            >
               Built by a founder who got<br />quoted $11,000 for Vanta.
             </h1>
           </FadeUp>
