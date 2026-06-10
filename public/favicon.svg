@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="112" fill="#2563EB"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A84FF"/>
+      <stop offset="100%" stop-color="#0040DD"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
   <text x="256" y="256" dy="0.35em"
-        font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif"
-        font-size="200" font-weight="700"
-        fill="#FFFFFF" text-anchor="middle" letter-spacing="-10">CG</text>
+        font-family="-apple-system, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="220" font-weight="700"
+        fill="#FFFFFF" text-anchor="middle" letter-spacing="-8">CG</text>
 </svg>

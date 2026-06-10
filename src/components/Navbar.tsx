@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { Logo } from "./Logo";
 
 function NavLink({
   to,
@@ -66,28 +67,9 @@ export function Navbar() {
       }}
     >
       <div className="container-cg flex h-11 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <svg width="20" height="20" viewBox="0 0 64 64" fill="none" aria-hidden>
-            <defs>
-              <linearGradient id="nav-cg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#0A84FF" />
-                <stop offset="100%" stopColor="#0040DD" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M32 3 L57 12 V31 C57 47 46 57 32 61 C18 57 7 47 7 31 V12 Z"
-              fill="url(#nav-cg)"
-            />
-            <path
-              d="M20 33 L29 42 L46 23"
-              stroke="#ffffff"
-              strokeWidth={5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-          </svg>
-          <span className="text-[14px] font-semibold text-ink" style={{ letterSpacing: "-0.012em" }}>
+        <Link to="/" className="flex items-center gap-2 group">
+          <Logo size={22} withWordmark={false} animated={false} />
+          <span className="text-[14px] font-semibold text-ink transition-opacity group-hover:opacity-80" style={{ letterSpacing: "-0.012em" }}>
             ComplianceGuard
           </span>
         </Link>
