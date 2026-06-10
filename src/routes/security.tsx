@@ -35,12 +35,25 @@ function SecurityPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 bg-background py-16">
-        <div className="container-cg max-w-[720px]">
-          <h1 className="text-[40px] md:text-[48px] font-bold text-navy leading-[1.1]">Security</h1>
-          <span className="inline-block mt-4 px-3 py-1 rounded-[4px] border border-[#E2E8F0] text-[12px] text-[#9CA3AF]">
-            Last updated: April 2026
-          </span>
+      <main className="flex-1 bg-snow pt-32 pb-20">
+        <div className="container-cg max-w-[760px]">
+          <p className="text-[13px] font-mono uppercase tracking-[0.12em] text-text-dim mb-6">
+            Trust &middot; Last updated April 2026
+          </p>
+          <h1
+            className="font-semibold text-ink"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(44px, 7vw, 80px)",
+              lineHeight: 1.04,
+              letterSpacing: "-0.035em",
+            }}
+          >
+            Security.
+          </h1>
+          <p className="mt-6 text-[20px] md:text-[22px] font-light text-ink/80 leading-[1.5]" style={{ letterSpacing: "-0.01em" }}>
+            Zero-knowledge by architecture. Your evidence stays on your machine.
+          </p>
 
           <Section title="Architecture">
             <p>
