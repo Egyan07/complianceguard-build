@@ -20,8 +20,8 @@ function WordStagger() {
       className="text-center font-semibold text-ink"
       style={{
         fontFamily: "var(--font-display)",
-        fontSize: "clamp(44px, 8.4vw, 104px)",
-        lineHeight: 1.02,
+        fontSize: "clamp(40px, 6.2vw, 80px)",
+        lineHeight: 1.04,
         letterSpacing: "-0.038em",
       }}
     >
