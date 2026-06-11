@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { AmbientGrid } from "./AmbientGrid";
 import { ProductMockup } from "./ProductMockup";
 import { Logo } from "./Logo";
@@ -8,8 +8,9 @@ import { usePrefersReducedMotion, useMediaQuery } from "@/hooks/use-reduced-moti
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const HEADLINE = [
-  ["Compliance,"],
-  ["on", "your", "machine."],
+  ["Compliance"],
+  ["that", "lives", "on"],
+  ["your", "endpoint."],
 ];
 
 function WordStagger() {
@@ -20,22 +21,34 @@ function WordStagger() {
       className="text-center font-semibold text-ink"
       style={{
         fontFamily: "var(--font-display)",
-        fontSize: "clamp(48px, 9vw, 104px)",
+        fontSize: "clamp(44px, 8.4vw, 104px)",
         lineHeight: 1.02,
-        letterSpacing: "-0.035em",
+        letterSpacing: "-0.038em",
       }}
     >
       {HEADLINE.map((line, li) => (
         <span key={li} className="block overflow-hidden pb-[0.05em]">
           {line.map((word, wi) => {
-            const delay = 0.25 + i++ * 0.07;
+            const delay = 0.25 + i++ * 0.06;
+            const isAccent = word === "endpoint.";
             return (
               <motion.span
                 key={wi}
                 className="inline-block mr-[0.22em]"
                 initial={reduced ? false : { y: "115%", opacity: 0 }}
                 animate={reduced ? undefined : { y: "0%", opacity: 1 }}
-                transition={{ duration: 1.1, ease: EASE, delay }}
+                transition={{ duration: 1.05, ease: EASE, delay }}
+                style={
+                  isAccent
+                    ? {
+                        backgroundImage:
+                          "linear-gradient(120deg, #0071e3 0%, #5e9cff 45%, #ff5980 100%)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                      }
+                    : undefined
+                }
               >
                 {word}
               </motion.span>
@@ -44,6 +57,133 @@ function WordStagger() {
         </span>
       ))}
     </h1>
+  );
+}
+
+/* ----------------------------- 3D Orbiting Scene ----------------------------- */
+
+const FRAMEWORKS = [
+  { label: "SOC 2", tone: "#0071e3" },
+  { label: "ISO 27001", tone: "#7c3aed" },
+  { label: "HIPAA", tone: "#10b981" },
+  { label: "PCI DSS", tone: "#f59e0b" },
+  { label: "NIST 800-53", tone: "#ef4444" },
+  { label: "GDPR", tone: "#0ea5e9" },
+];
+
+function OrbitScene() {
+  const reduced = usePrefersReducedMotion();
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  if (isMobile) return null;
+
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      style={{ perspective: 1600 }}
+    >
+      <motion.div
+        className="relative"
+        style={{
+          width: 760,
+          height: 760,
+          transformStyle: "preserve-3d",
+          rotateX: 62,
+        }}
+        animate={reduced ? undefined : { rotateZ: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      >
+        {/* concentric rings */}
+        {[260, 360, 460].map((r, idx) => (
+          <div
+            key={r}
+            className="absolute rounded-full border"
+            style={{
+              top: `calc(50% - ${r}px)`,
+              left: `calc(50% - ${r}px)`,
+              width: r * 2,
+              height: r * 2,
+              borderColor: `rgba(0,113,227,${0.10 - idx * 0.025})`,
+              boxShadow: `inset 0 0 60px rgba(0,113,227,${0.04 - idx * 0.01})`,
+            }}
+          />
+        ))}
+
+        {/* radial spokes */}
+        <svg
+          className="absolute inset-0"
+          viewBox="0 0 760 760"
+          style={{ opacity: 0.35 }}
+        >
+          {Array.from({ length: 12 }).map((_, i) => {
+            const a = (i / 12) * Math.PI * 2;
+            const x2 = 380 + Math.cos(a) * 460;
+            const y2 = 380 + Math.sin(a) * 460;
+            return (
+              <line
+                key={i}
+                x1={380}
+                y1={380}
+                x2={x2}
+                y2={y2}
+                stroke="rgba(0,113,227,0.08)"
+                strokeWidth={1}
+              />
+            );
+          })}
+        </svg>
+
+        {/* orbiting framework chips */}
+        {FRAMEWORKS.map((f, i) => {
+          const angle = (i / FRAMEWORKS.length) * Math.PI * 2;
+          const radius = 360;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+          return (
+            <motion.div
+              key={f.label}
+              className="absolute top-1/2 left-1/2 rounded-full px-4 py-2 backdrop-blur-md"
+              style={{
+                background: "rgba(255,255,255,0.85)",
+                border: `1px solid ${f.tone}33`,
+                boxShadow: `0 8px 24px ${f.tone}1f`,
+                transform: `translate3d(${x - 60}px, ${y - 18}px, 0) rotateX(-62deg)`,
+                color: f.tone,
+                fontSize: 12,
+                fontWeight: 600,
+                letterSpacing: "0.02em",
+                width: 120,
+                textAlign: "center",
+              }}
+              animate={reduced ? undefined : { y: [y - 18, y - 26, y - 18] }}
+              transition={{ duration: 4 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {f.label}
+            </motion.div>
+          );
+        })}
+
+        {/* scanning pulse */}
+        {!reduced && (
+          <motion.div
+            className="absolute top-1/2 left-1/2 rounded-full"
+            style={{
+              width: 0,
+              height: 0,
+              border: "1px solid rgba(0,113,227,0.5)",
+              translateX: "-50%",
+              translateY: "-50%",
+            }}
+            animate={{
+              width: [0, 920],
+              height: [0, 920],
+              opacity: [0.6, 0],
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
+          />
+        )}
+      </motion.div>
+    </div>
   );
 }
 
@@ -66,7 +206,7 @@ function FloatingOrbs() {
         className="absolute top-1/3 -right-32 w-[620px] h-[620px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(255,89,128,0.16), rgba(255,89,128,0) 65%)",
+            "radial-gradient(circle at 50% 50%, rgba(255,89,128,0.14), rgba(255,89,128,0) 65%)",
           filter: "blur(20px)",
         }}
         animate={{ x: [0, -30, 20, 0], y: [0, -40, 10, 0] }}
@@ -76,7 +216,7 @@ function FloatingOrbs() {
         className="absolute bottom-0 left-1/3 w-[480px] h-[480px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(255,200,80,0.16), rgba(255,200,80,0) 65%)",
+            "radial-gradient(circle at 50% 50%, rgba(124,58,237,0.14), rgba(124,58,237,0) 65%)",
           filter: "blur(20px)",
         }}
         animate={{ x: [0, 30, -20, 0], y: [0, 20, -30, 0] }}
@@ -87,13 +227,15 @@ function FloatingOrbs() {
 }
 
 const MARQUEE = [
+  "Windows 10 / 11",
+  "macOS Sonoma",
+  "Apple Silicon",
   "SOC 2 Type II",
-  "ISO 27001:2022",
-  "HIPAA",
-  "PCI DSS 4.0",
-  "NIST 800-53",
-  "GDPR",
-  "CIS Benchmarks",
+  "ISO 27001:2013",
+  "HIPAA Security Rule",
+  "BSL 1.1",
+  "Air-gapped",
+  "~568 tests passing",
 ];
 
 function FrameworkMarquee() {
@@ -136,10 +278,10 @@ function ParallaxMockup() {
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 70, damping: 20, mass: 0.7 });
   const sy = useSpring(my, { stiffness: 70, damping: 20, mass: 0.7 });
-  const rotX = useTransform(sy, (v) => v * -4);
-  const rotY = useTransform(sx, (v) => v * 4);
-  const tx = useTransform(sx, (v) => v * 10);
-  const ty = useTransform(sy, (v) => v * 10);
+  const rotX = useTransform(sy, (v) => v * -5);
+  const rotY = useTransform(sx, (v) => v * 5);
+  const tx = useTransform(sx, (v) => v * 14);
+  const ty = useTransform(sy, (v) => v * 14);
 
   useEffect(() => {
     if (disabled) return;
@@ -158,8 +300,8 @@ function ParallaxMockup() {
       initial={reduced ? false : { opacity: 0, scale: 0.94, y: 40 }}
       animate={reduced ? undefined : { opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 1.3, ease: EASE, delay: 0.7 }}
-      className="mt-16 md:mt-24 w-full max-w-[960px] mx-auto"
-      style={{ perspective: 1400 }}
+      className="mt-16 md:mt-20 w-full max-w-[1000px] mx-auto"
+      style={{ perspective: 1600 }}
     >
       <motion.div
         className="relative"
@@ -169,15 +311,76 @@ function ParallaxMockup() {
             : { rotateX: rotX, rotateY: rotY, x: tx, y: ty, transformStyle: "preserve-3d" }
         }
       >
-        {/* Soft hero shadow */}
+        {/* hero shadow */}
         <div
           aria-hidden
-          className="absolute -inset-x-12 -bottom-12 h-32 rounded-[50%]"
+          className="absolute -inset-x-16 -bottom-16 h-40 rounded-[50%]"
           style={{
-            background: "radial-gradient(ellipse at center, rgba(0,30,80,0.18), transparent 60%)",
-            filter: "blur(30px)",
+            background:
+              "radial-gradient(ellipse at center, rgba(0,30,80,0.22), transparent 60%)",
+            filter: "blur(36px)",
           }}
         />
+
+        {/* floating side cards (3D) */}
+        {!disabled && (
+          <>
+            <motion.div
+              className="absolute -left-24 top-16 z-20 rounded-2xl bg-white/95 backdrop-blur-md px-4 py-3 border"
+              style={{
+                borderColor: "rgba(0,0,0,0.06)",
+                boxShadow: "0 18px 40px -12px rgba(0,30,80,0.18)",
+                transform: "translateZ(80px)",
+              }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="text-[10px] uppercase tracking-[0.12em] text-[#86868b]">
+                Evidence collected
+              </div>
+              <div className="mt-1 flex items-baseline gap-1">
+                <span className="text-[22px] font-semibold text-ink tabular-nums">8</span>
+                <span className="text-[12px] text-[#86868b]">categories &middot; on-device</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="absolute -right-20 top-32 z-20 rounded-2xl bg-white/95 backdrop-blur-md px-4 py-3 border"
+              style={{
+                borderColor: "rgba(0,0,0,0.06)",
+                boxShadow: "0 18px 40px -12px rgba(0,30,80,0.18)",
+                transform: "translateZ(120px)",
+              }}
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            >
+              <div className="text-[10px] uppercase tracking-[0.12em] text-[#86868b]">
+                Frameworks scored
+              </div>
+              <div className="mt-1 text-[13px] font-medium text-ink">
+                SOC 2 &middot; ISO 27001 &middot; HIPAA
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="absolute -right-10 -bottom-6 z-20 rounded-2xl px-4 py-3 border"
+              style={{
+                background: "linear-gradient(135deg, #0071e3, #0040dd)",
+                color: "white",
+                borderColor: "rgba(255,255,255,0.2)",
+                boxShadow: "0 22px 50px -12px rgba(0,113,227,0.55)",
+                transform: "translateZ(160px)",
+              }}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+              <div className="text-[10px] uppercase tracking-[0.12em] opacity-80">
+                Never uploaded
+              </div>
+              <div className="mt-0.5 text-[13px] font-semibold">0 bytes left your machine</div>
+            </motion.div>
+          </>
+        )}
 
         <ProductMockup />
 
@@ -191,7 +394,7 @@ function ParallaxMockup() {
             transition={{ delay: 1.6, duration: 0.6 }}
           >
             <motion.div
-              className="absolute left-0 right-0 h-[160px]"
+              className="absolute left-0 right-0 h-[180px]"
               style={{
                 background:
                   "linear-gradient(180deg, transparent, rgba(0,113,227,0.18), transparent)",
@@ -209,23 +412,31 @@ function ParallaxMockup() {
 
 export function Hero() {
   const reduced = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const sceneY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const sceneOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.2]);
+
   return (
     <section
+      ref={ref}
       data-hero
       className="relative isolate overflow-hidden bg-snow pt-32 md:pt-40 pb-16 md:pb-24"
     >
       <AmbientGrid />
       <FloatingOrbs />
+      <motion.div style={{ y: sceneY, opacity: sceneOpacity }} className="absolute inset-0">
+        <OrbitScene />
+      </motion.div>
 
       <div className="container-cg relative z-10 flex flex-col items-center">
-        {/* Animated logo + wordmark replacing plain text */}
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 14 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE }}
           className="mb-8"
         >
-          <Logo size={52} />
+          <Logo size={56} />
         </motion.div>
 
         {/* Eyebrow pill */}
@@ -247,7 +458,7 @@ export function Hero() {
             className="text-[12px] font-medium text-azure"
             style={{ letterSpacing: "0.01em" }}
           >
-            v3.3.1 &middot; Air-gapped tier now available
+            v3.3.1 &middot; macOS DMG now shipping &middot; Windows + Apple Silicon
           </span>
         </motion.div>
 
@@ -257,11 +468,12 @@ export function Hero() {
           initial={reduced ? false : { opacity: 0, y: 16 }}
           animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.85 }}
-          className="mt-8 max-w-[680px] text-[20px] md:text-[24px] font-light leading-[1.4] text-ink text-center"
+          className="mt-8 max-w-[720px] text-[20px] md:text-[24px] font-light leading-[1.4] text-ink text-center"
           style={{ letterSpacing: "-0.01em" }}
         >
-          Endpoint evidence for SOC 2, ISO 27001 and HIPAA — collected on your
-          machine, scored in one pass, never uploaded to a vendor cloud.
+          Vanta scans your cloud. ComplianceGuard scans your machine.
+          Endpoint evidence for SOC 2, ISO 27001 and HIPAA — collected, scored and signed
+          locally. Nothing uploaded to a vendor cloud.
         </motion.p>
 
         <motion.div
@@ -293,7 +505,8 @@ export function Hero() {
           className="mt-4 text-[13px] text-center"
           style={{ color: "#86868b" }}
         >
-          Windows &amp; macOS &middot; ~568 tests passing &middot; BSL 1.1 &middot; No account required
+          Windows 10/11 &middot; macOS (Intel + Apple Silicon) &middot; ~568 tests passing &middot;
+          BSL 1.1 &middot; No account required
         </motion.p>
 
         <ParallaxMockup />
