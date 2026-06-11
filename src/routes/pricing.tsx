@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
@@ -12,10 +14,14 @@ export const Route = createFileRoute("/pricing")({
       { title: "Pricing — ComplianceGuard" },
       {
         name: "description",
-        content: "ComplianceGuard pricing: Free forever, Pro at $49/month, Managed at $79/month. No per-seat fees. No enterprise minimums. Cancel anytime.",
+        content:
+          "ComplianceGuard pricing: Free forever, Pro at $49/month, Managed at $79/month. No per-seat fees. No enterprise minimums. Cancel anytime.",
       },
       { property: "og:title", content: "ComplianceGuard Pricing — $49/month, not $10,000/year" },
-      { property: "og:description", content: "Flat pricing for SOC 2 readiness. Free tier, Pro at $49/mo, Managed at $79/mo." },
+      {
+        property: "og:description",
+        content: "Flat pricing for SOC 2, ISO 27001 and HIPAA readiness. Free tier, Pro at $49/mo.",
+      },
       { property: "og:url", content: "/pricing" },
       { property: "og:image", content: "/og-image.png" },
       { name: "twitter:image", content: "/og-image.png" },
@@ -36,7 +42,7 @@ const faqs = [
   },
   {
     q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
-    a: "Yes. ComplianceGuard now supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001:2013 (47 Annex A controls), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence collection feeds all three.",
+    a: "Yes. ComplianceGuard supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001:2013 (47 Annex A controls), and the HIPAA Security Rule (47 safeguards). The same OS-level evidence pass feeds all three.",
   },
   {
     q: "Do you store my AWS credentials?",
@@ -48,8 +54,15 @@ const faqs = [
   },
   {
     q: "What do I get with the Managed plan?",
-    a: "The Managed plan is designed for freelance GRC consultants or small firms managing SOC 2 readiness for multiple clients. You get 5 separate client workspaces, white-label PDF exports, and a consultant referral link.",
+    a: "The Managed plan is designed for freelance GRC consultants or small firms managing readiness for multiple clients. You get 5 separate client workspaces, white-label PDF exports, and a consultant referral link.",
   },
+];
+
+const freeFeatures = [
+  "SOC 2 readiness score",
+  "5 control areas visible",
+  "Local OS scan (Windows + macOS)",
+  "No credit card required",
 ];
 
 const proFeatures = [
@@ -57,28 +70,31 @@ const proFeatures = [
   "Unlimited evidence collection runs",
   "Full PDF, CSV, and JSON export",
   "AWS CloudTrail + IAM + S3 evidence",
-  "OS-level evidence (Windows; Mac & Linux on roadmap)",
+  "Windows 10/11 + macOS (Intel & Apple Silicon)",
   "Evidence history: 90 days",
   "Audit-ready report formatting",
   "Email support (48hr response)",
-  "Installer for Windows 10/11 (64-bit)",
 ];
 
 const managedFeatures = [
   "Everything in Pro",
   "5 client workspaces (additional available)",
   "Centralized billing dashboard",
-  "White-label PDF reports (logo + firm name)",
+  "White-label PDF reports",
   "Priority email support (24hr response)",
   "Consultant referral programme access",
 ];
 
-const freeFeatures = [
-  "SOC 2 readiness score",
-  "5 control areas visible",
-  "Local OS scan",
-  "No credit card required",
-];
+type Tier = {
+  name: string;
+  price: string;
+  cadence: string;
+  sub?: string;
+  tagline: string;
+  features: string[];
+  cta: { label: string; href: string };
+  featured?: boolean;
+};
 
 function PricingPage() {
   const [annual, setAnnual] = useState(false);
@@ -88,134 +104,224 @@ function PricingPage() {
   const managedPrice = annual ? "$63" : "$79";
   const managedSub = annual ? "billed $759/year" : "or $759/year";
 
+  const tiers: Tier[] = [
+    {
+      name: "Free",
+      price: "$0",
+      cadence: "forever",
+      tagline: "See exactly where you fail SOC 2 before you pay a cent.",
+      features: freeFeatures,
+      cta: { label: "Download Free", href: "https://github.com/Egyan07/ComplianceGuard/releases/latest" },
+    },
+    {
+      name: "Pro",
+      price: proPrice,
+      cadence: "/month",
+      sub: proSub,
+      tagline: "Everything you need to hand an auditor a complete evidence pack.",
+      features: proFeatures,
+      cta: {
+        label: "Start Pro Trial",
+        href: "mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial",
+      },
+      featured: true,
+    },
+    {
+      name: "Managed",
+      price: managedPrice,
+      cadence: "/month",
+      sub: managedSub,
+      tagline: "For consultants managing readiness for multiple clients.",
+      features: managedFeatures,
+      cta: {
+        label: "Contact Us",
+        href: "mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan",
+      },
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />
 
-      <section className="bg-background pt-20 pb-12 text-center">
-        <div className="container-cg">
-          <FadeUp>
-            <h1 className="text-[40px] md:text-[52px] font-bold text-navy leading-[1.1]">
-              Pricing that scales with your team,<br />not against it.
-            </h1>
-            <p className="mt-6 text-[18px] md:text-[20px] text-text-secondary max-w-[540px] mx-auto">
-              No per-seat tax. No "let's get on a call" pricing. No enterprise minimums.
-              Just a flat rate that makes sense for a real company.
-            </p>
-
-            <div className="mt-10 inline-flex items-center gap-1 p-1 border border-border rounded-md bg-white">
-              <button
-                onClick={() => setAnnual(false)}
-                className={`px-4 py-2 text-[14px] font-semibold rounded ${!annual ? "bg-navy text-white" : "text-text-secondary"}`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setAnnual(true)}
-                className={`px-4 py-2 text-[14px] font-semibold rounded inline-flex items-center gap-2 ${annual ? "bg-navy text-white" : "text-text-secondary"}`}
-              >
-                Annual
-                <span className={`text-[11px] px-1.5 py-0.5 rounded ${annual ? "bg-teal text-white" : "bg-teal/10 text-teal"}`}>−32%</span>
-              </button>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      <section className="bg-background pb-20">
-        <div className="container-cg grid md:grid-cols-3 gap-6">
-          {/* Free */}
-          <div className="bg-white border border-border rounded-[12px] p-8 flex flex-col">
-            <h3 className="text-[18px] font-bold text-navy">Free</h3>
-            <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-[48px] font-bold text-navy leading-none">$0</span>
-              <span className="text-text-secondary">forever</span>
-            </div>
-            <p className="mt-3 text-[15px] text-text-secondary">See exactly where you fail SOC 2 before you pay a cent.</p>
-            <ul className="mt-6 space-y-3 text-[15px] flex-1">
-              {freeFeatures.map((x) => (
-                <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
-              ))}
-            </ul>
-            <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost mt-8 w-full">Download Free</a>
-          </div>
-
-          {/* Pro */}
-          <div className="relative bg-white rounded-[12px] p-8 flex flex-col order-first md:order-none" style={{ boxShadow: "0 0 0 2px #1A8C5F" }}>
-            <span className="absolute -top-3 left-8 bg-teal text-white text-[13px] font-semibold px-3 py-1 rounded">
-              Most Popular
+      <PageHero
+        eyebrow="Pricing"
+        title={
+          <>
+            Flat pricing.
+            <br />
+            <span
+              style={{
+                backgroundImage: "linear-gradient(120deg,#0071e3,#5e9cff 60%,#ff5980)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              No enterprise tax.
             </span>
-            <h3 className="text-[18px] font-bold text-navy">Pro</h3>
-            <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-[48px] font-bold text-navy leading-none">{proPrice}</span>
-              <span className="text-text-secondary">/month</span>
-            </div>
-            <p className="mt-1 text-[14px] text-text-secondary">{proSub}</p>
-            <p className="mt-3 text-[15px] text-text-secondary">Everything you need to hand an auditor a complete evidence pack.</p>
-            <ul className="mt-6 space-y-3 text-[15px] flex-1">
-              {proFeatures.map((x) => (
-                <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
-              ))}
-            </ul>
-            <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary mt-8 w-full">Start Pro Trial</a>
-          </div>
+          </>
+        }
+        subtitle="No per-seat math. No 'let's get on a call' pricing. Just a rate that makes sense for a real company."
+        ornament="rings"
+      >
+        <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white border border-[var(--silver-mist)]">
+          <button
+            onClick={() => setAnnual(false)}
+            className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
+              !annual ? "bg-ink text-white" : "text-text-secondary"
+            }`}
+          >
+            Monthly
+          </button>
+          <button
+            onClick={() => setAnnual(true)}
+            className={`px-4 py-1.5 text-[13px] font-medium rounded-full inline-flex items-center gap-2 transition ${
+              annual ? "bg-ink text-white" : "text-text-secondary"
+            }`}
+          >
+            Annual
+            <span
+              className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                annual ? "bg-azure text-white" : "bg-azure/10 text-azure"
+              }`}
+            >
+              −32%
+            </span>
+          </button>
+        </div>
+      </PageHero>
 
-          {/* Managed */}
-          <div className="bg-white border border-border rounded-[12px] p-8 flex flex-col">
-            <h3 className="text-[18px] font-bold text-navy">Managed</h3>
-            <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-[48px] font-bold text-navy leading-none">{managedPrice}</span>
-              <span className="text-text-secondary">/month</span>
-            </div>
-            <p className="mt-1 text-[14px] text-text-secondary">{managedSub}</p>
-            <p className="mt-3 text-[15px] text-text-secondary">For consultants managing SOC 2 for multiple clients.</p>
-            <ul className="mt-6 space-y-3 text-[15px] flex-1">
-              {managedFeatures.map((x) => (
-                <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
-              ))}
-            </ul>
-            <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
-          </div>
+      <section className="bg-snow pb-20">
+        <div className="container-cg grid md:grid-cols-3 gap-5">
+          {tiers.map((t, i) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
+              whileHover={{ y: -4 }}
+              className="relative"
+            >
+              <div
+                className="h-full p-8 flex flex-col"
+                style={{
+                  borderRadius: 28,
+                  background: t.featured
+                    ? "linear-gradient(160deg, #f0f6ff 0%, #ffffff 60%)"
+                    : "var(--fog)",
+                  border: t.featured ? "1px solid #c3dafe" : "1px solid transparent",
+                }}
+              >
+                {t.featured && (
+                  <span className="absolute -top-3 left-8 inline-flex items-center gap-1.5 bg-azure text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/80 opacity-60" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+                    </span>
+                    Most popular
+                  </span>
+                )}
+                <p className="mono-tag mb-3">{t.name}</p>
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="text-[56px] font-semibold leading-none text-ink tabular-nums"
+                    style={{ letterSpacing: "-0.04em" }}
+                  >
+                    {t.price}
+                  </span>
+                  <span className="text-text-secondary">{t.cadence}</span>
+                </div>
+                {t.sub && <p className="mt-1 text-[13px] text-text-secondary">{t.sub}</p>}
+                <p className="mt-4 text-[15px] text-text-secondary leading-relaxed">{t.tagline}</p>
+                <ul className="mt-6 space-y-3 text-[15px] text-ink/85 flex-1">
+                  {t.features.map((x) => (
+                    <li key={x} className="flex gap-2">
+                      <Check
+                        size={16}
+                        className={`shrink-0 mt-1 ${t.featured ? "text-azure" : "text-ink/60"}`}
+                      />
+                      {x}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={t.cta.href}
+                  className={`mt-8 w-full text-center ${t.featured ? "btn-primary" : "btn-dark"}`}
+                >
+                  {t.cta.label}
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        <p className="mt-10 text-center text-[15px] text-text-secondary max-w-2xl mx-auto">
-          30-day money-back guarantee on Pro and Managed. No questions asked. Email us and we&apos;ll refund within 24 hours.
-        </p>
-        <p className="mt-3 text-center text-[14px] text-text-secondary max-w-2xl mx-auto">
-          Self-hosting? Deploy to Railway, Render, or any Docker host in one command. Full instructions in the GitHub README.
+        <p className="mt-10 text-center text-[14px] text-text-secondary max-w-2xl mx-auto">
+          30-day money-back guarantee on Pro and Managed. Email and we&apos;ll refund within 24 hours.
+          Self-hosting? Deploy to Railway, Render, or any Docker host in one command.
         </p>
 
-        <div className="container-cg mt-12">
-          <FadeUp>
-            <div className="bg-navy text-white rounded-[12px] p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="max-w-2xl">
-                <p className="eyebrow text-teal mb-2">New in v3.2.0</p>
-                <h3 className="text-[24px] md:text-[28px] font-bold">Enterprise — Air-Gapped Deployment</h3>
-                <p className="mt-3 text-[15px] text-white/75">
-                  Tamper-evident SHA-256 audit log, RBAC (admin + auditor), custom PDF branding,
-                  NDJSON data export, and a fully offline Docker bundle with hardened Nginx.
-                  For regulated industries, government, NHS/healthcare, legal, and financial services
-                  that need full data sovereignty.
-                </p>
-              </div>
-              <a
-                href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Enterprise%20(Air-Gapped)"
-                className="btn-on-navy shrink-0"
+        {/* Enterprise air-gapped band */}
+        <div className="container-cg mt-14">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative overflow-hidden rounded-[28px] p-10 md:p-14 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+            style={{
+              background:
+                "linear-gradient(135deg, #050816 0%, #0b1530 45%, #112a5e 100%)",
+            }}
+          >
+            <div
+              aria-hidden
+              className="absolute -right-32 -top-32 w-[420px] h-[420px] rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(0,113,227,0.45), transparent 60%)",
+                filter: "blur(40px)",
+              }}
+            />
+            <div className="relative max-w-2xl">
+              <p className="text-[12px] font-mono uppercase tracking-[0.14em] text-azure/90 mb-3">
+                New in v3.2.0 &middot; Enterprise
+              </p>
+              <h3
+                className="font-semibold"
+                style={{ fontSize: "clamp(28px,3.4vw,40px)", letterSpacing: "-0.025em", lineHeight: 1.1 }}
               >
-                Contact Sales
-              </a>
+                Air-gapped, tamper-evident, fully sovereign.
+              </h3>
+              <p className="mt-4 text-[15px] text-white/75 leading-relaxed">
+                SHA-256 hash-chained audit log, RBAC (admin + auditor), custom PDF branding,
+                NDJSON data export, and a hardened Docker bundle with zero outbound calls.
+                For regulated industries, government, NHS/healthcare, legal, and finance.
+              </p>
             </div>
-          </FadeUp>
+            <a
+              href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Enterprise%20(Air-Gapped)"
+              className="relative btn-on-navy shrink-0"
+            >
+              Contact Sales
+            </a>
+          </motion.div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-surface py-24">
+      <section className="bg-fog py-24">
         <div className="container-cg max-w-3xl">
           <FadeUp>
-            <h2 className="text-[28px] md:text-[36px] font-bold text-navy">Common questions</h2>
+            <p className="mono-tag mb-3">FAQ</p>
+            <h2
+              className="font-semibold text-ink"
+              style={{ fontSize: "clamp(32px,4.4vw,52px)", letterSpacing: "-0.025em", lineHeight: 1.08 }}
+            >
+              Common questions.
+            </h2>
           </FadeUp>
-          <div className="mt-10 space-y-3">
+          <div className="mt-10 space-y-2">
             {faqs.map((f, i) => (
               <FadeUp key={f.q} delay={i * 0.04}>
                 <FaqItem q={f.q} a={f.a} />
@@ -225,16 +331,23 @@ function PricingPage() {
         </div>
       </section>
 
-      {/* Waitlist mini CTA */}
-      <section className="bg-navy text-white py-20">
-        <div className="container-cg text-center">
-          <h2 className="text-[28px] md:text-[36px] font-bold">Want updates as we ship?</h2>
-          <p className="mt-3 text-white/75">No spam. Just release notes and the occasional rant about Vanta.</p>
+      {/* Waitlist */}
+      <section className="bg-snow py-20">
+        <div className="container-cg text-center max-w-2xl">
+          <h2
+            className="font-semibold text-ink"
+            style={{ fontSize: "clamp(28px,3.6vw,44px)", letterSpacing: "-0.025em" }}
+          >
+            Get release notes as we ship.
+          </h2>
+          <p className="mt-3 text-text-secondary">No spam. Just changelog highlights.</p>
           <div className="mt-6">
-            <WaitlistForm source="pricing_cta" />
+            <WaitlistForm source="pricing_cta" variant="onLight" />
           </div>
           <div className="mt-6">
-            <Link to="/" className="btn-ghost-on-navy">Back to Home</Link>
+            <Link to="/" className="btn-ghost">
+              Back to Home
+            </Link>
           </div>
         </div>
       </section>
@@ -247,20 +360,23 @@ function PricingPage() {
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-white border border-border rounded-[8px]">
+    <div className="bg-white rounded-2xl border border-[var(--silver-mist)] overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
       >
-        <span className="text-[16px] font-semibold text-navy">{q}</span>
-        <ChevronDown size={18} className={`text-text-secondary transition-transform ${open ? "rotate-180" : ""}`} />
+        <span className="text-[16px] font-medium text-ink">{q}</span>
+        <ChevronDown
+          size={18}
+          className={`text-text-secondary transition-transform ${open ? "rotate-180" : ""}`}
+        />
       </button>
       <div
         className="grid transition-[grid-template-rows] duration-300 ease-out"
         style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <p className="px-5 pb-5 text-[15px] text-text-secondary leading-[1.7]">{a}</p>
+          <p className="px-6 pb-6 text-[15px] text-text-secondary leading-[1.7]">{a}</p>
         </div>
       </div>
     </div>

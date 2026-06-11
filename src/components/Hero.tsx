@@ -8,9 +8,8 @@ import { usePrefersReducedMotion, useMediaQuery } from "@/hooks/use-reduced-moti
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const HEADLINE = [
-  ["Compliance"],
-  ["that", "lives", "on"],
-  ["your", "endpoint."],
+  ["Compliance,", "on", "your"],
+  ["endpoint."],
 ];
 
 function WordStagger() {
@@ -21,8 +20,8 @@ function WordStagger() {
       className="text-center font-semibold text-ink"
       style={{
         fontFamily: "var(--font-display)",
-        fontSize: "clamp(44px, 8.4vw, 104px)",
-        lineHeight: 1.02,
+        fontSize: "clamp(40px, 6.2vw, 80px)",
+        lineHeight: 1.04,
         letterSpacing: "-0.038em",
       }}
     >
@@ -85,13 +84,14 @@ function OrbitScene() {
       <motion.div
         className="relative"
         style={{
-          width: 760,
-          height: 760,
+          width: 560,
+          height: 560,
           transformStyle: "preserve-3d",
-          rotateX: 62,
+          rotateX: 64,
+          opacity: 0.55,
         }}
         animate={reduced ? undefined : { rotateZ: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
       >
         {/* concentric rings */}
         {[260, 360, 460].map((r, idx) => (
@@ -136,7 +136,7 @@ function OrbitScene() {
         {/* orbiting framework chips */}
         {FRAMEWORKS.map((f, i) => {
           const angle = (i / FRAMEWORKS.length) * Math.PI * 2;
-          const radius = 360;
+          const radius = 260;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
           return (
