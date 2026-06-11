@@ -84,13 +84,14 @@ function OrbitScene() {
       <motion.div
         className="relative"
         style={{
-          width: 760,
-          height: 760,
+          width: 560,
+          height: 560,
           transformStyle: "preserve-3d",
-          rotateX: 62,
+          rotateX: 64,
+          opacity: 0.55,
         }}
         animate={reduced ? undefined : { rotateZ: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
       >
         {/* concentric rings */}
         {[260, 360, 460].map((r, idx) => (
