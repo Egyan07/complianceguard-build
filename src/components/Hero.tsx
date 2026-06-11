@@ -136,7 +136,7 @@ function OrbitScene() {
         {/* orbiting framework chips */}
         {FRAMEWORKS.map((f, i) => {
           const angle = (i / FRAMEWORKS.length) * Math.PI * 2;
-          const radius = 360;
+          const radius = 260;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
           return (
