@@ -1,15 +1,20 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { FadeUp } from "@/components/FadeUp";
+import { PageHero } from "@/components/PageHero";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
 export const Route = createFileRoute("/changelog")({
   head: () => ({
     meta: [
       { title: "Changelog — ComplianceGuard" },
-      { name: "description", content: "ComplianceGuard changelog — every release documented. Latest: v3.2.0 with Enterprise air-gapped tier, multi-framework scoring, and a full UI overhaul." },
+      {
+        name: "description",
+        content:
+          "ComplianceGuard changelog. Latest: v3.3.1 — macOS DMG distribution for Intel and Apple Silicon, full multi-framework scoring, ~568 tests passing.",
+      },
       { property: "og:title", content: "ComplianceGuard Changelog" },
       { property: "og:description", content: "Every change to ComplianceGuard, documented." },
       { property: "og:url", content: "/changelog" },
