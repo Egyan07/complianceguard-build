@@ -8,9 +8,8 @@ import { usePrefersReducedMotion, useMediaQuery } from "@/hooks/use-reduced-moti
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const HEADLINE = [
-  ["Compliance"],
-  ["that", "lives", "on"],
-  ["your", "endpoint."],
+  ["Compliance,", "on", "your"],
+  ["endpoint."],
 ];
 
 function WordStagger() {
