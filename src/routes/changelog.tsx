@@ -318,11 +318,11 @@ const entries: {
   },
 ];
 
-const toneClass: Record<Tag["tone"], string> = {
-  red: "bg-danger/10 text-danger",
-  amber: "bg-[#F59E0B]/10 text-[#B45309]",
-  green: "bg-teal/10 text-teal",
-  blue: "bg-navy/10 text-navy",
+const toneStyle: Record<Tag["tone"], { bg: string; fg: string }> = {
+  red: { bg: "rgba(182,68,0,0.10)", fg: "#b64400" },
+  amber: { bg: "rgba(245,158,11,0.12)", fg: "#b45309" },
+  green: { bg: "rgba(16,185,129,0.12)", fg: "#047857" },
+  blue: { bg: "rgba(0,113,227,0.10)", fg: "#0071e3" },
 };
 
 const FILTERS = ["All", "Feature", "Security", "Performance", "Fixed", "Breaking"] as const;
@@ -337,99 +337,165 @@ function ChangelogPage() {
   }, [filter]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />
 
-      <section className="bg-background pt-20 pb-8">
-        <div className="container-cg max-w-3xl">
-          <FadeUp>
-            <h1 className="text-[36px] md:text-[48px] font-bold text-navy">Changelog</h1>
-            <p className="mt-4 text-[18px] text-text-secondary">
-              Every change to ComplianceGuard, documented.
-            </p>
-          </FadeUp>
+      <PageHero
+        eyebrow={`v${entries[0]?.version.replace(/^v/, "")} · ${entries[0]?.date}`}
+        title={
+          <>
+            Every change,
+            <br />
+            <span
+              style={{
+                backgroundImage: "linear-gradient(120deg,#0071e3,#5e9cff 60%,#ff5980)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              documented.
+            </span>
+          </>
+        }
+        subtitle="Shipped releases for ComplianceGuard — what changed, what hardened, what broke. Read it like a release log, not marketing."
+        ornament="rings"
+      />
 
-          <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter changelog by tag">
-            {FILTERS.map((f) => {
-              const active = filter === f;
-              return (
-                <button
-                  key={f}
-                  type="button"
-                  onClick={() => setFilter(active && f !== "All" ? "All" : f)}
-                  aria-pressed={active}
-                  className="text-[13px] px-3 py-1.5 rounded-[4px] border transition-colors duration-200"
-                  style={{
-                    borderColor: "#E2E8F0",
-                    backgroundColor: active ? "#1B3A6B" : "#ffffff",
-                    color: active ? "#ffffff" : "#1B3A6B",
-                  }}
-                >
-                  {f}
-                </button>
-              );
-            })}
+      {/* Sticky filter rail */}
+      <section className="bg-snow">
+        <div className="container-cg max-w-4xl">
+          <div
+            className="sticky top-20 z-20 -mx-2 px-2 py-3 backdrop-blur-md"
+            style={{
+              background: "rgba(255,255,255,0.78)",
+              borderBottom: "1px solid var(--silver-mist)",
+            }}
+          >
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter changelog by tag">
+              {FILTERS.map((f) => {
+                const active = filter === f;
+                return (
+                  <button
+                    key={f}
+                    type="button"
+                    onClick={() => setFilter(active && f !== "All" ? "All" : f)}
+                    aria-pressed={active}
+                    className="text-[13px] px-3.5 py-1.5 rounded-full transition-colors duration-200"
+                    style={{
+                      background: active ? "var(--ink)" : "var(--fog)",
+                      color: active ? "#fff" : "var(--ink)",
+                    }}
+                  >
+                    {f}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-background pb-16">
-        <div className="container-cg max-w-3xl space-y-6">
+      {/* Timeline */}
+      <section className="bg-snow py-12">
+        <div className="container-cg max-w-4xl">
           {visible.length === 0 ? (
             <p className="text-[15px] text-text-secondary">No releases match this filter yet.</p>
           ) : (
-            visible.map((e, i) => (
-              <FadeUp key={e.version} delay={i * 0.05}>
-                <article
-                  className="bg-white border border-border rounded-[12px] overflow-hidden"
-                  style={{ borderLeft: "3px solid #1A8C5F" }}
+            <ol className="relative space-y-5">
+              {/* Vertical rail */}
+              <div
+                aria-hidden
+                className="absolute left-[15px] top-2 bottom-2 w-px hidden md:block"
+                style={{ background: "linear-gradient(to bottom, var(--silver-mist), transparent)" }}
+              />
+              {visible.map((e, i) => (
+                <motion.li
+                  key={e.version}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: Math.min(i * 0.04, 0.3) }}
+                  className="relative md:pl-12"
                 >
-                  <div className="p-6 md:p-8">
+                  {/* Dot */}
+                  <span
+                    aria-hidden
+                    className="absolute left-[9px] top-7 w-[14px] h-[14px] rounded-full hidden md:block"
+                    style={{
+                      background: i === 0 ? "var(--azure)" : "var(--silver-mist)",
+                      boxShadow:
+                        i === 0
+                          ? "0 0 0 4px rgba(0,113,227,0.15)"
+                          : "0 0 0 4px var(--snow)",
+                    }}
+                  />
+                  <article
+                    className="rounded-[24px] p-7 md:p-9"
+                    style={{
+                      background: i === 0 ? "linear-gradient(160deg,#f0f6ff,#ffffff 60%)" : "var(--fog)",
+                      border: i === 0 ? "1px solid #c3dafe" : "1px solid transparent",
+                    }}
+                  >
                     <div className="flex flex-wrap items-center gap-2 mb-4">
-                      <span className="bg-teal text-white text-[13px] font-semibold px-2.5 py-1 rounded">
+                      <span className="mono-tag" style={{ color: "var(--text-secondary)" }}>
                         {e.date}
                       </span>
-                      <span className={`${e.version === "Unreleased" ? "bg-text-secondary" : "bg-navy"} text-white text-[13px] font-semibold px-2.5 py-1 rounded`}>
+                      <span className="text-text-secondary/40">·</span>
+                      <span
+                        className="text-[12px] font-semibold px-2 py-0.5 rounded-full"
+                        style={{ background: "var(--ink)", color: "#fff" }}
+                      >
                         {e.version}
                       </span>
-                      {e.tags.map((t) => (
-                        <span
-                          key={t.label}
-                          className={`text-[12px] font-semibold px-2 py-0.5 rounded ${toneClass[t.tone]}`}
-                        >
-                          {t.label}
-                        </span>
-                      ))}
+                      {e.tags.map((t) => {
+                        const s = toneStyle[t.tone];
+                        return (
+                          <span
+                            key={t.label}
+                            className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                            style={{ background: s.bg, color: s.fg }}
+                          >
+                            {t.label}
+                          </span>
+                        );
+                      })}
                     </div>
-                    <h2 className="text-[22px] md:text-[24px] font-bold text-navy">{e.title}</h2>
-                    <ul className="mt-5 space-y-2.5 text-[15px] text-text-secondary leading-[1.7] list-disc pl-5">
+                    <h2
+                      className="font-semibold text-ink"
+                      style={{
+                        fontSize: "clamp(22px, 2.4vw, 30px)",
+                        letterSpacing: "-0.022em",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {e.title}
+                    </h2>
+                    <ul className="mt-5 space-y-2.5 text-[15px] text-ink/80 leading-[1.7] list-disc pl-5 marker:text-azure">
                       {e.bullets.map((b) => (
                         <li key={b}>{b}</li>
                       ))}
                     </ul>
-                  </div>
-                </article>
-              </FadeUp>
-            ))
+                  </article>
+                </motion.li>
+              ))}
+            </ol>
           )}
         </div>
       </section>
 
-      <section className="bg-background pb-24">
-        <div className="container-cg max-w-3xl">
-          <div
-            className="rounded-[12px] bg-white"
-            style={{ border: "1px solid #E2E8F0", padding: 32 }}
+      {/* Subscribe */}
+      <section className="bg-fog py-20">
+        <div className="container-cg max-w-2xl text-center">
+          <h2
+            className="font-semibold text-ink"
+            style={{ fontSize: "clamp(26px,3.4vw,40px)", letterSpacing: "-0.025em" }}
           >
-            <p className="text-[16px] font-semibold text-navy">
-              Get notified when new versions ship.
-            </p>
-            <p className="mt-1 text-[14px] text-text-secondary">
-              No marketing emails. Release notes only.
-            </p>
-            <div className="mt-5">
-              <WaitlistForm source="changelog_updates" buttonLabel="Notify Me" variant="onLight" />
-            </div>
+            Get release notes as we ship.
+          </h2>
+          <p className="mt-3 text-text-secondary">No marketing emails. Release notes only.</p>
+          <div className="mt-6">
+            <WaitlistForm source="changelog_updates" buttonLabel="Notify Me" variant="onLight" />
           </div>
         </div>
       </section>
