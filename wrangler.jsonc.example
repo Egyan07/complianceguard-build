@@ -8,9 +8,5 @@
     "directory": "dist/client",
     "binding": "ASSETS",
     "run_worker_first": false
-  },
-  "vars": {
-    "VITE_SUPABASE_URL": "YOUR_SUPABASE_URL_GOES_HERE",
-    "VITE_SUPABASE_ANON_KEY": "YOUR_SUPABASE_ANON_KEY_GOES_HERE"
   }
 }
