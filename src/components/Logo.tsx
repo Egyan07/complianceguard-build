@@ -7,33 +7,31 @@ export function LogoMark({ size = 24 }: { size?: number }) {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 48 48"
+      viewBox="0 0 512 512"
       fill="none"
       aria-hidden="true"
       style={{ display: "block" }}
     >
       <defs>
-        <linearGradient id="cg-mark-g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+        <linearGradient id="cg-mark-g" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#0A84FF" />
           <stop offset="100%" stopColor="#0040DD" />
         </linearGradient>
       </defs>
-      <rect width="48" height="48" rx="11" fill="url(#cg-mark-g)" />
-      <path
-        d="M24 9.5 13.5 14v8.1c0 6.9 4.5 11.6 10.5 13.4 6-1.8 10.5-6.5 10.5-13.4V14L24 9.5z"
-        fill="rgba(255,255,255,0.16)"
-        stroke="#fff"
-        strokeWidth="2.4"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m19.4 23.6 3.3 3.3 6.4-6.6"
-        stroke="#fff"
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
+      <rect width="512" height="512" rx="112" fill="url(#cg-mark-g)" />
+      <text
+        x="256"
+        y="256"
+        dy="0.35em"
+        fontFamily="-apple-system, 'SF Pro Display', 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        fontSize="220"
+        fontWeight={700}
+        fill="#FFFFFF"
+        textAnchor="middle"
+        style={{ letterSpacing: "-8px" }}
+      >
+        CG
+      </text>
     </svg>
   );
 }
