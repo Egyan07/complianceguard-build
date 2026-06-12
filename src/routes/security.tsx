@@ -51,16 +51,30 @@ const pillars = [
 ];
 
 function LockMark() {
+  const badges = [
+    { icon: Lock, label: "AES-256 at rest" },
+    { icon: ShieldCheck, label: "Zero-knowledge" },
+    { icon: KeyRound, label: "Ed25519 signed" },
+  ];
+
   return (
-    <div className="mx-auto relative w-[140px] h-[140px]" aria-hidden>
+    <div className="mx-auto relative max-w-[480px]" aria-hidden>
       <div
-        className="absolute inset-0 rounded-full blur-lg"
+        className="absolute inset-0 rounded-full blur-2xl opacity-60"
         style={{ background: "radial-gradient(circle, var(--accent-glow), transparent 70%)" }}
       />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-[96px] h-[96px] rounded-[28px] bg-azure text-white flex items-center justify-center">
-          <Lock size={42} strokeWidth={1.8} />
-        </div>
+      <div className="relative flex flex-wrap items-center justify-center gap-3">
+        {badges.map((b) => (
+          <div
+            key={b.label}
+            className="flex items-center gap-2 rounded-full bg-white border border-line px-4 py-2 shadow-sm"
+          >
+            <span className="w-7 h-7 rounded-full bg-azure text-white flex items-center justify-center shrink-0">
+              <b.icon size={14} strokeWidth={2} />
+            </span>
+            <span className="text-[13px] font-medium text-ink whitespace-nowrap">{b.label}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
