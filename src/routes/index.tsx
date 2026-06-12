@@ -1,429 +1,240 @@
-import { Fragment } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Check,
-  X,
-  ArrowRight,
-  Award,
-  Shield,
-  Code2,
-} from "lucide-react";
+import { Check, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { EnterpriseSection } from "@/components/EnterpriseSection";
-import { ParallaxMockup } from "@/components/ParallaxMockup";
-import { HoverCard } from "@/components/HoverCard";
-import { AnimatedStat } from "@/components/AnimatedStatValue";
-import { motion } from "framer-motion";
-import { Footer } from "@/components/Footer";
-import { ProductMockup } from "@/components/ProductMockup";
-import { FadeUp } from "@/components/FadeUp";
-import { WaitlistForm } from "@/components/WaitlistForm";
-import { TechCredibilityBar } from "@/components/TechCredibilityBar";
-import { MobileStickyCTA } from "@/components/MobileStickyCTA";
-import { CostCalculator } from "@/components/CostCalculator";
-import { WordReveal } from "@/components/WordReveal";
-import { MagneticButton } from "@/components/MagneticButton";
-import { CursorBlob } from "@/components/CursorBlob";
-import { GitHubStats } from "@/components/GitHubStats";
-import { ControlsExplorer } from "@/components/ControlsExplorer";
-import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
-import { FounderNote } from "@/components/FounderNote";
-import { NotIncluded } from "@/components/NotIncluded";
-import { HomepageFAQ } from "@/components/HomepageFAQ";
-import { CodeSnippet } from "@/components/CodeSnippet";
-import { DownloadCounter } from "@/components/DownloadCounter";
-import { ExitIntentModal } from "@/components/ExitIntentModal";
-import { GitHubStarButton } from "@/components/GitHubStarButton";
-import { ChapterTheGap } from "@/components/ChapterTheGap";
-import { ChapterTheScan } from "@/components/ChapterTheScan";
-import { ChapterTheResult } from "@/components/ChapterTheResult";
+import { TheGap } from "@/components/TheGap";
+import { HowItWorks } from "@/components/HowItWorks";
 import { FeatureSpotlights } from "@/components/FeatureSpotlights";
 import { FrameworksSection } from "@/components/FrameworksSection";
+import { TrustArchitecture } from "@/components/TrustArchitecture";
+import { EnterpriseSection } from "@/components/EnterpriseSection";
+import { HomepageFAQ } from "@/components/HomepageFAQ";
+import { Footer } from "@/components/Footer";
+import { MobileStickyCTA } from "@/components/MobileStickyCTA";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
+import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "ComplianceGuard — On-Premise SOC 2 Compliance for Bootstrapped SaaS" },
-      {
-        name: "description",
-        content:
-          "Stop paying $10,000/year for SOC 2 compliance. ComplianceGuard scans your endpoints and AWS environment to generate auditor-ready evidence packs. Free tier available.",
-      },
-      { property: "og:title", content: "Stop Paying $10,000/Year to Prove You're Secure." },
-      {
-        property: "og:description",
-        content:
-          "ComplianceGuard generates auditor-ready SOC 2 evidence packs on your machine. No cloud upload. $49/month.",
-      },
-      { property: "og:url", content: "/" },
-      { property: "og:image", content: "/og-image.png" },
-      { name: "twitter:image", content: "/og-image.png" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
+  head: () =>
+    buildMeta({
+      title: "ComplianceGuard — Endpoint Compliance Evidence for SOC 2, ISO 27001 & HIPAA",
+      description:
+        "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows and macOS endpoints. Three frameworks, one scan — and nothing leaves your network.",
+      path: "/",
+    }),
   component: LandingPage,
 });
 
 const compareRows = [
-  ["Starting price", "$49/month", "$10,000+/year", "$10,000+/year"],
+  ["Evidence source", "The endpoint itself", "Cloud APIs only", "Cloud APIs only"],
   ["Data stays on your machine", "yes", "no", "no"],
-  ["Works offline", "yes", "no", "no"],
-  ["Per-seat pricing", "No", "Yes", "Yes"],
-  ["OS-level evidence collection", "yes", "no", "no"],
+  ["Works offline / air-gapped", "yes", "no", "no"],
   ["Compliance frameworks", "SOC 2 · ISO 27001 · HIPAA", "SOC 2 · ISO 27001", "SOC 2 · ISO 27001"],
-  ["Setup time", "60 seconds", "Weeks", "Weeks"],
-  ["Auditable codebase", "BSL 1.1", "Proprietary", "Proprietary"],
+  ["Per-seat pricing", "No — flat rate", "Yes", "Yes"],
+  ["Setup time", "Minutes", "Weeks", "Weeks"],
+  ["Source code", "BSL 1.1 source-available", "Proprietary", "Proprietary"],
   ["Free tier", "yes", "no", "no"],
 ] as const;
-
-const steps = [
-  {
-    n: 1,
-    title: "Download & Install",
-    body: "Run the installer for Windows or Mac. No admin privileges required. No API keys. Opens immediately.",
-  },
-  {
-    n: 2,
-    title: "Instant Scan",
-    body: "ComplianceGuard scans your machine in the background: password policy, firewall, disk encryption, audit logging. Results in 30 seconds.",
-  },
-  {
-    n: 3,
-    title: "Connect AWS",
-    body: "Add your AWS credentials once (encrypted locally). ComplianceGuard pulls CloudTrail, IAM, and S3 evidence automatically.",
-  },
-  {
-    n: 4,
-    title: "Export & Hand Off",
-    body: "Generate your evidence pack as PDF, CSV, or JSON. Send it directly to your auditor or use it to self-certify.",
-  },
-];
 
 function CompareCell({ value, isCG }: { value: string; isCG: boolean }) {
   if (value === "yes") {
     return (
-      <span className={`inline-flex items-center justify-center ${isCG ? "text-teal" : "text-text-secondary"}`}>
-        <Check size={18} strokeWidth={3} />
+      <span
+        className={`inline-flex items-center justify-center ${isCG ? "text-azure" : "text-ink-3"}`}
+      >
+        <Check size={18} strokeWidth={2.5} aria-label="Yes" />
       </span>
     );
   }
   if (value === "no") {
     return (
-      <span className="inline-flex items-center justify-center text-danger">
-        <X size={18} strokeWidth={3} />
+      <span className="inline-flex items-center justify-center text-ink-3">
+        <X size={18} strokeWidth={2.5} aria-label="No" />
       </span>
     );
   }
-  return <span className={isCG ? "text-teal font-semibold" : "text-foreground"}>{value}</span>;
+  return <span className={isCG ? "text-azure font-medium" : "text-ink-2"}>{value}</span>;
+}
+
+function Comparison() {
+  return (
+    <section className="bg-snow py-24 md:py-32">
+      <div className="container-cg">
+        <Reveal className="max-w-3xl">
+          <p className="eyebrow mb-4">How we compare</p>
+          <h2 className="display-2">Different by architecture.</h2>
+          <p className="mt-6 body-lg text-ink-2 max-w-2xl">
+            Cloud compliance platforms and ComplianceGuard solve different layers of the same
+            problem. The difference is where the evidence comes from &mdash; and where it stays.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <div className="mt-12 overflow-x-auto">
+            <table
+              className="w-full text-[15px] card-snow overflow-hidden"
+              style={{ borderCollapse: "separate", borderSpacing: 0 }}
+            >
+              <thead>
+                <tr className="bg-ink text-snow">
+                  <th className="text-left px-6 py-4 font-semibold w-[30%]">
+                    <span className="sr-only">Capability</span>
+                  </th>
+                  <th className="text-left px-6 py-4 font-semibold">ComplianceGuard</th>
+                  <th className="text-left px-6 py-4 font-medium text-snow/80">Vanta</th>
+                  <th className="text-left px-6 py-4 font-medium text-snow/80">Drata</th>
+                </tr>
+              </thead>
+              <tbody>
+                {compareRows.map((row, idx) => (
+                  <motion.tr
+                    key={row[0]}
+                    className="border-t border-hairline"
+                    style={{ height: 54 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={VIEWPORT}
+                    transition={{ duration: DUR.fast, ease: EASE_EXPO, delay: idx * 0.04 }}
+                  >
+                    <td className="px-6 font-medium text-ink">{row[0]}</td>
+                    <td className="px-6">
+                      <CompareCell value={row[1]} isCG />
+                    </td>
+                    <td className="px-6">
+                      <CompareCell value={row[2]} isCG={false} />
+                    </td>
+                    <td className="px-6">
+                      <CompareCell value={row[3]} isCG={false} />
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-center text-[13px] text-ink-3">
+            Competitor capabilities based on publicly available information as of 2026.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function PricingPreview() {
+  return (
+    <section className="bg-fog py-24 md:py-32">
+      <div className="container-cg">
+        <Reveal className="text-center max-w-2xl mx-auto">
+          <p className="eyebrow mb-4">Pricing</p>
+          <h2 className="display-2">Start free. Scale when ready.</h2>
+        </Reveal>
+
+        <RevealGroup className="mt-14 grid md:grid-cols-3 gap-5 items-stretch">
+          {TIERS.map((t) => (
+            <RevealItem key={t.name} className="h-full">
+              <div
+                className={`relative card-snow card-hover p-8 h-full flex flex-col ${t.featured ? "" : ""}`}
+                style={t.featured ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
+              >
+                {t.featured && (
+                  <span className="absolute -top-3 left-8 bg-azure text-snow text-[12px] font-semibold px-3 py-1 rounded-full">
+                    Most popular
+                  </span>
+                )}
+                <h3 className="text-[17px] font-semibold text-ink">{t.name}</h3>
+                <div className="mt-4 flex items-baseline gap-2">
+                  <span
+                    className="text-[44px] font-semibold text-ink leading-none"
+                    style={{ letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}
+                  >
+                    ${t.monthly}
+                  </span>
+                  <span className="text-[15px] text-ink-3">
+                    {t.monthly === 0 ? "forever" : "/month"}
+                  </span>
+                </div>
+                <p className="mt-3 text-[14px] text-ink-2 leading-[1.6]">{t.tagline}</p>
+                <ul className="mt-6 space-y-2.5 text-[14px] text-ink-2 flex-1">
+                  {t.features.slice(0, 4).map((x) => (
+                    <li key={x} className="flex gap-2.5">
+                      <Check size={16} className="text-azure shrink-0 mt-0.5" aria-hidden />
+                      {x}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={t.cta.href}
+                  className={`${t.featured ? "btn-primary" : "btn-ghost"} mt-8 w-full`}
+                >
+                  {t.cta.label}
+                </a>
+              </div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+
+        <Reveal className="mt-10 text-center">
+          <Link to="/pricing" className="text-[15px] text-link hover:underline">
+            Compare all plans, including Enterprise <span aria-hidden>&rsaquo;</span>
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function FinalCTA() {
+  return (
+    <section className="on-dark bg-ink text-snow py-24 md:py-32">
+      <div className="container-cg text-center">
+        <Reveal>
+          <h2 className="display-2 !text-snow">
+            Your next enterprise deal
+            <br />
+            is waiting on a SOC&nbsp;2 report.
+          </h2>
+          <p className="mt-6 body-lg text-snow/70 max-w-[560px] mx-auto">
+            Get audit-ready with evidence collected from the machines themselves &mdash; scored,
+            signed, and under your control.
+          </p>
+          <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+            <a href={DOWNLOAD_URL} className="btn-on-navy">
+              Download for free
+            </a>
+            <a href={salesMailto("ComplianceGuard — sales enquiry")} className="btn-ghost-on-navy">
+              Contact sales
+            </a>
+          </div>
+          <p className="mt-7 text-[13px] text-snow/50">
+            No account required. No cloud storage. No credit card for the free tier.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
 }
 
 function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-
-      {/* HERO */}
-      <Hero />
-
-
-      {/* TECH CREDIBILITY */}
-      <TechCredibilityBar />
-
-      {/* GITHUB LIVE STATS */}
-      <GitHubStats />
-
-      {/* CHAPTER 2 — THE GAP */}
-      <ChapterTheGap />
-
-      {/* PROBLEM */}
-      <section className="bg-navy text-white py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <p className="eyebrow mb-4">The Problem</p>
-            <h2 className="text-[32px] md:text-[40px] font-bold leading-tight max-w-3xl">
-              Enterprise compliance tools were<br />built for enterprise budgets.
-            </h2>
-            <p className="mt-6 text-[18px] text-white/75 max-w-2xl">
-              Vanta starts at $10,000/year. Drata starts at $10,000/year.
-              Secureframe won't even show you a price until you book a call.
-              <br /><br />
-              If you're a 3-person SaaS doing $8K MRR trying to close your first
-              enterprise deal, this is extortion with a compliance badge on it.
-            </p>
-          </FadeUp>
-
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {[
-              { stat: "$10,000+", label: "Average cost of Vanta or Drata per year" },
-              { stat: "4–8 weeks", label: "Typical setup time for cloud-based compliance tools" },
-              { stat: "100%", label: "Of your evidence uploaded to their servers" },
-            ].map((c, i) => (
-              <FadeUp key={c.stat} delay={i * 0.08}>
-                <HoverCard className="bg-white rounded-[12px] p-8 border border-transparent">
-                  <div className="text-[48px] font-bold text-navy leading-none">
-                    <AnimatedStat value={c.stat} />
-                  </div>
-                  <p className="mt-3 text-[15px] text-text-secondary">{c.label}</p>
-                </HoverCard>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CHAPTER 3 — THE SCAN */}
-      <ChapterTheScan />
-
-      {/* CHAPTER 4 — THE RESULT */}
-      <ChapterTheResult />
-
-      {/* FRAMEWORKS */}
-      <FrameworksSection />
-
-      {/* FEATURE SPOTLIGHTS (replaces old 3x2 grid) */}
-      <FeatureSpotlights />
-
-      {/* COMPARISON */}
-      <section className="bg-surface py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <p className="eyebrow mb-4">How We Compare</p>
-            <h2 className="text-[32px] md:text-[40px] font-bold text-navy max-w-3xl leading-tight">
-              Built for teams that can't afford<br />the Enterprise Tax.
-            </h2>
-          </FadeUp>
-
-          <FadeUp delay={0.05}>
-            <div className="mt-10 overflow-x-auto">
-              <table className="w-full border border-border rounded-[12px] overflow-hidden bg-white text-[15px]">
-                <thead>
-                  <tr className="bg-navy text-white">
-                    <th className="text-left px-6 py-4 font-semibold w-[34%]"></th>
-                    <th className="text-left px-6 py-4 font-semibold">ComplianceGuard</th>
-                    <th className="text-left px-6 py-4 font-semibold">Vanta</th>
-                    <th className="text-left px-6 py-4 font-semibold">Drata</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {compareRows.map((row, idx) => (
-                    <motion.tr
-                      key={idx}
-                      className="border-t border-border"
-                      style={{ height: 52 }}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-60px" }}
-                      transition={{ duration: 0.3, ease: "easeOut", delay: idx * 0.04 }}
-                    >
-                      <td className="px-6 font-medium text-foreground">{row[0]}</td>
-                      <td className="px-6"><CompareCell value={row[1]} isCG /></td>
-                      <td className="px-6"><CompareCell value={row[2]} isCG={false} /></td>
-                      <td className="px-6"><CompareCell value={row[3]} isCG={false} /></td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-4 text-center text-[14px] italic text-text-secondary">
-              Competitor pricing based on publicly available information as of 2026.
-            </p>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* COST CALCULATOR */}
-      <CostCalculator />
-
-      {/* ARCHITECTURE DIAGRAM */}
-      <ArchitectureDiagram />
-
-      {/* CONTROLS EXPLORER */}
-      <ControlsExplorer />
-
-      {/* HOW IT WORKS */}
-      <section id="how-it-works" className="bg-background py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <p className="eyebrow mb-4">How It Works</p>
-            <h2 className="text-[32px] md:text-[40px] font-bold text-navy max-w-3xl leading-tight">
-              From install to audit-ready<br />in under 2 minutes.
-            </h2>
-          </FadeUp>
-
-          <div className="mt-14 grid md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] gap-6 items-start">
-            {steps.map((s, i) => (
-              <Fragment key={s.n}>
-                <FadeUp delay={i * 0.05} className="md:col-auto">
-                  <div className="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center font-bold">
-                    {s.n}
-                  </div>
-                  <h3 className="mt-4 text-[18px] font-bold text-navy">{s.title}</h3>
-                  <p className="mt-2 text-[15px] text-text-secondary leading-[1.65]">{s.body}</p>
-                </FadeUp>
-                {i < steps.length - 1 && (
-                  <div className="hidden md:flex pt-2 text-text-secondary/60">
-                    <ArrowRight size={20} />
-                  </div>
-                )}
-              </Fragment>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ENTERPRISE / AIR-GAPPED */}
-      <EnterpriseSection />
-
-      {/* PRICING PREVIEW */}
-      <section className="bg-surface py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <h2 className="text-[32px] md:text-[40px] font-bold text-navy text-center">
-              Start free. Pay when you're ready.
-            </h2>
-          </FadeUp>
-
-          <div className="mt-14 grid md:grid-cols-3 gap-6">
-            {/* Free */}
-            <FadeUp>
-              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
-                <h3 className="text-[18px] font-bold text-navy">Free</h3>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-[48px] font-bold text-navy leading-none">$0</span>
-                  <span className="text-text-secondary">forever</span>
-                </div>
-                <p className="mt-3 text-[15px] text-text-secondary">See exactly where you fail SOC 2 before you pay a cent.</p>
-                <ul className="mt-6 space-y-3 text-[15px] flex-1">
-                  {["SOC 2 readiness score","5 control areas visible","Local OS scan","No credit card required"].map((x) => (
-                    <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
-                  ))}
-                </ul>
-                <a href="https://github.com/Egyan07/ComplianceGuard/releases/latest" className="btn-ghost mt-8 w-full">Download Free</a>
-              </HoverCard>
-            </FadeUp>
-
-            {/* Pro - featured */}
-            <FadeUp delay={0.05}>
-              <HoverCard className="relative bg-white rounded-[12px] p-8 h-full flex flex-col" style={{ boxShadow: "0 0 0 2px #1A8C5F" }}>
-                <span className="absolute -top-3 left-8 bg-teal text-white text-[13px] font-semibold px-3 py-1 rounded">
-                  Most Popular
-                </span>
-                <h3 className="text-[18px] font-bold text-navy">Pro</h3>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-[48px] font-bold text-navy leading-none">$49</span>
-                  <span className="text-text-secondary">/month</span>
-                </div>
-                <p className="mt-1 text-[14px] text-text-secondary">or $399/year — save 32%</p>
-                <p className="mt-3 text-[15px] text-text-secondary">Everything you need to hand an auditor a complete evidence pack.</p>
-                <ul className="mt-6 space-y-3 text-[15px] flex-1">
-                  {["SOC 2 (29) · ISO 27001 (47) · HIPAA (47)","Full PDF + CSV export","AWS evidence auto-sync","Evidence history (90 days)","Email support"].map((x) => (
-                    <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
-                  ))}
-                </ul>
-                <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial" className="btn-primary mt-8 w-full">Start Pro Trial</a>
-              </HoverCard>
-            </FadeUp>
-
-            {/* Managed */}
-            <FadeUp delay={0.1}>
-              <HoverCard className="bg-white border border-border rounded-[12px] p-8 h-full flex flex-col">
-                <h3 className="text-[18px] font-bold text-navy">Managed</h3>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-[48px] font-bold text-navy leading-none">$79</span>
-                  <span className="text-text-secondary">/month</span>
-                </div>
-                <p className="mt-3 text-[15px] text-text-secondary">For consultants managing SOC 2 for multiple clients.</p>
-                <ul className="mt-6 space-y-3 text-[15px] flex-1">
-                  {["Everything in Pro","Up to 5 client workspaces","Consultant billing dashboard","Priority email support"].map((x) => (
-                    <li key={x} className="flex gap-2"><Check size={18} className="text-teal shrink-0 mt-0.5" />{x}</li>
-                  ))}
-                </ul>
-                <a href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan" className="btn-ghost mt-8 w-full">Contact Us</a>
-              </HoverCard>
-            </FadeUp>
-          </div>
-        </div>
-      </section>
-
-      {/* TRUST */}
-      <section className="bg-background py-24">
-        <div className="container-cg">
-          <FadeUp>
-            <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-[28px] font-bold text-navy">Built with auditors, not just for them.</h3>
-              <p className="mt-4 text-[17px] text-text-secondary">
-                ComplianceGuard evidence packs are mapped to the AICPA Trust Services Criteria.
-                The exact format we export is what real auditors accept for SOC 2 Type I and Type II reports.
-              </p>
-            </div>
-          </FadeUp>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {[
-              { Icon: Award, title: "AICPA TSC-Mapped", body: "Every control mapped to the official Trust Services Criteria framework." },
-              { Icon: Shield, title: "Ed25519 Signed", body: "License verification uses public-key cryptography. Zero trust architecture." },
-              { Icon: Code2, title: "BSL 1.1 Open Core", body: "You can read the code that reads your system. No black boxes." },
-            ].map((t, i) => (
-              <FadeUp key={t.title} delay={i * 0.05}>
-                <HoverCard className="border border-border rounded-[12px] p-6 h-full bg-background">
-                  <div className="w-10 h-10 rounded-md bg-teal flex items-center justify-center text-white">
-                    <t.Icon size={20} />
-                  </div>
-                  <h4 className="mt-5 text-[18px] font-semibold text-navy">{t.title}</h4>
-                  <p className="mt-2 text-[15px] text-text-secondary">{t.body}</p>
-                </HoverCard>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHAT'S NOT INCLUDED */}
-      <NotIncluded />
-
-      {/* CODE SNIPPET DEMO */}
-      <CodeSnippet />
-
-      {/* FOUNDER NOTE */}
-      <FounderNote />
-
-      {/* HOMEPAGE FAQ */}
-      <HomepageFAQ />
-
-      {/* FINAL CTA */}
-      <section className="bg-navy text-white py-24">
-        <div className="container-cg text-center">
-          <FadeUp>
-            <h2 className="text-[36px] md:text-[44px] font-bold leading-tight">
-              Your next enterprise deal<br />is waiting for a SOC 2 report.
-            </h2>
-            <p className="mt-6 text-[18px] md:text-[20px] text-white/75 max-w-[560px] mx-auto">
-              Stop losing deals to a compliance gap. ComplianceGuard gets you
-              audit-ready without the $10,000 bill.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <MagneticButton
-                href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-                className="btn-on-navy"
-              >
-                Download Free
-              </MagneticButton>
-              <Link to="/pricing" className="btn-ghost-on-navy">See Pricing</Link>
-            </div>
-            <p className="mt-6 text-[14px] text-white/50">
-              No account required. No cloud storage. No credit card for the free tier.
-            </p>
-
-            <div className="mt-10 max-w-md mx-auto">
-              <WaitlistForm source="landing_cta" />
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
+      <main id="main">
+        <Hero />
+        <TheGap />
+        <HowItWorks />
+        <FeatureSpotlights />
+        <FrameworksSection />
+        <TrustArchitecture />
+        <Comparison />
+        <EnterpriseSection />
+        <PricingPreview />
+        <HomepageFAQ />
+        <FinalCTA />
+      </main>
       <Footer />
       <MobileStickyCTA />
-      <ExitIntentModal />
     </div>
   );
 }

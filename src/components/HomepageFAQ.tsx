@@ -1,40 +1,39 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { FadeUp } from "./FadeUp";
-import { HoverCard } from "./HoverCard";
+import { Reveal } from "./Reveal";
 
 const FAQS = [
   {
-    q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
-    a: "Yes. ComplianceGuard now supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001:2013 (47 Annex A controls), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence collection feeds all three.",
+    q: "Which frameworks does ComplianceGuard cover?",
+    a: "Three, from a single collection pass: SOC 2 Type II (29 controls across the AICPA Trust Services Criteria), ISO 27001 (47 scored controls spanning all 14 Annex A domains), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence feeds all three.",
   },
   {
-    q: "Is this really audit-ready, or is it a toy?",
-    a: "Every evidence pack is mapped to the AICPA Trust Services Criteria — the exact framework SOC 2 auditors use. The PDF, CSV, and JSON exports follow the format used in successful SOC 2 Type I and Type II reports. You hand it to your auditor; they don't ask you to reformat anything.",
+    q: "Will auditors accept the evidence pack?",
+    a: "Every evidence pack is mapped control-by-control to the AICPA Trust Services Criteria — the exact framework SOC 2 auditors work from. The PDF export follows the format used in successful SOC 2 Type I and Type II audits, so there's no reformatting and no back-and-forth. A formal SOC 2 report still requires a licensed CPA firm; ComplianceGuard gets you to that engagement prepared.",
   },
   {
-    q: "What if I need integrations Vanta has?",
-    a: "Then you should buy Vanta. ComplianceGuard is built for teams who don't have $10K to spend on an auditor marketplace and 40 SaaS integrations they won't use. If your compliance gap is 'I need a Slack integration', we are not the right tool. If your gap is 'I need an evidence pack and I refuse to pay $10K for one', we are.",
+    q: "How is this different from Vanta or Drata?",
+    a: "They scan cloud infrastructure; ComplianceGuard scans the machines themselves. Password policies, firewall rules, disk encryption, event logs — that evidence lives on the endpoint, not in AWS. Many teams run both: a cloud platform for SaaS integrations, ComplianceGuard for the endpoint evidence those platforms structurally can't see.",
   },
   {
-    q: "Why should I trust a one-person project with my compliance?",
-    a: "You shouldn't trust me — you should trust the code. ComplianceGuard is BSL 1.1 source-available: read every line that touches your machine. The crypto uses Ed25519 signing and HKDF-derived Fernet encryption (industry standard). 530+ tests run on every commit. And critically: we never receive your evidence, so even if I disappeared tomorrow, your data is on your disk, not on a server I control.",
+    q: "Why should I trust it with my compliance?",
+    a: "Don't trust claims — read the code. ComplianceGuard is source-available under BSL 1.1: every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~568 tests run on every commit. Most importantly, the architecture means we never receive your evidence — it stays on your disk, under your control.",
   },
   {
     q: "Can't I just collect evidence manually in a spreadsheet?",
-    a: "You can. Most first SOC 2 audits start that way. ComplianceGuard doesn't replace that process — it automates the collection part. Instead of manually checking firewall settings, running PowerShell scripts, and copying output into a spreadsheet, ComplianceGuard reads it all in 30 seconds and formats it exactly how your auditor needs it.",
+    a: "You can — most first SOC 2 audits start that way. ComplianceGuard automates the collection: instead of checking firewall settings by hand, running scripts, and copying output into a spreadsheet, it reads everything in about 30 seconds and formats it the way your auditor expects.",
   },
   {
     q: "What happens to my data?",
-    a: "Nothing. It stays on your machine. ComplianceGuard reads from your OS and your AWS account, writes to a local SQLite database, and exports a PDF when you ask. There is no upload step. There is no telemetry. There is no 'sync to cloud' unless you explicitly enable the optional Pro fleet dashboard.",
+    a: "It stays on your machine. ComplianceGuard reads from your OS and your AWS account, writes to a local SQLite database, and exports a PDF when you ask. There is no upload step and no telemetry. Evidence only moves if you explicitly enable the optional multi-machine dashboard sync.",
   },
   {
-    q: "How do I know my AWS credentials are safe?",
-    a: "Credentials are encrypted at rest using a Fernet key derived via HKDF-SHA256 from your local SECRET_KEY. They never leave your machine and are decrypted in-memory only when collecting evidence. Source code is open so you can verify this yourself — see app/core/license.py and the evidence collector.",
+    q: "How are my AWS credentials protected?",
+    a: "Credentials are encrypted at rest using a Fernet key derived via HKDF-SHA256 from your local secret key. They are decrypted in memory only at evidence-collection time and are never transmitted anywhere. The source code is available, so you can verify this yourself.",
   },
   {
-    q: "What if I outgrow it?",
-    a: "Switch to Vanta or Drata when you can afford the $10K. We'll consider that a win — we got you to the point where you have $10K for compliance tooling. The evidence pack format is auditor-standard, so nothing is locked in.",
+    q: "What does ComplianceGuard intentionally leave out?",
+    a: "No auditor marketplace — use whichever firm you want. No 40-app integration catalog — the focus is evidence, not workflow chrome. And no lock-in: evidence is stored locally in standard formats, so you can export it and switch tools at any time.",
   },
 ];
 
@@ -42,44 +41,45 @@ export function HomepageFAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-surface py-24">
+    <section className="bg-fog py-24 md:py-32">
       <div className="container-cg max-w-3xl">
-        <FadeUp>
+        <Reveal>
           <p className="eyebrow mb-4">FAQ</p>
-          <h2 className="text-[32px] md:text-[40px] font-bold text-navy leading-tight">
-            The objections we get most.
-          </h2>
-        </FadeUp>
+          <h2 className="display-2">Common questions.</h2>
+        </Reveal>
 
         <div className="mt-10 space-y-3">
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
-              <FadeUp key={f.q} delay={i * 0.03}>
-                <HoverCard className="border border-border rounded-[12px] bg-white overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                    className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-surface/50 transition-colors"
-                  >
-                    <span className="text-[16px] font-semibold text-navy">{f.q}</span>
-                    <span className="shrink-0 text-teal">
-                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
-                    </span>
-                  </button>
+              <Reveal key={f.q} delay={Math.min(i * 0.04, 0.2)}>
+                <div className="card-snow overflow-hidden">
+                  <h3>
+                    <button
+                      type="button"
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-fog/60 transition-colors"
+                    >
+                      <span className="text-[16px] font-semibold text-ink">{f.q}</span>
+                      <span className="shrink-0 text-azure" aria-hidden>
+                        {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                      </span>
+                    </button>
+                  </h3>
                   <div
-                    className="grid transition-all duration-300 ease-out"
-                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                    className="grid transition-[grid-template-rows] duration-300"
+                    style={{
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                      transitionTimingFunction: "var(--ease-expo)",
+                    }}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-5 pb-5 text-[15px] text-text-secondary leading-[1.7]">
-                        {f.a}
-                      </p>
+                      <p className="px-5 pb-5 text-[15px] text-ink-2 leading-[1.7]">{f.a}</p>
                     </div>
                   </div>
-                </HoverCard>
-              </FadeUp>
+                </div>
+              </Reveal>
             );
           })}
         </div>

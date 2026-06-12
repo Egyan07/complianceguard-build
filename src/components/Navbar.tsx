@@ -1,38 +1,36 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Logo } from "./Logo";
+import { LogoMark } from "./Logo";
+import { DOWNLOAD_URL, GITHUB_URL } from "@/lib/site";
 
-function NavLink({
-  to,
-  children,
-}: {
-  to: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      to={to}
-      className="text-[12px] text-ink/80 hover:text-ink transition-colors"
-      style={{ letterSpacing: "-0.003em" }}
-    >
-      {children}
-    </Link>
-  );
-}
-
-const links: ReadonlyArray<{ to: string; label: string }> = [
-  { to: "/", label: "Product" },
+const links = [
   { to: "/pricing", label: "Pricing" },
-  { to: "/changelog", label: "Changelog" },
-  { to: "/about", label: "About" },
   { to: "/security", label: "Security" },
-];
+  { to: "/about", label: "About" },
+  { to: "/changelog", label: "Changelog" },
+] as const;
 
 const resourceLinks = [
   { to: "/resources/what-is-soc2", label: "What is SOC 2?" },
   { to: "/resources/soc2-checklist", label: "SOC 2 Checklist" },
 ] as const;
+
+function NavLink({ to, label }: { to: string; label: string }) {
+  return (
+    <Link
+      to={to}
+      className="px-1 py-2 text-[14px] text-ink-2 hover:text-ink transition-colors"
+      activeProps={{
+        className: "px-1 py-2 text-[14px] text-ink font-medium",
+        "aria-current": "page",
+      }}
+      style={{ letterSpacing: "-0.006em" }}
+    >
+      {label}
+    </Link>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,37 +46,55 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (!resourcesOpen) return;
     const onDocClick = (e: MouseEvent) => {
       if (resourcesRef.current && !resourcesRef.current.contains(e.target as Node)) {
         setResourcesOpen(false);
       }
     };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setResourcesOpen(false);
+    };
     document.addEventListener("mousedown", onDocClick);
-    return () => document.removeEventListener("mousedown", onDocClick);
-  }, []);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [resourcesOpen]);
+
+  // Lock body scroll while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <header
-      className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+      className="fixed top-0 inset-x-0 z-50 transition-[background-color,border-color] duration-300"
       style={{
-        backgroundColor: scrolled ? "rgba(245,245,247,0.82)" : "rgba(245,245,247,0.72)",
+        backgroundColor: "rgba(255,255,255,0.78)",
         backdropFilter: "blur(20px) saturate(180%)",
-        borderBottom: scrolled ? "1px solid #e8e8ed" : "1px solid transparent",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        borderBottom: scrolled ? "1px solid var(--hairline)" : "1px solid transparent",
       }}
     >
-      <div className="container-cg flex h-11 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <Logo size={22} withWordmark={false} animated={false} />
-          <span className="text-[14px] font-semibold text-ink transition-opacity group-hover:opacity-80" style={{ letterSpacing: "-0.012em" }}>
+      <div className="container-cg flex h-14 items-center justify-between">
+        <Link to="/" className="flex items-center gap-2.5 group" aria-label="ComplianceGuard home">
+          <LogoMark size={26} />
+          <span
+            className="text-[15px] font-semibold text-ink transition-opacity group-hover:opacity-80"
+            style={{ letterSpacing: "-0.012em" }}
+          >
             ComplianceGuard
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6" aria-label="Main">
           {links.map((l) => (
-            <NavLink key={l.label} to={l.to as "/"}>
-              {l.label}
-            </NavLink>
+            <NavLink key={l.label} to={l.to} label={l.label} />
           ))}
           <div
             ref={resourcesRef}
@@ -88,99 +104,103 @@ export function Navbar() {
           >
             <button
               type="button"
+              aria-expanded={resourcesOpen}
+              aria-haspopup="menu"
               onClick={() => setResourcesOpen((v) => !v)}
-              className="inline-flex items-center gap-1 text-[12px] text-ink/80 hover:text-ink transition-colors"
+              className="inline-flex items-center gap-1 px-1 py-2 text-[14px] text-ink-2 hover:text-ink transition-colors"
+              style={{ letterSpacing: "-0.006em" }}
             >
               Resources
-              <ChevronDown size={11} />
+              <ChevronDown
+                size={12}
+                className="transition-transform duration-200"
+                style={{ transform: resourcesOpen ? "rotate(180deg)" : undefined }}
+              />
             </button>
-            <div
-              className="absolute right-0 top-full pt-3 min-w-[200px]"
-              style={{ pointerEvents: resourcesOpen ? "auto" : "none" }}
-            >
-              <div
-                className="bg-snow rounded-[16px] p-2 transition-all duration-200 origin-top"
-                style={{
-                  border: "1px solid #e8e8ed",
-                  opacity: resourcesOpen ? 1 : 0,
-                  transform: resourcesOpen ? "translateY(0)" : "translateY(-4px)",
-                }}
-              >
-                {resourceLinks.map((r) => (
-                  <Link
-                    key={r.to}
-                    to={r.to}
-                    onClick={() => setResourcesOpen(false)}
-                    className="block px-3 py-2 text-[13px] text-ink hover:bg-fog rounded-[10px] transition-colors"
-                  >
-                    {r.label}
-                  </Link>
-                ))}
+            {resourcesOpen && (
+              <div className="absolute right-0 top-full pt-2 min-w-[210px]">
+                <div
+                  className="bg-snow rounded-[14px] p-2 border border-hairline"
+                  style={{ boxShadow: "var(--shadow-card)" }}
+                >
+                  {resourceLinks.map((r) => (
+                    <Link
+                      key={r.to}
+                      to={r.to}
+                      onClick={() => setResourcesOpen(false)}
+                      className="block px-3 py-2 text-[14px] text-ink hover:bg-fog rounded-[10px] transition-colors"
+                    >
+                      {r.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://github.com/Egyan07/ComplianceGuard"
-            className="text-[12px] text-ink/80 hover:text-ink transition-colors"
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-1 py-2 text-[14px] text-ink-2 hover:text-ink transition-colors"
           >
             GitHub
           </a>
           <a
-            href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-            className="bg-azure text-snow text-[12px] font-normal px-3 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
-            style={{ letterSpacing: "-0.003em" }}
+            href={DOWNLOAD_URL}
+            className="bg-azure text-snow text-[14px] font-medium px-4 py-1.5 rounded-full hover:bg-[var(--azure-hover)] transition-colors"
+            style={{ letterSpacing: "-0.006em" }}
           >
             Download
           </a>
         </div>
 
         <button
-          className="md:hidden p-2 text-ink"
-          aria-label="Open menu"
+          className="md:hidden p-2 -mr-2 text-ink"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={18} /> : <Menu size={18} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-silver-mist bg-snow">
-          <div className="container-cg py-4 flex flex-col gap-3">
+        <div className="md:hidden border-t border-hairline bg-snow max-h-[calc(100dvh-56px)] overflow-y-auto">
+          <nav className="container-cg py-4 flex flex-col gap-1" aria-label="Mobile">
             {links.map((l) => (
               <Link
                 key={l.label}
-                to={l.to as "/"}
+                to={l.to}
                 onClick={() => setOpen(false)}
-                className="text-[17px] text-ink py-1.5"
+                className="text-[17px] text-ink py-2.5"
+                activeProps={{
+                  className: "text-[17px] text-ink font-semibold py-2.5",
+                  "aria-current": "page",
+                }}
               >
                 {l.label}
               </Link>
             ))}
-            <div className="pt-3 mt-1 border-t border-silver-mist">
-              <p className="text-[12px] uppercase tracking-wider text-text-dim mb-2" style={{ color: "var(--text-dim)" }}>
-                Resources
-              </p>
+            <div className="pt-3 mt-2 border-t border-hairline">
+              <p className="mono-tag mb-2">Resources</p>
               {resourceLinks.map((r) => (
                 <Link
                   key={r.to}
                   to={r.to}
                   onClick={() => setOpen(false)}
-                  className="block py-1.5 text-[15px] text-ink"
+                  className="block py-2 text-[15px] text-ink"
                 >
                   {r.label}
                 </Link>
               ))}
             </div>
-            <a
-              href="https://github.com/Egyan07/ComplianceGuard/releases/latest"
-              className="btn-primary mt-2"
-            >
+            <a href={DOWNLOAD_URL} className="btn-primary mt-3 mb-2">
               Download
             </a>
-          </div>
+          </nav>
         </div>
       )}
     </header>

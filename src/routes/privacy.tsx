@@ -1,99 +1,122 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/PageHero";
+import { Reveal } from "@/components/Reveal";
+import { buildMeta, CONTACT_EMAIL } from "@/lib/site";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — ComplianceGuard" },
-      {
-        name: "description",
-        content:
-          "ComplianceGuard's privacy policy. The desktop application collects nothing on our servers. Your compliance data stays on your machine.",
-      },
-      { property: "og:title", content: "Privacy Policy — ComplianceGuard" },
-      { property: "og:description", content: "Zero-knowledge by design. We don't collect your evidence." },
-      { property: "og:url", content: "/privacy" },
-      { property: "og:image", content: "/og-image.png" },
-      { name: "twitter:image", content: "/og-image.png" },
-    ],
-    links: [{ rel: "canonical", href: "/privacy" }],
-  }),
+  head: () =>
+    buildMeta({
+      title: "Privacy Policy — ComplianceGuard",
+      description:
+        "How ComplianceGuard handles data: evidence stays in a local database on your machine, the website stores only emails you choose to submit, and no analytics trackers run.",
+      path: "/privacy",
+    }),
   component: PrivacyPage,
 });
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-10">
-      <h2 className="text-[24px] font-bold text-navy">{title}</h2>
-      <div className="mt-3 text-[16px] text-foreground leading-[1.8] space-y-4">{children}</div>
-    </section>
+    <Reveal>
+      <section className="mt-14">
+        <h2 className="text-[24px] font-semibold text-ink">{title}</h2>
+        <div className="mt-4 space-y-4 text-[17px] text-ink-2 leading-[1.65]">{children}</div>
+      </section>
+    </Reveal>
   );
 }
 
 function PrivacyPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />
-      <main className="flex-1 bg-background py-16">
-        <div className="container-cg max-w-[720px]">
-          <h1 className="text-[40px] md:text-[48px] font-bold text-navy leading-[1.1]">Privacy Policy</h1>
-          <span className="inline-block mt-4 px-3 py-1 rounded-[4px] border border-[#E2E8F0] text-[12px] text-[#9CA3AF]">
-            Last updated: April 2026
-          </span>
+      <main id="main" className="flex-1">
+        <PageHero
+          eyebrow="Legal"
+          title="Privacy policy."
+          subtitle="Your compliance evidence stays on your machine. The only personal data we hold is an email address you choose to give us."
+          ornament="none"
+        />
 
-          <Section title="What We Collect">
-            <p>
-              ComplianceGuard the desktop application collects nothing on our servers. All evidence data, AWS
-              credentials, and compliance reports are stored locally on your machine in a SQLite database. The
-              ComplianceGuard website collects your email address if you voluntarily submit it via the waitlist form.
-              We store this in a secured Supabase database. We do not sell, share, or rent your email to third parties.
-            </p>
-          </Section>
+        <div className="container-cg pb-24">
+          <div className="mx-auto max-w-[680px]">
+            <p className="mono-tag">Last updated · April 2026</p>
 
-          <Section title="What We Don't Collect">
-            <p>
-              We do not collect: your compliance evidence, your AWS credentials, your endpoint scan results, your
-              audit reports, telemetry or usage data from the desktop application, or any personally identifiable
-              information beyond what you voluntarily provide.
-            </p>
-          </Section>
+            <Section title="What we collect">
+              <p>
+                The ComplianceGuard desktop application stores all evidence data, AWS credentials,
+                and compliance reports locally on your machine in a SQLite database. The desktop
+                application sends none of this to our servers.
+              </p>
+              <p>
+                The ComplianceGuard website collects your email address if you voluntarily submit it
+                through the waitlist or contact form. We store it in a secured Supabase database. We
+                do not sell, share, or rent your email address to third parties.
+              </p>
+            </Section>
 
-          <Section title="Cookies">
-            <p>
-              The ComplianceGuard website uses no tracking cookies. We use localStorage and sessionStorage for UI
-              preferences only (dark mode, dismissed banners). No analytics scripts are loaded.
-            </p>
-          </Section>
+            <Section title="What we don't collect">
+              <p>
+                We do not collect your compliance evidence, your AWS credentials, your endpoint scan
+                results, your audit reports, telemetry or usage data from the desktop application,
+                or any personally identifiable information beyond what you voluntarily provide.
+              </p>
+            </Section>
 
-          <Section title="Third-Party Services">
-            <p>
-              The website uses Supabase for email storage. Supabase's privacy policy is available at supabase.com/privacy.
-              No other third-party data processors are used.
-            </p>
-          </Section>
+            <Section title="Cookies and local storage">
+              <p>
+                The ComplianceGuard website uses no tracking cookies and loads no analytics scripts.
+                We use localStorage and sessionStorage for interface preferences only — for example,
+                dismissed banners and saved checklist progress. This data never leaves your browser.
+              </p>
+            </Section>
 
-          <Section title="Data Retention">
-            <p>
-              Email addresses submitted to the waitlist are retained until you request deletion. To request deletion,
-              email alexisegyan1232@gmail.com with the subject "Delete my data."
-            </p>
-          </Section>
+            <Section title="Third-party services">
+              <p>
+                The website uses Supabase to store submitted email addresses. Supabase's privacy
+                policy is available at{" "}
+                <a
+                  href="https://supabase.com/privacy"
+                  className="text-link hover:underline"
+                  rel="noreferrer"
+                >
+                  supabase.com/privacy
+                </a>
+                . No other third-party data processors are used.
+              </p>
+            </Section>
 
-          <Section title="Your Rights">
-            <p>
-              You have the right to access, correct, or delete any personal data we hold about you. Contact
-              alexisegyan1232@gmail.com for any data requests.
-            </p>
-          </Section>
+            <Section title="Data retention">
+              <p>
+                Email addresses submitted to the waitlist are retained until you request deletion.
+                To request deletion, email{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-link hover:underline">
+                  {CONTACT_EMAIL}
+                </a>{" "}
+                with the subject "Delete my data."
+              </p>
+            </Section>
 
-          <Section title="Contact">
-            <p>
-              <a href="mailto:alexisegyan1232@gmail.com" className="text-teal hover:underline">
-                alexisegyan1232@gmail.com
-              </a>
-            </p>
-          </Section>
+            <Section title="Your rights">
+              <p>
+                You have the right to access, correct, or delete any personal data we hold about
+                you. Contact{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-link hover:underline">
+                  {CONTACT_EMAIL}
+                </a>{" "}
+                for any data request.
+              </p>
+            </Section>
+
+            <Section title="Contact">
+              <p>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-link hover:underline">
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+            </Section>
+          </div>
         </div>
       </main>
       <Footer />

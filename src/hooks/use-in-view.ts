@@ -14,7 +14,7 @@ export function useInView<T extends Element>(options?: IntersectionObserverInit)
           obs.disconnect();
         }
       },
-      { threshold: 0.2, ...options }
+      { threshold: 0.2, ...options },
     );
     obs.observe(node);
     return () => obs.disconnect();

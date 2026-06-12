@@ -21,7 +21,7 @@ export function AnimatedStat({ value, className, duration = 1200 }: Props) {
   const { ref, inView } = useInView<HTMLSpanElement>({ threshold: 0.4 });
   const reduced = usePrefersReducedMotion();
 
-  const match = value.match(/^([^\\d]*)([\\d,]+)([^\\d]*)$/);
+  const match = value.match(/^([^\d]*)(\d[\d,]*)([^\d]*)$/);
   const isNumeric = !!match;
 
   if (isNumeric && match) {
@@ -31,7 +31,18 @@ export function AnimatedStat({ value, className, duration = 1200 }: Props) {
     const target = parseInt(numberStr.replace(/,/g, ""), 10);
     return (
       <span ref={ref} className={className}>
-        {reduced ? value : <NumberCounter target={target} start={inView} duration={duration} prefix={prefix} suffix={suffix} hasComma={numberStr.includes(",")} />}
+        {reduced ? (
+          value
+        ) : (
+          <NumberCounter
+            target={target}
+            start={inView}
+            duration={duration}
+            prefix={prefix}
+            suffix={suffix}
+            hasComma={numberStr.includes(",")}
+          />
+        )}
       </span>
     );
   }

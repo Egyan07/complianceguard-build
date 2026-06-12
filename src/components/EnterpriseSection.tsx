@@ -1,16 +1,9 @@
 import { motion } from "framer-motion";
 import { Shield, KeyRound, FileLock2, Download, ServerCog } from "lucide-react";
-import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
+import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
+import { salesMailto } from "@/lib/site";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const HASHES = [
-  "0x7a3f…b21c",
-  "0x14de…9f08",
-  "0xc9b2…5e7d",
-  "0x4f80…ae33",
-  "0x2bce…c640",
-];
+const HASHES = ["0x7a3f…b21c", "0x14de…9f08", "0xc9b2…5e7d", "0x4f80…ae33", "0x2bce…c640"];
 
 const PILLARS = [
   {
@@ -21,27 +14,25 @@ const PILLARS = [
   {
     icon: KeyRound,
     title: "RBAC: admin + auditor",
-    body: "Separate read-only auditor accounts. Last-admin lockout guard. First registered user seeded as admin via Alembic migration.",
+    body: "Separate read-only auditor accounts. Last-admin lockout guard. First registered user seeded as admin via migration.",
   },
   {
     icon: Download,
     title: "NDJSON streaming export",
-    body: "Stream every evidence item, evaluation and audit row as newline-delimited JSON. Scoped to the authenticated tenant — zero cross-tenant leakage.",
+    body: "Stream every evidence item, evaluation and audit row as newline-delimited JSON, scoped to the authenticated tenant.",
   },
   {
     icon: ServerCog,
     title: "Hardened, air-gapped deploy",
-    body: "Pre-bundled Docker images. Hardened Nginx (TLS 1.2+, HSTS, no server banner). ENTERPRISE_MODE disables Sentry. Zero outbound calls.",
+    body: "Pre-bundled Docker images. Hardened Nginx (TLS 1.2+, HSTS, no server banner). ENTERPRISE_MODE disables telemetry. Zero outbound calls.",
   },
 ];
 
 function HashChain() {
-  const reduced = usePrefersReducedMotion();
   return (
     <div
-      className="relative overflow-hidden p-6 md:p-8"
+      className="relative overflow-hidden p-6 md:p-8 rounded-[28px]"
       style={{
-        borderRadius: 28,
         background: "rgba(255,255,255,0.06)",
         backdropFilter: "blur(20px) saturate(160%)",
         border: "1px solid rgba(255,255,255,0.12)",
@@ -52,7 +43,7 @@ function HashChain() {
           audit_log &middot; sha-256 chain
         </span>
         <span className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-snow">
-          <span className="h-1.5 w-1.5 rounded-full bg-snow" />
+          <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#3fb950" }} />
           verified
         </span>
       </div>
@@ -61,10 +52,10 @@ function HashChain() {
         {HASHES.map((h, i) => (
           <motion.div
             key={h}
-            initial={reduced ? false : { opacity: 0, x: -10 }}
-            whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: EASE, delay: i * 0.08 }}
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={VIEWPORT}
+            transition={{ duration: DUR.base, ease: EASE_EXPO, delay: i * 0.08 }}
             className="flex items-center gap-3 rounded-[14px] px-3.5 py-2.5"
             style={{
               background: "rgba(255,255,255,0.06)",
@@ -86,8 +77,12 @@ function HashChain() {
       </div>
 
       <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
-        <span className="text-[11px] font-mono text-snow/70">GET /api/v1/enterprise/audit-log/verify</span>
-        <span className="font-mono text-[11px] text-snow">{"{ valid: true, entries: 1029 }"}</span>
+        <span className="text-[11px] font-mono text-snow/70">
+          GET /api/v1/enterprise/audit-log/verify
+        </span>
+        <span className="font-mono text-[11px]" style={{ color: "#3fb950" }}>
+          {"{ valid: true }"}
+        </span>
       </div>
     </div>
   );
@@ -95,41 +90,26 @@ function HashChain() {
 
 export function EnterpriseSection() {
   return (
-    <section className="relative py-32 md:py-40 finish-indigo">
+    <section className="on-dark relative py-28 md:py-36 finish-indigo">
       <div className="container-cg relative">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-5 text-snow">
-            <Shield size={16} />
-            <span className="text-[15px] font-semibold" style={{ letterSpacing: "-0.006em" }}>
-              Enterprise &middot; Air-Gapped
+            <Shield size={16} aria-hidden />
+            <span className="text-[14px] font-semibold" style={{ letterSpacing: "-0.006em" }}>
+              Enterprise &middot; Air-gapped
             </span>
           </div>
-          <h2
-            className="text-snow font-bold"
-            style={{
-              fontSize: "clamp(40px, 6vw, 72px)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.022em",
-            }}
-          >
+          <h2 className="display-2 !text-snow">
             Built for the rooms
             <br />
             internet doesn&rsquo;t reach.
           </h2>
-          <p
-            className="mt-6 text-[20px] md:text-[22px] font-light text-snow/90"
-            style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
-          >
-            Government, defence and regulated finance teams need evidence that
-            proves itself &mdash; without phoning home. Ships fully offline with a
-            cryptographic audit trail.
+          <p className="mt-6 body-lg text-snow/85">
+            Government, defence and regulated finance teams need evidence that proves itself &mdash;
+            without phoning home. Ships fully offline with a cryptographic audit trail.
           </p>
-          <a
-            href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Enterprise"
-            className="inline-flex items-center justify-center gap-1.5 mt-8 bg-snow text-ink text-[17px] px-6 py-3 rounded-full hover:bg-fog transition-colors"
-            style={{ letterSpacing: "-0.022em" }}
-          >
-            Talk to sales &rsaquo;
+          <a href={salesMailto("ComplianceGuard Enterprise")} className="btn-on-navy mt-8">
+            Contact sales <span aria-hidden>&rsaquo;</span>
           </a>
         </div>
 
@@ -138,21 +118,21 @@ export function EnterpriseSection() {
             {PILLARS.map((p) => (
               <div
                 key={p.title}
-                className="p-6"
+                className="p-6 rounded-[22px]"
                 style={{
-                  borderRadius: 22,
                   background: "rgba(255,255,255,0.08)",
                   backdropFilter: "blur(20px) saturate(160%)",
                   border: "1px solid rgba(255,255,255,0.12)",
                 }}
               >
-                <p.icon size={18} className="text-snow" />
-                <h3 className="mt-4 text-[17px] font-semibold text-snow" style={{ letterSpacing: "-0.006em" }}>
+                <p.icon size={18} className="text-snow" aria-hidden />
+                <h3
+                  className="mt-4 text-[17px] font-semibold text-snow"
+                  style={{ letterSpacing: "-0.006em" }}
+                >
                   {p.title}
                 </h3>
-                <p className="mt-2 text-[14px] text-snow/80 leading-[1.5]">
-                  {p.body}
-                </p>
+                <p className="mt-2 text-[14px] text-snow/80 leading-[1.55]">{p.body}</p>
               </div>
             ))}
           </div>

@@ -1,40 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
-import { FadeUp } from "@/components/FadeUp";
-import { WaitlistForm } from "@/components/WaitlistForm";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
 
 export const Route = createFileRoute("/pricing")({
-  head: () => ({
-    meta: [
-      { title: "Pricing — ComplianceGuard" },
-      {
-        name: "description",
-        content:
-          "ComplianceGuard pricing: Free forever, Pro at $49/month, Managed at $79/month. No per-seat fees. No enterprise minimums. Cancel anytime.",
-      },
-      { property: "og:title", content: "ComplianceGuard Pricing — $49/month, not $10,000/year" },
-      {
-        property: "og:description",
-        content: "Flat pricing for SOC 2, ISO 27001 and HIPAA readiness. Free tier, Pro at $49/mo.",
-      },
-      { property: "og:url", content: "/pricing" },
-      { property: "og:image", content: "/og-image.png" },
-      { name: "twitter:image", content: "/og-image.png" },
-    ],
-    links: [{ rel: "canonical", href: "/pricing" }],
-  }),
+  head: () =>
+    buildMeta({
+      title: "Pricing — ComplianceGuard",
+      description:
+        "ComplianceGuard pricing: Free forever, Pro at $49/month, Managed at $79/month. One flat rate per deployment. No per-seat fees. Cancel anytime.",
+      path: "/pricing",
+    }),
   component: PricingPage,
 });
 
 const faqs = [
   {
     q: "Is ComplianceGuard a cloud SaaS tool?",
-    a: "No. ComplianceGuard is a desktop application that runs entirely on your machine. Your evidence data, AWS credentials, and compliance reports are stored in a local database. Nothing is transmitted to our servers.",
+    a: "No. ComplianceGuard is a desktop application that runs entirely on your machine. Your evidence data, AWS credentials, and compliance reports are stored in a local database. Endpoint evidence stays on your machine until you explicitly choose to sync it.",
   },
   {
     q: "What happens after the free tier?",
@@ -46,7 +33,7 @@ const faqs = [
   },
   {
     q: "Do you store my AWS credentials?",
-    a: "Your credentials are encrypted locally using HKDF-SHA256 derived Fernet keys before being stored. They are never transmitted to ComplianceGuard servers.",
+    a: "Your credentials are encrypted at rest on your machine using HKDF-SHA256-derived Fernet keys and are read only at evidence-collection time.",
   },
   {
     q: "Can I get a refund?",
@@ -58,87 +45,8 @@ const faqs = [
   },
 ];
 
-const freeFeatures = [
-  "SOC 2 readiness score",
-  "5 control areas visible",
-  "Local OS scan (Windows + macOS)",
-  "No credit card required",
-];
-
-const proFeatures = [
-  "SOC 2 (29) · ISO 27001 (47) · HIPAA (47)",
-  "Unlimited evidence collection runs",
-  "Full PDF, CSV, and JSON export",
-  "AWS CloudTrail + IAM + S3 evidence",
-  "Windows 10/11 + macOS (Intel & Apple Silicon)",
-  "Evidence history: 90 days",
-  "Audit-ready report formatting",
-  "Email support (48hr response)",
-];
-
-const managedFeatures = [
-  "Everything in Pro",
-  "5 client workspaces (additional available)",
-  "Centralized billing dashboard",
-  "White-label PDF reports",
-  "Priority email support (24hr response)",
-  "Consultant referral programme access",
-];
-
-type Tier = {
-  name: string;
-  price: string;
-  cadence: string;
-  sub?: string;
-  tagline: string;
-  features: string[];
-  cta: { label: string; href: string };
-  featured?: boolean;
-};
-
 function PricingPage() {
   const [annual, setAnnual] = useState(false);
-
-  const proPrice = annual ? "$33" : "$49";
-  const proSub = annual ? "billed $399/year" : "or $399/year — save 32%";
-  const managedPrice = annual ? "$63" : "$79";
-  const managedSub = annual ? "billed $759/year" : "or $759/year";
-
-  const tiers: Tier[] = [
-    {
-      name: "Free",
-      price: "$0",
-      cadence: "forever",
-      tagline: "See exactly where you fail SOC 2 before you pay a cent.",
-      features: freeFeatures,
-      cta: { label: "Download Free", href: "https://github.com/Egyan07/ComplianceGuard/releases/latest" },
-    },
-    {
-      name: "Pro",
-      price: proPrice,
-      cadence: "/month",
-      sub: proSub,
-      tagline: "Everything you need to hand an auditor a complete evidence pack.",
-      features: proFeatures,
-      cta: {
-        label: "Start Pro Trial",
-        href: "mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Pro%20Trial",
-      },
-      featured: true,
-    },
-    {
-      name: "Managed",
-      price: managedPrice,
-      cadence: "/month",
-      sub: managedSub,
-      tagline: "For consultants managing readiness for multiple clients.",
-      features: managedFeatures,
-      cta: {
-        label: "Contact Us",
-        href: "mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Managed%20Plan",
-      },
-    },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-snow">
@@ -150,206 +58,160 @@ function PricingPage() {
           <>
             Flat pricing.
             <br />
-            <span
-              style={{
-                backgroundImage: "linear-gradient(120deg,#0071e3,#5e9cff 60%,#ff5980)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              No enterprise tax.
-            </span>
+            No per-seat math.
           </>
         }
-        subtitle="No per-seat math. No 'let's get on a call' pricing. Just a rate that makes sense for a real company."
-        ornament="rings"
+        subtitle="One rate per deployment, billed monthly or annually. The core product is never gated behind a sales call."
+        ornament="grid"
       >
-        <div className="inline-flex items-center gap-1 p-1 rounded-full bg-white border border-[var(--silver-mist)]">
+        <div className="inline-flex items-center gap-1 p-1 rounded-full bg-snow border border-hairline">
           <button
             onClick={() => setAnnual(false)}
             className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
-              !annual ? "bg-ink text-white" : "text-text-secondary"
+              !annual ? "bg-ink text-white" : "text-ink-2"
             }`}
           >
             Monthly
           </button>
           <button
             onClick={() => setAnnual(true)}
-            className={`px-4 py-1.5 text-[13px] font-medium rounded-full inline-flex items-center gap-2 transition ${
-              annual ? "bg-ink text-white" : "text-text-secondary"
+            className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
+              annual ? "bg-ink text-white" : "text-ink-2"
             }`}
           >
             Annual
-            <span
-              className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                annual ? "bg-azure text-white" : "bg-azure/10 text-azure"
-              }`}
-            >
-              −32%
-            </span>
           </button>
         </div>
       </PageHero>
 
       <section className="bg-snow pb-20">
-        <div className="container-cg grid md:grid-cols-3 gap-5">
-          {tiers.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-              whileHover={{ y: -4 }}
-              className="relative"
-            >
-              <div
-                className="h-full p-8 flex flex-col"
-                style={{
-                  borderRadius: 28,
-                  background: t.featured
-                    ? "linear-gradient(160deg, #f0f6ff 0%, #ffffff 60%)"
-                    : "var(--fog)",
-                  border: t.featured ? "1px solid #c3dafe" : "1px solid transparent",
-                }}
-              >
-                {t.featured && (
-                  <span className="absolute -top-3 left-8 inline-flex items-center gap-1.5 bg-azure text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/80 opacity-60" />
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
-                    </span>
-                    Most popular
-                  </span>
-                )}
-                <p className="mono-tag mb-3">{t.name}</p>
-                <div className="flex items-baseline gap-2">
-                  <span
-                    className="text-[56px] font-semibold leading-none text-ink tabular-nums"
-                    style={{ letterSpacing: "-0.04em" }}
-                  >
-                    {t.price}
-                  </span>
-                  <span className="text-text-secondary">{t.cadence}</span>
-                </div>
-                {t.sub && <p className="mt-1 text-[13px] text-text-secondary">{t.sub}</p>}
-                <p className="mt-4 text-[15px] text-text-secondary leading-relaxed">{t.tagline}</p>
-                <ul className="mt-6 space-y-3 text-[15px] text-ink/85 flex-1">
-                  {t.features.map((x) => (
-                    <li key={x} className="flex gap-2">
-                      <Check
-                        size={16}
-                        className={`shrink-0 mt-1 ${t.featured ? "text-azure" : "text-ink/60"}`}
-                      />
-                      {x}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={t.cta.href}
-                  className={`mt-8 w-full text-center ${t.featured ? "btn-primary" : "btn-dark"}`}
+        <RevealGroup className="container-cg grid md:grid-cols-3 gap-5">
+          {TIERS.map((t) => {
+            const savePct = t.annual ? Math.round((1 - t.annual / (t.monthly * 12)) * 100) : null;
+            const price =
+              t.monthly === 0
+                ? "$0"
+                : annual && t.annual
+                  ? `$${Math.round(t.annual / 12)}`
+                  : `$${t.monthly}`;
+            const cadence = t.monthly === 0 ? "forever" : "/month";
+            const sub =
+              t.annual && savePct
+                ? annual
+                  ? `billed $${t.annual}/year — save ${savePct}%`
+                  : `or $${t.annual}/year — save ${savePct}%`
+                : null;
+            return (
+              <RevealItem key={t.name} className="relative">
+                <div
+                  className={`${t.featured ? "card-snow" : "card-fog"} card-hover h-full p-8 flex flex-col`}
+                  style={t.featured ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
                 >
-                  {t.cta.label}
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                  {t.featured && (
+                    <span className="absolute -top-3 left-8 inline-flex items-center bg-azure text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                      Most popular
+                    </span>
+                  )}
+                  <p className="mono-tag mb-3">{t.name}</p>
+                  <div className="flex items-baseline gap-2">
+                    <span className="display-2 tabular-nums">{price}</span>
+                    <span className="text-ink-2">{cadence}</span>
+                  </div>
+                  {sub && <p className="mt-1 text-[13px] text-ink-2">{sub}</p>}
+                  <p className="mt-4 text-[15px] text-ink-2 leading-relaxed">{t.tagline}</p>
+                  <ul className="mt-6 space-y-3 text-[15px] text-ink flex-1">
+                    {t.features.map((x) => (
+                      <li key={x} className="flex gap-2">
+                        <Check
+                          size={16}
+                          className={`shrink-0 mt-1 ${t.featured ? "text-azure" : "text-ink-3"}`}
+                        />
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={t.cta.href}
+                    className={`mt-8 w-full text-center ${t.featured ? "btn-primary" : "btn-dark"}`}
+                  >
+                    {t.cta.label}
+                  </a>
+                </div>
+              </RevealItem>
+            );
+          })}
+        </RevealGroup>
 
-        <p className="mt-10 text-center text-[14px] text-text-secondary max-w-2xl mx-auto">
-          30-day money-back guarantee on Pro and Managed. Email and we&apos;ll refund within 24 hours.
-          Self-hosting? Deploy to Railway, Render, or any Docker host in one command.
-        </p>
+        <Reveal>
+          <p className="mt-10 text-center caption text-ink-3 max-w-2xl mx-auto">
+            30-day money-back guarantee on Pro and Managed. Email us and we&apos;ll refund within 24
+            hours.
+          </p>
+        </Reveal>
 
         {/* Enterprise air-gapped band */}
         <div className="container-cg mt-14">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden rounded-[28px] p-10 md:p-14 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6"
-            style={{
-              background:
-                "linear-gradient(135deg, #050816 0%, #0b1530 45%, #112a5e 100%)",
-            }}
-          >
-            <div
-              aria-hidden
-              className="absolute -right-32 -top-32 w-[420px] h-[420px] rounded-full"
-              style={{
-                background: "radial-gradient(circle, rgba(0,113,227,0.45), transparent 60%)",
-                filter: "blur(40px)",
-              }}
-            />
-            <div className="relative max-w-2xl">
-              <p className="text-[12px] font-mono uppercase tracking-[0.14em] text-azure/90 mb-3">
-                New in v3.2.0 &middot; Enterprise
-              </p>
-              <h3
-                className="font-semibold"
-                style={{ fontSize: "clamp(28px,3.4vw,40px)", letterSpacing: "-0.025em", lineHeight: 1.1 }}
+          <Reveal>
+            <div className="finish-azure on-dark relative overflow-hidden rounded-xl p-10 md:p-14 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="relative max-w-2xl">
+                <p className="mono-tag mb-3" style={{ color: "var(--azure-bright)" }}>
+                  Enterprise
+                </p>
+                <h3 className="display-3" style={{ color: "var(--snow)" }}>
+                  Air-gapped, tamper-evident, fully sovereign.
+                </h3>
+                <p className="mt-4 text-[15px] text-white/75 leading-relaxed">
+                  SHA-256 hash-chained audit log, RBAC (admin + auditor), custom PDF branding,
+                  NDJSON data export, and a hardened Docker bundle with zero outbound calls. For
+                  regulated industries, government, NHS/healthcare, legal, and finance.
+                </p>
+              </div>
+              <a
+                href={salesMailto("ComplianceGuard Enterprise")}
+                className="relative btn-on-navy shrink-0"
               >
-                Air-gapped, tamper-evident, fully sovereign.
-              </h3>
-              <p className="mt-4 text-[15px] text-white/75 leading-relaxed">
-                SHA-256 hash-chained audit log, RBAC (admin + auditor), custom PDF branding,
-                NDJSON data export, and a hardened Docker bundle with zero outbound calls.
-                For regulated industries, government, NHS/healthcare, legal, and finance.
-              </p>
+                Contact Sales
+              </a>
             </div>
-            <a
-              href="mailto:alexisegyan1232@gmail.com?subject=ComplianceGuard%20Enterprise%20(Air-Gapped)"
-              className="relative btn-on-navy shrink-0"
-            >
-              Contact Sales
-            </a>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="bg-fog py-24">
         <div className="container-cg max-w-3xl">
-          <FadeUp>
+          <Reveal>
             <p className="mono-tag mb-3">FAQ</p>
-            <h2
-              className="font-semibold text-ink"
-              style={{ fontSize: "clamp(32px,4.4vw,52px)", letterSpacing: "-0.025em", lineHeight: 1.08 }}
-            >
-              Common questions.
-            </h2>
-          </FadeUp>
+            <h2 className="display-2">Common questions.</h2>
+          </Reveal>
           <div className="mt-10 space-y-2">
             {faqs.map((f, i) => (
-              <FadeUp key={f.q} delay={i * 0.04}>
+              <Reveal key={f.q} delay={i * 0.04}>
                 <FaqItem q={f.q} a={f.a} />
-              </FadeUp>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Waitlist */}
+      {/* Closing CTA */}
       <section className="bg-snow py-20">
-        <div className="container-cg text-center max-w-2xl">
-          <h2
-            className="font-semibold text-ink"
-            style={{ fontSize: "clamp(28px,3.6vw,44px)", letterSpacing: "-0.025em" }}
-          >
-            Get release notes as we ship.
-          </h2>
-          <p className="mt-3 text-text-secondary">No spam. Just changelog highlights.</p>
-          <div className="mt-6">
-            <WaitlistForm source="pricing_cta" variant="onLight" />
+        <Reveal>
+          <div className="container-cg text-center max-w-2xl">
+            <h2 className="display-2">Start with the free scan.</h2>
+            <p className="mt-3 text-ink-2">
+              Download, run the readiness scan, and see exactly where you stand in minutes.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+              <a href={DOWNLOAD_URL} className="btn-primary">
+                Download Free
+              </a>
+              <Link to="/" className="btn-ghost">
+                Back to Home
+              </Link>
+            </div>
           </div>
-          <div className="mt-6">
-            <Link to="/" className="btn-ghost">
-              Back to Home
-            </Link>
-          </div>
-        </div>
+        </Reveal>
       </section>
 
       <Footer />
@@ -360,7 +222,7 @@ function PricingPage() {
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-white rounded-2xl border border-[var(--silver-mist)] overflow-hidden">
+    <div className="card-snow overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
@@ -368,7 +230,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         <span className="text-[16px] font-medium text-ink">{q}</span>
         <ChevronDown
           size={18}
-          className={`text-text-secondary transition-transform ${open ? "rotate-180" : ""}`}
+          className={`text-ink-3 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       <div
@@ -376,7 +238,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-6 text-[15px] text-text-secondary leading-[1.7]">{a}</p>
+          <p className="px-6 pb-6 text-[15px] text-ink-2 leading-[1.7]">{a}</p>
         </div>
       </div>
     </div>

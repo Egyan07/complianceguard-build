@@ -1,137 +1,139 @@
-import { motion } from "framer-motion";
-import {
-  Monitor,
-  Terminal,
-  Cloud,
-  Shield,
-  Gauge,
-  CheckCircle,
-  FileText,
-  Download,
-  Lock,
-  WifiOff,
-  Server,
-  type LucideIcon,
-} from "lucide-react";
+import { Cloud, FileText, Lock, WifiOff, type LucideIcon } from "lucide-react";
+import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 
-type Spotlight = {
-  eyebrow: string;
-  title: string;
-  body: string;
-  bg: LucideIcon;
-  fg: LucideIcon;
-};
+/**
+ * Product section: two spotlight rows built on real product screenshots,
+ * followed by a compact grid for the remaining capabilities.
+ */
 
-const SPOTLIGHTS: Spotlight[] = [
-  {
-    eyebrow: "Endpoint Scanning",
-    title: "Reads your machine. Not your cloud.",
-    body: "ComplianceGuard reads directly from the Windows Registry, event logs, firewall configuration, and user accounts. No agent to install. No API key. No cloud permission required. Evidence collected in 30 seconds.",
-    bg: Monitor,
-    fg: Terminal,
-  },
-  {
-    eyebrow: "Cloud Evidence",
-    title: "One connection. Automatic evidence.",
-    body: "Connect your AWS account once. ComplianceGuard pulls CloudTrail logs, IAM configurations, S3 bucket policies, and security group rules into your evidence pack automatically on every scan.",
-    bg: Cloud,
-    fg: Shield,
-  },
-  {
-    eyebrow: "Real-Time Scoring",
-    title: "Know exactly where you stand.",
-    body: "Your compliance score updates the moment a scan completes. See which of the 29 SOC 2 Trust Services Criteria you're passing and which need work — before you engage an auditor.",
-    bg: Gauge,
-    fg: CheckCircle,
-  },
-  {
-    eyebrow: "Auditor-Ready Export",
-    title: "Hand it to your auditor on day one.",
-    body: "Every evidence pack exports as PDF, CSV, and JSON in the exact format used in successful SOC 2 Type I and Type II audits. No reformatting. No back-and-forth.",
-    bg: FileText,
-    fg: Download,
-  },
-  {
-    eyebrow: "Data Privacy",
-    title: "Your credentials never leave your machine.",
-    body: "AWS credentials are encrypted at rest using HKDF-SHA256 derived Fernet keys before being stored locally. They are never transmitted to ComplianceGuard servers. Your evidence stays in your local database.",
-    bg: Lock,
-    fg: Shield,
-  },
-  {
-    eyebrow: "Air-Gap Ready",
-    title: "Works without an internet connection.",
-    body: "ComplianceGuard runs fully offline. No internet connection required to collect evidence or generate reports. Works in air-gapped environments and restricted networks.",
-    bg: WifiOff,
-    fg: Server,
-  },
-];
-
-function Visual({ Bg, Fg }: { Bg: LucideIcon; Fg: LucideIcon }) {
+function WindowFrame({
+  src,
+  alt,
+  width,
+  height,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}) {
   return (
-    <div className="relative w-full flex items-center justify-center min-h-[260px] md:min-h-[320px]">
-      <Bg
-        size={200}
-        strokeWidth={1.25}
-        className="text-teal"
-        style={{ opacity: 0.15 }}
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 rounded-2xl bg-white border border-border flex items-center justify-center shadow-sm">
-          <Fg size={32} className="text-teal" strokeWidth={2} />
-        </div>
+    <div className="card-snow overflow-hidden" style={{ boxShadow: "var(--shadow-card)" }}>
+      <div className="flex items-center gap-2 px-4 py-2.5 bg-fog border-b border-hairline">
+        <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+        <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+        <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
+        <span className="ml-2 text-[12px] text-ink-3">ComplianceGuard</span>
       </div>
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        className="block w-full h-auto"
+      />
     </div>
   );
 }
 
+const spotlights = [
+  {
+    eyebrow: "Real-time scoring",
+    title: "Know exactly where you stand.",
+    body: "Your compliance score updates the moment a scan completes. See which of the 29 SOC 2 controls you're passing and which need work — with remediation scripts for the gaps — before you ever engage an auditor.",
+    img: {
+      src: "/screenshots/Dashboard.png",
+      alt: "ComplianceGuard dashboard showing a real-time compliance score, per-category breakdowns, and a per-control heatmap",
+      width: 1477,
+      height: 923,
+    },
+  },
+  {
+    eyebrow: "Endpoint evidence",
+    title: "Reads your machine. Not your cloud.",
+    body: "ComplianceGuard reads directly from the Windows Registry, event logs, firewall configuration, and user accounts — and the macOS equivalents. No agent to deploy. No API key. Evidence collected in about 30 seconds.",
+    img: {
+      src: "/screenshots/EvidenceCollection.png",
+      alt: "ComplianceGuard evidence list with searchable, filterable evidence items and their compliance status",
+      width: 1400,
+      height: 738,
+    },
+  },
+];
+
+const capabilities: { icon: LucideIcon; title: string; body: string }[] = [
+  {
+    icon: Cloud,
+    title: "One connection. Automatic cloud evidence.",
+    body: "Connect your AWS account once. IAM configurations, S3 bucket policies, and security settings join the same evidence pack on every scan.",
+  },
+  {
+    icon: FileText,
+    title: "Hand it to your auditor on day one.",
+    body: "Every evidence pack exports as an auditor-ready PDF, mapped control-by-control to the framework. No reformatting. No back-and-forth.",
+  },
+  {
+    icon: Lock,
+    title: "Credentials never leave the machine.",
+    body: "AWS credentials are encrypted at rest with HKDF-SHA256-derived Fernet keys and stored locally. Evidence stays in your local database.",
+  },
+  {
+    icon: WifiOff,
+    title: "Works without an internet connection.",
+    body: "Evidence collection and reporting run fully offline — built for air-gapped environments and restricted networks.",
+  },
+];
+
 export function FeatureSpotlights() {
   return (
-    <section id="features" className="bg-background">
-      {SPOTLIGHTS.map((s, i) => {
-        const reverse = i % 2 === 1;
-        return (
-          <div key={s.title} className="py-20 md:py-24 border-b border-border last:border-b-0">
+    <section id="features" className="bg-snow py-24 md:py-32">
+      <div className="container-cg">
+        <Reveal className="max-w-3xl">
+          <p className="eyebrow mb-4">The product</p>
+          <h2 className="display-2">
+            Evidence collection,
+            <br />
+            down to the operating system.
+          </h2>
+        </Reveal>
+
+        <div className="mt-16 space-y-20 md:space-y-28">
+          {spotlights.map((s, i) => (
             <div
-              className={`container-cg grid md:grid-cols-[3fr_2fr] gap-10 md:gap-16 items-center ${
-                reverse ? "md:[&>*:first-child]:order-2" : ""
+              key={s.title}
+              className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${
+                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              >
-                <p
-                  className="text-[12px] font-semibold uppercase text-teal"
-                  style={{ letterSpacing: "0.1em" }}
-                >
-                  {s.eyebrow}
-                </p>
-                <h3 className="mt-3 text-[28px] md:text-[36px] font-bold text-navy leading-tight tracking-tight">
-                  {s.title}
-                </h3>
-                <p
-                  className="mt-5 text-[17px] md:text-[18px] text-text-secondary"
-                  style={{ maxWidth: 480, lineHeight: 1.7 }}
-                >
+              <Reveal>
+                <p className="eyebrow mb-3">{s.eyebrow}</p>
+                <h3 className="display-3">{s.title}</h3>
+                <p className="mt-5 text-[17px] text-ink-2 leading-[1.7]" style={{ maxWidth: 480 }}>
                   {s.body}
                 </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              >
-                <Visual Bg={s.bg} Fg={s.fg} />
-              </motion.div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <WindowFrame {...s.img} />
+              </Reveal>
             </div>
-          </div>
-        );
-      })}
+          ))}
+        </div>
+
+        <RevealGroup className="mt-20 md:mt-28 grid sm:grid-cols-2 gap-5">
+          {capabilities.map((c) => (
+            <RevealItem key={c.title}>
+              <div className="card-fog card-hover p-8 h-full">
+                <div className="w-10 h-10 rounded-[12px] bg-azure flex items-center justify-center text-snow">
+                  <c.icon size={20} strokeWidth={2} />
+                </div>
+                <h3 className="mt-5 text-[19px] font-semibold text-ink">{c.title}</h3>
+                <p className="mt-2.5 text-[15px] text-ink-2 leading-[1.65]">{c.body}</p>
+              </div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </div>
     </section>
   );
 }

@@ -1,28 +1,19 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
+import { Reveal } from "@/components/Reveal";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { VERSION, buildMeta } from "@/lib/site";
 
 export const Route = createFileRoute("/changelog")({
-  head: () => ({
-    meta: [
-      { title: "Changelog — ComplianceGuard" },
-      {
-        name: "description",
-        content:
-          "ComplianceGuard changelog. Latest: v3.3.1 — macOS DMG distribution for Intel and Apple Silicon, full multi-framework scoring, ~568 tests passing.",
-      },
-      { property: "og:title", content: "ComplianceGuard Changelog" },
-      { property: "og:description", content: "Every change to ComplianceGuard, documented." },
-      { property: "og:url", content: "/changelog" },
-      { property: "og:image", content: "/og-image.png" },
-      { name: "twitter:image", content: "/og-image.png" },
-    ],
-    links: [{ rel: "canonical", href: "/changelog" }],
-  }),
+  head: () =>
+    buildMeta({
+      title: "Changelog — ComplianceGuard",
+      description: `ComplianceGuard changelog. Latest: v${VERSION} — native macOS support with DMG installers for Intel and Apple Silicon, full evidence collection parity with Windows.`,
+      path: "/changelog",
+    }),
   component: ChangelogPage,
 });
 
@@ -35,6 +26,27 @@ const entries: {
   tags: Tag[];
   bullets: string[];
 }[] = [
+  {
+    date: "June 2026",
+    version: "v3.3.1",
+    title: "Cross-platform release polish",
+    tags: [{ label: "Feature", tone: "blue" }],
+    bullets: [
+      "macOS builds now publish automatically alongside Windows on every release tag — both platforms ship from a single release",
+      "Improved first-run experience on macOS",
+    ],
+  },
+  {
+    date: "June 2026",
+    version: "v3.3.0",
+    title: "ComplianceGuard comes to macOS",
+    tags: [{ label: "Feature", tone: "blue" }],
+    bullets: [
+      "Native macOS support — DMG installers for both Intel and Apple Silicon Macs",
+      "Full evidence collection parity with Windows — password policy, firewall, FileVault disk encryption, and audit logging via the macOS unified log",
+      "Cross-platform release pipeline — every future release ships Windows and macOS builds simultaneously",
+    ],
+  },
   {
     date: "May 2026",
     version: "v3.2.0",
@@ -130,9 +142,7 @@ const entries: {
     date: "February 2026",
     version: "v2.9.0",
     title: "Cloud Dashboard and fleet sync",
-    tags: [
-      { label: "Feature", tone: "blue" },
-    ],
+    tags: [{ label: "Feature", tone: "blue" }],
     bullets: [
       "Cloud Dashboard — Pro/Enterprise web page showing fleet overview (total, compliant, at risk, critical, avg score) and per-machine table; stale machines (7+ days) flagged",
       "Machine sync API — POST /api/v1/machines/sync registers and updates machine snapshots; enforces tier limits (Free=1, Pro=10, Enterprise=unlimited)",
@@ -244,9 +254,7 @@ const entries: {
     date: "November 2025",
     version: "v2.0.1",
     title: "CI fixes and README rewrite",
-    tags: [
-      { label: "Fixed", tone: "green" },
-    ],
+    tags: [{ label: "Fixed", tone: "green" }],
     bullets: [
       "Added missing vite-env.d.ts type reference (broke import.meta.env on CI)",
       "Fixed Page type mismatch on onNavigate; removed unused tier variable in ComplianceScore",
@@ -319,10 +327,10 @@ const entries: {
 ];
 
 const toneStyle: Record<Tag["tone"], { bg: string; fg: string }> = {
-  red: { bg: "rgba(182,68,0,0.10)", fg: "#b64400" },
-  amber: { bg: "rgba(245,158,11,0.12)", fg: "#b45309" },
-  green: { bg: "rgba(16,185,129,0.12)", fg: "#047857" },
-  blue: { bg: "rgba(0,113,227,0.10)", fg: "#0071e3" },
+  red: { bg: "color-mix(in srgb, var(--warn) 10%, transparent)", fg: "var(--warn)" },
+  amber: { bg: "color-mix(in srgb, var(--ink-3) 12%, transparent)", fg: "var(--ink-2)" },
+  green: { bg: "color-mix(in srgb, var(--success) 10%, transparent)", fg: "var(--success)" },
+  blue: { bg: "var(--azure-soft)", fg: "var(--azure)" },
 };
 
 const FILTERS = ["All", "Feature", "Security", "Performance", "Fixed", "Breaking"] as const;
@@ -346,20 +354,11 @@ function ChangelogPage() {
           <>
             Every change,
             <br />
-            <span
-              style={{
-                backgroundImage: "linear-gradient(120deg,#0071e3,#5e9cff 60%,#ff5980)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              documented.
-            </span>
+            documented.
           </>
         }
         subtitle="Shipped releases for ComplianceGuard — what changed, what hardened, what broke. Read it like a release log, not marketing."
-        ornament="rings"
+        ornament="glow"
       />
 
       {/* Sticky filter rail */}
@@ -368,8 +367,8 @@ function ChangelogPage() {
           <div
             className="sticky top-20 z-20 -mx-2 px-2 py-3 backdrop-blur-md"
             style={{
-              background: "rgba(255,255,255,0.78)",
-              borderBottom: "1px solid var(--silver-mist)",
+              background: "color-mix(in srgb, var(--snow) 78%, transparent)",
+              borderBottom: "1px solid var(--hairline)",
             }}
           >
             <div className="flex flex-wrap gap-2" role="group" aria-label="Filter changelog by tag">
@@ -384,7 +383,7 @@ function ChangelogPage() {
                     className="text-[13px] px-3.5 py-1.5 rounded-full transition-colors duration-200"
                     style={{
                       background: active ? "var(--ink)" : "var(--fog)",
-                      color: active ? "#fff" : "var(--ink)",
+                      color: active ? "var(--snow)" : "var(--ink)",
                     }}
                   >
                     {f}
@@ -400,84 +399,67 @@ function ChangelogPage() {
       <section className="bg-snow py-12">
         <div className="container-cg max-w-4xl">
           {visible.length === 0 ? (
-            <p className="text-[15px] text-text-secondary">No releases match this filter yet.</p>
+            <p className="text-[15px] text-ink-2">No releases match this filter yet.</p>
           ) : (
             <ol className="relative space-y-5">
               {/* Vertical rail */}
               <div
                 aria-hidden
                 className="absolute left-[15px] top-2 bottom-2 w-px hidden md:block"
-                style={{ background: "linear-gradient(to bottom, var(--silver-mist), transparent)" }}
+                style={{ background: "linear-gradient(to bottom, var(--hairline), transparent)" }}
               />
               {visible.map((e, i) => (
-                <motion.li
-                  key={e.version}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: Math.min(i * 0.04, 0.3) }}
-                  className="relative md:pl-12"
-                >
+                <li key={e.version} className="relative md:pl-12">
                   {/* Dot */}
                   <span
                     aria-hidden
                     className="absolute left-[9px] top-7 w-[14px] h-[14px] rounded-full hidden md:block"
                     style={{
-                      background: i === 0 ? "var(--azure)" : "var(--silver-mist)",
-                      boxShadow:
-                        i === 0
-                          ? "0 0 0 4px rgba(0,113,227,0.15)"
-                          : "0 0 0 4px var(--snow)",
+                      background: i === 0 ? "var(--azure)" : "var(--hairline)",
+                      boxShadow: i === 0 ? "0 0 0 4px var(--azure-soft)" : "0 0 0 4px var(--snow)",
                     }}
                   />
-                  <article
-                    className="rounded-[24px] p-7 md:p-9"
-                    style={{
-                      background: i === 0 ? "linear-gradient(160deg,#f0f6ff,#ffffff 60%)" : "var(--fog)",
-                      border: i === 0 ? "1px solid #c3dafe" : "1px solid transparent",
-                    }}
-                  >
-                    <div className="flex flex-wrap items-center gap-2 mb-4">
-                      <span className="mono-tag" style={{ color: "var(--text-secondary)" }}>
-                        {e.date}
-                      </span>
-                      <span className="text-text-secondary/40">·</span>
-                      <span
-                        className="text-[12px] font-semibold px-2 py-0.5 rounded-full"
-                        style={{ background: "var(--ink)", color: "#fff" }}
-                      >
-                        {e.version}
-                      </span>
-                      {e.tags.map((t) => {
-                        const s = toneStyle[t.tone];
-                        return (
-                          <span
-                            key={t.label}
-                            className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                            style={{ background: s.bg, color: s.fg }}
-                          >
-                            {t.label}
-                          </span>
-                        );
-                      })}
-                    </div>
-                    <h2
-                      className="font-semibold text-ink"
-                      style={{
-                        fontSize: "clamp(22px, 2.4vw, 30px)",
-                        letterSpacing: "-0.022em",
-                        lineHeight: 1.2,
-                      }}
+                  <Reveal>
+                    <article
+                      className={`${i === 0 ? "card-snow" : "card-fog"} p-7 md:p-9`}
+                      style={i === 0 ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
                     >
-                      {e.title}
-                    </h2>
-                    <ul className="mt-5 space-y-2.5 text-[15px] text-ink/80 leading-[1.7] list-disc pl-5 marker:text-azure">
-                      {e.bullets.map((b) => (
-                        <li key={b}>{b}</li>
-                      ))}
-                    </ul>
-                  </article>
-                </motion.li>
+                      <div className="flex flex-wrap items-center gap-2 mb-4">
+                        <span className="mono-tag">{e.date}</span>
+                        <span className="text-ink-3/40">·</span>
+                        <span
+                          className="text-[12px] font-semibold px-2 py-0.5 rounded-full"
+                          style={{ background: "var(--ink)", color: "var(--snow)" }}
+                        >
+                          {e.version}
+                        </span>
+                        {i === 0 && (
+                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-azure text-white">
+                            Latest
+                          </span>
+                        )}
+                        {e.tags.map((t) => {
+                          const s = toneStyle[t.tone];
+                          return (
+                            <span
+                              key={t.label}
+                              className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                              style={{ background: s.bg, color: s.fg }}
+                            >
+                              {t.label}
+                            </span>
+                          );
+                        })}
+                      </div>
+                      <h2 className="display-3">{e.title}</h2>
+                      <ul className="mt-5 space-y-2.5 text-[15px] text-ink-2 leading-[1.7] list-disc pl-5 marker:text-azure">
+                        {e.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </article>
+                  </Reveal>
+                </li>
               ))}
             </ol>
           )}
@@ -486,18 +468,19 @@ function ChangelogPage() {
 
       {/* Subscribe */}
       <section className="bg-fog py-20">
-        <div className="container-cg max-w-2xl text-center">
-          <h2
-            className="font-semibold text-ink"
-            style={{ fontSize: "clamp(26px,3.4vw,40px)", letterSpacing: "-0.025em" }}
-          >
-            Get release notes as we ship.
-          </h2>
-          <p className="mt-3 text-text-secondary">No marketing emails. Release notes only.</p>
-          <div className="mt-6">
-            <WaitlistForm source="changelog_updates" buttonLabel="Notify Me" variant="onLight" />
+        <Reveal>
+          <div className="container-cg max-w-2xl text-center">
+            <h2 className="display-2">Get release notes as we ship.</h2>
+            <p className="mt-3 text-ink-2">No marketing emails. Release notes only.</p>
+            <div className="mt-6">
+              <WaitlistForm
+                source="changelog_updates"
+                buttonLabel="Notify me of releases"
+                variant="onLight"
+              />
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <Footer />

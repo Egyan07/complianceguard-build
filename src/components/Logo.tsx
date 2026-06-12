@@ -1,58 +1,55 @@
-import { motion } from "framer-motion";
-import cgLogo from "@/assets/cg-logo.png.asset.json";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+/**
+ * Canonical brand mark — self-contained SVG (no external asset).
+ * Azure gradient tile + shield-check glyph, matching the favicon family.
+ */
+export function LogoMark({ size = 24 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden="true"
+      style={{ display: "block" }}
+    >
+      <defs>
+        <linearGradient id="cg-mark-g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#0A84FF" />
+          <stop offset="100%" stopColor="#0040DD" />
+        </linearGradient>
+      </defs>
+      <rect width="48" height="48" rx="11" fill="url(#cg-mark-g)" />
+      <path
+        d="M24 9.5 13.5 14v8.1c0 6.9 4.5 11.6 10.5 13.4 6-1.8 10.5-6.5 10.5-13.4V14L24 9.5z"
+        fill="rgba(255,255,255,0.16)"
+        stroke="#fff"
+        strokeWidth="2.4"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m19.4 23.6 3.3 3.3 6.4-6.6"
+        stroke="#fff"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
 
 export function Logo({
-  size = 56,
+  size = 28,
   withWordmark = true,
-  animated = true,
 }: {
   size?: number;
   withWordmark?: boolean;
+  /** kept for call-site compatibility; the mark no longer animates */
   animated?: boolean;
 }) {
   return (
-    <div className="inline-flex items-center gap-3">
-      <motion.div
-        initial={animated ? { opacity: 0, scale: 0.85, rotate: -8 } : undefined}
-        animate={animated ? { opacity: 1, scale: 1, rotate: 0 } : undefined}
-        transition={{ duration: 0.9, ease: EASE }}
-        whileHover={{ scale: 1.05, rotate: -2 }}
-        style={{
-          width: size,
-          height: size,
-          borderRadius: Math.round(size * 0.22),
-          overflow: "hidden",
-          position: "relative",
-          boxShadow:
-            "0 10px 30px -10px rgba(10,132,255,0.45), 0 2px 6px -2px rgba(10,132,255,0.25)",
-        }}
-        aria-label="ComplianceGuard logo"
-      >
-        <img
-          src={cgLogo.url}
-          alt="ComplianceGuard"
-          width={size}
-          height={size}
-          style={{ display: "block", width: "100%", height: "100%" }}
-        />
-        {animated && (
-          <motion.div
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%)",
-              mixBlendMode: "screen",
-            }}
-            initial={{ x: "-120%" }}
-            animate={{ x: "120%" }}
-            transition={{ duration: 1.4, ease: EASE, delay: 0.5 }}
-          />
-        )}
-      </motion.div>
+    <span className="inline-flex items-center gap-2.5">
+      <LogoMark size={size} />
       {withWordmark && (
         <span
           className="text-[22px] md:text-[26px] font-semibold text-ink"
@@ -61,6 +58,6 @@ export function Logo({
           ComplianceGuard
         </span>
       )}
-    </div>
+    </span>
   );
 }

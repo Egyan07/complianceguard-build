@@ -28,9 +28,7 @@ export function WaitlistForm({
       return;
     }
     setState("loading");
-    const { error } = await supabase
-      .from("waitlist")
-      .insert({ email, source });
+    const { error } = await supabase.from("waitlist").insert({ email, source });
     if (error) {
       setState("error");
       setErrMsg("Something went wrong. Try again.");
@@ -51,10 +49,7 @@ export function WaitlistForm({
 
   return (
     <div className={`w-full ${isLight ? "" : "max-w-md mx-auto"}`}>
-      <form
-        onSubmit={onSubmit}
-        className="flex flex-col sm:flex-row gap-3 w-full"
-      >
+      <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-3 w-full">
         <input
           type="email"
           required

@@ -31,10 +31,7 @@ export function ProductMockup() {
           >
             ComplianceGuard &mdash; SOC 2 readiness
           </span>
-          <span
-            className="text-[11px] font-mono"
-            style={{ color: "#86868b" }}
-          >
+          <span className="text-[11px] font-mono" style={{ color: "#86868b" }}>
             v3.3.1
           </span>
         </div>
@@ -75,7 +72,14 @@ export function ProductMockup() {
                 style={{ transform: "rotate(-90deg)" }}
                 aria-label={`SOC 2 readiness ${SCORE}%`}
               >
-                <circle cx={80} cy={80} r={RADIUS} stroke="#e8e8ed" strokeWidth={STROKE} fill="none" />
+                <circle
+                  cx={80}
+                  cy={80}
+                  r={RADIUS}
+                  stroke="#e8e8ed"
+                  strokeWidth={STROKE}
+                  fill="none"
+                />
                 <circle
                   cx={80}
                   cy={80}
@@ -101,17 +105,25 @@ export function ProductMockup() {
                   style={{ letterSpacing: "-0.022em", fontVariantNumeric: "tabular-nums" }}
                 >
                   {SCORE}
-                  <span className="text-[24px] font-normal" style={{ color: "#86868b" }}>%</span>
+                  <span className="text-[24px] font-normal" style={{ color: "#86868b" }}>
+                    %
+                  </span>
                 </span>
               </div>
             </div>
             <div className="mt-6 md:mt-0 text-center md:text-left">
-              <p className="text-[24px] font-semibold text-ink" style={{ letterSpacing: "-0.016em" }}>
+              <p
+                className="text-[24px] font-semibold text-ink"
+                style={{ letterSpacing: "-0.016em" }}
+              >
                 19 of 29 controls passing.
               </p>
-              <p className="mt-2 text-[17px]" style={{ color: "#707070", letterSpacing: "-0.003em" }}>
-                10 need attention before audit. Estimated 4&ndash;6 hours of remediation work,
-                fully documented in your evidence pack.
+              <p
+                className="mt-2 text-[17px]"
+                style={{ color: "#707070", letterSpacing: "-0.003em" }}
+              >
+                10 need attention before audit. Estimated 4&ndash;6 hours of remediation work, fully
+                documented in your evidence pack.
               </p>
             </div>
           </div>
@@ -131,18 +143,25 @@ export function ProductMockup() {
                 className="flex items-center justify-between py-3 px-4 rounded-[14px]"
                 style={{ background: "#f5f5f7" }}
               >
-                <span className="text-[14px] font-medium text-ink" style={{ letterSpacing: "-0.003em" }}>
+                <span
+                  className="text-[14px] font-medium text-ink"
+                  style={{ letterSpacing: "-0.003em" }}
+                >
                   {c.name}
                 </span>
                 <span
                   className="inline-flex items-center gap-1.5 text-[12px] font-medium px-2.5 py-1 rounded-full"
                   style={
                     c.pass
-                      ? { color: "#0a8619", background: "rgba(10, 134, 25, 0.08)" }
-                      : { color: "#b64400", background: "rgba(182, 68, 0, 0.08)" }
+                      ? { color: "var(--success)", background: "rgba(21, 115, 71, 0.08)" }
+                      : { color: "var(--warn)", background: "rgba(182, 68, 0, 0.08)" }
                   }
                 >
-                  {c.pass ? <Check size={12} strokeWidth={2.5} /> : <X size={12} strokeWidth={2.5} />}
+                  {c.pass ? (
+                    <Check size={12} strokeWidth={2.5} />
+                  ) : (
+                    <X size={12} strokeWidth={2.5} />
+                  )}
                   {c.pass ? "Pass" : "Needs work"}
                 </span>
               </div>

@@ -13,6 +13,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       lerp: 0.1,
       wheelMultiplier: 1,
       smoothWheel: true,
+      anchors: { offset: -64 },
     });
     let raf = 0;
     const tick = (time: number) => {
