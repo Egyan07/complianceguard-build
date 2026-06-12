@@ -2,7 +2,7 @@
  * Single source of truth for site-wide facts.
  * Version, URLs, and pricing must never be hand-duplicated in components.
  */
-export const SITE_URL = "https://complianceguard.alexisegyan1232.workers.dev";
+export const SITE_URL = "https://complianceguard.cguard.workers.dev";
 export const VERSION = "3.3.1";
 
 export const GITHUB_URL = "https://github.com/Egyan07/ComplianceGuard";
@@ -65,8 +65,8 @@ export const TIERS: Tier[] = [
   },
   {
     name: "Pro",
-    monthly: 399,
-    managedMonthly: 599,
+    monthly: 149,
+    managedMonthly: 229,
     tagline: "Everything you need to hand an auditor a complete evidence pack.",
     features: [
       "All 29 SOC 2 controls · ISO 27001 (47) · HIPAA (47)",
@@ -82,8 +82,8 @@ export const TIERS: Tier[] = [
   },
   {
     name: "Enterprise",
-    monthly: 1299,
-    managedMonthly: 2499,
+    monthly: 599,
+    managedMonthly: 999,
     tagline: "Tamper-evident, air-gapped sovereignty for regulated industries.",
     features: [
       "Everything in Pro",

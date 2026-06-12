@@ -12,7 +12,7 @@ export const Route = createFileRoute("/pricing")({
     buildMeta({
       title: "Pricing — ComplianceGuard",
       description:
-        "ComplianceGuard pricing: Free forever, Pro from $399/month, Enterprise from $1,299/month flat. Self-hosted or managed hosting. No per-seat fees.",
+        "ComplianceGuard pricing: Free forever, Pro from $149/month, Enterprise from $599/month flat. Self-hosted or managed hosting. No per-seat fees.",
       path: "/pricing",
     }),
   component: PricingPage,
