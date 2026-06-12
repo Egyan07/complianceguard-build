@@ -149,7 +149,7 @@ function PricingPreview() {
                     className="text-[44px] font-semibold text-ink leading-none"
                     style={{ letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}
                   >
-                    ${t.monthly}
+                    ${t.monthly.toLocaleString("en-US")}
                   </span>
                   <span className="text-[15px] text-ink-3">
                     {t.monthly === 0 ? "forever" : "/month"}
@@ -176,8 +176,11 @@ function PricingPreview() {
         </RevealGroup>
 
         <Reveal className="mt-10 text-center">
+          <p className="text-[13px] text-ink-3 mb-3">
+            Self-hosted pricing, billed annually. Managed hosting available.
+          </p>
           <Link to="/pricing" className="text-[15px] text-link hover:underline">
-            Compare all plans, including Enterprise <span aria-hidden>&rsaquo;</span>
+            Compare all plans and managed hosting <span aria-hidden>&rsaquo;</span>
           </Link>
         </Reveal>
       </div>

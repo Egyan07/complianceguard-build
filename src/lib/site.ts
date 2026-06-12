@@ -31,11 +31,18 @@ export function buildMeta(opts: { title: string; description: string; path: stri
   };
 }
 
-/** Pricing tiers — consumed by the landing preview and /pricing. */
+/**
+ * Pricing tiers — consumed by the landing preview and /pricing.
+ * Source of truth: product README v3.3.1 "Pricing" section.
+ * Two deployment models: self-hosted (you manage the server) and
+ * managed hosting (we manage it). Prices are per month, billed annually.
+ */
 export type Tier = {
   name: string;
+  /** Self-hosted price per month, billed annually. */
   monthly: number;
-  annual: number | null;
+  /** Managed-hosting price per month, billed annually. Null = self-hosted only. */
+  managedMonthly: number | null;
   tagline: string;
   features: string[];
   cta: { label: string; href: string };
@@ -46,44 +53,47 @@ export const TIERS: Tier[] = [
   {
     name: "Free",
     monthly: 0,
-    annual: null,
+    managedMonthly: null,
     tagline: "See exactly where you stand on SOC 2 before you pay anything.",
     features: [
-      "SOC 2 readiness score",
-      "5 control areas visible",
-      "Local OS scan (Windows + macOS)",
-      "No account, no credit card",
+      "Evidence collection — all 8 categories",
+      "12 core SOC 2 controls",
+      "Overall compliance score",
+      "1 machine · 1 user · community support",
     ],
     cta: { label: "Download Free", href: DOWNLOAD_URL },
   },
   {
     name: "Pro",
-    monthly: 49,
-    annual: 399,
+    monthly: 399,
+    managedMonthly: 599,
     tagline: "Everything you need to hand an auditor a complete evidence pack.",
     features: [
-      "SOC 2 (29) · ISO 27001 (47) · HIPAA (47)",
+      "All 29 SOC 2 controls · ISO 27001 (47) · HIPAA (47)",
       "Per-control scoring, gaps, and remediation scripts",
-      "AWS evidence auto-sync",
-      "PDF evidence pack export",
-      "Evaluation history and score trends",
+      "Control heatmap and score trend (Type II timeline)",
+      "Manual evidence upload + evaluation history",
+      "PDF audit-ready reports",
+      "Cloud dashboard — up to 10 machines, 10 users",
       "Email support",
     ],
     cta: { label: "Start with Pro", href: salesMailto("ComplianceGuard Pro") },
     featured: true,
   },
   {
-    name: "Managed",
-    monthly: 79,
-    annual: 759,
-    tagline: "For consultants managing compliance readiness for multiple clients.",
+    name: "Enterprise",
+    monthly: 1299,
+    managedMonthly: 2499,
+    tagline: "Tamper-evident, air-gapped sovereignty for regulated industries.",
     features: [
       "Everything in Pro",
-      "Up to 5 client workspaces",
-      "Centralized billing dashboard",
-      "White-label PDF reports",
-      "Priority email support",
+      "Tamper-evident audit log (SHA-256 hash chain)",
+      "RBAC — admin and auditor roles",
+      "Custom PDF branding",
+      "Full compliance data export (NDJSON)",
+      "Air-gapped Docker bundle · zero telemetry",
+      "Unlimited machines and users · dedicated SLA",
     ],
-    cta: { label: "Contact Sales", href: salesMailto("ComplianceGuard Managed") },
+    cta: { label: "Contact Sales", href: salesMailto("ComplianceGuard Enterprise") },
   },
 ];

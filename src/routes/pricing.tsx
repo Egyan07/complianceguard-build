@@ -12,7 +12,7 @@ export const Route = createFileRoute("/pricing")({
     buildMeta({
       title: "Pricing — ComplianceGuard",
       description:
-        "ComplianceGuard pricing: Free forever, Pro at $49/month, Managed at $79/month. One flat rate per deployment. No per-seat fees. Cancel anytime.",
+        "ComplianceGuard pricing: Free forever, Pro from $399/month, Enterprise from $1,299/month flat. Self-hosted or managed hosting. No per-seat fees.",
       path: "/pricing",
     }),
   component: PricingPage,
@@ -24,29 +24,29 @@ const faqs = [
     a: "No. ComplianceGuard is a desktop application that runs entirely on your machine. Your evidence data, AWS credentials, and compliance reports are stored in a local database. Endpoint evidence stays on your machine until you explicitly choose to sync it.",
   },
   {
-    q: "What happens after the free tier?",
-    a: "The free tier shows your SOC 2 readiness score and lets you see which controls you're passing or failing. To export a full evidence pack (PDF/CSV) and connect AWS for automated evidence collection, you need Pro.",
+    q: "What's the difference between self-hosted and managed?",
+    a: "Self-hosted: you deploy the dashboard on your own infrastructure, your data stays entirely under your control, and the price is lower because you manage the server — the right fit for regulated industries, government contractors, legal firms, and air-gapped environments. Managed: we host the dashboard for you with zero setup, and we handle uptime, backups, updates, and onboarding. Either way, endpoint evidence never leaves your machines until you sync.",
+  },
+  {
+    q: "What does the free tier include?",
+    a: "Full evidence collection across all 8 categories, 12 core SOC 2 controls, and your overall compliance score — on 1 machine, for 1 user. Per-control scoring, remediation scripts, PDF reports, and the multi-machine dashboard are part of Pro.",
   },
   {
     q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
-    a: "Yes. ComplianceGuard supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001:2013 (47 Annex A controls), and the HIPAA Security Rule (47 safeguards). The same OS-level evidence pass feeds all three.",
+    a: "Yes. ComplianceGuard supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001 (47 scored controls), and the HIPAA Security Rule (47 safeguards). The same OS-level evidence pass feeds all three.",
   },
   {
     q: "Do you store my AWS credentials?",
     a: "Your credentials are encrypted at rest on your machine using HKDF-SHA256-derived Fernet keys and are read only at evidence-collection time.",
   },
   {
-    q: "Can I get a refund?",
-    a: "Yes. If ComplianceGuard doesn't meet your needs within 30 days, contact us for a full refund. No questions asked.",
-  },
-  {
-    q: "What do I get with the Managed plan?",
-    a: "The Managed plan is designed for freelance GRC consultants or small firms managing readiness for multiple clients. You get 5 separate client workspaces, white-label PDF exports, and a consultant referral link.",
+    q: "How does licensing work?",
+    a: "License keys use Ed25519 cryptographic signatures, verified entirely offline — no license server, no phone-home. That's deliberate: licensing works in the same air-gapped environments the product is built for.",
   },
 ];
 
 function PricingPage() {
-  const [annual, setAnnual] = useState(false);
+  const [managed, setManaged] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-snow">
@@ -61,25 +61,27 @@ function PricingPage() {
             No per-seat math.
           </>
         }
-        subtitle="One rate per deployment, billed monthly or annually. The core product is never gated behind a sales call."
+        subtitle="One flat rate per deployment, billed annually. Run it on your own infrastructure, or let us host the dashboard for you."
         ornament="grid"
       >
         <div className="inline-flex items-center gap-1 p-1 rounded-full bg-snow border border-hairline">
           <button
-            onClick={() => setAnnual(false)}
+            onClick={() => setManaged(false)}
+            aria-pressed={!managed}
             className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
-              !annual ? "bg-ink text-white" : "text-ink-2"
+              !managed ? "bg-ink text-white" : "text-ink-2"
             }`}
           >
-            Monthly
+            Self-hosted
           </button>
           <button
-            onClick={() => setAnnual(true)}
+            onClick={() => setManaged(true)}
+            aria-pressed={managed}
             className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
-              annual ? "bg-ink text-white" : "text-ink-2"
+              managed ? "bg-ink text-white" : "text-ink-2"
             }`}
           >
-            Annual
+            Managed hosting
           </button>
         </div>
       </PageHero>
@@ -87,20 +89,18 @@ function PricingPage() {
       <section className="bg-snow pb-20">
         <RevealGroup className="container-cg grid md:grid-cols-3 gap-5">
           {TIERS.map((t) => {
-            const savePct = t.annual ? Math.round((1 - t.annual / (t.monthly * 12)) * 100) : null;
-            const price =
-              t.monthly === 0
-                ? "$0"
-                : annual && t.annual
-                  ? `$${Math.round(t.annual / 12)}`
-                  : `$${t.monthly}`;
-            const cadence = t.monthly === 0 ? "forever" : "/month";
+            const isManagedView = managed && t.managedMonthly !== null;
+            const monthly = isManagedView ? t.managedMonthly! : t.monthly;
+            const price = monthly === 0 ? "$0" : `$${monthly.toLocaleString("en-US")}`;
+            const cadence = monthly === 0 ? "forever" : "/month";
             const sub =
-              t.annual && savePct
-                ? annual
-                  ? `billed $${t.annual}/year — save ${savePct}%`
-                  : `or $${t.annual}/year — save ${savePct}%`
-                : null;
+              monthly === 0
+                ? managed
+                  ? "Desktop app — runs on your machine"
+                  : null
+                : `billed annually — $${(monthly * 12).toLocaleString("en-US")}/yr${
+                    !managed && t.name === "Enterprise" ? " flat" : ""
+                  }`;
             return (
               <RevealItem key={t.name} className="relative">
                 <div
@@ -112,7 +112,10 @@ function PricingPage() {
                       Most popular
                     </span>
                   )}
-                  <p className="mono-tag mb-3">{t.name}</p>
+                  <p className="mono-tag mb-3">
+                    {t.name}
+                    {isManagedView ? " managed" : ""}
+                  </p>
                   <div className="flex items-baseline gap-2">
                     <span className="display-2 tabular-nums">{price}</span>
                     <span className="text-ink-2">{cadence}</span>
@@ -129,6 +132,20 @@ function PricingPage() {
                         {x}
                       </li>
                     ))}
+                    {isManagedView && (
+                      <>
+                        <li className="flex gap-2">
+                          <Check size={16} className="shrink-0 mt-1 text-azure" />
+                          Zero server setup — we handle uptime, backups, updates
+                        </li>
+                        <li className="flex gap-2">
+                          <Check size={16} className="shrink-0 mt-1 text-azure" />
+                          {t.name === "Enterprise"
+                            ? "Dedicated infrastructure + onboarding assistance"
+                            : "Onboarding assistance"}
+                        </li>
+                      </>
+                    )}
                   </ul>
                   <a
                     href={t.cta.href}
@@ -144,8 +161,8 @@ function PricingPage() {
 
         <Reveal>
           <p className="mt-10 text-center caption text-ink-3 max-w-2xl mx-auto">
-            30-day money-back guarantee on Pro and Managed. Email us and we&apos;ll refund within 24
-            hours.
+            Self-hosted: your data stays entirely on your infrastructure. Managed: we host the
+            dashboard — your endpoint evidence still never leaves your machines until you sync.
           </p>
         </Reveal>
 
