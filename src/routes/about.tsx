@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Check } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
@@ -56,42 +57,69 @@ function AboutPage() {
         />
 
         {/* Why we exist */}
-        <section className="bg-snow pb-20" aria-labelledby="why-heading">
-          <div className="container-cg max-w-[720px]">
-            <Reveal>
-              <h2 id="why-heading" className="display-3 mb-6">
-                Why ComplianceGuard exists.
-              </h2>
-              <div className="text-[17px] text-ink-2 leading-[1.65] max-w-[680px] space-y-5">
-                <p>
-                  Compliance platforms moved to the cloud, but the evidence didn&apos;t. Disk
-                  encryption status, firewall configuration, OS patch level, screen-lock policy —
-                  the controls auditors actually check live on endpoints, where cloud integrations
-                  can&apos;t see them.
-                </p>
-                <p>
-                  Cloud-first platforms such as Vanta solve a different problem well: orchestrating
-                  SaaS and infrastructure integrations at scale. But they ask teams to ship
-                  sensitive evidence to a vendor cloud to get it, and they leave the endpoint layer
-                  largely uncovered.
-                </p>
-                <p>
-                  Our founder saw that gap and took the architectural position that defines this
-                  product: evidence should be collected, scored, and cryptographically signed on the
-                  machine where it originates. A desktop application that:
-                </p>
-                <ul className="list-none space-y-2 pl-0">
-                  <li>— Collects endpoint evidence directly on Windows and macOS</li>
-                  <li>— Scores SOC 2, ISO 27001, and HIPAA in a single pass</li>
-                  <li>— Stores everything locally — no data leaves your network</li>
-                  <li>— Exports a signed PDF evidence pack your auditor can verify</li>
-                </ul>
-                <p>
-                  The result is readiness you can hand to an auditor without handing your
-                  infrastructure to anyone else.
-                </p>
-              </div>
-            </Reveal>
+        <section className="bg-snow pb-24" aria-labelledby="why-heading">
+          <div className="container-cg">
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start">
+              <Reveal>
+                <h2 id="why-heading" className="display-3 mb-6">
+                  Why ComplianceGuard exists.
+                </h2>
+                <div className="text-[17px] text-ink-2 leading-[1.65] space-y-5">
+                  <p>
+                    Compliance platforms moved to the cloud, but the evidence didn&apos;t. Disk
+                    encryption status, firewall configuration, OS patch level, screen-lock policy —
+                    the controls auditors actually check live on endpoints, where cloud integrations
+                    can&apos;t see them.
+                  </p>
+                  <p>
+                    Cloud-first platforms such as Vanta solve a different problem well:
+                    orchestrating SaaS and infrastructure integrations at scale. But they ask teams
+                    to ship sensitive evidence to a vendor cloud to get it, and they leave the
+                    endpoint layer largely uncovered.
+                  </p>
+                  <p>
+                    Our founder saw that gap and took the architectural position that defines this
+                    product: evidence should be collected, scored, and cryptographically signed on
+                    the machine where it originates — a local-first desktop application, not another
+                    cloud you hand your infrastructure to.
+                  </p>
+                  <p>
+                    The result is readiness you can hand to an auditor without handing your
+                    infrastructure to anyone else.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <div
+                  className="lg:sticky lg:top-28 card-snow p-8"
+                  style={{ boxShadow: "var(--shadow-card)" }}
+                >
+                  <p className="mono-tag mb-5">What it actually does</p>
+                  <ul className="space-y-4">
+                    {[
+                      "Collects endpoint evidence directly on Windows and macOS",
+                      "Scores SOC 2, ISO 27001, and HIPAA in a single pass",
+                      "Stores everything locally — no data leaves your network",
+                      "Exports a signed PDF evidence pack your auditor can verify",
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span
+                          className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                          style={{ background: "var(--azure-soft)" }}
+                        >
+                          <Check size={12} strokeWidth={3} className="text-azure" />
+                        </span>
+                        <span className="text-[15px] text-ink leading-[1.5]">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-6 pt-5 border-t border-hairline text-[13px] text-ink-3">
+                    One collection pass &middot; three frameworks &middot; zero telemetry.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 

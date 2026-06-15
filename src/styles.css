@@ -328,6 +328,88 @@
 
   .hairline-divider { border-top: 1px solid var(--hairline); }
 
+  /* ── Glass surfaces — frosted, with a light top-edge highlight.
+     Reads as premium only over color/dark/animated backgrounds, so it's
+     used on dark bands and over the aurora — never over flat white. ─── */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  /* Top-edge sheen: a 1px gradient ring, brightest at the top — the detail
+     that separates "frosted glass" from "a translucent box". */
+  .glass-edge { position: relative; }
+  .glass-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.02) 38%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ── 3D tilt — perspective container; child gets transform from JS ── */
+  .tilt-scene { perspective: 1200px; transform-style: preserve-3d; }
+  .tilt-layer { transform-style: preserve-3d; will-change: transform; }
+  /* Moving specular highlight tracking the cursor (set via --mx/--my). */
+  .tilt-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-expo);
+    background: radial-gradient(
+      40% 40% at var(--mx, 50%) var(--my, 0%),
+      rgba(255, 255, 255, 0.35),
+      transparent 60%
+    );
+  }
+  .tilt-scene:hover .tilt-glare { opacity: 1; }
+
+  /* ── Button sheen — a single light sweep on hover (premium, not flashy) ── */
+  .btn-sheen { position: relative; overflow: hidden; isolation: isolate; }
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -160%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+    transform: skewX(-18deg);
+    transition: left 0.7s var(--ease-expo);
+    pointer-events: none;
+  }
+  .btn-sheen:hover::after { left: 160%; }
+
+  /* ── Hero deck — the dashboard sits at an isometric angle, bleeding
+     off the right edge, and straightens slightly toward the viewer on
+     hover. Flattened below lg (stacks under the copy). ─────────────── */
+  .hero-deck {
+    transform: perspective(2400px) rotateY(-14deg) rotateX(4deg);
+    transform-origin: left center;
+    transition: transform 0.7s var(--ease-expo);
+    will-change: transform;
+  }
+  .hero-deck:hover {
+    transform: perspective(2400px) rotateY(-7deg) rotateX(2deg);
+  }
+  @media (max-width: 1023px) {
+    .hero-deck { transform: none; }
+  }
+
   /* ── Ambient backdrops ──────────────────────────────────────── */
   .ambient-grid {
     background-image:
@@ -372,6 +454,26 @@
 /* Evidence-flow connector — slow drifting dashes (paint-only, tiny) */
 @keyframes cg-dash-flow { to { stroke-dashoffset: -24; } }
 .cg-dash-flow { animation: cg-dash-flow 1.6s linear infinite; }
+
+/* Aurora — slow drifting light blobs behind hero / dark bands. GPU-only
+   (transform + opacity). Three offset phases so the field never looks like
+   it's pulsing in unison. Frozen by the global reduced-motion block. */
+@keyframes cg-aurora-a {
+  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1); }
+  50%      { transform: translate3d(7%, 5%, 0) scale(1.18); }
+}
+@keyframes cg-aurora-b {
+  0%, 100% { transform: translate3d(5%, 6%, 0) scale(1.12); }
+  50%      { transform: translate3d(-7%, -6%, 0) scale(0.94); }
+}
+@keyframes cg-aurora-c {
+  0%, 100% { transform: translate3d(0, 8%, 0) scale(1.05); opacity: 0.9; }
+  50%      { transform: translate3d(4%, -5%, 0) scale(1.2); opacity: 1; }
+}
+.cg-aurora-blob { position: absolute; border-radius: 9999px; will-change: transform; }
+.cg-aurora-a { animation: cg-aurora-a 18s var(--ease-expo) infinite; }
+.cg-aurora-b { animation: cg-aurora-b 22s var(--ease-expo) infinite; }
+.cg-aurora-c { animation: cg-aurora-c 26s var(--ease-expo) infinite; }
 
 @keyframes cg-gauge-fill {
   from { stroke-dashoffset: var(--cg-gauge-circumference); }

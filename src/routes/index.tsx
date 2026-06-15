@@ -12,6 +12,8 @@ import { EnterpriseSection } from "@/components/EnterpriseSection";
 import { HomepageFAQ } from "@/components/HomepageFAQ";
 import { Footer } from "@/components/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
+import { Aurora } from "@/components/Aurora";
+import { Magnetic } from "@/components/Magnetic";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
 import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
@@ -190,8 +192,9 @@ function PricingPreview() {
 
 function FinalCTA() {
   return (
-    <section className="on-dark bg-ink text-snow py-24 md:py-32">
-      <div className="container-cg text-center">
+    <section className="on-dark relative isolate overflow-hidden bg-ink text-snow py-24 md:py-32">
+      <Aurora tone="dark" />
+      <div className="container-cg text-center relative">
         <Reveal>
           <h2 className="display-2 !text-snow">
             Your next enterprise deal
@@ -203,9 +206,11 @@ function FinalCTA() {
             signed, and under your control.
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={DOWNLOAD_URL} className="btn-on-navy">
-              Download for free
-            </a>
+            <Magnetic>
+              <a href={DOWNLOAD_URL} className="btn-on-navy btn-sheen">
+                Download for free
+              </a>
+            </Magnetic>
             <a href={salesMailto("ComplianceGuard — sales enquiry")} className="btn-ghost-on-navy">
               Contact sales
             </a>

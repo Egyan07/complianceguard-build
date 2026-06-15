@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
+import { Tilt } from "./Tilt";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
 
 const frameworks = [
@@ -70,44 +71,45 @@ export function FrameworksSection() {
 
         <div className="grid md:grid-cols-3 gap-5">
           {frameworks.map((f, i) => (
-            <motion.div
-              key={f.short}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={VIEWPORT}
-              transition={{ duration: DUR.slow, ease: EASE_EXPO, delay: i * 0.1 }}
-              className={`relative overflow-hidden ${f.finish} flex flex-col rounded-[28px] p-9`}
-              style={{ minHeight: 480 }}
-            >
-              <div className="text-snow">
-                <p className="text-[13px] font-medium uppercase tracking-wider text-snow/80">
-                  {f.short}
-                </p>
-                <h3
-                  className="mt-4 font-semibold text-snow"
-                  style={{ fontSize: 32, lineHeight: 1.1, letterSpacing: "-0.018em" }}
-                >
-                  {f.title}
-                </h3>
-                <p className="mt-4 text-[15px] text-snow/85 leading-[1.6]">{f.body}</p>
-              </div>
+            <Tilt key={f.short} max={6} radius={28} className="h-full">
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEWPORT}
+                transition={{ duration: DUR.slow, ease: EASE_EXPO, delay: i * 0.1 }}
+                className={`relative overflow-hidden ${f.finish} flex flex-col rounded-[28px] p-9 h-full`}
+                style={{ minHeight: 480 }}
+              >
+                <div className="text-snow">
+                  <p className="text-[13px] font-medium uppercase tracking-wider text-snow/80">
+                    {f.short}
+                  </p>
+                  <h3
+                    className="mt-4 font-semibold text-snow"
+                    style={{ fontSize: 32, lineHeight: 1.1, letterSpacing: "-0.018em" }}
+                  >
+                    {f.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] text-snow/85 leading-[1.6]">{f.body}</p>
+                </div>
 
-              <div className="mt-8">
-                <ControlDots count={f.count} />
-              </div>
+                <div className="mt-8">
+                  <ControlDots count={f.count} />
+                </div>
 
-              <div className="mt-auto pt-8 flex items-end justify-between text-snow">
-                <span
-                  className="text-[64px] font-semibold leading-none"
-                  style={{ letterSpacing: "-0.022em", fontVariantNumeric: "tabular-nums" }}
-                >
-                  {f.count}
-                </span>
-                <span className="text-[13px] uppercase tracking-wider text-snow/70 pb-2">
-                  {f.unit}
-                </span>
-              </div>
-            </motion.div>
+                <div className="mt-auto pt-8 flex items-end justify-between text-snow">
+                  <span
+                    className="text-[64px] font-semibold leading-none"
+                    style={{ letterSpacing: "-0.022em", fontVariantNumeric: "tabular-nums" }}
+                  >
+                    {f.count}
+                  </span>
+                  <span className="text-[13px] uppercase tracking-wider text-snow/70 pb-2">
+                    {f.unit}
+                  </span>
+                </div>
+              </motion.div>
+            </Tilt>
           ))}
         </div>
       </div>

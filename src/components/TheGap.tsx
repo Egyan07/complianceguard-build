@@ -1,5 +1,6 @@
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { AnimatedStat } from "./AnimatedStatValue";
+import { Aurora } from "./Aurora";
 
 const stats = [
   {
@@ -22,8 +23,9 @@ const stats = [
  */
 export function TheGap() {
   return (
-    <section className="on-dark bg-ink text-snow py-24 md:py-32">
-      <div className="container-cg">
+    <section className="on-dark relative isolate overflow-hidden bg-ink text-snow py-24 md:py-32">
+      <Aurora tone="dark" />
+      <div className="container-cg relative">
         <Reveal>
           <h2 className="display-2 !text-snow max-w-3xl">
             Your cloud is covered.
@@ -43,7 +45,7 @@ export function TheGap() {
         <RevealGroup className="mt-14 grid md:grid-cols-3 gap-5">
           {stats.map((c) => (
             <RevealItem key={c.stat}>
-              <div className="rounded-[20px] bg-white/[0.06] border border-white/10 p-8 h-full">
+              <div className="glass glass-edge card-hover rounded-[20px] p-8 h-full">
                 <div
                   className="text-[44px] font-semibold leading-none text-snow"
                   style={{ fontVariantNumeric: "tabular-nums", letterSpacing: "-0.02em" }}

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Shield, KeyRound, FileLock2, Download, ServerCog } from "lucide-react";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
+import { Aurora } from "./Aurora";
 import { salesMailto } from "@/lib/site";
 
 const HASHES = ["0x7a3f…b21c", "0x14de…9f08", "0xc9b2…5e7d", "0x4f80…ae33", "0x2bce…c640"];
@@ -30,14 +31,7 @@ const PILLARS = [
 
 function HashChain() {
   return (
-    <div
-      className="relative overflow-hidden p-6 md:p-8 rounded-[28px]"
-      style={{
-        background: "rgba(255,255,255,0.06)",
-        backdropFilter: "blur(20px) saturate(160%)",
-        border: "1px solid rgba(255,255,255,0.12)",
-      }}
-    >
+    <div className="glass glass-edge relative overflow-hidden p-6 md:p-8 rounded-[28px]">
       <div className="flex items-center justify-between mb-5">
         <span className="text-[11px] font-mono uppercase tracking-wider text-snow/70">
           audit_log &middot; sha-256 chain
@@ -90,7 +84,8 @@ function HashChain() {
 
 export function EnterpriseSection() {
   return (
-    <section className="on-dark relative py-28 md:py-36 finish-indigo">
+    <section className="on-dark relative isolate overflow-hidden py-28 md:py-36 finish-indigo">
+      <Aurora tone="dark" />
       <div className="container-cg relative">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-5 text-snow">
@@ -116,15 +111,7 @@ export function EnterpriseSection() {
         <div className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-start">
           <div className="grid sm:grid-cols-2 gap-4">
             {PILLARS.map((p) => (
-              <div
-                key={p.title}
-                className="p-6 rounded-[22px]"
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  backdropFilter: "blur(20px) saturate(160%)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                }}
-              >
+              <div key={p.title} className="glass glass-edge card-hover p-6 rounded-[22px]">
                 <p.icon size={18} className="text-snow" aria-hidden />
                 <h3
                   className="mt-4 text-[17px] font-semibold text-snow"
