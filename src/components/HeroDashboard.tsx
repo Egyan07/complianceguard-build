@@ -14,7 +14,7 @@ import { EASE_EXPO } from "@/lib/motion";
  * Reduced motion renders the resolved state immediately (no scanning phase).
  */
 
-const SCORE = 31;
+const SCORE = 67;
 const RADIUS = 58;
 const STROKE = 9;
 const CIRC = 2 * Math.PI * RADIUS;
@@ -24,11 +24,11 @@ const SCAN_MS = 1700;
 
 const CONTROLS = [
   { name: "CC6.1 — Logical Access", pass: true },
-  { name: "CC6.5 — Network Security", pass: false },
+  { name: "CC6.5 — Network Security", pass: true },
   { name: "CC7.1 — Event Logging", pass: false },
   { name: "CC7.2 — Vulnerability Mgmt", pass: true },
   { name: "C1.2 — Data Protection", pass: false },
-  { name: "A1.4 — Backup & Recovery", pass: false },
+  { name: "A1.4 — Backup & Recovery", pass: true },
 ] as const;
 
 /** Count up to `to` once on mount; respects reduced motion. */
@@ -185,7 +185,7 @@ export function HeroDashboard() {
                 className="text-[22px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                SOC 2 Type II &middot; 24 controls
+                SOC 2 Type II &middot; 29 controls
               </p>
             </div>
             <button
@@ -224,7 +224,7 @@ export function HeroDashboard() {
                   className="text-[22px] font-semibold text-ink"
                   style={{ letterSpacing: "-0.016em" }}
                 >
-                  3 of 24 controls passing.
+                  19 of 29 controls passing.
                 </p>
                 <div
                   className="mt-3 h-2 w-full rounded-full overflow-hidden"
@@ -234,12 +234,12 @@ export function HeroDashboard() {
                     className="h-full rounded-full"
                     style={{ background: AZURE }}
                     initial={{ width: 0 }}
-                    animate={{ width: `${(3 / 24) * 100}%` }}
+                    animate={{ width: `${(19 / 29) * 100}%` }}
                     transition={{ duration: 1.4, ease: EASE_EXPO, delay: 0.2 }}
                   />
                 </div>
                 <p className="mt-3 text-[15px]" style={{ color: "#707070" }}>
-                  21 need attention before audit &mdash; each with a documented remediation step.
+                  10 need attention before audit &mdash; each with a documented remediation step.
                 </p>
               </div>
             </div>
