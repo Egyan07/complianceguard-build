@@ -32,11 +32,11 @@ const SCAN_LINES: LogLine[] = [
   { text: "ComplianceGuard 3.3.1 — evidence collection started", tone: "strong", pauseAfter: 400 },
   { text: "Reading Windows Registry ✓", pauseAfter: 250 },
   { text: "Password policy — PASS", tone: "pass", pauseAfter: 200 },
-  { text: "Firewall status — PASS", tone: "pass", pauseAfter: 200 },
+  { text: "Firewall status — NEEDS WORK", tone: "warn", pauseAfter: 200 },
   { text: "Disk encryption — PASS", tone: "pass", pauseAfter: 200 },
   { text: "Audit logging — NEEDS WORK", tone: "warn", pauseAfter: 250 },
-  { text: "Local user accounts — PASS", tone: "pass", pauseAfter: 400 },
-  { text: "Readiness score: 67% — 19 of 29 SOC 2 controls passing", tone: "strong" },
+  { text: "Local user accounts — NEEDS WORK", tone: "warn", pauseAfter: 400 },
+  { text: "Readiness score: 31% — 3 of 24 SOC 2 controls passing", tone: "strong" },
 ];
 
 const TONE_COLOR: Record<string, string> = {
