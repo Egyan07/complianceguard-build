@@ -1,6 +1,6 @@
 import { Check, X } from "lucide-react";
 
-const SCORE = 31;
+const SCORE = 67;
 const RADIUS = 58;
 const STROKE = 9;
 const CIRC = 2 * Math.PI * RADIUS;
@@ -47,7 +47,7 @@ export function ProductMockup() {
                 className="text-[28px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                SOC 2 Type II &middot; 24 controls
+                SOC 2 Type II &middot; 29 controls
               </p>
             </div>
             <span
@@ -116,14 +116,14 @@ export function ProductMockup() {
                 className="text-[24px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                3 of 24 controls passing.
+                19 of 29 controls passing.
               </p>
               <p
                 className="mt-2 text-[17px]"
                 style={{ color: "#707070", letterSpacing: "-0.003em" }}
               >
-                21 need attention before audit &mdash; each with documented remediation work in your
-                evidence pack.
+                10 need attention before audit. Estimated 4&ndash;6 hours of remediation work, fully
+                documented in your evidence pack.
               </p>
             </div>
           </div>
@@ -132,11 +132,11 @@ export function ProductMockup() {
           <div className="space-y-2">
             {[
               { name: "CC6.1 — Logical Access", pass: true },
-              { name: "CC6.5 — Network Security", pass: false },
+              { name: "CC6.5 — Network Security", pass: true },
               { name: "CC7.1 — Event Logging", pass: false },
               { name: "CC7.2 — Vulnerability Mgmt", pass: true },
               { name: "C1.2 — Data Protection", pass: false },
-              { name: "A1.4 — Backup & Recovery", pass: false },
+              { name: "A1.4 — Backup & Recovery", pass: true },
             ].map((c) => (
               <div
                 key={c.name}
