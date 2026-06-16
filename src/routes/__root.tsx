@@ -25,6 +25,12 @@ function NotFoundComponent() {
   );
 }
 
+// Cloudflare Web Analytics — cookieless, no banner needed. The token is read
+// at build time from VITE_CF_BEACON_TOKEN (set it in .env alongside the
+// Supabase keys); the beacon is only injected when the token is present, so
+// the public repo never carries it and local/dev builds stay clean.
+const CF_BEACON_TOKEN = import.meta.env.VITE_CF_BEACON_TOKEN as string | undefined;
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -60,6 +66,15 @@ export const Route = createRootRoute({
             "Endpoint-level SOC 2, ISO 27001 and HIPAA compliance evidence — on your machine, on your terms.",
         }),
       },
+      ...(CF_BEACON_TOKEN
+        ? [
+            {
+              src: "https://static.cloudflareinsights.com/beacon.min.js",
+              defer: true,
+              "data-cf-beacon": JSON.stringify({ token: CF_BEACON_TOKEN }),
+            },
+          ]
+        : []),
     ],
   }),
   shellComponent: RootShell,
