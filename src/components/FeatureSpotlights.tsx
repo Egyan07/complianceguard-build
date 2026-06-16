@@ -45,8 +45,8 @@ const spotlights = [
     img: {
       src: "/screenshots/Dashboard.png",
       alt: "ComplianceGuard dashboard showing a real-time compliance score, per-category breakdowns, and a per-control heatmap",
-      width: 1477,
-      height: 923,
+      width: 1892,
+      height: 1020,
     },
   },
   {
@@ -56,8 +56,8 @@ const spotlights = [
     img: {
       src: "/screenshots/EvidenceCollection.png",
       alt: "ComplianceGuard evidence list with searchable, filterable evidence items and their compliance status",
-      width: 1400,
-      height: 738,
+      width: 1901,
+      height: 1022,
     },
   },
 ];
