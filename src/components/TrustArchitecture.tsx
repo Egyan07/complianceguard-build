@@ -1,67 +1,12 @@
-import { Monitor, Cloud, Database, FileCheck, Lock, Award, KeyRound, Code2 } from "lucide-react";
+import { Lock, Award, KeyRound, Code2 } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { EvidenceFlow } from "./EvidenceFlow";
 
 /**
- * Trust band: the data-sovereignty architecture, visualized — every node of
- * the evidence pipeline lives inside the customer's network boundary.
- * Merges the old ArchitectureDiagram + Trust sections.
+ * Trust band: the data-sovereignty architecture, visualized — every source of
+ * evidence streams inward to a local store that never leaves the customer's
+ * network boundary.
  */
-
-function Node({
-  icon: Icon,
-  title,
-  caption,
-  accent = false,
-}: {
-  icon: typeof Monitor;
-  title: string;
-  caption: string;
-  accent?: boolean;
-}) {
-  return (
-    <div
-      className={`card-snow p-6 text-center ${accent ? "border-azure/40" : ""}`}
-      style={
-        accent ? { boxShadow: "0 0 0 1px rgba(0,113,227,0.25), var(--shadow-card)" } : undefined
-      }
-    >
-      <div
-        className={`mx-auto w-11 h-11 rounded-[12px] flex items-center justify-center ${
-          accent ? "bg-azure text-snow" : "bg-ink text-snow"
-        }`}
-      >
-        <Icon size={20} strokeWidth={2} />
-      </div>
-      <p className="mt-4 text-[15px] font-semibold text-ink">{title}</p>
-      <p className="mt-1 text-[13px] text-ink-3">{caption}</p>
-    </div>
-  );
-}
-
-/** Animated connector — drifting dashes flowing toward the next node. */
-function FlowConnector({ vertical = false }: { vertical?: boolean }) {
-  return (
-    <svg
-      aria-hidden
-      width={vertical ? 2 : "100%"}
-      height={vertical ? 28 : 2}
-      className={vertical ? "mx-auto" : "self-center"}
-      style={{ overflow: "visible" }}
-    >
-      <line
-        x1={0}
-        y1={vertical ? 0 : 1}
-        x2={vertical ? 0 : "100%"}
-        y2={vertical ? 28 : 1}
-        stroke="var(--azure)"
-        strokeWidth={2}
-        strokeDasharray="6 6"
-        className="cg-dash-flow"
-        opacity={0.55}
-      />
-    </svg>
-  );
-}
 
 const stats = [
   { stat: "0", label: "bytes uploaded to our servers" },
@@ -115,30 +60,8 @@ export function TrustArchitecture() {
               Your network boundary
             </span>
 
-            <div className="grid md:grid-cols-[1fr_24px_1fr_24px_1fr] gap-4 md:gap-2 items-center">
-              <div className="flex flex-col gap-4">
-                <Node icon={Monitor} title="Your machine" caption="Registry · configs · firewall" />
-                <Node icon={Cloud} title="Your AWS account" caption="IAM · S3 · security groups" />
-              </div>
-              <div className="hidden md:block">
-                <FlowConnector />
-              </div>
-              <div className="md:hidden">
-                <FlowConnector vertical />
-              </div>
-              <Node
-                icon={Database}
-                title="Local evidence store"
-                caption="SQLite · encrypted at rest"
-                accent
-              />
-              <div className="hidden md:block">
-                <FlowConnector />
-              </div>
-              <div className="md:hidden">
-                <FlowConnector vertical />
-              </div>
-              <Node icon={FileCheck} title="PDF evidence pack" caption="For your auditor" />
+            <div className="pt-4 pb-2">
+              <EvidenceFlow />
             </div>
 
             <div className="mt-10 pt-8 border-t border-hairline grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
