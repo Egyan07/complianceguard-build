@@ -7,7 +7,7 @@ export const VERSION = "3.3.1";
 
 export const GITHUB_URL = "https://github.com/Egyan07/ComplianceGuard";
 export const DOWNLOAD_URL = `${GITHUB_URL}/releases/latest`;
-export const CONTACT_EMAIL = "alexisegyan1232@gmail.com";
+export const CONTACT_EMAIL = "getcomplianceguard@gmail.com";
 
 export const salesMailto = (subject: string) =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
