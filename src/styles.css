@@ -394,22 +394,6 @@
   }
   .btn-sheen:hover::after { left: 160%; }
 
-  /* ── Hero deck — the dashboard sits at an isometric angle, bleeding
-     off the right edge, and straightens slightly toward the viewer on
-     hover. Flattened below lg (stacks under the copy). ─────────────── */
-  .hero-deck {
-    transform: perspective(2400px) rotateY(-14deg) rotateX(4deg);
-    transform-origin: left center;
-    transition: transform 0.7s var(--ease-expo);
-    will-change: transform;
-  }
-  .hero-deck:hover {
-    transform: perspective(2400px) rotateY(-7deg) rotateX(2deg);
-  }
-  @media (max-width: 1023px) {
-    .hero-deck { transform: none; }
-  }
-
   /* ── Ambient backdrops ──────────────────────────────────────── */
   .ambient-grid {
     background-image:
