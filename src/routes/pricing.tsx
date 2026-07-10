@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
-    a: "Yes. ComplianceGuard supports all three frameworks. SOC 2 Type II (29 controls), ISO 27001 (47 scored controls), and the HIPAA Security Rule (47 safeguards). The same OS-level evidence pass feeds all three.",
+    a: "Yes. ComplianceGuard supports all three frameworks. SOC 2 Type II (54 controls), ISO 27001 (47 scored controls), and the HIPAA Security Rule (47 safeguards). The same OS-level evidence pass feeds all three.",
   },
   {
     q: "Do you store my AWS credentials?",

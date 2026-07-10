@@ -209,7 +209,7 @@ function Soc2ChecklistPage() {
                 <h2 className="display-3">Let the scan check the boxes for you.</h2>
                 <p className="mx-auto mt-3 max-w-[480px] text-[16px] text-ink-2 leading-[1.6]">
                   ComplianceGuard collects the evidence for every Auto item above and shows your
-                  readiness score across all 29 SOC 2 controls it tracks.
+                  readiness score across all 54 SOC 2 controls it tracks.
                 </p>
                 <a href={DOWNLOAD_URL} className="btn-primary mt-6 inline-flex">
                   Download Free

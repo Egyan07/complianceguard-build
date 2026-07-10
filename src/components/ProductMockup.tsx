@@ -47,7 +47,7 @@ export function ProductMockup() {
                 className="text-[28px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                SOC 2 Type II &middot; 29 controls
+                SOC 2 Type II &middot; 54 controls
               </p>
             </div>
             <span
@@ -116,13 +116,13 @@ export function ProductMockup() {
                 className="text-[24px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                19 of 29 controls passing.
+                36 of 54 controls passing.
               </p>
               <p
                 className="mt-2 text-[17px]"
                 style={{ color: "#707070", letterSpacing: "-0.003em" }}
               >
-                10 need attention before audit. Estimated 4&ndash;6 hours of remediation work, fully
+                18 need attention before audit. Estimated 4&ndash;6 hours of remediation work, fully
                 documented in your evidence pack.
               </p>
             </div>

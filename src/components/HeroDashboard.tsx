@@ -185,7 +185,7 @@ export function HeroDashboard() {
                 className="text-[22px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                SOC 2 Type II &middot; 29 controls
+                SOC 2 Type II &middot; 54 controls
               </p>
             </div>
             <button
@@ -224,7 +224,7 @@ export function HeroDashboard() {
                   className="text-[22px] font-semibold text-ink"
                   style={{ letterSpacing: "-0.016em" }}
                 >
-                  19 of 29 controls passing.
+                  36 of 54 controls passing.
                 </p>
                 <div
                   className="mt-3 h-2 w-full rounded-full overflow-hidden"
@@ -234,12 +234,12 @@ export function HeroDashboard() {
                     className="h-full rounded-full"
                     style={{ background: AZURE }}
                     initial={{ width: 0 }}
-                    animate={{ width: `${(19 / 29) * 100}%` }}
+                    animate={{ width: `${(36 / 54) * 100}%` }}
                     transition={{ duration: 1.4, ease: EASE_EXPO, delay: 0.2 }}
                   />
                 </div>
                 <p className="mt-3 text-[15px]" style={{ color: "#707070" }}>
-                  10 need attention before audit &mdash; each with a documented remediation step.
+                  18 need attention before audit &mdash; each with a documented remediation step.
                 </p>
               </div>
             </div>

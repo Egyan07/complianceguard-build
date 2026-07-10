@@ -8,8 +8,8 @@ const frameworks = [
     finish: "finish-azure",
     short: "SOC 2",
     title: "Type II, fully scored.",
-    body: "29 controls across the AICPA Trust Services Criteria, evaluated automatically. The standard for enterprise SaaS deals.",
-    count: 29,
+    body: "54 controls mapped to the SOC 2 Trust Services Criteria, evaluated automatically. The standard for enterprise SaaS deals.",
+    count: 54,
     unit: "controls",
   },
   {

@@ -41,7 +41,7 @@ const spotlights = [
   {
     eyebrow: "Real-time scoring",
     title: "Know exactly where you stand.",
-    body: "Your compliance score updates the moment a scan completes. See which of the 29 SOC 2 controls you're passing and which need work — with remediation scripts for the gaps — before you ever engage an auditor.",
+    body: "Your compliance score updates the moment a scan completes. See which of the 54 SOC 2 controls you're passing and which need work — with remediation scripts for the gaps — before you ever engage an auditor.",
     img: {
       src: "/screenshots/Dashboard.png",
       alt: "ComplianceGuard dashboard showing a real-time compliance score, per-category breakdowns, and a per-control heatmap",

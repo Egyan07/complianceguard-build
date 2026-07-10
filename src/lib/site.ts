@@ -69,7 +69,7 @@ export const TIERS: Tier[] = [
     managedMonthly: 229,
     tagline: "Everything you need to hand an auditor a complete evidence pack.",
     features: [
-      "All 29 SOC 2 controls · ISO 27001 (47) · HIPAA (47)",
+      "All 54 SOC 2 controls · ISO 27001 (47) · HIPAA (47)",
       "Per-control scoring, gaps, and remediation scripts",
       "Control heatmap and score trend (Type II timeline)",
       "Manual evidence upload + evaluation history",

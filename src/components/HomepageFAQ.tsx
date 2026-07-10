@@ -5,7 +5,7 @@ import { Reveal } from "./Reveal";
 const FAQS = [
   {
     q: "Which frameworks does ComplianceGuard cover?",
-    a: "Three, from a single collection pass: SOC 2 Type II (29 controls across the AICPA Trust Services Criteria), ISO 27001 (47 scored controls spanning all 14 Annex A domains), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence feeds all three.",
+    a: "Three, from a single collection pass: SOC 2 Type II (54 controls mapped to the AICPA Trust Services Criteria), ISO 27001 (47 scored controls spanning all 14 Annex A domains), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence feeds all three.",
   },
   {
     q: "Will auditors accept the evidence pack?",

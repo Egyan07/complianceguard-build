@@ -36,7 +36,7 @@ const SCAN_LINES: LogLine[] = [
   { text: "Disk encryption — PASS", tone: "pass", pauseAfter: 200 },
   { text: "Audit logging — NEEDS WORK", tone: "warn", pauseAfter: 250 },
   { text: "Local user accounts — PASS", tone: "pass", pauseAfter: 400 },
-  { text: "Readiness score: 67% — 19 of 29 SOC 2 controls passing", tone: "strong" },
+  { text: "Readiness score: 67% — 36 of 54 SOC 2 controls passing", tone: "strong" },
 ];
 
 const TONE_COLOR: Record<string, string> = {

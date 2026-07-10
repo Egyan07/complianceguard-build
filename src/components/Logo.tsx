@@ -13,7 +13,14 @@ export function LogoMark({ size = 24 }: { size?: number }) {
       style={{ display: "block" }}
     >
       <defs>
-        <linearGradient id="cg-mark-g" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="cg-mark-g"
+          x1="0"
+          y1="0"
+          x2="512"
+          y2="512"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0%" stopColor="#0A84FF" />
           <stop offset="100%" stopColor="#0040DD" />
         </linearGradient>

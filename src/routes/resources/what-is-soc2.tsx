@@ -92,7 +92,7 @@ function WhatIsSoc2Page() {
                 added based on the commitments you make to customers.
               </p>
               <Callout>
-                ComplianceGuard maps endpoint and AWS evidence to 29 controls across the Trust
+                ComplianceGuard maps endpoint and AWS evidence to 54 controls across the Trust
                 Services Criteria, so you can see per-control readiness before you ever engage an
                 auditor.
               </Callout>
@@ -131,7 +131,7 @@ function WhatIsSoc2Page() {
                 If your clients are in Europe, they may require ISO 27001 certification instead of —
                 or in addition to — SOC 2. If you work with healthcare data, HIPAA compliance is
                 mandatory. ComplianceGuard supports all three frameworks from the same evidence
-                collection run: alongside its 29 SOC 2 controls, it scores 47 ISO 27001 controls and
+                collection run: alongside its 54 SOC 2 controls, it scores 47 ISO 27001 controls and
                 47 HIPAA controls. One scan, three reports.
               </p>
             </Section>
