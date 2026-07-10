@@ -1,160 +1,163 @@
+import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Monitor, Cloud, FileCog, ScrollText, Database } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { AnimatedBeam } from "./AnimatedBeam";
 
 /**
- * EvidenceFlow — hub-and-spoke architecture diagram. Four sources (machine,
- * AWS, OS configs, event logs) stream evidence *inward* to a pulsing "Local
- * evidence store" hub. Reinforces the pitch: everything collects to one local
- * place, nothing flows out. All-SVG (responsive, crisp); particle flow +
- * pulses pause under reduced motion.
- *
- * Technique (traveling stroke-dash particles + pulsing hub) adapted from a
- * 21st.dev "cloud flow" component, rebuilt light/azure and inward-directed.
+ * EvidenceFlow — four sources feed a central "Local evidence store" via glowing
+ * beams that pulse *inward*, all inside the network boundary. Real node cards
+ * (icon + label) with a prominent, softly-glowing hub. Beams + hub pulse pause
+ * under reduced motion.
  */
 
-const AZURE = "#0071e3";
-const AZURE_BRIGHT = "#6cb4ff";
-const HUB = { x: 110, y: 70 };
-
-const NODES = [
-  { x: 42, y: 26, label: "Your machine" },
-  { x: 178, y: 26, label: "Your AWS" },
-  { x: 42, y: 114, label: "OS configs" },
-  { x: 178, y: 114, label: "Event logs" },
-];
+function NodeCard({
+  innerRef,
+  icon: Icon,
+  title,
+  caption,
+  className,
+}: {
+  innerRef: React.RefObject<HTMLDivElement | null>;
+  icon: LucideIcon;
+  title: string;
+  caption: string;
+  className: string;
+}) {
+  return (
+    <div
+      ref={innerRef}
+      className={`absolute z-10 flex items-center gap-3 rounded-2xl bg-snow px-3.5 py-3 ${className}`}
+      style={{ border: "1px solid var(--hairline)", boxShadow: "var(--shadow-card)" }}
+    >
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-ink text-snow">
+        <Icon size={17} strokeWidth={2} aria-hidden />
+      </span>
+      <span className="min-w-0">
+        <span className="block text-[14px] font-semibold text-ink leading-tight">{title}</span>
+        <span className="block text-[12px] text-ink-3 leading-tight mt-0.5">{caption}</span>
+      </span>
+    </div>
+  );
+}
 
 export function EvidenceFlow() {
   const reduce = useReducedMotion();
+  const container = useRef<HTMLDivElement>(null);
+  const hub = useRef<HTMLDivElement>(null);
+  const tl = useRef<HTMLDivElement>(null);
+  const tr = useRef<HTMLDivElement>(null);
+  const bl = useRef<HTMLDivElement>(null);
+  const br = useRef<HTMLDivElement>(null);
 
   return (
-    <svg
-      viewBox="0 0 220 140"
-      className="w-full max-w-[620px] mx-auto"
-      role="img"
-      aria-label="Four sources — your machine, your AWS, OS configs and event logs — stream evidence inward to a local evidence store that stays inside your network boundary."
+    <div
+      ref={container}
+      className="relative mx-auto w-full max-w-[760px]"
+      style={{ height: "clamp(320px, 46vw, 400px)" }}
     >
-      {/* Base spokes */}
-      {NODES.map((n, i) => (
-        <line
-          key={`base-${i}`}
-          x1={n.x}
-          y1={n.y}
-          x2={HUB.x}
-          y2={HUB.y}
-          stroke={AZURE}
-          strokeWidth={0.5}
-          opacity={0.18}
+      {/* Beams (behind cards) — light travels from each source into the hub */}
+      <AnimatedBeam
+        containerRef={container}
+        fromRef={tl}
+        toRef={hub}
+        curvature={38}
+        duration={3}
+        delay={0}
+      />
+      <AnimatedBeam
+        containerRef={container}
+        fromRef={tr}
+        toRef={hub}
+        curvature={38}
+        duration={3}
+        delay={0.4}
+      />
+      <AnimatedBeam
+        containerRef={container}
+        fromRef={bl}
+        toRef={hub}
+        curvature={-38}
+        duration={3}
+        delay={0.8}
+      />
+      <AnimatedBeam
+        containerRef={container}
+        fromRef={br}
+        toRef={hub}
+        curvature={-38}
+        duration={3}
+        delay={1.2}
+      />
+
+      {/* Source nodes */}
+      <NodeCard
+        innerRef={tl}
+        icon={Monitor}
+        title="Your machine"
+        caption="Registry · firewall · disk"
+        className="top-0 left-0"
+      />
+      <NodeCard
+        innerRef={tr}
+        icon={Cloud}
+        title="Your AWS"
+        caption="IAM · S3 · groups"
+        className="top-0 right-0"
+      />
+      <NodeCard
+        innerRef={bl}
+        icon={FileCog}
+        title="OS configs"
+        caption="Policies · patch level"
+        className="bottom-0 left-0"
+      />
+      <NodeCard
+        innerRef={br}
+        icon={ScrollText}
+        title="Event logs"
+        caption="Audit trail"
+        className="bottom-0 right-0"
+      />
+
+      {/* Central hub */}
+      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+        {/* Glow + pulsing rings */}
+        <div
+          aria-hidden
+          className="absolute left-1/2 top-1/2 -z-10 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(0,113,227,0.16), transparent 70%)" }}
         />
-      ))}
-
-      {/* Traveling evidence particles — dashes drift toward the hub */}
-      {!reduce &&
-        NODES.map((n, i) => (
-          <motion.line
-            key={`flow-${i}`}
-            x1={n.x}
-            y1={n.y}
-            x2={HUB.x}
-            y2={HUB.y}
-            stroke={AZURE}
-            strokeWidth={1}
-            strokeLinecap="round"
-            strokeDasharray="4 26"
-            initial={{ strokeDashoffset: 30 }}
-            animate={{ strokeDashoffset: 0 }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "linear", delay: i * 0.35 }}
-          />
-        ))}
-
-      {/* Pulsing rings behind the hub */}
-      {!reduce &&
-        [20, 27].map((r, i) => (
-          <motion.circle
-            key={`ring-${i}`}
-            cx={HUB.x}
-            cy={HUB.y}
-            r={r}
-            fill="none"
-            stroke={AZURE_BRIGHT}
-            strokeWidth={0.5}
-            initial={{ opacity: 0.35, scale: 0.9 }}
-            animate={{ opacity: [0.35, 0.05, 0.35], scale: [0.9, 1.15, 0.9] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
-            style={{ transformOrigin: `${HUB.x}px ${HUB.y}px` }}
-          />
-        ))}
-
-      {/* Source node badges */}
-      {NODES.map((n, i) => (
-        <g key={`node-${i}`}>
-          <rect
-            x={n.x - 30}
-            y={n.y - 8}
-            width={60}
-            height={16}
-            rx={8}
-            fill="#ffffff"
-            stroke="#e8e8ed"
-            strokeWidth={0.5}
-          />
-          <circle cx={n.x - 21} cy={n.y} r={1.8} fill={AZURE} />
-          <text
-            x={n.x - 15}
-            y={n.y + 2}
-            fill="#1d1d1f"
-            fontSize={5.4}
-            fontWeight={500}
-            style={{ fontFamily: "var(--font-sans)" }}
-          >
-            {n.label}
-          </text>
-        </g>
-      ))}
-
-      {/* Central hub — local evidence store */}
-      <g>
-        <rect
-          x={HUB.x - 32}
-          y={HUB.y - 15}
-          width={64}
-          height={30}
-          rx={9}
-          fill="rgba(0,113,227,0.08)"
-          stroke={AZURE}
-          strokeWidth={0.7}
-        />
-        <text
-          x={HUB.x}
-          y={HUB.y - 2}
-          textAnchor="middle"
-          fill="#1d1d1f"
-          fontSize={6}
-          fontWeight={600}
-          style={{ fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}
+        {!reduce &&
+          [0, 0.6].map((delay, i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{ border: "1px solid rgba(0,113,227,0.35)" }}
+              animate={{ scale: [0.8, 1.5], opacity: [0.5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay }}
+            />
+          ))}
+        <div
+          ref={hub}
+          className="relative flex flex-col items-center rounded-2xl px-6 py-4 text-center"
+          style={{
+            background: "linear-gradient(180deg, #0b4f9e, #0071e3)",
+            boxShadow: "0 12px 40px rgba(0,113,227,0.4)",
+          }}
         >
-          Local evidence
-        </text>
-        <text
-          x={HUB.x}
-          y={HUB.y + 6}
-          textAnchor="middle"
-          fill="#1d1d1f"
-          fontSize={6}
-          fontWeight={600}
-          style={{ fontFamily: "var(--font-sans)", letterSpacing: "-0.02em" }}
-        >
-          store
-        </text>
-        <text
-          x={HUB.x}
-          y={HUB.y + 12}
-          textAnchor="middle"
-          fill={AZURE}
-          fontSize={3.6}
-          style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}
-        >
-          SQLITE · ENCRYPTED
-        </text>
-      </g>
-    </svg>
+          <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-white/15 text-white">
+            <Database size={20} strokeWidth={2} aria-hidden />
+          </span>
+          <span className="mt-2.5 text-[15px] font-semibold text-white leading-tight">
+            Local evidence store
+          </span>
+          <span className="mt-1 font-mono text-[11px] uppercase tracking-wider text-white/70">
+            SQLite · encrypted
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
