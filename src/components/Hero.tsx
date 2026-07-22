@@ -103,7 +103,7 @@ export function Hero() {
       </Floating>
 
       {/* Center column */}
-      <div className="container-cg relative z-10 flex flex-col items-center justify-center text-center py-24 md:py-32">
+      <div className="container-cg relative z-10 min-h-[88vh] flex flex-col items-center justify-center text-center py-28">
         <Link
           to="/changelog"
           className="anim-rise inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors hover:bg-[rgba(0,113,227,0.12)]"
