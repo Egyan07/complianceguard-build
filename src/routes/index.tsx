@@ -3,6 +3,7 @@ import { Check, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { DemoVideo } from "@/components/DemoVideo";
 import { TheGap } from "@/components/TheGap";
 import { HowItWorks } from "@/components/HowItWorks";
 import { FeatureSpotlights } from "@/components/FeatureSpotlights";
@@ -166,7 +167,7 @@ function PricingPreview() {
                     </li>
                   ))}
                 </ul>
-                <a
+                
                   href={t.cta.href}
                   className={`${t.featured ? "btn-primary" : "btn-ghost"} mt-8 w-full`}
                 >
@@ -230,6 +231,7 @@ function LandingPage() {
       <Navbar />
       <main id="main">
         <Hero />
+        <DemoVideo />
         <TheGap />
         <HowItWorks />
         <FeatureSpotlights />

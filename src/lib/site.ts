@@ -9,6 +9,14 @@ export const GITHUB_URL = "https://github.com/Egyan07/ComplianceGuard";
 export const DOWNLOAD_URL = `${GITHUB_URL}/releases/latest`;
 export const CONTACT_EMAIL = "getcomplianceguard@gmail.com";
 
+/**
+ * Demo video, hosted on YouTube (unlisted) — no billing/CC requirement,
+ * unlike Cloudflare Stream. Upload the video as Unlisted on YouTube, then
+ * copy the video ID from its URL: https://youtu.be/<THIS_PART>
+ * or https://www.youtube.com/watch?v=<THIS_PART>
+ */
+export const YOUTUBE_VIDEO_ID = "4iE40LiGInw";
+
 export const salesMailto = (subject: string) =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
 
