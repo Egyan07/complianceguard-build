@@ -22,7 +22,7 @@ export function DemoVideo() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.08} className="mt-12 max-w-4xl mx-auto">
+        <Reveal delay={0.08} className="mt-12">
           <div
             className="relative w-full overflow-hidden rounded-2xl"
             style={{
