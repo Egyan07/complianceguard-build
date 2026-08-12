@@ -7,6 +7,7 @@ import { DOWNLOAD_URL, GITHUB_URL } from "@/lib/site";
 const links = [
   { to: "/pricing", label: "Pricing" },
   { to: "/security", label: "Security" },
+  { to: "/trust", label: "Trust" },
   { to: "/about", label: "About" },
   { to: "/changelog", label: "Changelog" },
 ] as const;

@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrustRouteImport } from './routes/trust'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesWhatIsSoc2RouteImport } from './routes/resources/what-is-soc2'
 import { Route as ResourcesSoc2ChecklistRouteImport } from './routes/resources/soc2-checklist'
 
+const TrustRoute = TrustRouteImport.update({
+  id: '/trust',
+  path: '/trust',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SecurityRoute = SecurityRouteImport.update({
   id: '/security',
   path: '/security',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/trust': typeof TrustRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/trust': typeof TrustRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/trust': typeof TrustRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/security'
+    | '/trust'
     | '/resources/soc2-checklist'
     | '/resources/what-is-soc2'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/security'
+    | '/trust'
     | '/resources/soc2-checklist'
     | '/resources/what-is-soc2'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/security'
+    | '/trust'
     | '/resources/soc2-checklist'
     | '/resources/what-is-soc2'
   fileRoutesById: FileRoutesById
@@ -130,12 +142,20 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   SecurityRoute: typeof SecurityRoute
+  TrustRoute: typeof TrustRoute
   ResourcesSoc2ChecklistRoute: typeof ResourcesSoc2ChecklistRoute
   ResourcesWhatIsSoc2Route: typeof ResourcesWhatIsSoc2Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/trust': {
+      id: '/trust'
+      path: '/trust'
+      fullPath: '/trust'
+      preLoaderRoute: typeof TrustRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/security': {
       id: '/security'
       path: '/security'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   SecurityRoute: SecurityRoute,
+  TrustRoute: TrustRoute,
   ResourcesSoc2ChecklistRoute: ResourcesSoc2ChecklistRoute,
   ResourcesWhatIsSoc2Route: ResourcesWhatIsSoc2Route,
 }

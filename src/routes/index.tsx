@@ -167,7 +167,7 @@ function PricingPreview() {
                     </li>
                   ))}
                 </ul>
-                
+                <a
                   href={t.cta.href}
                   className={`${t.featured ? "btn-primary" : "btn-ghost"} mt-8 w-full`}
                 >

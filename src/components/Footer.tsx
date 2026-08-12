@@ -14,6 +14,7 @@ const productLinks = [
 const companyLinks = [
   { label: "About", to: "/about" },
   { label: "Security", to: "/security" },
+  { label: "Trust", to: "/trust" },
   { label: "Privacy", to: "/privacy" },
   { label: "Contact sales", href: salesMailto("ComplianceGuard — sales enquiry") },
 ] as const;

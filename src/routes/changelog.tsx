@@ -11,7 +11,7 @@ export const Route = createFileRoute("/changelog")({
   head: () =>
     buildMeta({
       title: "Changelog — ComplianceGuard",
-      description: `ComplianceGuard changelog. Latest: v${VERSION} — native macOS support with DMG installers for Intel and Apple Silicon, full evidence collection parity with Windows.`,
+      description: `ComplianceGuard changelog. Latest: v${VERSION} — SOC 2 controls aligned to the real 54-control framework, premium readiness report, and a hardened, tamper-evident audit chain.`,
       path: "/changelog",
     }),
   component: ChangelogPage,
@@ -26,6 +26,50 @@ const entries: {
   tags: Tag[];
   bullets: string[];
 }[] = [
+  {
+    date: "August 2026",
+    version: "v3.5.1",
+    title: "SOC 2 controls aligned to the real 54-control framework",
+    tags: [{ label: "Fixed", tone: "green" }],
+    bullets: [
+      "SOC 2 control counts now match the real framework everywhere — desktop tier gating, the web evidence-to-control map, remediation scripts, and the UI heatmap all use the actual 54 controls. Pro/Enterprise desktop users were previously scored against only 29 of 54.",
+      "Dead control references (CC6.4/6.5/6.6/6.7/7.2) removed from evidence mapping, AWS collection labels, and the heatmap.",
+      "README pricing updated to match the website — Pro $149/mo, Enterprise $599/mo flat.",
+    ],
+  },
+  {
+    date: "July 2026",
+    version: "v3.5.0",
+    title: "Premium SOC 2 readiness report + auditor-grade features",
+    tags: [{ label: "Feature", tone: "blue" }],
+    bullets: [
+      "Premium report redesign — the exported PDF is now a polished SOC 2 Readiness Assessment: Apple-style layout, spacious cover, assessment statement with scope and methodology, and a recomputable SHA-256 report fingerprint.",
+      "Auditor-grade control detail — every control shows its objective, the evidence collected (with dates), the evidence still required, and prioritized remediation, plus a complete evidence register.",
+      "Trust Services Criteria — the report maps controls to SOC 2 TSC categories, lists the criteria in scope, and titles itself from the framework being assessed.",
+      "System Description — describe infrastructure, software, people, data, and subservice organizations in report settings; renders as a dedicated SOC 2-style section.",
+      "Remediation ownership — assign an owner and target date to any control; shown per control and in a prioritized Remediation Roadmap.",
+      "Engagement type — choose SOC 2 Type I or Type II with an assessment period; the report frames evidence for operating-effectiveness readiness.",
+    ],
+  },
+  {
+    date: "July 2026",
+    version: "v3.4.0",
+    title: "Email verification, HttpOnly refresh tokens, and security hardening",
+    tags: [
+      { label: "Feature", tone: "blue" },
+      { label: "Security", tone: "red" },
+      { label: "Fixed", tone: "green" },
+    ],
+    bullets: [
+      "Working email verification & password reset pages — the links in verification and reset emails now open in-app pages (#/verify-email, #/reset-password) that complete the action instead of pointing at a dead URL. Public, no sign-in required.",
+      "Refresh tokens moved to HttpOnly cookies — web-mode refresh tokens no longer live in localStorage, removing the XSS exfiltration path.",
+      "Audit chain made genuinely tamper-evident — audit-log entries are now HMAC-keyed instead of a bare hash an attacker with database access could forge; hashing is timezone-stable across SQLite/Postgres and fork-proof under concurrent appends.",
+      "Fail-closed feature gating — license tier can never be up-granted from missing or malformed data; Enterprise features are gated to dedicated deployments, with audit-log and user-list reads restricted to admins.",
+      "Hardened edges — cloud server URLs validated before credentials are sent (SSRF/cleartext), path traversal blocked in evidence file writes, CORS hardened, bounded timeouts on AWS and SMTP outbound calls, explicit Postgres pool sizing, and migrations run once at startup.",
+      "Account deletion cascade fixed — child evidence items are removed before collections, fixing the FK failure on account delete.",
+      "CI now runs the full Electron integration suite and gates release builds on it.",
+    ],
+  },
   {
     date: "June 2026",
     version: "v3.3.1",

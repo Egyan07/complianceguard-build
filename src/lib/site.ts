@@ -3,7 +3,7 @@
  * Version, URLs, and pricing must never be hand-duplicated in components.
  */
 export const SITE_URL = "https://complianceguard.cguard.workers.dev";
-export const VERSION = "3.3.1";
+export const VERSION = "3.5.1";
 
 export const GITHUB_URL = "https://github.com/Egyan07/ComplianceGuard";
 export const DOWNLOAD_URL = `${GITHUB_URL}/releases/latest`;
