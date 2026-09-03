@@ -11,6 +11,7 @@ import { FeatureSpotlights } from "@/components/FeatureSpotlights";
 import { FrameworksSection } from "@/components/FrameworksSection";
 import { TrustArchitecture } from "@/components/TrustArchitecture";
 import { EnterpriseSection } from "@/components/EnterpriseSection";
+import { FitCheck } from "@/components/FitCheck";
 import { HomepageFAQ } from "@/components/HomepageFAQ";
 import { Footer } from "@/components/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
@@ -249,6 +250,7 @@ function LandingPage() {
         <TrustArchitecture />
         <Comparison />
         <EnterpriseSection />
+        <FitCheck />
         <PricingPreview />
         <HomepageFAQ />
         <FinalCTA />
