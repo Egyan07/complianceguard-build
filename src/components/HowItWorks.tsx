@@ -12,7 +12,7 @@ const steps = [
   {
     n: 2,
     title: "Scan",
-    body: "ComplianceGuard reads the OS directly — password policy, firewall, disk encryption, audit logging.",
+    body: "ComplianceGuard reads the OS directly: password policy, firewall, disk encryption, audit logging.",
   },
   {
     n: 3,
@@ -29,14 +29,14 @@ const steps = [
 type LogLine = { text: string; tone?: "pass" | "warn" | "strong"; pauseAfter?: number };
 
 const SCAN_LINES: LogLine[] = [
-  { text: "ComplianceGuard 3.9.0 — evidence collection started", tone: "strong", pauseAfter: 400 },
+  { text: "ComplianceGuard 3.9.0: evidence collection started", tone: "strong", pauseAfter: 400 },
   { text: "Reading Windows Registry ✓", pauseAfter: 250 },
-  { text: "Password policy — PASS", tone: "pass", pauseAfter: 200 },
-  { text: "Firewall status — PASS", tone: "pass", pauseAfter: 200 },
-  { text: "Disk encryption — PASS", tone: "pass", pauseAfter: 200 },
-  { text: "Audit logging — NEEDS WORK", tone: "warn", pauseAfter: 250 },
-  { text: "Local user accounts — PASS", tone: "pass", pauseAfter: 400 },
-  { text: "Readiness score: 67% — 36 of 54 SOC 2 controls passing", tone: "strong" },
+  { text: "Password policy: PASS", tone: "pass", pauseAfter: 200 },
+  { text: "Firewall status: PASS", tone: "pass", pauseAfter: 200 },
+  { text: "Disk encryption: PASS", tone: "pass", pauseAfter: 200 },
+  { text: "Audit logging: NEEDS WORK", tone: "warn", pauseAfter: 250 },
+  { text: "Local user accounts: PASS", tone: "pass", pauseAfter: 400 },
+  { text: "Readiness score: 67% (36 of 54 SOC 2 controls passing)", tone: "strong" },
 ];
 
 const TONE_COLOR: Record<string, string> = {
@@ -59,7 +59,7 @@ const STEP_LOGS: Record<number, LogLine[]> = {
     { text: "$ link aws account", tone: "strong" },
     { text: "credentials encrypted locally (Fernet · HKDF-SHA256)" },
     { text: "IAM policies ✓", tone: "pass" },
-    { text: "S3 encryption — 4 of 5 buckets", tone: "warn" },
+    { text: "S3 encryption: 4 of 5 buckets", tone: "warn" },
     { text: "Security groups ✓", tone: "pass" },
   ],
   3: [
@@ -71,16 +71,16 @@ const STEP_LOGS: Record<number, LogLine[]> = {
 };
 
 const TERMINAL_TITLE: Record<number, string> = {
-  0: "ComplianceGuard — install",
-  1: "ComplianceGuard — scan log",
-  2: "ComplianceGuard — connect aws",
-  3: "ComplianceGuard — export",
+  0: "ComplianceGuard · install",
+  1: "ComplianceGuard · scan log",
+  2: "ComplianceGuard · connect aws",
+  3: "ComplianceGuard · export",
 };
 
 function TerminalFrame({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div
-      className="rounded-[20px] overflow-hidden text-left font-mono text-[13px] border border-white/10"
+      className="rounded-2xl overflow-hidden text-left font-mono text-[13px] border border-white/10"
       style={{ background: "var(--ink)", boxShadow: "var(--shadow-float)" }}
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">

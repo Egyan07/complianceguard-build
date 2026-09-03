@@ -29,7 +29,7 @@ export function ProductMockup() {
             className="mx-auto text-[12px] font-medium"
             style={{ color: "#86868b", letterSpacing: "-0.003em" }}
           >
-            ComplianceGuard &mdash; SOC 2 readiness
+            ComplianceGuard &middot; SOC 2 readiness
           </span>
           <span className="text-[11px] font-mono" style={{ color: "#86868b" }}>
             v3.9.0
@@ -131,12 +131,12 @@ export function ProductMockup() {
           {/* Control rows */}
           <div className="space-y-2">
             {[
-              { name: "CC6.1 — Logical Access", pass: true },
-              { name: "CC6.5 — Network Security", pass: true },
-              { name: "CC7.1 — Event Logging", pass: false },
-              { name: "CC7.2 — Vulnerability Mgmt", pass: true },
-              { name: "C1.2 — Data Protection", pass: false },
-              { name: "A1.4 — Backup & Recovery", pass: true },
+              { name: "CC6.1 &middot; Logical Access", pass: true },
+              { name: "CC6.5 &middot; Network Security", pass: true },
+              { name: "CC7.1 &middot; Event Logging", pass: false },
+              { name: "CC7.2 &middot; Vulnerability Mgmt", pass: true },
+              { name: "C1.2 &middot; Data Protection", pass: false },
+              { name: "A1.4 &middot; Backup & Recovery", pass: true },
             ].map((c) => (
               <div
                 key={c.name}

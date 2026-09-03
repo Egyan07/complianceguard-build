@@ -9,7 +9,7 @@ import { buildMeta, salesMailto, CONTACT_EMAIL, GITHUB_URL } from "@/lib/site";
 export const Route = createFileRoute("/security")({
   head: () =>
     buildMeta({
-      title: "Security — ComplianceGuard",
+      title: "Security | ComplianceGuard",
       description:
         "ComplianceGuard's security architecture: zero-knowledge by design, HKDF-SHA256 credential encryption, offline Ed25519 license verification, SHA-256 hash-chained audit log, and BSL 1.1 open core.",
       path: "/security",
@@ -31,7 +31,7 @@ const pillars = [
   {
     icon: Lock,
     title: "Offline public-key license verification",
-    body: "Pro licenses are signed with Ed25519. Only the public key ships in the binary. Validation is offline — no phone-home required.",
+    body: "Pro licenses are signed with Ed25519. Only the public key ships in the binary. Validation is offline, with no phone-home required.",
   },
   {
     icon: FileCode2,
@@ -41,7 +41,7 @@ const pillars = [
   {
     icon: RefreshCw,
     title: "Hardened transport & rate limits",
-    body: "TLS 1.2+, HSTS, strict CSP, Permissions-Policy. Login 5/min, register 3/min, forgot-password 3/min — multi-worker safe via shared backend.",
+    body: "TLS 1.2+, HSTS, strict CSP, Permissions-Policy. Login 5/min, register 3/min, forgot-password 3/min, all multi-worker safe via shared backend.",
   },
   {
     icon: Bug,
@@ -89,7 +89,7 @@ function SecurityPage() {
         <PageHero
           eyebrow="Security"
           title="Security, by architecture."
-          subtitle="Zero-knowledge by design. Your evidence stays on your machine — unless you explicitly choose otherwise."
+          subtitle="Zero-knowledge by design. Your evidence stays on your machine unless you explicitly choose otherwise."
           ornament="glow"
         >
           <LockMark />
@@ -135,7 +135,7 @@ function SecurityPage() {
                     If you discover a security vulnerability in ComplianceGuard, please disclose it
                     responsibly by emailing{" "}
                     <a
-                      href={salesMailto("Security disclosure — ComplianceGuard")}
+                      href={salesMailto("ComplianceGuard security disclosure")}
                       className="text-link hover:underline"
                     >
                       {CONTACT_EMAIL}
@@ -162,7 +162,7 @@ function SecurityPage() {
                   <p className="inline-flex items-center gap-2">
                     <Mail size={16} className="text-azure" />
                     <a
-                      href={salesMailto("Security disclosure — ComplianceGuard")}
+                      href={salesMailto("ComplianceGuard security disclosure")}
                       className="text-link hover:underline"
                     >
                       {CONTACT_EMAIL}

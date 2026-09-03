@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Shield, KeyRound, FileLock2, Download, ServerCog } from "lucide-react";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
-import { Aurora } from "./Aurora";
 import { salesMailto } from "@/lib/site";
 
 const HASHES = ["0x7a3f…b21c", "0x14de…9f08", "0xc9b2…5e7d", "0x4f80…ae33", "0x2bce…c640"];
@@ -10,7 +9,7 @@ const PILLARS = [
   {
     icon: FileLock2,
     title: "Tamper-evident audit log",
-    body: "Every evaluation, evidence collection and config change is appended to a SHA-256 hash chain. One altered byte breaks the chain — verifiable end-to-end in one request.",
+    body: "Every evaluation, evidence collection and config change is appended to a SHA-256 hash chain. One altered byte breaks the chain, verifiable end-to-end in one request.",
   },
   {
     icon: KeyRound,
@@ -31,7 +30,7 @@ const PILLARS = [
 
 function HashChain() {
   return (
-    <div className="glass glass-edge relative overflow-hidden p-6 md:p-8 rounded-[28px]">
+    <div className="glass glass-edge relative overflow-hidden p-6 md:p-8 rounded-[20px]">
       <div className="flex items-center justify-between mb-5">
         <span className="text-[11px] font-mono uppercase tracking-wider text-snow/70">
           audit_log &middot; sha-256 chain
@@ -85,7 +84,14 @@ function HashChain() {
 export function EnterpriseSection() {
   return (
     <section className="on-dark relative isolate overflow-hidden py-28 md:py-36 finish-indigo">
-      <Aurora tone="dark" />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(255,255,255,0.10), transparent 65%)",
+        }}
+      />
       <div className="container-cg relative">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-5 text-snow">
@@ -100,8 +106,8 @@ export function EnterpriseSection() {
             internet doesn&rsquo;t reach.
           </h2>
           <p className="mt-6 body-lg text-snow/85">
-            Government, defence and regulated finance teams need evidence that proves itself &mdash;
-            without phoning home. Ships fully offline with a cryptographic audit trail.
+            Government, defence and regulated finance teams need evidence that proves itself without
+            phoning home. Ships fully offline with a cryptographic audit trail.
           </p>
           <a href={salesMailto("ComplianceGuard Enterprise")} className="btn-on-navy mt-8">
             Contact sales <span aria-hidden>&rsaquo;</span>
@@ -111,7 +117,7 @@ export function EnterpriseSection() {
         <div className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-start">
           <div className="grid sm:grid-cols-2 gap-4">
             {PILLARS.map((p) => (
-              <div key={p.title} className="glass glass-edge card-hover p-6 rounded-[22px]">
+              <div key={p.title} className="glass glass-edge card-hover p-6 rounded-2xl">
                 <p.icon size={18} className="text-snow" aria-hidden />
                 <h3
                   className="mt-4 text-[17px] font-semibold text-snow"

@@ -62,7 +62,7 @@ export const TIERS: Tier[] = [
     managedMonthly: null,
     tagline: "See exactly where you stand on SOC 2 before you pay anything.",
     features: [
-      "Evidence collection — all 8 categories",
+      "Evidence collection (all 8 categories)",
       "12 core SOC 2 controls",
       "Overall compliance score",
       "1 machine · 1 user · community support",
@@ -80,7 +80,7 @@ export const TIERS: Tier[] = [
       "Control heatmap and score trend (Type II timeline)",
       "Manual evidence upload + evaluation history",
       "PDF audit-ready reports",
-      "Cloud dashboard — up to 10 machines, 10 users",
+      "Cloud dashboard (up to 10 machines, 10 users)",
       "Email support",
     ],
     cta: { label: "Start with Pro", href: salesMailto("ComplianceGuard Pro") },
@@ -94,7 +94,7 @@ export const TIERS: Tier[] = [
     features: [
       "Everything in Pro",
       "Tamper-evident audit log (SHA-256 hash chain)",
-      "RBAC — admin and auditor roles",
+      "RBAC (admin and auditor roles)",
       "Custom PDF branding",
       "Full compliance data export (NDJSON)",
       "Air-gapped Docker bundle · zero telemetry",

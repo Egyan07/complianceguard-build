@@ -9,19 +9,19 @@ const FAQS = [
   },
   {
     q: "Will auditors accept the evidence pack?",
-    a: "Every evidence pack is mapped control-by-control to the AICPA Trust Services Criteria — the exact framework SOC 2 auditors work from. The PDF export follows the format used in successful SOC 2 Type I and Type II audits, so there's no reformatting and no back-and-forth. A formal SOC 2 report still requires a licensed CPA firm; ComplianceGuard gets you to that engagement prepared.",
+    a: "Every evidence pack is mapped control-by-control to the AICPA Trust Services Criteria, the exact framework SOC 2 auditors work from. The PDF export follows the format used in successful SOC 2 Type I and Type II audits, so there's no reformatting and no back-and-forth. A formal SOC 2 report still requires a licensed CPA firm; ComplianceGuard gets you to that engagement prepared.",
   },
   {
     q: "How is this different from Vanta or Drata?",
-    a: "They scan cloud infrastructure; ComplianceGuard scans the machines themselves. Password policies, firewall rules, disk encryption, event logs — that evidence lives on the endpoint, not in AWS. Many teams run both: a cloud platform for SaaS integrations, ComplianceGuard for the endpoint evidence those platforms structurally can't see.",
+    a: "They scan cloud infrastructure; ComplianceGuard scans the machines themselves. Password policies, firewall rules, disk encryption, and event logs. That evidence lives on the endpoint, not in AWS. Many teams run both: a cloud platform for SaaS integrations, ComplianceGuard for the endpoint evidence those platforms structurally can't see.",
   },
   {
     q: "Why should I trust it with my compliance?",
-    a: "Don't trust claims — read the code. ComplianceGuard is source-available under BSL 1.1: every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~1,075 tests run on every commit. Most importantly, the architecture means we never receive your evidence — it stays on your disk, under your control.",
+    a: "Don't trust claims; read the code. ComplianceGuard is source-available under BSL 1.1, so every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~1,075 tests run on every commit. Most importantly, the architecture means we never receive your evidence. It stays on your disk, under your control.",
   },
   {
     q: "Can't I just collect evidence manually in a spreadsheet?",
-    a: "You can — most first SOC 2 audits start that way. ComplianceGuard automates the collection: instead of checking firewall settings by hand, running scripts, and copying output into a spreadsheet, it reads everything in about 30 seconds and formats it the way your auditor expects.",
+    a: "You can, and most first SOC 2 audits start that way. ComplianceGuard automates the collection: instead of checking firewall settings by hand, running scripts, and copying output into a spreadsheet, it reads everything in about 30 seconds and formats it the way your auditor expects.",
   },
   {
     q: "What happens to my data?",
@@ -33,7 +33,7 @@ const FAQS = [
   },
   {
     q: "What does ComplianceGuard intentionally leave out?",
-    a: "No auditor marketplace — use whichever firm you want. No 40-app integration catalog — the focus is evidence, not workflow chrome. And no lock-in: evidence is stored locally in standard formats, so you can export it and switch tools at any time.",
+    a: "No auditor marketplace. Use whichever firm you want. No 40-app integration catalog, either; the focus is evidence, not workflow chrome. And no lock-in: evidence is stored locally in standard formats, so you can export it and switch tools at any time.",
   },
 ];
 

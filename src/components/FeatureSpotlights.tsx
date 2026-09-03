@@ -44,7 +44,7 @@ const spotlights = [
   {
     eyebrow: "Real-time scoring",
     title: "Know exactly where you stand.",
-    body: "Your compliance score updates the moment a scan completes. See which of the 54 SOC 2 controls you're passing and which need work — with remediation scripts for the gaps — before you ever engage an auditor.",
+    body: "Your compliance score updates the moment a scan completes. See which of the 54 SOC 2 controls you're passing and which need work, with remediation scripts for the gaps, before you ever engage an auditor.",
     img: {
       src: "/screenshots/Dashboard.png",
       alt: "ComplianceGuard dashboard showing a real-time compliance score with one-click access to collect evidence, run an evaluation, and export an audit-ready PDF report",
@@ -55,7 +55,7 @@ const spotlights = [
   {
     eyebrow: "Control heatmap",
     title: "Every control, color-coded.",
-    body: "Every SOC 2 control at a glance — passing, partial, and failing — with per-control gap details and inline remediation scripts for the findings that can be automated.",
+    body: "Every SOC 2 control at a glance: passing, partial, and failing, with per-control gap details and inline remediation scripts for the findings that can be automated.",
     img: {
       src: "/screenshots/ControlHeatmap.png",
       alt: "ComplianceGuard control heatmap showing passing, partial, and failing SOC 2 controls with per-control gap details and remediation scripts",
@@ -84,7 +84,7 @@ const capabilities: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: WifiOff,
     title: "Works without an internet connection.",
-    body: "Evidence collection and reporting run fully offline — built for air-gapped environments and restricted networks.",
+    body: "Evidence collection and reporting run fully offline, built for air-gapped environments and restricted networks.",
   },
 ];
 
@@ -93,7 +93,7 @@ const showcaseTabs = [
     id: "trend",
     label: "Score trend",
     title: "Track readiness over time.",
-    body: "Your score, zone-banded across the timeline — with per-framework tabs so every scan's impact on SOC 2, ISO 27001, HIPAA, and GDPR is visible at a glance.",
+    body: "Your score, zone-banded across the timeline, with per-framework tabs so every scan's impact on SOC 2, ISO 27001, HIPAA, and GDPR is visible at a glance.",
     img: {
       src: "/screenshots/ScoreTrend.png",
       alt: "ComplianceGuard score trend chart with compliance zone bands and per-framework tabs across SOC 2, ISO 27001, HIPAA, and GDPR",
@@ -105,7 +105,7 @@ const showcaseTabs = [
     id: "cloud",
     label: "Cloud dashboard",
     title: "Every machine, one view.",
-    body: "Fleet-level compliance scores, machine status, and last-sync across all your endpoints — from one web dashboard.",
+    body: "Fleet-level compliance scores, machine status, and last-sync across all your endpoints, all from one web dashboard.",
     img: {
       src: "/screenshots/CloudDashboard.png",
       alt: "ComplianceGuard cloud dashboard monitoring compliance scores, fleet-level stats, and last-sync status across multiple machines",
@@ -117,7 +117,7 @@ const showcaseTabs = [
     id: "frameworks",
     label: "Framework browser",
     title: "The full control library, offline.",
-    body: "Browse every control with objectives and implementation guidance, even air-gapped — 54 SOC 2, 47 ISO 27001, 47 HIPAA, and 38 GDPR.",
+    body: "Browse every control with objectives and implementation guidance, even air-gapped: 54 SOC 2, 47 ISO 27001, 47 HIPAA, and 38 GDPR.",
     img: {
       src: "/screenshots/FrameworkBrowser.png",
       alt: "ComplianceGuard framework browser showing the SOC 2 Type II control library with control objectives and implementation guidance",

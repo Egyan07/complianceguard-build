@@ -10,14 +10,37 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-snow px-4">
       <div className="max-w-md text-center">
-        <p className="mono-tag mb-3">404 &middot; page not found</p>
-        <h1 className="display-2">This page doesn&rsquo;t exist.</h1>
-        <p className="mt-4 text-[17px] text-ink-2">
-          The URL may be wrong, or the page may have moved.
+        <p className="mono-tag mb-3" style={{ color: "var(--azure)" }}>
+          404 &middot; not in the control library
         </p>
-        <div className="mt-8">
+        <h1 className="display-2">This page isn&rsquo;t part of the framework.</h1>
+        <p className="mt-4 text-[17px] text-ink-2 leading-[1.65]">
+          We scanned this address and found no evidence it exists. Double-check the URL, or
+          head somewhere we know passes audit.
+        </p>
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Link to="/" className="btn-primary">
             Back to home
+          </Link>
+          <Link to="/pricing" className="btn-ghost">
+            View pricing
+          </Link>
+        </div>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px] text-ink-3">
+          <Link to="/security" className="hover:text-ink transition-colors">
+            Security
+          </Link>
+          <span aria-hidden>&middot;</span>
+          <Link to="/trust" className="hover:text-ink transition-colors">
+            Trust
+          </Link>
+          <span aria-hidden>&middot;</span>
+          <Link to="/changelog" className="hover:text-ink transition-colors">
+            Changelog
+          </Link>
+          <span aria-hidden>&middot;</span>
+          <Link to="/resources/what-is-soc2" className="hover:text-ink transition-colors">
+            What is SOC 2?
           </Link>
         </div>
       </div>
@@ -63,7 +86,7 @@ export const Route = createRootRoute({
           url: SITE_URL,
           logo: `${SITE_URL}/favicon.svg`,
           description:
-            "Endpoint-level SOC 2, ISO 27001 and HIPAA compliance evidence — on your machine, on your terms.",
+            "Endpoint-level SOC 2, ISO 27001 and HIPAA compliance evidence on your machine, on your terms.",
         }),
       },
       ...(CF_BEACON_TOKEN

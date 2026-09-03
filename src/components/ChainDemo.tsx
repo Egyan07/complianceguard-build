@@ -202,7 +202,7 @@ export function ChainDemo() {
         <div className="inline-flex items-center gap-2.5" role="status" aria-live="polite">
           {failed && (
             <span className="text-[13px] text-white/70">
-              Hash verification needs Web Crypto — try a current browser.
+              Hash verification needs Web Crypto. Try a current browser.
             </span>
           )}
           {!failed && status === "computing" && (
@@ -217,7 +217,7 @@ export function ChainDemo() {
           {status === "broken" && (
             <span className="inline-flex items-center gap-2 text-[13px] font-medium text-white">
               <ShieldAlert size={16} className="text-[#ff9d5c]" />
-              Tampering detected — entry #{brokenAt !== null ? brokenAt + 1 : "?"} no longer matches
+              Tampering detected: entry #{brokenAt !== null ? brokenAt + 1 : "?"} no longer matches
               the chain
             </span>
           )}
@@ -322,7 +322,7 @@ export function ChainDemo() {
         </p>
         <p className="mt-2 text-[12px] text-white/45 leading-relaxed">
           This demo runs the product&rsquo;s exact scheme with a demo key. In your deployment the
-          key is derived from a secret only you hold — we never see it.
+          key is derived from a secret only you hold; we never see it.
         </p>
       </div>
     </div>

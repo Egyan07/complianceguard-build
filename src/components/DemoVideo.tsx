@@ -18,7 +18,7 @@ export function DemoVideo() {
           <h2 className="display-2">Compliance in minutes, not months.</h2>
           <p className="mt-6 body-lg text-ink-2 max-w-2xl mx-auto">
             Continuous endpoint evidence, real-time compliance tracking, and instant
-            audit-ready reports &mdash; self-hosted and privacy-first.
+            audit-ready reports, all self-hosted and privacy-first.
           </p>
         </Reveal>
       </div>
@@ -39,7 +39,7 @@ export function DemoVideo() {
             preload="metadata"
             playsInline
             className="absolute inset-0 h-full w-full"
-            title="ComplianceGuard — the 60-second story"
+            title="ComplianceGuard: the 60-second story"
           />
         </div>
       </Reveal>

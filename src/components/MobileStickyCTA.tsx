@@ -26,7 +26,7 @@ export function MobileStickyCTA() {
         boxShadow: "0 8px 24px -8px rgba(0,113,227,0.4)",
       }}
     >
-      Download &mdash; Free, no account required
+      Download &middot; Free, no account required
     </a>
   );
 }

@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useReducedMotion } from "framer-motion";
 import { ShieldCheck, Check, Lock } from "lucide-react";
-import { Aurora } from "./Aurora";
 import { Magnetic } from "./Magnetic";
 import { TextRotate } from "./TextRotate";
 import Floating, { FloatingElement } from "./ParallaxFloating";
@@ -33,7 +32,14 @@ export function Hero() {
 
   return (
     <section data-hero className="relative isolate overflow-hidden md:overflow-visible bg-snow">
-      <Aurora tone="light" />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 75% 50% at 50% -10%, rgba(0,113,227,0.07), transparent 70%)",
+        }}
+      />
       <div aria-hidden className="absolute inset-0 ambient-grid" />
 
       {/* Floating product tiles — desktop only */}
@@ -109,7 +115,7 @@ export function Hero() {
           className="anim-rise inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors hover:bg-[rgba(0,113,227,0.12)]"
           style={{ background: "var(--azure-soft)", color: "var(--azure)" }}
         >
-          <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-azure" />v{VERSION} &mdash; now
+          <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-azure" />v{VERSION} &middot; now
           on Windows and macOS
           <span aria-hidden>&rsaquo;</span>
         </Link>
@@ -130,7 +136,7 @@ export function Hero() {
 
         <p className="anim-rise anim-d-2 mt-6 body-lg md:text-[20px] text-ink-2 max-w-[620px]">
           Cloud platforms scan your cloud. ComplianceGuard scans the machines your business runs on
-          &mdash; collecting, scoring, and signing SOC&nbsp;2, ISO&nbsp;27001, and HIPAA evidence
+          , collecting, scoring, and signing SOC&nbsp;2, ISO&nbsp;27001, and HIPAA evidence
           locally. Nothing leaves your network.
         </p>
 

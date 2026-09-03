@@ -8,7 +8,7 @@ import { buildMeta, DOWNLOAD_URL } from "@/lib/site";
 export const Route = createFileRoute("/resources/what-is-soc2")({
   head: () =>
     buildMeta({
-      title: "What is SOC 2? — ComplianceGuard",
+      title: "What is SOC 2? | ComplianceGuard",
       description:
         "SOC 2 is an AICPA security framework built on the Trust Services Criteria. Learn the difference between Type I and Type II, what evidence auditors need, and how long an audit takes.",
       path: "/resources/what-is-soc2",
@@ -39,7 +39,7 @@ function WhatIsSoc2Page() {
         <PageHero
           eyebrow="Resources"
           title="What is SOC 2?"
-          subtitle="An accessible guide to the AICPA framework for SaaS founders — report types, the Trust Services Criteria, evidence, and timelines."
+          subtitle="An accessible guide to the AICPA framework for SaaS founders: report types, the Trust Services Criteria, evidence, and timelines."
           ornament="none"
         />
 
@@ -58,7 +58,7 @@ function WhatIsSoc2Page() {
               <p>
                 Enterprise buyers and their legal teams increasingly require SOC 2 compliance before
                 signing contracts. A SOC 2 report proves that your systems and processes meet a
-                recognised security standard — without it, you may lose deals to competitors who
+                recognised security standard. Without it, you may lose deals to competitors who
                 have it.
               </p>
             </Section>
@@ -85,7 +85,7 @@ function WhatIsSoc2Page() {
 
             <Section title="The Trust Services Criteria">
               <p>
-                SOC 2 audits are conducted against the AICPA Trust Services Criteria — the framework
+                SOC 2 audits are conducted against the AICPA Trust Services Criteria, the framework
                 that defines what auditors evaluate. The criteria span areas including logical
                 access controls, encryption, audit logging, incident response, vendor management,
                 and change management. Security is the only mandatory category; the other four are
@@ -112,8 +112,8 @@ function WhatIsSoc2Page() {
               <p>
                 A SOC 2 Type I audit typically takes 4–8 weeks from starting evidence collection to
                 receiving your report. A Type II audit requires an observation period of 6–12 months
-                before the auditor can issue the report. Starting evidence collection early — before
-                you need the report — is the most important thing you can do.
+                before the auditor can issue the report. Starting evidence collection early, before
+                you need the report, is the most important thing you can do.
               </p>
             </Section>
 
@@ -128,8 +128,8 @@ function WhatIsSoc2Page() {
 
             <Section title="Beyond SOC 2: ISO 27001 and HIPAA">
               <p>
-                If your clients are in Europe, they may require ISO 27001 certification instead of —
-                or in addition to — SOC 2. If you work with healthcare data, HIPAA compliance is
+                If your clients are in Europe, they may require ISO 27001 certification instead of,
+                or in addition to, SOC 2. If you work with healthcare data, HIPAA compliance is
                 mandatory. ComplianceGuard supports all three frameworks from the same evidence
                 collection run: alongside its 54 SOC 2 controls, it scores 47 ISO 27001 controls and
                 47 HIPAA controls. One scan, three reports.

@@ -6,6 +6,7 @@ import { Hero } from "@/components/Hero";
 import { DemoVideo } from "@/components/DemoVideo";
 import { TheGap } from "@/components/TheGap";
 import { HowItWorks } from "@/components/HowItWorks";
+import { EvidenceSources } from "@/components/EvidenceSources";
 import { FeatureSpotlights } from "@/components/FeatureSpotlights";
 import { FrameworksSection } from "@/components/FrameworksSection";
 import { TrustArchitecture } from "@/components/TrustArchitecture";
@@ -13,7 +14,6 @@ import { EnterpriseSection } from "@/components/EnterpriseSection";
 import { HomepageFAQ } from "@/components/HomepageFAQ";
 import { Footer } from "@/components/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
-import { Aurora } from "@/components/Aurora";
 import { Magnetic } from "@/components/Magnetic";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
@@ -22,9 +22,9 @@ import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
 export const Route = createFileRoute("/")({
   head: () =>
     buildMeta({
-      title: "ComplianceGuard — Endpoint Compliance Evidence for SOC 2, ISO 27001 & HIPAA",
+      title: "ComplianceGuard | Endpoint Compliance Evidence for SOC 2, ISO 27001 & HIPAA",
       description:
-        "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows and macOS endpoints. Three frameworks, one scan — and nothing leaves your network.",
+        "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows and macOS endpoints. Three frameworks, one scan. Nothing leaves your network.",
       path: "/",
     }),
   component: LandingPage,
@@ -35,7 +35,7 @@ const compareRows = [
   ["Data stays on your machine", "yes", "no", "no"],
   ["Works offline / air-gapped", "yes", "no", "no"],
   ["Compliance frameworks", "SOC 2 · ISO 27001 · HIPAA", "SOC 2 · ISO 27001", "SOC 2 · ISO 27001"],
-  ["Per-seat pricing", "No — flat rate", "Yes", "Yes"],
+  ["Per-seat pricing", "No &middot; flat rate", "Yes", "Yes"],
   ["Setup time", "Minutes", "Weeks", "Weeks"],
   ["Source code", "BSL 1.1 source-available", "Proprietary", "Proprietary"],
   ["Free tier", "yes", "no", "no"],
@@ -70,7 +70,7 @@ function Comparison() {
           <h2 className="display-2">Different by architecture.</h2>
           <p className="mt-6 body-lg text-ink-2 max-w-2xl">
             Cloud compliance platforms and ComplianceGuard solve different layers of the same
-            problem. The difference is where the evidence comes from &mdash; and where it stays.
+            problem. The difference is where the evidence comes from, and where it stays.
           </p>
         </Reveal>
 
@@ -193,8 +193,17 @@ function PricingPreview() {
 
 function FinalCTA() {
   return (
-    <section className="on-dark relative isolate overflow-hidden bg-ink text-snow py-24 md:py-32">
-      <Aurora tone="dark" />
+    <section className="on-dark relative isolate overflow-hidden bg-ink text-snow py-28 md:py-40">
+      {/* Spotlight glow — distinct texture from the earlier dark bands */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,113,227,0.30), transparent 70%)",
+        }}
+      />
+      <div aria-hidden className="absolute inset-0 ambient-grid opacity-50" />
       <div className="container-cg text-center relative">
         <Reveal>
           <h2 className="display-2 !text-snow">
@@ -203,7 +212,7 @@ function FinalCTA() {
             is waiting on a SOC&nbsp;2 report.
           </h2>
           <p className="mt-6 body-lg text-snow/70 max-w-[560px] mx-auto">
-            Get audit-ready with evidence collected from the machines themselves &mdash; scored,
+            Get audit-ready with evidence collected from the machines themselves: scored,
             signed, and under your control.
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
@@ -212,7 +221,7 @@ function FinalCTA() {
                 Download for free
               </a>
             </Magnetic>
-            <a href={salesMailto("ComplianceGuard — sales enquiry")} className="btn-ghost-on-navy">
+            <a href={salesMailto("ComplianceGuard sales enquiry")} className="btn-ghost-on-navy">
               Contact sales
             </a>
           </div>
@@ -234,6 +243,7 @@ function LandingPage() {
         <DemoVideo />
         <TheGap />
         <HowItWorks />
+        <EvidenceSources />
         <FeatureSpotlights />
         <FrameworksSection />
         <TrustArchitecture />

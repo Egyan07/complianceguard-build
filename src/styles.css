@@ -16,8 +16,8 @@
 
   --radius-sm: 10px;
   --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
 
   /* ── Core palette ─────────────────────────────────────────────── */
   --color-ink: var(--ink);
@@ -330,7 +330,7 @@
 
   /* ── Glass surfaces — frosted, with a light top-edge highlight.
      Reads as premium only over color/dark/animated backgrounds, so it's
-     used on dark bands and over the aurora — never over flat white. ─── */
+     used on dark bands — never over flat white. ─── */
   .glass {
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(20px) saturate(160%);
@@ -439,25 +439,6 @@
 @keyframes cg-dash-flow { to { stroke-dashoffset: -24; } }
 .cg-dash-flow { animation: cg-dash-flow 1.6s linear infinite; }
 
-/* Aurora — slow drifting light blobs behind hero / dark bands. GPU-only
-   (transform + opacity). Three offset phases so the field never looks like
-   it's pulsing in unison. Frozen by the global reduced-motion block. */
-@keyframes cg-aurora-a {
-  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1); }
-  50%      { transform: translate3d(7%, 5%, 0) scale(1.18); }
-}
-@keyframes cg-aurora-b {
-  0%, 100% { transform: translate3d(5%, 6%, 0) scale(1.12); }
-  50%      { transform: translate3d(-7%, -6%, 0) scale(0.94); }
-}
-@keyframes cg-aurora-c {
-  0%, 100% { transform: translate3d(0, 8%, 0) scale(1.05); opacity: 0.9; }
-  50%      { transform: translate3d(4%, -5%, 0) scale(1.2); opacity: 1; }
-}
-.cg-aurora-blob { position: absolute; border-radius: 9999px; will-change: transform; }
-.cg-aurora-a { animation: cg-aurora-a 18s var(--ease-expo) infinite; }
-.cg-aurora-b { animation: cg-aurora-b 22s var(--ease-expo) infinite; }
-.cg-aurora-c { animation: cg-aurora-c 26s var(--ease-expo) infinite; }
 
 @keyframes cg-gauge-fill {
   from { stroke-dashoffset: var(--cg-gauge-circumference); }

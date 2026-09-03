@@ -65,7 +65,7 @@ export function FrameworksSection() {
           </h2>
           <p className="mt-6 body-lg text-ink-2">
             The same OS-level evidence collection powers SOC&nbsp;2, ISO&nbsp;27001 and HIPAA
-            &mdash; mapped directly to the controls auditors actually check.
+            , mapped directly to the controls auditors actually check.
           </p>
         </Reveal>
 
@@ -77,7 +77,7 @@ export function FrameworksSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={VIEWPORT}
                 transition={{ duration: DUR.slow, ease: EASE_EXPO, delay: i * 0.1 }}
-                className={`relative overflow-hidden ${f.finish} flex flex-col rounded-[28px] p-9 h-full`}
+                className={`relative overflow-hidden ${f.finish} flex flex-col rounded-[20px] p-9 h-full`}
                 style={{ minHeight: 480 }}
               >
                 <div className="text-snow">

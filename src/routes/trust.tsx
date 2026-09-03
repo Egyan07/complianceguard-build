@@ -25,7 +25,7 @@ import {
 export const Route = createFileRoute("/trust")({
   head: () =>
     buildMeta({
-      title: "Trust — ComplianceGuard",
+      title: "Trust | ComplianceGuard",
       description:
         "ComplianceGuard's trust center: source-available under BSL 1.1, zero-knowledge by design, tamper-evident SHA-256 hash-chained audit logs you can verify yourself, honest flat pricing, and 54-control SOC 2 coverage.",
       path: "/trust",
@@ -37,7 +37,7 @@ const neverSee = [
   {
     icon: Lock,
     title: "Your evidence",
-    body: "Password policies, firewall rules, event logs — collected and stored in a local database on your machine. Zero bytes are uploaded unless you explicitly turn on Cloud Sync.",
+    body: "Password policies, firewall rules, and event logs, all collected and stored in a local database on your machine. Zero bytes are uploaded unless you explicitly turn on Cloud Sync.",
   },
   {
     icon: KeyRound,
@@ -54,7 +54,7 @@ const neverSee = [
 const openCore = [
   {
     icon: FileCode2,
-    title: "Source available — BSL 1.1",
+    title: "Source available (BSL 1.1)",
     body: "Every evidence collector, scoring rule, and report template is public on GitHub. Read the code that reads your system.",
   },
   {
@@ -108,7 +108,7 @@ function TrustPage() {
               Verify us.
             </>
           }
-          subtitle="We're a small, independent tool asking to sit inside your network. So here's everything you'd want to check before saying yes — the source, the data flow, the tamper-evidence, and the pricing."
+          subtitle="We're a small, independent tool asking to sit inside your network. So here's everything you'd want to check before saying yes: the source, the data flow, the tamper-evidence, and the pricing."
           ornament="glow"
         />
 
@@ -126,29 +126,14 @@ function TrustPage() {
               </h2>
               <p className="mt-5 body-lg text-ink-2 max-w-2xl">
                 Every Enterprise deployment appends to a hash-chained audit log. Each entry is keyed
-                with HMAC-SHA256 over all seven fields and linked to the entry before it — so a
+                with HMAC-SHA256 over all seven fields and linked to the entry before it, so a
                 single edit anywhere breaks the chain, and the verify endpoint will say so. Try it
                 below: append events, then edit one.
               </p>
             </Reveal>
 
             <Reveal delay={0.08} className="mt-10">
-              <div className="finish-slate on-dark relative overflow-hidden rounded-[28px] p-6 md:p-10">
-                {/* ambient aurora blobs */}
-                <div
-                  aria-hidden
-                  className="cg-aurora-blob cg-aurora-a w-[420px] h-[420px] -top-40 -right-32 opacity-30"
-                  style={{
-                    background: "radial-gradient(circle, rgba(0,113,227,0.55), transparent 70%)",
-                  }}
-                />
-                <div
-                  aria-hidden
-                  className="cg-aurora-blob cg-aurora-b w-[340px] h-[340px] -bottom-44 -left-28 opacity-25"
-                  style={{
-                    background: "radial-gradient(circle, rgba(108,180,255,0.5), transparent 70%)",
-                  }}
-                />
+              <div className="finish-slate on-dark relative overflow-hidden rounded-[20px] p-6 md:p-10">
                 <div className="relative">
                   <ChainDemo />
                 </div>
@@ -235,7 +220,7 @@ function TrustPage() {
               <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-snow border border-hairline px-6 py-5">
                 <p className="text-[15px] text-ink-2">
                   Current release{" "}
-                  <span className="font-mono text-[13.5px] font-medium text-ink">v{VERSION}</span> —
+                  <span className="font-mono text-[13.5px] font-medium text-ink">v{VERSION}</span>:
                   every release ships Windows and macOS installers built from source.
                 </p>
                 <div className="flex flex-wrap gap-2 shrink-0">
@@ -312,7 +297,7 @@ function TrustPage() {
                         <strong className="text-ink font-semibold">
                           Flat pricing, no per-seat math.
                         </strong>{" "}
-                        One rate per deployment — Pro $149/mo and Enterprise $599/mo (billed
+                        One rate per deployment: Pro $149/mo and Enterprise $599/mo (billed
                         annually, self-hosted), or managed hosting. No surprises at renewal.
                       </span>
                     </li>
@@ -330,7 +315,7 @@ function TrustPage() {
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-azure shrink-0" />
                       <span>
                         <strong className="text-ink font-semibold">No data monetization.</strong>{" "}
-                        There is no data to monetize — we don&rsquo;t see your evidence, and we
+                        There is no data to monetize. We don&rsquo;t see your evidence, and we
                         never will.
                       </span>
                     </li>
@@ -360,14 +345,14 @@ function TrustPage() {
                 A human, in under a day.
               </h2>
               <p className="mt-4 body-lg text-ink-2">
-                You&rsquo;re evaluating a tool that touches your audit trail — you deserve a direct
+                You&rsquo;re evaluating a tool that touches your audit trail. You deserve a direct
                 line, not a ticket queue.
               </p>
             </Reveal>
             <div className="mt-8 space-y-5">
               <Reveal>
                 <a
-                  href={salesMailto("Question before evaluating — ComplianceGuard")}
+                  href={salesMailto("Question before evaluating ComplianceGuard")}
                   className="card-snow card-hover flex items-center gap-4 p-6"
                 >
                   <span className="w-11 h-11 rounded-2xl bg-azure text-white flex items-center justify-center shrink-0">
@@ -378,7 +363,7 @@ function TrustPage() {
                       Ask us anything, first
                     </span>
                     <span className="block mt-0.5 text-[14px] text-ink-2">
-                      {CONTACT_EMAIL} — answers from a person who wrote the code
+                      {CONTACT_EMAIL} &middot; answers from a person who wrote the code
                     </span>
                   </span>
                 </a>
@@ -411,14 +396,14 @@ function TrustPage() {
             <div className="container-cg max-w-2xl text-center">
               <h2 className="display-2">Verify it yourself.</h2>
               <p className="mt-3 text-ink-2">
-                Download, run a readiness scan, and judge the output with your own eyes — before you
+                Download, run a readiness scan, and judge the output with your own eyes before you
                 pay a cent.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
                 <a href={DOWNLOAD_URL} className="btn-primary btn-sheen">
                   Download Free
                 </a>
-                <a href={salesMailto("ComplianceGuard — pre-sales question")} className="btn-dark">
+                <a href={salesMailto("ComplianceGuard pre-sales question")} className="btn-dark">
                   Talk to a human
                 </a>
               </div>

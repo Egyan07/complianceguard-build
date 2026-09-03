@@ -11,9 +11,9 @@ import { buildMeta, VERSION } from "@/lib/site";
 export const Route = createFileRoute("/about")({
   head: () =>
     buildMeta({
-      title: "About — ComplianceGuard",
+      title: "About | ComplianceGuard",
       description:
-        "ComplianceGuard collects, scores, and signs compliance evidence on the endpoint where it originates. SOC 2, ISO 27001, and HIPAA — local-first, source-available.",
+        "ComplianceGuard collects, scores, and signs compliance evidence on the endpoint where it originates. SOC 2, ISO 27001, and HIPAA. Local-first and source-available.",
       path: "/about",
     }),
   component: AboutPage,
@@ -26,11 +26,11 @@ const principles = [
   },
   {
     title: "Evidence you can audit",
-    body: "The collector is source-available under BSL 1.1. You can read every line of the code that reads your systems — and so can your auditor.",
+    body: "The collector is source-available under BSL 1.1. You can read every line of the code that reads your systems, and so can your auditor.",
   },
   {
     title: "Honest scope",
-    body: "ComplianceGuard does endpoint evidence, scoring, and reporting — and does them rigorously. We don't claim integrations or services we don't ship.",
+    body: "ComplianceGuard does endpoint evidence, scoring, and reporting. It does them rigorously. We don't claim integrations or services we don't ship.",
   },
 ];
 
@@ -52,7 +52,7 @@ function AboutPage() {
         <PageHero
           eyebrow="About"
           title="Compliance evidence should live where the evidence lives."
-          subtitle="ComplianceGuard collects, scores, and signs endpoint evidence for SOC 2, ISO 27001, and HIPAA — locally, on the machines being audited."
+          subtitle="ComplianceGuard collects, scores, and signs endpoint evidence for SOC 2, ISO 27001, and HIPAA, locally, on the machines being audited."
           ornament="grid"
         />
 
@@ -67,9 +67,8 @@ function AboutPage() {
                 <div className="text-[17px] text-ink-2 leading-[1.65] space-y-5">
                   <p>
                     Compliance platforms moved to the cloud, but the evidence didn&apos;t. Disk
-                    encryption status, firewall configuration, OS patch level, screen-lock policy —
-                    the controls auditors actually check live on endpoints, where cloud integrations
-                    can&apos;t see them.
+                    encryption status, firewall configuration, OS patch level, and screen-lock policy. These are the controls auditors actually check, and
+                    they live on endpoints, where cloud integrations can&apos;t see them.
                   </p>
                   <p>
                     Cloud-first platforms such as Vanta solve a different problem well:
@@ -80,7 +79,7 @@ function AboutPage() {
                   <p>
                     Our founder saw that gap and took the architectural position that defines this
                     product: evidence should be collected, scored, and cryptographically signed on
-                    the machine where it originates — a local-first desktop application, not another
+                    the machine where it originates: a local-first desktop application, not another
                     cloud you hand your infrastructure to.
                   </p>
                   <p>
@@ -100,7 +99,7 @@ function AboutPage() {
                     {[
                       "Collects endpoint evidence directly on Windows and macOS",
                       "Scores SOC 2, ISO 27001, and HIPAA in a single pass",
-                      "Stores everything locally — no data leaves your network",
+                      "Stores everything locally; no data leaves your network",
                       "Exports a signed PDF evidence pack your auditor can verify",
                     ].map((item) => (
                       <li key={item} className="flex gap-3">
@@ -146,7 +145,7 @@ function AboutPage() {
 
             <Reveal>
               <p className="mt-8 text-center caption text-ink-3 max-w-[560px] mx-auto">
-                Source-available under BSL 1.1. Version {VERSION} ships cross-platform — Windows
+                Source-available under BSL 1.1. Version {VERSION} ships cross-platform: Windows
                 installer plus macOS builds for Intel and Apple silicon.
               </p>
             </Reveal>

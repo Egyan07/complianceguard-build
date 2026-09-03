@@ -10,7 +10,7 @@ import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
 export const Route = createFileRoute("/pricing")({
   head: () =>
     buildMeta({
-      title: "Pricing — ComplianceGuard",
+      title: "Pricing | ComplianceGuard",
       description:
         "ComplianceGuard pricing: Free forever, Pro from $149/month, Enterprise from $599/month flat. Self-hosted or managed hosting. No per-seat fees.",
       path: "/pricing",
@@ -25,11 +25,11 @@ const faqs = [
   },
   {
     q: "What's the difference between self-hosted and managed?",
-    a: "Self-hosted: you deploy the dashboard on your own infrastructure, your data stays entirely under your control, and the price is lower because you manage the server — the right fit for regulated industries, government contractors, legal firms, and air-gapped environments. Managed: we host the dashboard for you with zero setup, and we handle uptime, backups, updates, and onboarding. Either way, endpoint evidence never leaves your machines until you sync.",
+    a: "Self-hosted: you deploy the dashboard on your own infrastructure, your data stays entirely under your control, and the price is lower because you manage the server. It is the right fit for regulated industries, government contractors, legal firms, and air-gapped environments. Managed: we host the dashboard for you with zero setup, and we handle uptime, backups, updates, and onboarding. Either way, endpoint evidence never leaves your machines until you sync.",
   },
   {
     q: "What does the free tier include?",
-    a: "Full evidence collection across all 8 categories, 12 core SOC 2 controls, and your overall compliance score — on 1 machine, for 1 user. Per-control scoring, remediation scripts, PDF reports, and the multi-machine dashboard are part of Pro.",
+    a: "Full evidence collection across all 8 categories, 12 core SOC 2 controls, and your overall compliance score, on 1 machine for 1 user. Per-control scoring, remediation scripts, PDF reports, and the multi-machine dashboard are part of Pro.",
   },
   {
     q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     q: "How does licensing work?",
-    a: "License keys use Ed25519 cryptographic signatures, verified entirely offline — no license server, no phone-home. That's deliberate: licensing works in the same air-gapped environments the product is built for.",
+    a: "License keys use Ed25519 cryptographic signatures, verified entirely offline, with no license server and no phone-home. That's deliberate: licensing works in the same air-gapped environments the product is built for.",
   },
 ];
 
@@ -96,9 +96,9 @@ function PricingPage() {
             const sub =
               monthly === 0
                 ? managed
-                  ? "Desktop app — runs on your machine"
+                  ? "Desktop app, runs on your machine"
                   : null
-                : `billed annually — $${(monthly * 12).toLocaleString("en-US")}/yr${
+                : `billed annually &middot; $${(monthly * 12).toLocaleString("en-US")}/yr${
                     !managed && t.name === "Enterprise" ? " flat" : ""
                   }`;
             return (
@@ -136,7 +136,7 @@ function PricingPage() {
                       <>
                         <li className="flex gap-2">
                           <Check size={16} className="shrink-0 mt-1 text-azure" />
-                          Zero server setup — we handle uptime, backups, updates
+                          Zero server setup, and we handle uptime, backups, updates
                         </li>
                         <li className="flex gap-2">
                           <Check size={16} className="shrink-0 mt-1 text-azure" />
@@ -162,7 +162,7 @@ function PricingPage() {
         <Reveal>
           <p className="mt-10 text-center caption text-ink-3 max-w-2xl mx-auto">
             Self-hosted: your data stays entirely on your infrastructure. Managed: we host the
-            dashboard — your endpoint evidence still never leaves your machines until you sync.
+            dashboard, and your endpoint evidence still never leaves your machines until you sync.
           </p>
         </Reveal>
 

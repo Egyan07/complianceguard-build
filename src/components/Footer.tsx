@@ -16,7 +16,8 @@ const companyLinks = [
   { label: "Security", to: "/security" },
   { label: "Trust", to: "/trust" },
   { label: "Privacy", to: "/privacy" },
-  { label: "Contact sales", href: salesMailto("ComplianceGuard — sales enquiry") },
+  { label: "Terms", to: "/terms" },
+  { label: "Contact sales", href: salesMailto("ComplianceGuard sales enquiry") },
 ] as const;
 
 const resourceLinks = [

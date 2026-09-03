@@ -8,7 +8,7 @@ import { buildMeta, CONTACT_EMAIL } from "@/lib/site";
 export const Route = createFileRoute("/privacy")({
   head: () =>
     buildMeta({
-      title: "Privacy Policy — ComplianceGuard",
+      title: "Privacy Policy | ComplianceGuard",
       description:
         "How ComplianceGuard handles data: evidence stays in a local database on your machine, the website stores only emails you choose to submit, and no analytics trackers run.",
       path: "/privacy",
@@ -67,7 +67,7 @@ function PrivacyPage() {
             <Section title="Cookies and local storage">
               <p>
                 The ComplianceGuard website uses no tracking cookies and loads no analytics scripts.
-                We use localStorage and sessionStorage for interface preferences only — for example,
+                We use localStorage and sessionStorage for interface preferences only, for example,
                 dismissed banners and saved checklist progress. This data never leaves your browser.
               </p>
             </Section>

@@ -1,5 +1,5 @@
 import { Lock, Award, KeyRound, Code2 } from "lucide-react";
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { Reveal } from "./Reveal";
 import { EvidenceFlow } from "./EvidenceFlow";
 
 /**
@@ -16,16 +16,19 @@ const stats = [
 
 const trust = [
   {
+    n: "01",
     icon: Award,
     title: "AICPA TSC-mapped",
-    body: "Every control mapped to the Trust Services Criteria — the exact format auditors accept for SOC 2 Type I and Type II.",
+    body: "Every control mapped to the Trust Services Criteria, the exact format auditors accept for SOC 2 Type I and Type II.",
   },
   {
+    n: "02",
     icon: KeyRound,
     title: "Offline-verified licensing",
-    body: "Ed25519 public-key license verification with no license server and no phone-home — coherent with the air-gap story.",
+    body: "Ed25519 public-key license verification with no license server and no phone-home, which fits the air-gap story.",
   },
   {
+    n: "03",
     icon: Code2,
     title: "Source-available, BSL 1.1",
     body: "You can read the code that reads your system. Every line of evidence collection and scoring logic is auditable.",
@@ -52,7 +55,7 @@ export function TrustArchitecture() {
         {/* The boundary */}
         <Reveal delay={0.1} className="mt-14">
           <div
-            className="relative rounded-[28px] p-7 md:p-12"
+            className="relative rounded-[20px] p-7 md:p-12"
             style={{ border: "2px dashed rgba(0,113,227,0.4)" }}
           >
             <span className="absolute -top-3 left-8 inline-flex items-center gap-1.5 bg-fog px-3 text-[12px] font-semibold uppercase tracking-wider text-azure">
@@ -80,20 +83,25 @@ export function TrustArchitecture() {
           </div>
         </Reveal>
 
-        {/* Trust pillars */}
-        <RevealGroup className="mt-16 grid md:grid-cols-3 gap-5">
-          {trust.map((t) => (
-            <RevealItem key={t.title}>
-              <div className="card-snow card-hover p-7 h-full">
-                <div className="w-10 h-10 rounded-[12px] bg-azure flex items-center justify-center text-snow">
-                  <t.icon size={20} strokeWidth={2} />
+        {/* Trust pillars — numbered rows, distinct from the icon-card grids */}
+        <div className="mt-16 border-t border-hairline">
+          {trust.map((t, i) => (
+            <Reveal key={t.title} delay={i * 0.05}>
+              <div className="flex items-start gap-5 py-7 border-b border-hairline">
+                <span aria-hidden className="font-mono text-[13px] text-ink-3 pt-1 w-9 shrink-0">
+                  {t.n}
+                </span>
+                <t.icon size={19} className="text-azure shrink-0 mt-1" strokeWidth={2} />
+                <div>
+                  <h3 className="text-[18px] font-semibold text-ink">{t.title}</h3>
+                  <p className="mt-1.5 text-[15px] text-ink-2 leading-[1.65] max-w-2xl">
+                    {t.body}
+                  </p>
                 </div>
-                <h3 className="mt-5 text-[17px] font-semibold text-ink">{t.title}</h3>
-                <p className="mt-2 text-[14px] text-ink-2 leading-[1.65]">{t.body}</p>
               </div>
-            </RevealItem>
+            </Reveal>
           ))}
-        </RevealGroup>
+        </div>
       </div>
     </section>
   );
