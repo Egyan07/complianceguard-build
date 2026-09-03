@@ -10,12 +10,10 @@ export const DOWNLOAD_URL = `${GITHUB_URL}/releases/latest`;
 export const CONTACT_EMAIL = "getcomplianceguard@gmail.com";
 
 /**
- * Demo video — the 60-second SaaS promo, hosted as a GitHub
- * user-attachments asset (served as video/mp4; free, no billing/CC
- * requirement). Uploaded by dragging the mp4 into a GitHub issue editor.
+ * Demo video — the 60-second SaaS promo, bundled with the site itself
+ * (same-origin, so it always plays; no third-party hosting dependency).
  */
-export const DEMO_VIDEO_URL =
-  "https://github.com/user-attachments/assets/361db401-fa40-4217-8259-681a21d914dc";
+export const DEMO_VIDEO_URL = "/videos/complianceguard-demo.mp4";
 
 export const salesMailto = (subject: string) =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;

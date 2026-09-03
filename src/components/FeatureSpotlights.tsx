@@ -1,5 +1,8 @@
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Cloud, FileText, Lock, WifiOff, type LucideIcon } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { EASE_EXPO } from "@/lib/motion";
 
 /**
  * Product section: two spotlight rows built on real product screenshots,
@@ -85,14 +88,12 @@ const capabilities: { icon: LucideIcon; title: string; body: string }[] = [
   },
 ];
 
-const gallery: {
-  eyebrow: string;
-  title: string;
-  img: { src: string; alt: string; width: number; height: number };
-}[] = [
+const showcaseTabs = [
   {
-    eyebrow: "Score trend",
+    id: "trend",
+    label: "Score trend",
     title: "Track readiness over time.",
+    body: "Your score, zone-banded across the timeline — with per-framework tabs so every scan's impact on SOC 2, ISO 27001, HIPAA, and GDPR is visible at a glance.",
     img: {
       src: "/screenshots/ScoreTrend.png",
       alt: "ComplianceGuard score trend chart with compliance zone bands and per-framework tabs across SOC 2, ISO 27001, HIPAA, and GDPR",
@@ -101,8 +102,10 @@ const gallery: {
     },
   },
   {
-    eyebrow: "Cloud dashboard",
+    id: "cloud",
+    label: "Cloud dashboard",
     title: "Every machine, one view.",
+    body: "Fleet-level compliance scores, machine status, and last-sync across all your endpoints — from one web dashboard.",
     img: {
       src: "/screenshots/CloudDashboard.png",
       alt: "ComplianceGuard cloud dashboard monitoring compliance scores, fleet-level stats, and last-sync status across multiple machines",
@@ -111,8 +114,10 @@ const gallery: {
     },
   },
   {
-    eyebrow: "Framework browser",
+    id: "frameworks",
+    label: "Framework browser",
     title: "The full control library, offline.",
+    body: "Browse every control with objectives and implementation guidance, even air-gapped — 54 SOC 2, 47 ISO 27001, 47 HIPAA, and 38 GDPR.",
     img: {
       src: "/screenshots/FrameworkBrowser.png",
       alt: "ComplianceGuard framework browser showing the SOC 2 Type II control library with control objectives and implementation guidance",
@@ -121,6 +126,90 @@ const gallery: {
     },
   },
 ];
+
+/**
+ * Tabbed screenshot viewer — one window at a time (no cluttered grid):
+ * the pattern Loom/Notion-style product sections use to show several
+ * screens without competing for attention.
+ */
+function ScreenshotTabs() {
+  const [active, setActive] = useState(0);
+  const tab = showcaseTabs[active];
+  return (
+    <div className="mt-20 md:mt-28">
+      <Reveal className="max-w-3xl">
+        <p className="eyebrow mb-4">More surfaces</p>
+        <h3 className="display-3">Built for the whole compliance journey.</h3>
+      </Reveal>
+
+      <Reveal delay={0.08} className="mt-10">
+        <div className="card-snow overflow-hidden" style={{ boxShadow: "var(--shadow-card)" }}>
+          {/* Window chrome */}
+          <div className="flex items-center gap-2 px-4 py-2.5 bg-fog border-b border-hairline">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
+            <span className="ml-2 text-[12px] text-ink-3">ComplianceGuard</span>
+          </div>
+
+          {/* Tab bar */}
+          <div
+            className="flex gap-1 px-3 pt-2 bg-fog border-b border-hairline"
+            role="tablist"
+            aria-label="Product screens"
+          >
+            {showcaseTabs.map((t, i) => (
+              <button
+                key={t.id}
+                type="button"
+                role="tab"
+                aria-selected={active === i}
+                onClick={() => setActive(i)}
+                className={`px-3.5 py-2 rounded-t-[10px] text-[13px] font-medium transition-colors ${
+                  active === i ? "bg-snow text-ink" : "text-ink-3 hover:text-ink"
+                }`}
+                style={
+                  active === i
+                    ? { border: "1px solid var(--hairline)", borderBottom: "none" }
+                    : undefined
+                }
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Active screenshot + caption */}
+          <div className="bg-snow p-4 md:p-6">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25, ease: EASE_EXPO }}
+              >
+                <img
+                  src={tab.img.src}
+                  alt={tab.img.alt}
+                  width={tab.img.width}
+                  height={tab.img.height}
+                  loading="lazy"
+                  className="block w-full h-auto rounded-[8px]"
+                  style={{ border: "1px solid var(--hairline)" }}
+                />
+              </motion.div>
+            </AnimatePresence>
+            <div className="mt-5 max-w-2xl">
+              <h4 className="text-[19px] font-semibold text-ink">{tab.title}</h4>
+              <p className="mt-1.5 text-[15px] text-ink-2 leading-[1.65]">{tab.body}</p>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  );
+}
 
 export function FeatureSpotlights() {
   return (
@@ -157,21 +246,7 @@ export function FeatureSpotlights() {
           ))}
         </div>
 
-        <div className="mt-20 md:mt-28">
-          <Reveal className="max-w-3xl">
-            <p className="eyebrow mb-4">More surfaces</p>
-            <h3 className="display-3">Built for the whole compliance journey.</h3>
-          </Reveal>
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
-            {gallery.map((g, i) => (
-              <Reveal key={g.title} delay={i * 0.06}>
-                <WindowFrame {...g.img} />
-                <p className="eyebrow mt-5">{g.eyebrow}</p>
-                <h4 className="mt-1 text-[17px] font-semibold text-ink">{g.title}</h4>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+        <ScreenshotTabs />
 
         <RevealGroup className="mt-20 md:mt-28 grid sm:grid-cols-2 gap-5">
           {capabilities.map((c) => (

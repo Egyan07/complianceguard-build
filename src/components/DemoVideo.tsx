@@ -2,10 +2,8 @@ import { Reveal } from "@/components/Reveal";
 import { DEMO_VIDEO_URL } from "@/lib/site";
 
 /**
- * Marketing demo video — the 60-second SaaS promo, embedded from a GitHub
- * user-attachments asset (served as video/mp4). Chosen over bundling the raw
- * file in the Worker build and over Cloudflare Stream (requires a payment
- * method on file even for pay-as-you-go usage).
+ * Marketing demo video — the 60-second SaaS promo, bundled with the site
+ * (same-origin, so it always plays — no third-party hosting dependency).
  *
  * The video wrapper intentionally breaks out of `container-cg` (1200px cap)
  * into its own wider 1600px cap so it reads larger than body copy, while the
