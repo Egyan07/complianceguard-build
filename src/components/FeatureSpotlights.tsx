@@ -85,6 +85,43 @@ const capabilities: { icon: LucideIcon; title: string; body: string }[] = [
   },
 ];
 
+const gallery: {
+  eyebrow: string;
+  title: string;
+  img: { src: string; alt: string; width: number; height: number };
+}[] = [
+  {
+    eyebrow: "Score trend",
+    title: "Track readiness over time.",
+    img: {
+      src: "/screenshots/ScoreTrend.png",
+      alt: "ComplianceGuard score trend chart with compliance zone bands and per-framework tabs across SOC 2, ISO 27001, HIPAA, and GDPR",
+      width: 1440,
+      height: 900,
+    },
+  },
+  {
+    eyebrow: "Cloud dashboard",
+    title: "Every machine, one view.",
+    img: {
+      src: "/screenshots/CloudDashboard.png",
+      alt: "ComplianceGuard cloud dashboard monitoring compliance scores, fleet-level stats, and last-sync status across multiple machines",
+      width: 1440,
+      height: 900,
+    },
+  },
+  {
+    eyebrow: "Framework browser",
+    title: "The full control library, offline.",
+    img: {
+      src: "/screenshots/FrameworkBrowser.png",
+      alt: "ComplianceGuard framework browser showing the SOC 2 Type II control library with control objectives and implementation guidance",
+      width: 1440,
+      height: 900,
+    },
+  },
+];
+
 export function FeatureSpotlights() {
   return (
     <section id="features" className="bg-snow py-24 md:py-32">
@@ -118,6 +155,22 @@ export function FeatureSpotlights() {
               </Reveal>
             </div>
           ))}
+        </div>
+
+        <div className="mt-20 md:mt-28">
+          <Reveal className="max-w-3xl">
+            <p className="eyebrow mb-4">More surfaces</p>
+            <h3 className="display-3">Built for the whole compliance journey.</h3>
+          </Reveal>
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
+            {gallery.map((g, i) => (
+              <Reveal key={g.title} delay={i * 0.06}>
+                <WindowFrame {...g.img} />
+                <p className="eyebrow mt-5">{g.eyebrow}</p>
+                <h4 className="mt-1 text-[17px] font-semibold text-ink">{g.title}</h4>
+              </Reveal>
+            ))}
+          </div>
         </div>
 
         <RevealGroup className="mt-20 md:mt-28 grid sm:grid-cols-2 gap-5">
