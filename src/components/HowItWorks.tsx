@@ -29,7 +29,7 @@ const steps = [
 type LogLine = { text: string; tone?: "pass" | "warn" | "strong"; pauseAfter?: number };
 
 const SCAN_LINES: LogLine[] = [
-  { text: "ComplianceGuard 3.3.1 — evidence collection started", tone: "strong", pauseAfter: 400 },
+  { text: "ComplianceGuard 3.9.0 — evidence collection started", tone: "strong", pauseAfter: 400 },
   { text: "Reading Windows Registry ✓", pauseAfter: 250 },
   { text: "Password policy — PASS", tone: "pass", pauseAfter: 200 },
   { text: "Firewall status — PASS", tone: "pass", pauseAfter: 200 },

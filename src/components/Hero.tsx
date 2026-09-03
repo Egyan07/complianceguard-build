@@ -146,7 +146,7 @@ export function Hero() {
         </div>
 
         <p className="anim-rise anim-d-4 mt-7 text-[13px] text-ink-3">
-          Windows 10/11 &middot; macOS 12+ (Intel &amp; Apple Silicon) &middot; ~568 tests passing
+          Windows 10/11 &middot; macOS 12+ (Intel &amp; Apple Silicon) &middot; ~1,075 tests passing
           &middot; Source-available under BSL 1.1
         </p>
       </div>

@@ -1,28 +1,26 @@
 import { Reveal } from "@/components/Reveal";
-import { YOUTUBE_VIDEO_ID } from "@/lib/site";
+import { DEMO_VIDEO_URL } from "@/lib/site";
 
 /**
- * Marketing demo video, embedded from YouTube (unlisted). Chosen over
- * bundling the raw file (110MB+, no business being in the Worker build) and
- * over Cloudflare Stream (requires a payment method on file even for
- * pay-as-you-go usage).
+ * Marketing demo video — the 60-second SaaS promo, embedded from a GitHub
+ * user-attachments asset (served as video/mp4). Chosen over bundling the raw
+ * file in the Worker build and over Cloudflare Stream (requires a payment
+ * method on file even for pay-as-you-go usage).
  *
  * The video wrapper intentionally breaks out of `container-cg` (1200px cap)
  * into its own wider 1600px cap so it reads larger than body copy, while the
  * heading/subhead above it stay narrow and centered for readability.
  */
 export function DemoVideo() {
-  const src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&vq=hd1080&modestbranding=1`;
-
   return (
     <section className="bg-snow py-24 md:py-32">
       <div className="container-cg">
         <Reveal className="max-w-3xl mx-auto text-center">
           <p className="eyebrow mb-4">See it in action</p>
-          <h2 className="display-2">Two minutes, start to finish.</h2>
+          <h2 className="display-2">Compliance in minutes, not months.</h2>
           <p className="mt-6 body-lg text-ink-2 max-w-2xl mx-auto">
-            Watch ComplianceGuard scan an endpoint, score it against SOC&nbsp;2, and produce
-            signed evidence &mdash; no cloud round-trip required.
+            Continuous endpoint evidence, real-time compliance tracking, and instant
+            audit-ready reports &mdash; self-hosted and privacy-first.
           </p>
         </Reveal>
       </div>
@@ -34,16 +32,16 @@ export function DemoVideo() {
             aspectRatio: "16 / 9",
             border: "1px solid var(--hairline)",
             boxShadow: "var(--shadow-float)",
+            background: "#000",
           }}
         >
-          <iframe
-            src={src}
-            loading="lazy"
+          <video
+            src={DEMO_VIDEO_URL}
+            controls
+            preload="metadata"
+            playsInline
             className="absolute inset-0 h-full w-full"
-            style={{ border: "none" }}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            title="ComplianceGuard product demo"
+            title="ComplianceGuard — the 60-second story"
           />
         </div>
       </Reveal>

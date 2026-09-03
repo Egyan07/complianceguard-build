@@ -32,7 +32,7 @@ export function ProductMockup() {
             ComplianceGuard &mdash; SOC 2 readiness
           </span>
           <span className="text-[11px] font-mono" style={{ color: "#86868b" }}>
-            v3.3.1
+            v3.9.0
           </span>
         </div>
 

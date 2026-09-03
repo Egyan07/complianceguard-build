@@ -46,7 +46,7 @@ const pillars = [
   {
     icon: Bug,
     title: "BSL 1.1 open core",
-    body: "Read the code that reads your system. ~568 tests across backend, frontend, Electron, and Playwright run green on every commit.",
+    body: "Read the code that reads your system. ~1,075 tests across backend, frontend, Electron, and Playwright run green on every commit.",
   },
 ];
 

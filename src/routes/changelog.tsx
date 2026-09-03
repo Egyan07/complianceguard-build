@@ -11,7 +11,7 @@ export const Route = createFileRoute("/changelog")({
   head: () =>
     buildMeta({
       title: "Changelog — ComplianceGuard",
-      description: `ComplianceGuard changelog. Latest: v${VERSION} — SOC 2 controls aligned to the real 54-control framework, premium readiness report, and a hardened, tamper-evident audit chain.`,
+      description: `ComplianceGuard changelog. Latest: v${VERSION} — a unified visual redesign across the app, GDPR framework support, and hardened evidence integrity.`,
       path: "/changelog",
     }),
   component: ChangelogPage,
@@ -26,6 +26,61 @@ const entries: {
   tags: Tag[];
   bullets: string[];
 }[] = [
+  {
+    date: "September 2026",
+    version: "v3.9.0",
+    title: "One design system across the app — visual redesign",
+    tags: [{ label: "Design", tone: "blue" }],
+    bullets: [
+      "Visual redesign — a single design system across the app: one ThemeProvider and Inter typography everywhere (including auth), canonical semantic status colors, and a unified 0–100 score scale with canonical bands (≥85 Good Standing, ≥70 On Track, <70 Needs Attention) shared by the hero, trend chart, and history list.",
+      "Distinctive data surfaces — the control heatmap now reads as a ledger with state rails and live per-category counts; evidence rows and cloud machine statuses route through the shared StatusChip token; Framework Browser labels are readable and its dark-mode surface leak is fixed.",
+      "Shell polish — Settings uses the shared PageHeader and its sidebar navigation is real anchor navigation.",
+      "Fixed — GDPR framework selection in the desktop app now routes evaluations to the scoring engine correctly, and cross-surface score consistency (the 85–89 band discrepancy) is resolved.",
+    ],
+  },
+  {
+    date: "August 2026",
+    version: "v3.8.0",
+    title: "Electron processing test suite + release CI hardening",
+    tags: [
+      { label: "Feature", tone: "blue" },
+      { label: "Security", tone: "red" },
+    ],
+    bullets: [
+      "74 new tests for the canonical engine, evidence processor, report generator, remediation scripts, and evidence vocabulary.",
+      "Release CI hardening — Windows installer uploads now use gh release upload instead of electron-builder's unreliable GitHub publisher.",
+      "Security hardening — migration guide hardened, error handling improved, input validation tightened across API endpoints.",
+      "Docs — production deployment guide (Railway, Docker Compose, Render, VPS) and SQLite-to-Postgres migration guide.",
+    ],
+  },
+  {
+    date: "August 2026",
+    version: "v3.7.0",
+    title: "One authoritative evidence vocabulary & production integrity",
+    tags: [
+      { label: "Feature", tone: "blue" },
+      { label: "Security", tone: "red" },
+    ],
+    bullets: [
+      "Evidence vocabulary is now generated from the canonical shared data — the 97 evidence types the old UI offered that the engine could never score are gone; every selectable type is a canonical scoring input.",
+      "Unknown evidence types are rejected instead of silently stored, and the framework browser is consolidated onto the canonical YAML with a parity test so it can never drift from the scoring engine.",
+      "Refresh-token rotation with reuse detection, account-aware login throttling, application-level security headers, and honest rate-limit deployment (single default worker).",
+      "WAL-safe database backups via SQLite's online backup API, PostgreSQL bound to localhost only, and legacy 0–1 evaluations normalized to the 0–100 contract.",
+    ],
+  },
+  {
+    date: "August 2026",
+    version: "v3.6.0",
+    title: "GDPR framework, full-stack E2E, and major performance wins",
+    tags: [{ label: "Feature", tone: "blue" }],
+    bullets: [
+      "GDPR (EU) 2016/679 framework — 38 obligations across the operational chapters in both the web app and the Electron app, with framework browser, local scoring engine, and evaluation support.",
+      "Full-stack Playwright E2E suite — boots the real backend and Vite dev server, drives register/login/dashboard flows; 9 E2E tests wired into CI as its own job.",
+      "Login latency fixed (2.4s → ~390ms p95 at 10 concurrent) — bcrypt now runs in the thread pool instead of blocking the event loop.",
+      "Single source of truth for cross-repo constants (VERSION, MACHINE_LIMITS, FEATURE_GATES) via shared/constants.json — the exact drift that caused the v3.5.1 29-vs-54 control bug.",
+      "Frontend test suite 9+ min → ~30s, fully typed Electron IPC boundary, code-splitting (829 KB bundle → 63 KB shell), and coverage reporting in CI.",
+    ],
+  },
   {
     date: "August 2026",
     version: "v3.5.1",

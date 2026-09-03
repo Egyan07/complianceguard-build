@@ -17,7 +17,7 @@ const FAQS = [
   },
   {
     q: "Why should I trust it with my compliance?",
-    a: "Don't trust claims — read the code. ComplianceGuard is source-available under BSL 1.1: every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~568 tests run on every commit. Most importantly, the architecture means we never receive your evidence — it stays on your disk, under your control.",
+    a: "Don't trust claims — read the code. ComplianceGuard is source-available under BSL 1.1: every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~1,075 tests run on every commit. Most importantly, the architecture means we never receive your evidence — it stays on your disk, under your control.",
   },
   {
     q: "Can't I just collect evidence manually in a spreadsheet?",

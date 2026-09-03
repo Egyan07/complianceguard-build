@@ -3,19 +3,19 @@
  * Version, URLs, and pricing must never be hand-duplicated in components.
  */
 export const SITE_URL = "https://complianceguard.cguard.workers.dev";
-export const VERSION = "3.5.1";
+export const VERSION = "3.9.0";
 
 export const GITHUB_URL = "https://github.com/Egyan07/ComplianceGuard";
 export const DOWNLOAD_URL = `${GITHUB_URL}/releases/latest`;
 export const CONTACT_EMAIL = "getcomplianceguard@gmail.com";
 
 /**
- * Demo video, hosted on YouTube (unlisted) — no billing/CC requirement,
- * unlike Cloudflare Stream. Upload the video as Unlisted on YouTube, then
- * copy the video ID from its URL: https://youtu.be/<THIS_PART>
- * or https://www.youtube.com/watch?v=<THIS_PART>
+ * Demo video — the 60-second SaaS promo, hosted as a GitHub
+ * user-attachments asset (served as video/mp4; free, no billing/CC
+ * requirement). Uploaded by dragging the mp4 into a GitHub issue editor.
  */
-export const YOUTUBE_VIDEO_ID = "4iE40LiGInw";
+export const DEMO_VIDEO_URL =
+  "https://github.com/user-attachments/assets/361db401-fa40-4217-8259-681a21d914dc";
 
 export const salesMailto = (subject: string) =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
@@ -41,7 +41,7 @@ export function buildMeta(opts: { title: string; description: string; path: stri
 
 /**
  * Pricing tiers — consumed by the landing preview and /pricing.
- * Source of truth: product README v3.3.1 "Pricing" section.
+ * Source of truth: product README v3.9.0 "Pricing" section.
  * Two deployment models: self-hosted (you manage the server) and
  * managed hosting (we manage it). Prices are per month, billed annually.
  */
