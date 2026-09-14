@@ -42,12 +42,12 @@ function WindowFrame({
 
 const spotlights = [
   {
-    eyebrow: "Real-time scoring",
+    eyebrow: "Coverage scoring",
     title: "Know exactly where you stand.",
-    body: "Your compliance score updates the moment a scan completes. See which of the 54 SOC 2 controls you're passing and which need work, with remediation scripts for the gaps, before you ever engage an auditor.",
+    body: "Your evidence coverage updates the moment a scan completes. See which of the 43 SOC 2 criteria have the evidence they need and which are missing it, with remediation scripts for the gaps, before you ever engage an auditor.",
     img: {
       src: "/screenshots/Dashboard.png",
-      alt: "ComplianceGuard dashboard showing a real-time compliance score with one-click access to collect evidence, run an evaluation, and export an audit-ready PDF report",
+      alt: "ComplianceGuard dashboard showing an evidence coverage score with one-click access to collect evidence, run an evaluation, and export a PDF evidence report",
       width: 1440,
       height: 900,
     },
@@ -74,7 +74,7 @@ const capabilities: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: FileText,
     title: "Hand it to your auditor on day one.",
-    body: "Every evidence pack exports as an auditor-ready PDF, mapped control-by-control to the framework. No reformatting. No back-and-forth.",
+    body: "Every evidence pack exports as a PDF mapped control-by-control to the framework. No reformatting. No back-and-forth.",
   },
   {
     icon: Lock,
@@ -105,10 +105,10 @@ const showcaseTabs = [
     id: "cloud",
     label: "Cloud dashboard",
     title: "Every machine, one view.",
-    body: "Fleet-level compliance scores, machine status, and last-sync across all your endpoints, all from one web dashboard.",
+    body: "Fleet-level evidence coverage, machine status, and last-sync across all your endpoints, all from one web dashboard.",
     img: {
       src: "/screenshots/CloudDashboard.png",
-      alt: "ComplianceGuard cloud dashboard monitoring compliance scores, fleet-level stats, and last-sync status across multiple machines",
+      alt: "ComplianceGuard cloud dashboard monitoring evidence coverage, fleet-level stats, and last-sync status across multiple machines",
       width: 1440,
       height: 900,
     },
@@ -117,10 +117,10 @@ const showcaseTabs = [
     id: "frameworks",
     label: "Framework browser",
     title: "The full control library, offline.",
-    body: "Browse every control with objectives and implementation guidance, even air-gapped: 54 SOC 2, 47 ISO 27001, 47 HIPAA, and 38 GDPR.",
+    body: "Browse every control with objectives and implementation guidance, even air-gapped: 43 SOC 2 criteria, 93 ISO 27001:2022 controls, 47 HIPAA safeguards, and 38 GDPR obligations.",
     img: {
       src: "/screenshots/FrameworkBrowser.png",
-      alt: "ComplianceGuard framework browser showing the SOC 2 Type II control library with control objectives and implementation guidance",
+      alt: "ComplianceGuard framework browser showing the SOC 2 criteria library with control objectives and implementation guidance",
       width: 1440,
       height: 900,
     },

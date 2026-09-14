@@ -29,11 +29,15 @@ const faqs = [
   },
   {
     q: "What does the free tier include?",
-    a: "Full evidence collection across all 8 categories, 12 core SOC 2 controls, and your overall compliance score, on 1 machine for 1 user. Per-control scoring, remediation scripts, PDF reports, and the multi-machine dashboard are part of Pro.",
+    a: "Full evidence collection across all 8 categories on Windows, macOS, or Linux, all 43 SOC 2 criteria with an overall evidence coverage score, and the coverage trend, on 1 machine for 1 user. Per-control scoring, remediation scripts, PDF reports, and the multi-machine dashboard are part of Pro.",
   },
   {
-    q: "Can I use ComplianceGuard for ISO 27001 or HIPAA?",
-    a: "Yes. ComplianceGuard supports all three frameworks. SOC 2 Type II (54 controls), ISO 27001 (47 scored controls), and the HIPAA Security Rule (47 safeguards). The same OS-level evidence pass feeds all three.",
+    q: "Can I use ComplianceGuard for ISO 27001, HIPAA, or GDPR?",
+    a: "Yes. ComplianceGuard supports four frameworks: SOC 2 (43 criteria from the 2017 Trust Services Criteria), ISO/IEC 27001:2022 (all 93 Annex A controls), the HIPAA Security Rule (47 safeguards), and GDPR (38 obligations). The same OS-level evidence pass feeds all four.",
+  },
+  {
+    q: "Does a high score mean I'm compliant?",
+    a: "No, and we won't pretend otherwise. The score measures evidence coverage: whether the evidence types each criterion expects have been collected. It is not a legal or audit determination of compliance. Criteria that depend on organizational facts, like policy attestations or board oversight, stay not assessed until you upload that evidence. A SOC 2 opinion comes from a licensed CPA firm; ComplianceGuard gets you to that conversation prepared.",
   },
   {
     q: "Do you store my AWS credentials?",

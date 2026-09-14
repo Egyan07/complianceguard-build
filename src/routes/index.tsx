@@ -23,21 +23,21 @@ import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
 export const Route = createFileRoute("/")({
   head: () =>
     buildMeta({
-      title: "ComplianceGuard | Endpoint Compliance Evidence for SOC 2, ISO 27001 & HIPAA",
+      title: "ComplianceGuard | Endpoint Compliance Evidence for SOC 2, ISO 27001, HIPAA & GDPR",
       description:
-        "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows and macOS endpoints. Three frameworks, one scan. Nothing leaves your network.",
+        "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows, macOS, and Linux endpoints. Four frameworks, one scan. Nothing leaves your network.",
       path: "/",
     }),
   component: LandingPage,
 });
 
 const compareRows = [
-  ["Evidence source", "The endpoint itself", "Cloud APIs only", "Cloud APIs only"],
+  ["Evidence source", "The endpoint itself", "Cloud + SaaS/identity/MDM integrations", "Cloud + SaaS/identity/MDM integrations"],
   ["Data stays on your machine", "yes", "no", "no"],
   ["Works offline / air-gapped", "yes", "no", "no"],
-  ["Compliance frameworks", "SOC 2 · ISO 27001 · HIPAA", "SOC 2 · ISO 27001", "SOC 2 · ISO 27001"],
-  ["Per-seat pricing", "No &middot; flat rate", "Yes", "Yes"],
-  ["Setup time", "Minutes", "Weeks", "Weeks"],
+  ["Compliance frameworks", "SOC 2 · ISO 27001 · HIPAA · GDPR", "Broad multi-framework coverage", "Broad multi-framework coverage"],
+  ["Pricing", "Flat rate &middot; free tier", "Annual platform fee", "Annual platform fee"],
+  ["Setup time", "Minutes", "Days to weeks", "Days to weeks"],
   ["Source code", "BSL 1.1 source-available", "Proprietary", "Proprietary"],
   ["Free tier", "yes", "no", "no"],
 ] as const;
@@ -70,8 +70,9 @@ function Comparison() {
           <p className="eyebrow mb-4">How we compare</p>
           <h2 className="display-2">Different by architecture.</h2>
           <p className="mt-6 body-lg text-ink-2 max-w-2xl">
-            Cloud compliance platforms and ComplianceGuard solve different layers of the same
-            problem. The difference is where the evidence comes from, and where it stays.
+            Cloud-first platforms automate evidence through SaaS, cloud, identity, and MDM
+            integrations. ComplianceGuard collects it directly from the machines themselves. The
+            difference is where the evidence comes from, and where it stays.
           </p>
         </Reveal>
 
@@ -213,7 +214,7 @@ function FinalCTA() {
             is waiting on a SOC&nbsp;2 report.
           </h2>
           <p className="mt-6 body-lg text-snow/70 max-w-[560px] mx-auto">
-            Get audit-ready with evidence collected from the machines themselves: scored,
+            Walk into the audit with evidence collected from the machines themselves: scored,
             signed, and under your control.
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">

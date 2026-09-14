@@ -41,7 +41,7 @@ const EVENTS: Omit<Fields, "id" | "createdAt">[] = [
     userId: 1,
     framework: "soc2",
     score: 82.4,
-    detail: { category: "scoring", controls_scored: 54 },
+    detail: { category: "scoring", controls_scored: 43 },
   },
   {
     eventType: "evidence_collected",

@@ -3,7 +3,7 @@
  * Version, URLs, and pricing must never be hand-duplicated in components.
  */
 export const SITE_URL = "https://complianceguard.cguard.workers.dev";
-export const VERSION = "3.9.0";
+export const VERSION = "4.2.4";
 
 export const GITHUB_URL = "https://github.com/Egyan07/ComplianceGuard";
 export const DOWNLOAD_URL = `${GITHUB_URL}/releases/latest`;
@@ -39,7 +39,7 @@ export function buildMeta(opts: { title: string; description: string; path: stri
 
 /**
  * Pricing tiers — consumed by the landing preview and /pricing.
- * Source of truth: product README v3.9.0 "Pricing" section.
+ * Source of truth: product README v4.2.4 "Pricing" section.
  * Two deployment models: self-hosted (you manage the server) and
  * managed hosting (we manage it). Prices are per month, billed annually.
  */
@@ -62,9 +62,9 @@ export const TIERS: Tier[] = [
     managedMonthly: null,
     tagline: "See exactly where you stand on SOC 2 before you pay anything.",
     features: [
-      "Evidence collection (all 8 categories)",
-      "12 core SOC 2 controls",
-      "Overall compliance score",
+      "Evidence collection (all 8 categories, all 3 OSes)",
+      "All 43 SOC 2 criteria, overall coverage score",
+      "Evidence coverage and readiness trend",
       "1 machine · 1 user · community support",
     ],
     cta: { label: "Download Free", href: DOWNLOAD_URL },
@@ -73,13 +73,13 @@ export const TIERS: Tier[] = [
     name: "Pro",
     monthly: 149,
     managedMonthly: 229,
-    tagline: "Everything you need to hand an auditor a complete evidence pack.",
+    tagline: "Everything you need to walk into the audit with a complete evidence pack.",
     features: [
-      "All 54 SOC 2 controls · ISO 27001 (47) · HIPAA (47)",
+      "SOC 2 (43 criteria) · ISO 27001:2022 (93) · HIPAA (47) · GDPR (38)",
       "Per-control scoring, gaps, and remediation scripts",
-      "Control heatmap and score trend (Type II timeline)",
+      "Control heatmap and evidence coverage trend per framework",
       "Manual evidence upload + evaluation history",
-      "PDF audit-ready reports",
+      "PDF evidence reports, mapped control by control",
       "Cloud dashboard (up to 10 machines, 10 users)",
       "Email support",
     ],
@@ -93,7 +93,7 @@ export const TIERS: Tier[] = [
     tagline: "Tamper-evident, air-gapped sovereignty for regulated industries.",
     features: [
       "Everything in Pro",
-      "Tamper-evident audit log (SHA-256 hash chain)",
+      "Tamper-evident audit log (HMAC-SHA256 hash chain)",
       "RBAC (admin and auditor roles)",
       "Custom PDF branding",
       "Full compliance data export (NDJSON)",

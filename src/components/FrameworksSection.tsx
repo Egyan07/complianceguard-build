@@ -7,17 +7,17 @@ const frameworks = [
   {
     finish: "finish-azure",
     short: "SOC 2",
-    title: "Type II, fully scored.",
-    body: "54 controls mapped to the SOC 2 Trust Services Criteria, evaluated automatically. The standard for enterprise SaaS deals.",
-    count: 54,
-    unit: "controls",
+    title: "The real 2017 criteria.",
+    body: "43 criteria from the 2017 Trust Services Criteria (33 Common Criteria plus Availability, Confidentiality, and Processing Integrity supplements), scored by evidence coverage. The standard for enterprise SaaS deals.",
+    count: 43,
+    unit: "criteria",
   },
   {
     finish: "finish-indigo",
     short: "ISO 27001",
-    title: "Annex A, end to end.",
-    body: "47 controls mapped and scored across all 14 Annex A domains. Required for European enterprise contracts.",
-    count: 47,
+    title: "Annex A, 2022 edition.",
+    body: "All 93 controls of the ISO/IEC 27001:2022 Annex A across Organizational, People, Physical, and Technological categories. Required for European enterprise contracts.",
+    count: 93,
     unit: "controls",
   },
   {
@@ -27,6 +27,14 @@ const frameworks = [
     body: "47 safeguards across all five 45 CFR Part 164 sections, required and addressable. Built for health-tech.",
     count: 47,
     unit: "safeguards",
+  },
+  {
+    finish: "finish-slate",
+    short: "GDPR",
+    title: "Readiness, stated honestly.",
+    body: "38 obligations from EU 2016/679 classified by what endpoint evidence can actually establish, so organizational duties are never scored as done because a scan ran.",
+    count: 38,
+    unit: "obligations",
   },
 ];
 
@@ -59,17 +67,17 @@ export function FrameworksSection() {
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="eyebrow mb-4">Frameworks</p>
           <h2 className="display-2">
-            Three frameworks.
+            Four frameworks.
             <br />
             One evidence engine.
           </h2>
           <p className="mt-6 body-lg text-ink-2">
-            The same OS-level evidence collection powers SOC&nbsp;2, ISO&nbsp;27001 and HIPAA
-            , mapped directly to the controls auditors actually check.
+            The same OS-level evidence collection powers SOC&nbsp;2, ISO&nbsp;27001, HIPAA, and
+            GDPR, mapped directly to the controls auditors actually check.
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {frameworks.map((f, i) => (
             <Tilt key={f.short} max={6} radius={28} className="h-full">
               <motion.div

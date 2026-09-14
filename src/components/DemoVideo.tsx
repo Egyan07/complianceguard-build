@@ -17,8 +17,8 @@ export function DemoVideo() {
           <p className="eyebrow mb-4">See it in action</p>
           <h2 className="display-2">Compliance in minutes, not months.</h2>
           <p className="mt-6 body-lg text-ink-2 max-w-2xl mx-auto">
-            Continuous endpoint evidence, real-time compliance tracking, and instant
-            audit-ready reports, all self-hosted and privacy-first.
+            Scheduled endpoint evidence collection, live coverage tracking, and instant
+            PDF evidence reports, all self-hosted and privacy-first.
           </p>
         </Reveal>
       </div>

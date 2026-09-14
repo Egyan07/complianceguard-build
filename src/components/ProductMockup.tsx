@@ -32,7 +32,7 @@ export function ProductMockup() {
             ComplianceGuard &middot; SOC 2 readiness
           </span>
           <span className="text-[11px] font-mono" style={{ color: "#86868b" }}>
-            v3.9.0
+            v4.2.4
           </span>
         </div>
 
@@ -47,7 +47,7 @@ export function ProductMockup() {
                 className="text-[28px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                SOC 2 Type II &middot; 54 controls
+                SOC 2 &middot; 43 criteria
               </p>
             </div>
             <span
@@ -116,14 +116,14 @@ export function ProductMockup() {
                 className="text-[24px] font-semibold text-ink"
                 style={{ letterSpacing: "-0.016em" }}
               >
-                36 of 54 controls passing.
+                29 of 43 criteria covered.
               </p>
               <p
                 className="mt-2 text-[17px]"
                 style={{ color: "#707070", letterSpacing: "-0.003em" }}
               >
-                18 need attention before audit. Estimated 4&ndash;6 hours of remediation work, fully
-                documented in your evidence pack.
+                14 still need evidence before the audit. Estimated 4&ndash;6 hours of remediation
+                work, fully documented in your evidence pack.
               </p>
             </div>
           </div>

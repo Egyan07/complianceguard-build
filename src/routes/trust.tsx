@@ -60,7 +60,7 @@ const openCore = [
   {
     icon: ShieldCheck,
     title: "Tested on every commit",
-    body: "Roughly 568 tests across backend, frontend, Electron, and Playwright run green in CI before anything ships.",
+    body: "Roughly 1,265 tests across backend, frontend, Electron, and Playwright run green in CI before anything ships.",
   },
   {
     icon: GitBranch,
@@ -71,25 +71,32 @@ const openCore = [
 
 const frameworks = [
   {
-    name: "SOC 2 Type II",
-    stat: "54",
-    unit: "controls",
-    meta: "CC 19 · A 9 · C 9 · PI 9 · CA 8",
-    note: "Each control mapped to the AICPA Trust Services Criteria with configurable weights and per-control scoring.",
+    name: "SOC 2",
+    stat: "43",
+    unit: "criteria",
+    meta: "33 CC · A1.1–A1.3 · C1.1–C1.2 · PI1.1–PI1.5",
+    note: "The real 2017 Trust Services Criteria, scored by evidence coverage with per-criterion assessment modes. Not a legal or audit determination of compliance.",
   },
   {
-    name: "ISO 27001:2013",
-    stat: "47",
+    name: "ISO/IEC 27001:2022",
+    stat: "93",
     unit: "controls",
-    meta: "Annex A",
-    note: "The same OS-level evidence pass scores the Information Security Management System controls.",
+    meta: "Annex A · A.5 ×37 · A.6 ×8 · A.7 ×14 · A.8 ×34",
+    note: "The complete 2022 Annex A. The withdrawn 2013 definition is archived so historical evaluations render unchanged.",
   },
   {
     name: "HIPAA Security Rule",
     stat: "47",
     unit: "safeguards",
     meta: "Admin · Physical · Technical",
-    note: "Administrative, physical, and technical safeguards mapped to the HIPAA Security Rule.",
+    note: "Administrative, physical, and technical safeguards mapped to the HIPAA Security Rule across all five 45 CFR Part 164 sections.",
+  },
+  {
+    name: "GDPR",
+    stat: "38",
+    unit: "obligations",
+    meta: "EU 2016/679",
+    note: "Obligations classified by what endpoint evidence can actually establish. Organizational duties are never scored as done because a scan ran.",
   },
 ];
 
@@ -221,7 +228,7 @@ function TrustPage() {
                 <p className="text-[15px] text-ink-2">
                   Current release{" "}
                   <span className="font-mono text-[13.5px] font-medium text-ink">v{VERSION}</span>:
-                  every release ships Windows and macOS installers built from source.
+                  every release ships Windows, macOS, and Linux installers built from source.
                 </p>
                 <div className="flex flex-wrap gap-2 shrink-0">
                   <a
@@ -253,7 +260,7 @@ function TrustPage() {
               </h2>
             </Reveal>
 
-            <RevealGroup className="mt-12 grid md:grid-cols-3 gap-5">
+            <RevealGroup className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
               {frameworks.map((f) => (
                 <RevealItem key={f.name}>
                   <article className="card-fog card-hover p-7 h-full flex flex-col">
@@ -307,8 +314,9 @@ function TrustPage() {
                         <strong className="text-ink font-semibold">
                           The free tier is a real product.
                         </strong>{" "}
-                        Full evidence collection, 12 core controls, and an overall score on one
-                        machine. It exists so you can judge the output before paying anything.
+                        Full evidence collection, all 43 SOC 2 criteria with an overall
+                        coverage score, on one machine. It exists so you can judge the output
+                        before paying anything.
                       </span>
                     </li>
                     <li className="flex gap-3">

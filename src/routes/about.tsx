@@ -35,11 +35,11 @@ const principles = [
 ];
 
 const stats = [
-  { value: "568+", label: "Tests passing across the stack" },
-  { value: "123", label: "Controls (SOC 2 · ISO 27001 · HIPAA)" },
+  { value: "1,265+", label: "Tests passing across the stack" },
+  { value: "221", label: "Controls and obligations (SOC 2 · ISO 27001 · HIPAA · GDPR)" },
   { value: "8", label: "Evidence categories per machine" },
-  { value: "2", label: "OSes supported (Windows + macOS)" },
-  { value: "5", label: "Green CI workflows on every commit" },
+  { value: "3", label: "OSes supported (Windows, macOS, Linux)" },
+  { value: "7", label: "Green CI workflows on every commit" },
   { value: "0", label: "Bytes uploaded to a vendor cloud" },
 ];
 
@@ -52,7 +52,7 @@ function AboutPage() {
         <PageHero
           eyebrow="About"
           title="Compliance evidence should live where the evidence lives."
-          subtitle="ComplianceGuard collects, scores, and signs endpoint evidence for SOC 2, ISO 27001, and HIPAA, locally, on the machines being audited."
+          subtitle="ComplianceGuard collects, scores, and signs endpoint evidence for SOC 2, ISO 27001, HIPAA, and GDPR, locally, on the machines being audited."
           ornament="grid"
         />
 
@@ -97,7 +97,7 @@ function AboutPage() {
                   <p className="mono-tag mb-5">What it actually does</p>
                   <ul className="space-y-4">
                     {[
-                      "Collects endpoint evidence directly on Windows and macOS",
+                      "Collects endpoint evidence directly on Windows, macOS, and Linux",
                       "Scores SOC 2, ISO 27001, and HIPAA in a single pass",
                       "Stores everything locally; no data leaves your network",
                       "Exports a signed PDF evidence pack your auditor can verify",
@@ -114,7 +114,7 @@ function AboutPage() {
                     ))}
                   </ul>
                   <p className="mt-6 pt-5 border-t border-hairline text-[13px] text-ink-3">
-                    One collection pass &middot; three frameworks &middot; zero telemetry.
+                    One collection pass &middot; four frameworks &middot; zero telemetry.
                   </p>
                 </div>
               </Reveal>

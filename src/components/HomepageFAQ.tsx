@@ -5,19 +5,19 @@ import { Reveal } from "./Reveal";
 const FAQS = [
   {
     q: "Which frameworks does ComplianceGuard cover?",
-    a: "Three, from a single collection pass: SOC 2 Type II (54 controls mapped to the AICPA Trust Services Criteria), ISO 27001 (47 scored controls spanning all 14 Annex A domains), and the HIPAA Security Rule (47 safeguards across all five 45 CFR Part 164 sections). The same OS-level evidence feeds all three.",
+    a: "Four, from a single collection pass: SOC 2 (43 criteria from the 2017 Trust Services Criteria), ISO/IEC 27001:2022 (all 93 Annex A controls), the HIPAA Security Rule (47 safeguards), and GDPR (38 obligations). The same OS-level evidence feeds all four, each scored by evidence coverage rather than a checkbox claim of compliance.",
   },
   {
     q: "Will auditors accept the evidence pack?",
-    a: "Every evidence pack is mapped control-by-control to the AICPA Trust Services Criteria, the exact framework SOC 2 auditors work from. The PDF export follows the format used in successful SOC 2 Type I and Type II audits, so there's no reformatting and no back-and-forth. A formal SOC 2 report still requires a licensed CPA firm; ComplianceGuard gets you to that engagement prepared.",
+    a: "Every evidence pack is mapped criterion-by-criterion to the AICPA Trust Services Criteria, the exact framework SOC 2 auditors work from. The PDF export is organized the way auditors expect, so there's no reformatting and no back-and-forth. A formal SOC 2 report still requires a licensed CPA firm; ComplianceGuard gets you to that engagement prepared.",
   },
   {
     q: "How is this different from Vanta or Drata?",
-    a: "They scan cloud infrastructure; ComplianceGuard scans the machines themselves. Password policies, firewall rules, disk encryption, and event logs. That evidence lives on the endpoint, not in AWS. Many teams run both: a cloud platform for SaaS integrations, ComplianceGuard for the endpoint evidence those platforms structurally can't see.",
+    a: "They collect through their cloud integrations; ComplianceGuard collects on the machines themselves. Password policies, firewall rules, disk encryption, and event logs. That evidence lives on the endpoint, not in AWS. Many teams run both: a cloud platform for SaaS integrations, ComplianceGuard for the endpoint evidence those platforms structurally can't see.",
   },
   {
     q: "Why should I trust it with my compliance?",
-    a: "Don't trust claims; read the code. ComplianceGuard is source-available under BSL 1.1, so every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~1,075 tests run on every commit. Most importantly, the architecture means we never receive your evidence. It stays on your disk, under your control.",
+    a: "Don't trust claims; read the code. ComplianceGuard is source-available under BSL 1.1, so every line that touches your machine is auditable. Licensing uses offline Ed25519 public-key verification, credentials are encrypted with HKDF-derived Fernet keys, and ~1,265 tests run on every commit. Most importantly, the architecture means we never receive your evidence. It stays on your disk, under your control.",
   },
   {
     q: "Can't I just collect evidence manually in a spreadsheet?",

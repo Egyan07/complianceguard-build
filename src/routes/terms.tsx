@@ -46,7 +46,7 @@ function TermsPage() {
             <Section title="What these terms cover">
               <p>
                 These terms govern your use of the ComplianceGuard website, the desktop
-                application for Windows and macOS, and any related services we offer. By
+                application for Windows, macOS, and Linux, and any related services we offer. By
                 downloading, installing, or using ComplianceGuard, you agree to these terms. If
                 you are accepting them for a company or other organisation, you confirm that you
                 have authority to bind that organisation.

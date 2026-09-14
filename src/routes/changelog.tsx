@@ -11,7 +11,7 @@ export const Route = createFileRoute("/changelog")({
   head: () =>
     buildMeta({
       title: "Changelog | ComplianceGuard",
-      description: `ComplianceGuard changelog. Latest: v${VERSION}. A unified visual redesign across the app, GDPR framework support, and hardened evidence integrity.`,
+      description: `ComplianceGuard changelog. Latest: v${VERSION}. Web mode is now first-class: browser framework browsing, uploads that score, and per-control heatmap data.`,
       path: "/changelog",
     }),
   component: ChangelogPage,
@@ -26,6 +26,110 @@ const entries: {
   tags: Tag[];
   bullets: string[];
 }[] = [
+  {
+    date: "September 2026",
+    version: "v4.2.4",
+    title: "Web mode grows up",
+    tags: [
+      { label: "Fixed", tone: "green" },
+      { label: "Web", tone: "blue" },
+    ],
+    bullets: [
+      "The Frameworks page works in the browser: it fetches the same canonical framework data (SOC 2, ISO 27001, HIPAA, GDPR) from the backend that the desktop app uses, so both modes render identically.",
+      "Browser evidence uploads now actually score: the upload endpoint silently ignored every form field the web dialog sent and stored all uploads as a non-scoring type. The form contract is fixed, and a web upload of a control's required evidence type now moves that control's evaluation.",
+      "The control heatmap renders after a web evaluation: per-control results (score, status, gaps, assessment mode) are now stored on the evaluation and served by both the evaluate response and history. Legacy rows are never re-scored.",
+      "Evaluate works without the desktop app: the dispatcher no longer throws in web mode and routes to the backend, which runs the same canonical engine.",
+      "Boot blockers fixed: comma-separated list environment variables no longer crash startup, placeholder AWS credentials are treated as unset, and real credential pairs validate in either field order.",
+      "UX polish: the Cloud page explains what fleet sync offers with an upgrade action, the empty dashboard shows an upload, evaluate, track hint, and the web dashboard says which features live in the desktop app instead of hiding them.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.2.3",
+    title: "Readability and launch polish",
+    tags: [{ label: "Fixed", tone: "green" }],
+    bullets: [
+      "HIPAA safeguard ids no longer overlap control titles in the heatmap: the control-id column sizes to the longest id in the evaluation, keeping titles aligned for every framework.",
+      "Dark mode no longer flashes white at launch: the Electron window paints the dark canvas from the first frame when the OS requests dark.",
+      "The Settings About section shows the CG brand mark, the stale Beta chip is gone, and the favicon renders the full CG monogram.",
+      "UI polish: slim branded scrollbars, a consistent keyboard focus ring, branded text selection color, and semantic status dots on history rows.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.2.2",
+    title: "Every framework, everywhere",
+    tags: [
+      { label: "Fixed", tone: "green" },
+      { label: "Feature", tone: "blue" },
+    ],
+    bullets: [
+      "Manual evidence files under the selected framework: the upload dialog previously hardcoded SOC 2, so GDPR, ISO, and HIPAA uploads never counted toward their framework. The dialog, controls section, and PDF export all now follow the active framework, with the per-framework catalog generated from the canonical source for all four frameworks (221 controls).",
+      "The control heatmap renders GDPR articles, ISO A.5 to A.8, and HIPAA 164.x with their canonical names, and offers one-click remediation only where a script genuinely exists (SOC 2).",
+      "PDF export follows the selected framework and renders canonical status chips (Compliant / Partial / Non-compliant / Not assessed).",
+      "The Dark Mode toggle in Settings actually works, with a regression test pinning the shared theme state.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.2.1",
+    title: "Taxonomy correctness release",
+    tags: [
+      { label: "Fixed", tone: "green" },
+      { label: "Security", tone: "red" },
+    ],
+    bullets: [
+      "SOC 2 taxonomy corrected to the real 2017 Trust Services Criteria: fabricated control IDs and an invented category are gone, missing criteria are restored, and a golden taxonomy test locks the exact 43-criterion set in CI. Remediation scripts were remapped to the real criteria they support.",
+      "Evidence coverage is no longer presented as compliance: every criterion carries an assessment mode (automatable, hybrid, or manual upload). A manual-upload criterion cannot become compliant from collector evidence alone, and the UI and reports say evidence coverage and readiness, with a disclaimer that this is not a legal or audit determination of compliance. Heatmaps show Not assessed instead of the misleading N/A.",
+      "ISO/IEC 27001 updated to the 2022 edition: the active framework is the full 93-control Annex A, and the withdrawn 2013 definition is archived so historical evaluations render unchanged and are never re-scored.",
+      "GDPR reclassified honestly: all 38 obligations are scored by what endpoint evidence can actually establish, so organizational and legal duties (DPO designation, consent, data-subject rights) are no longer satisfied merely because a scan ran.",
+      "Framework definitions consolidated to one source of truth shared by the desktop app, the scoring engines, the backend, and the generated evidence catalog.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.2.0",
+    title: "Scale-safe rate limiting",
+    tags: [{ label: "Security", tone: "red" }],
+    bullets: [
+      "Production startup now refuses to run when the worker count is undeclared and no shared rate-limit storage is configured, so published limits can no longer be silently multiplied per process. First-party configs declare WORKERS explicitly.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.1.1",
+    title: "API docs gated",
+    tags: [{ label: "Security", tone: "red" }],
+    bullets: [
+      "The API docs and OpenAPI schema are served outside production and disabled in production unless explicitly enabled, so public deployments no longer enumerate every route by default.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.1.0",
+    title: "Web session hardening",
+    tags: [{ label: "Security", tone: "red" }],
+    bullets: [
+      "The browser access token is held in memory only; the persistent session is an HttpOnly, SameSite=Strict refresh cookie, and page reloads silently re-authenticate through it.",
+      "The Prometheus /metrics endpoint serves loopback scrapes only unless internal scraper subnets are explicitly allowed, and nginx blocks it from the public internet.",
+      "Password-reset and email-verification tokens are stored as SHA-256 hashes, so a database read leak no longer yields usable links.",
+      "Production deployments scaled to multiple workers refuse to start without shared rate-limit storage, duplicate machine syncs are resolved by a database constraint instead of a count-then-insert race, and the Electron app refuses to persist tokens when no OS keychain is available rather than downgrading to unsafe storage.",
+    ],
+  },
+  {
+    date: "September 2026",
+    version: "v4.0.0",
+    title: "License security and honest states",
+    tags: [
+      { label: "Security", tone: "red" },
+      { label: "Fixed", tone: "green" },
+    ],
+    bullets: [
+      "License-signing key material now lives outside the application package and release builds are automatically scanned for it. Pre-4.0.0 keys must be re-issued.",
+      "Evaluations with no assessed controls display as Not Assessed (neutral) across dashboard, history, and reports instead of a red failed state, and web evidence items show their real status.",
+      "Web evidence collection reports explicit not-configured, partial, and failed states instead of presenting an empty run as success, and production deployments refuse to start when email delivery is disabled, so accounts can no longer be created that can never verify.",
+    ],
+  },
   {
     date: "September 2026",
     version: "v3.9.0",

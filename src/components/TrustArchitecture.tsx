@@ -19,7 +19,7 @@ const trust = [
     n: "01",
     icon: Award,
     title: "AICPA TSC-mapped",
-    body: "Every control mapped to the Trust Services Criteria, the exact format auditors accept for SOC 2 Type I and Type II.",
+    body: "Every criterion mapped to the Trust Services Criteria, in the structure auditors expect for SOC 2 readiness.",
   },
   {
     n: "02",

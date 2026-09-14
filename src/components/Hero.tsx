@@ -54,8 +54,8 @@ export function Hero() {
                 67<span className="text-[16px] text-ink-3">%</span>
               </span>
               <div className="text-left">
-                <p className="text-[12px] font-medium text-ink">SOC 2 ready</p>
-                <p className="text-[11px] text-ink-3">36 of 54 passing</p>
+                <p className="text-[12px] font-medium text-ink">SOC 2 readiness</p>
+                <p className="text-[11px] text-ink-3">29 of 43 criteria covered</p>
               </div>
             </div>
           </Tile>
@@ -65,7 +65,7 @@ export function Hero() {
           <Tile>
             <span className="inline-flex items-center gap-2 text-[13px] font-medium text-ink">
               <ShieldCheck size={15} className="text-azure" aria-hidden />
-              SOC 2 Type II
+              SOC 2 · 43 criteria
             </span>
           </Tile>
         </FloatingElement>
@@ -116,7 +116,7 @@ export function Hero() {
           style={{ background: "var(--azure-soft)", color: "var(--azure)" }}
         >
           <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-azure" />v{VERSION} &middot; now
-          on Windows and macOS
+          on Windows, macOS, and Linux
           <span aria-hidden>&rsaquo;</span>
         </Link>
 
@@ -135,8 +135,8 @@ export function Hero() {
         </h1>
 
         <p className="anim-rise anim-d-2 mt-6 body-lg md:text-[20px] text-ink-2 max-w-[620px]">
-          Cloud platforms scan your cloud. ComplianceGuard scans the machines your business runs on
-          , collecting, scoring, and signing SOC&nbsp;2, ISO&nbsp;27001, and HIPAA evidence
+          Cloud platforms scan your cloud. ComplianceGuard scans the machines your business runs
+          on, collecting, scoring, and signing SOC&nbsp;2, ISO&nbsp;27001, HIPAA, and GDPR evidence
           locally. Nothing leaves your network.
         </p>
 
@@ -152,8 +152,8 @@ export function Hero() {
         </div>
 
         <p className="anim-rise anim-d-4 mt-7 text-[13px] text-ink-3">
-          Windows 10/11 &middot; macOS 12+ (Intel &amp; Apple Silicon) &middot; ~1,075 tests passing
-          &middot; Source-available under BSL 1.1
+          Windows 10/11 &middot; macOS 12+ &middot; Linux (AppImage/deb) &middot; ~1,265 tests
+          passing &middot; Source-available under BSL 1.1
         </p>
       </div>
     </section>

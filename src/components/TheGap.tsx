@@ -3,8 +3,8 @@ import { AnimatedStat } from "./AnimatedStatValue";
 
 const stats = [
   {
-    stat: "123",
-    label: "Controls scored across SOC 2, ISO 27001, and HIPAA in a single collection pass",
+    stat: "221",
+    label: "Controls and obligations scored across SOC 2, ISO 27001, HIPAA, and GDPR in a single collection pass",
   },
   {
     stat: "0",

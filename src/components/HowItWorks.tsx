@@ -29,14 +29,14 @@ const steps = [
 type LogLine = { text: string; tone?: "pass" | "warn" | "strong"; pauseAfter?: number };
 
 const SCAN_LINES: LogLine[] = [
-  { text: "ComplianceGuard 3.9.0: evidence collection started", tone: "strong", pauseAfter: 400 },
+  { text: "ComplianceGuard 4.2.4: evidence collection started", tone: "strong", pauseAfter: 400 },
   { text: "Reading Windows Registry ✓", pauseAfter: 250 },
   { text: "Password policy: PASS", tone: "pass", pauseAfter: 200 },
   { text: "Firewall status: PASS", tone: "pass", pauseAfter: 200 },
   { text: "Disk encryption: PASS", tone: "pass", pauseAfter: 200 },
   { text: "Audit logging: NEEDS WORK", tone: "warn", pauseAfter: 250 },
   { text: "Local user accounts: PASS", tone: "pass", pauseAfter: 400 },
-  { text: "Readiness score: 67% (36 of 54 SOC 2 controls passing)", tone: "strong" },
+  { text: "Readiness: 67% (29 of 43 SOC 2 criteria with required evidence)", tone: "strong" },
 ];
 
 const TONE_COLOR: Record<string, string> = {
@@ -192,7 +192,7 @@ export function HowItWorks() {
         <Reveal className="max-w-3xl">
           <p className="eyebrow mb-4">How it works</p>
           <h2 className="display-2">
-            From install to audit-ready,
+            From install to evidence pack,
             <br />
             in minutes.
           </h2>
