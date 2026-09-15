@@ -21,9 +21,9 @@ const notForYou = [
     ],
   },
   {
-    title: "Linux endpoints",
-    body: "ComplianceGuard scans Windows 10/11 and macOS 12+ today. Linux support is planned, but it is not here yet.",
-    fit: "Track Linux support in the changelog, and come back when it lands.",
+    title: "You can't install software on the endpoints being audited",
+    body: "Evidence collection runs on the machines themselves, so the desktop app has to be installed there. Managed hosting removes the server work; it does not remove the endpoint app.",
+    fit: "Cloud-first platforms that collect through your MDM or identity provider may fit better.",
     links: [],
   },
   {
@@ -35,8 +35,8 @@ const notForYou = [
 ];
 
 const goodFit = [
-  "You run Windows or macOS endpoints, Intel or Apple Silicon",
-  "Your next audit is SOC 2, ISO 27001, or HIPAA",
+  "You run Windows, macOS, or Linux endpoints, Intel or Apple Silicon",
+  "Your next audit is SOC 2, ISO 27001, HIPAA, or GDPR readiness",
   "You want evidence collected from the machine, not only cloud APIs",
   "You need it to work offline, air-gapped, or fully self-hosted",
 ];
@@ -116,8 +116,8 @@ export function FitCheck() {
             </ul>
             <div className="mt-8 pt-7 border-t border-hairline">
               <p className="text-[14px] text-ink-3 leading-[1.6]">
-                If that reads like your team, the free tier scores your first machine against 12
-                core controls before you pay anything.
+                If that reads like your team, the free tier scores all 43 SOC 2 criteria on your
+                first machine before you pay anything.
               </p>
               <Link to="/pricing" className="btn-ghost mt-5 w-full">
                 See plans and pricing

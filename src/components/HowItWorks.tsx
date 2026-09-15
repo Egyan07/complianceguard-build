@@ -7,7 +7,7 @@ const steps = [
   {
     n: 1,
     title: "Install",
-    body: "Run the installer for Windows or macOS. No admin privileges, no API keys, no agents to deploy.",
+    body: "Run the installer for Windows, macOS, or Linux. No admin privileges, no API keys, no agents to deploy.",
   },
   {
     n: 2,
