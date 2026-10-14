@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { Reveal } from "./Reveal";
 
-const FAQS = [
+export const FAQS = [
   {
     q: "Which frameworks does ComplianceGuard cover?",
     a: "Four, from a single collection pass: SOC 2 (43 criteria from the 2017 Trust Services Criteria), ISO/IEC 27001:2022 (all 93 Annex A controls), the HIPAA Security Rule (47 safeguards), and GDPR (38 obligations). The same OS-level evidence feeds all four, each scored by evidence coverage rather than a checkbox claim of compliance.",

@@ -12,30 +12,75 @@ import { FrameworksSection } from "@/components/FrameworksSection";
 import { TrustArchitecture } from "@/components/TrustArchitecture";
 import { EnterpriseSection } from "@/components/EnterpriseSection";
 import { FitCheck } from "@/components/FitCheck";
-import { HomepageFAQ } from "@/components/HomepageFAQ";
+import { FAQS, HomepageFAQ } from "@/components/HomepageFAQ";
 import { Footer } from "@/components/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 import { Magnetic } from "@/components/Magnetic";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
-import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
+import { buildMeta, DOWNLOAD_URL, SITE_URL, TIERS, VERSION, salesMailto } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
-  head: () =>
-    buildMeta({
+  head: () => ({
+    ...buildMeta({
       title: "ComplianceGuard | Endpoint Compliance Evidence for SOC 2, ISO 27001, HIPAA & GDPR",
       description:
         "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows, macOS, and Linux endpoints. Four frameworks, one scan. Nothing leaves your network.",
       path: "/",
     }),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "ComplianceGuard",
+          applicationCategory: "SecurityApplication",
+          operatingSystem: "Windows, macOS, Linux",
+          version: VERSION,
+          description:
+            "Endpoint compliance evidence collection for SOC 2, ISO 27001, HIPAA and GDPR. Evidence stays on your machine.",
+          url: SITE_URL,
+          offers: TIERS.map((t) => ({
+            "@type": "Offer",
+            name: t.name,
+            price: String(t.monthly),
+            priceCurrency: "USD",
+          })),
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
+  }),
   component: LandingPage,
 });
 
 const compareRows = [
-  ["Evidence source", "The endpoint itself", "Cloud + SaaS/identity/MDM integrations", "Cloud + SaaS/identity/MDM integrations"],
+  [
+    "Evidence source",
+    "The endpoint itself",
+    "Cloud + SaaS/identity/MDM integrations",
+    "Cloud + SaaS/identity/MDM integrations",
+  ],
   ["Data stays on your machine", "yes", "no", "no"],
   ["Works offline / air-gapped", "yes", "no", "no"],
-  ["Compliance frameworks", "SOC 2 · ISO 27001 · HIPAA · GDPR", "Broad multi-framework coverage", "Broad multi-framework coverage"],
+  [
+    "Compliance frameworks",
+    "SOC 2 · ISO 27001 · HIPAA · GDPR",
+    "Broad multi-framework coverage",
+    "Broad multi-framework coverage",
+  ],
   ["Pricing", "Flat rate &middot; free tier", "Annual platform fee", "Annual platform fee"],
   ["Setup time", "Minutes", "Days to weeks", "Days to weeks"],
   ["Source code", "BSL 1.1 source-available", "Proprietary", "Proprietary"],
