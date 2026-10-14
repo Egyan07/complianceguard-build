@@ -1,0 +1,108 @@
+Vanta Alternative for SOC 2 Evidence | ComplianceGuard
+Skip to content
+CG
+ComplianceGuard
+Pricing
+Security
+Trust
+About
+Changelog
+Resources
+GitHub
+Download
+Comparisons
+Vanta alternative.
+Same frameworks, different evidence source: ComplianceGuard collects SOC 2, ISO 27001, HIPAA, and GDPR evidence on your own machines â€” with a free tier and no annual platform fee.
+Last updated Â· October 2026
+Vanta is the name most teams encounter first when a customer asks for a SOC 2 report. It is a capable cloud-compliance platform: it connects to your SaaS tools, identity provider, and cloud accounts, monitors integrations, and manages the audit workflow. But three things send teams searching for a Vanta alternative â€” the annual price tag that starts around five figures, a security posture that requires your evidence to leave your network, and a structural blind spot: a cloud platform sees your cloud, not the password policy, disk encryption state, firewall rules, and event logs on the machines your business actually runs on. That last set is exactly what auditors ask for first.
+ComplianceGuard takes the opposite architectural position. It installs on the endpoint itself, reads the operating system directly, scores what it finds against 43 SOC 2 criteria (plus all 93 ISO 27001:2022 Annex A controls, 47 HIPAA safeguards, and 38 GDPR obligations), and never sends a byte anywhere. This page compares the two honestly â€” including the cases where Vanta is genuinely the better fit.
+Capability
+ComplianceGuard
+Vanta
+Evidence source
+The endpoint itself
+Cloud + SaaS/identity/MDM integrations
+Endpoint controls (password policy, firewall, disk encryption, event logs)
+Native â€” reads the OS directly
+Via MDM/agent integrations, where configured
+Data residency
+Stays on your machine
+Processed in vendor cloud
+Works offline / air-gapped
+Free tier
+Yes â€” 1 machine, no time limit
+No published free tier
+Publicly reported annual price
+Free Â· then $149/mo flat
+~$10,000â€“$80,000+/yr reported
+Setup time
+Minutes
+Days to weeks
+Source code
+BSL 1.1 source-available
+Proprietary
+Frameworks in one scan
+SOC 2 Â· ISO 27001 Â· HIPAA Â· GDPR
+Broad multi-framework coverage
+Vanta details based on publicly available information as of 2026; Vanta does not publish exact pricing, so third-party estimates are shown.
+Why endpoint evidence is a different problem
+Cloud compliance platforms work through integrations: connect AWS, your identity provider, your ticketing system, your MDM, and the platform monitors those surfaces continuously. It is a clean model â€” until an auditor asks a question that lives below the cloud layer. Is disk encryption enabled on the laptop that holds the production database credentials? What is the local password policy on the domain controller? Which firewall profile is active on the build machine? Which admin accounts exist on the machine no MDM manages?
+Those answers live in the operating system, and reaching them the integration way means deploying an agent or MDM profile to every machine and scripting one-off checks per OS. ComplianceGuard skips that indirection: one collection pass reads event logs, security settings, services, firewall configuration, user accounts, network state, software inventory, and file permissions directly, on Windows, macOS, and Linux, in about 30 seconds per machine. The same pass feeds all four frameworks, so ISO 27001 and HIPAA evidence is not a second project.
+The honest cost comparison
+Vanta's pricing is quote-based. Independent 2026 pricing guides consistently place it between roughly $10,000 and $80,000+ per year depending on plan, headcount, and frameworks â€” always as an annual platform commitment, with the SOC 2 audit fee paid separately to your CPA firm on top.
+ComplianceGuard's free tier runs indefinitely on one machine and already scores all 43 SOC 2 criteria, so you can see your real readiness before deciding anything. Pro is a flat $149/month billed annually for all four frameworks, up to 10 machines, and PDF evidence packs â€” less than a single month at the low end of the cloud-platform range. Enterprise ($599/month) adds the tamper-evident audit log, RBAC, air-gapped deployment, and unlimited machines. Audit fees are still yours to pay to whichever firm you choose; we don't run an auditor marketplace and take no cut.
+When Vanta is the right choice
+Honesty saves everyone time. If your company already runs a mature SaaS/identity stack with MDM on every device, has in-house GRC staff who live in a platform UI daily, needs the breadth of a 100+ app integration catalog, or wants a single vendor for auditor networking and workflow management, Vanta's ecosystem is genuinely stronger and ComplianceGuard is not trying to replace it. You may also have contractual reasons â€” some enterprise buyers name specific platforms in their vendor requirements.
+When ComplianceGuard is the right choice
+You are a small team that wants the evidence without the platform fee. Your auditors keep asking for endpoint artefacts your cloud tool cannot produce. You are pre-revenue or pre-PMF and need a SOC 2 readiness number today, for free, before committing to an annual contract. You must pass evidence through an air gap, so "works offline" is a hard requirement, not a checkbox. Or you simply believe the code that reads your systems should be readable â€” ComplianceGuard is source-available under BSL 1.1, with ~1,265 tests and every line of collection and scoring logic auditable.
+Switching cost: usually zero
+There is no migration. ComplianceGuard does not import your Vanta history, need your SaaS credentials, or touch your cloud account unless you explicitly connect AWS. Install it, scan, and you have an independent endpoint readiness score in under two minutes â€” running alongside your existing platform if you keep one. Evidence is stored in a local database in standard formats and exported as PDF or NDJSON, so there is no lock-in in either direction: your evidence remains yours whether you stay or leave.
+Frequently asked questions
+Is ComplianceGuard a full replacement for Vanta?
+For endpoint evidence, yes â€” ComplianceGuard reads password policies, firewall rules, disk encryption, audit logs, accounts, services, software inventory, and file permissions directly from Windows, macOS, and Linux machines, then scores them against 43 SOC 2 criteria. Where Vanta's strength is its catalog of cloud, identity, and MDM integrations, ComplianceGuard has no integration catalog by design: it collects from the machines themselves. Teams with heavy SaaS stacks often keep a cloud platform and add ComplianceGuard for the endpoint evidence neither side sees fully on its own.
+How much does Vanta actually cost?
+Vanta does not publish exact pricing. Multiple independent 2026 pricing guides place it roughly between $10,000 and $80,000+ per year depending on plan, company size, and frameworks, billed as an annual platform fee. ComplianceGuard is free for a single machine with no time limit, then a flat $149/month (billed annually) for Pro with all four frameworks â€” no per-framework upsell and no annual platform fee on the free tier.
+Will my auditor accept evidence from ComplianceGuard?
+Every evidence item is hashed with SHA-256 and mapped control-by-control to the AICPA Trust Services Criteria, the exact framework your SOC 2 auditor works from, and exported as a PDF evidence pack organized the way auditors expect. A formal SOC 2 report still requires a licensed CPA firm â€” ComplianceGuard gets you to that engagement with the evidence already collected instead of a spreadsheet full of screenshots.
+Do I need to choose between Vanta and ComplianceGuard?
+No. They cover different evidence surfaces: Vanta sees your cloud and SaaS stack, ComplianceGuard sees the endpoints those machines actually run on. Many compliance-conscious teams run both. If you only buy one, the question is where your missing evidence lives â€” if auditors keep asking for password policy, disk encryption, firewall configuration, or event logs from real machines, that evidence is on the endpoint, and that is what ComplianceGuard collects.
+What about air-gapped or offline environments?
+ComplianceGuard runs fully offline: evidence collection, scoring, and PDF export work with no internet connection, licensing verifies offline via Ed25519 public keys, and there is no phone-home or telemetry. This covers government, defense, and regulated-finance deployments where a cloud-first platform's always-on integration model simply does not fit the security boundary.
+How long does setup take?
+Install the desktop app or self-hosted web app, run a scan, and you have a per-control readiness score in about 30 seconds â€” typically minutes from install to first evidence pack. No admin privileges, no API keys, no agent rollout. Cloud-platform onboarding typically runs days to weeks because it starts with connecting your SaaS and identity stack.
+Still deciding? Read
+what an auditor actually checks in SOC 2
+, work through the
+SOC 2 readiness checklist
+, or compare full plan details on the
+pricing page
+.
+See your own readiness score â€” free, in 2 minutes.
+Install, scan, done. No credit card, no annual commitment, and no evidence leaves your machine while you decide.
+Download Free
+Ask a question
+CG
+ComplianceGuard
+Endpoint-level evidence for SOC 2, ISO 27001 and HIPAA. Runs on your machine. Stays under your control.
+Product
+Product
+Pricing
+Changelog
+Download
+GitHub
+Company
+About
+Security
+Trust
+Privacy
+Terms
+Contact sales
+Resources
+What is SOC 2?
+SOC 2 checklist
+Vanta alternative
+Documentation
+Releases
+Â© 2026 ComplianceGuard Â· Source available under BSL 1.1
+v
+4.2.4

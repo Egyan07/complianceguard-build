@@ -82,7 +82,7 @@ const compareRows = [
     "Broad multi-framework coverage",
     "Broad multi-framework coverage",
   ],
-  ["Pricing", "Flat rate &middot; free tier", "Annual platform fee", "Annual platform fee"],
+  ["Pricing", "Flat rate · free tier", "Annual platform fee", "Annual platform fee"],
   ["Setup time", "Minutes", "Days to weeks", "Days to weeks"],
   ["Source code", "BSL 1.1 source-available", "Proprietary", "Proprietary"],
   ["Free tier", "yes", "no", "no"],

@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "How much does SOC 2 cost?",
-    a: "There are three cost lines: the audit fee, the compliance platform, and your team's time. Audit fees for a first SOC 2 commonly run five figures depending on scope and firm; automation platforms like Vanta or Drata add a annual subscription, typically reported in the $10k–$80k range. ComplianceGuard's free tier covers readiness scoring, with flat paid tiers for full evidence packs.",
+    a: "There are three cost lines: the audit fee, the compliance platform, and your team's time. Audit fees for a first SOC 2 commonly run five figures depending on scope and firm; automation platforms like Vanta or Drata add an annual subscription, typically reported in the $10k–$80k range. ComplianceGuard's free tier covers readiness scoring, with flat paid tiers for full evidence packs.",
   },
   {
     q: "Do auditors accept automatically collected evidence?",
@@ -87,7 +87,7 @@ function WhatIsSoc2Page() {
 
         <article className="container-cg pb-24">
           <div className="mx-auto max-w-[680px]">
-            <p className="mono-tag">Last updated · April 2026</p>
+            <p className="mono-tag">Last updated · October 2026</p>
 
             <p className="mt-6 text-[17px] text-ink-2 leading-[1.65]">
               SOC 2 is a security framework developed by the American Institute of Certified Public
@@ -127,8 +127,8 @@ function WhatIsSoc2Page() {
                 The flip side is scope: SOC 2 covers the systems <em>you</em> operate in delivering
                 your service — your cloud accounts, your laptops, your CI/CD — not your customers'
                 environments and not your product's security properties in the abstract. Agreeing
-                that boundary with your auditor before fieldwork starts is the single highest-
-                leverage decision in the whole process.
+                that boundary with your auditor before fieldwork starts is the single
+                highest-leverage decision in the whole process.
               </p>
             </Section>
 

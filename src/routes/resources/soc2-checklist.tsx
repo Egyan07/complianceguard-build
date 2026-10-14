@@ -186,8 +186,7 @@ function Soc2ChecklistPage() {
               {AUTO_ITEMS} of the {TOTAL_ITEMS} items are marked <AutoBadge />: these are technical
               controls ComplianceGuard collects automatically from your machines and AWS account
               during a single scan — evidence hashed, timestamped, and mapped to the criteria
-              auditors check. The rest are process controls your team documents once. Check items
-              off as you go; progress saves automatically in this browser.
+              auditors check. The rest are process controls your team documents once.
             </p>
 
             {/* Why this matters */}
@@ -323,7 +322,7 @@ function Soc2ChecklistPage() {
                   <p>
                     Once every item is either checked or logged as a known gap, three things remain.
                     First, <strong>close the gaps that are cheap to close</strong> — a missing
-                    firewall rule or an disabled audit log is an afternoon of work that removes a
+                    firewall rule or a disabled audit log is an afternoon of work that removes a
                     finding from your future report. Second, <strong>start the clock</strong>: a
                     Type I can be assessed at a single point in time, but Type II requires your
                     controls to operate continuously through an observation window, so the day you
