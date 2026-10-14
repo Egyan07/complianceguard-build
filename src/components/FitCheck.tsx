@@ -55,15 +55,9 @@ export function FitCheck() {
 
           <div className="mt-10">
             {notForYou.map((n, i) => (
-              <div
-                key={n.title}
-                className="py-6 first:pt-0 border-b border-hairline last:border-0"
-              >
+              <div key={n.title} className="py-6 first:pt-0 border-b border-hairline last:border-0">
                 <div className="flex items-center gap-3">
-                  <span
-                    aria-hidden
-                    className="font-mono text-[12px] text-ink-3 w-6 shrink-0"
-                  >
+                  <span aria-hidden className="font-mono text-[12px] text-ink-3 w-6 shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="text-[17px] font-semibold text-ink">{n.title}</h3>

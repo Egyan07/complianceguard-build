@@ -1,0 +1,18 @@
+# Normalize to LF in the repo and in every working tree.
+# Windows checkouts with core.autocrlf=true used to reintroduce CRLF, which
+# eslint-plugin-prettier (endOfLine: "lf") then reported as thousands of errors.
+* text=auto eol=lf
+
+# Explicitly keep binaries untouched (text=auto already detects these, listed
+# for clarity and safety).
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.mp4 binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.lockb binary

@@ -67,8 +67,9 @@ function AboutPage() {
                 <div className="text-[17px] text-ink-2 leading-[1.65] space-y-5">
                   <p>
                     Compliance platforms moved to the cloud, but the evidence didn&apos;t. Disk
-                    encryption status, firewall configuration, OS patch level, and screen-lock policy. These are the controls auditors actually check, and
-                    they live on endpoints, where cloud integrations can&apos;t see them.
+                    encryption status, firewall configuration, OS patch level, and screen-lock
+                    policy. These are the controls auditors actually check, and they live on
+                    endpoints, where cloud integrations can&apos;t see them.
                   </p>
                   <p>
                     Cloud-first platforms such as Vanta solve a different problem well:

@@ -314,17 +314,17 @@ function TrustPage() {
                         <strong className="text-ink font-semibold">
                           The free tier is a real product.
                         </strong>{" "}
-                        Full evidence collection, all 43 SOC 2 criteria with an overall
-                        coverage score, on one machine. It exists so you can judge the output
-                        before paying anything.
+                        Full evidence collection, all 43 SOC 2 criteria with an overall coverage
+                        score, on one machine. It exists so you can judge the output before paying
+                        anything.
                       </span>
                     </li>
                     <li className="flex gap-3">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-azure shrink-0" />
                       <span>
                         <strong className="text-ink font-semibold">No data monetization.</strong>{" "}
-                        There is no data to monetize. We don&rsquo;t see your evidence, and we
-                        never will.
+                        There is no data to monetize. We don&rsquo;t see your evidence, and we never
+                        will.
                       </span>
                     </li>
                   </ul>

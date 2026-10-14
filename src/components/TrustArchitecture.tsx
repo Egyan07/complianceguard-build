@@ -94,9 +94,7 @@ export function TrustArchitecture() {
                 <t.icon size={19} className="text-azure shrink-0 mt-1" strokeWidth={2} />
                 <div>
                   <h3 className="text-[18px] font-semibold text-ink">{t.title}</h3>
-                  <p className="mt-1.5 text-[15px] text-ink-2 leading-[1.65] max-w-2xl">
-                    {t.body}
-                  </p>
+                  <p className="mt-1.5 text-[15px] text-ink-2 leading-[1.65] max-w-2xl">{t.body}</p>
                 </div>
               </div>
             </Reveal>

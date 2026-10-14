@@ -1,4 +1,3 @@
-
 # ComplianceGuard — "Mountain Top Command Center" redesign
 
 A full visual + motion transformation of the marketing site. Committed dark mode, editorial typography, restrained accent, cinematic scroll choreography. Copy and product facts re-aligned to v3.3.1.
@@ -37,6 +36,7 @@ Typography: Geist Sans (display + body) + Geist Mono (eyebrows, version stamps, 
 - Every animation respects `prefers-reduced-motion` (existing hook)
 
 Choreography:
+
 - Hero: ambient SVG grid + single soft accent glow, 0.05× parallax; mouse-reactive depth (≤5px); word-by-word headline reveal re-tuned to expo-out
 - Section reveals: 24px y + opacity, 600ms, 60ms stagger, fire at 25% in view
 - Cards: 2px lift + border shift to `#3A3A4E` on hover (no glow bloom)
@@ -63,6 +63,7 @@ No Three.js / GSAP / WebGL — the brief specifies restraint; Lenis + Framer Mot
 ## Files
 
 **New**
+
 - `src/components/SmoothScroll.tsx` (Lenis provider)
 - `src/components/AmbientGrid.tsx` (SVG grid + accent glow)
 - `src/components/Hero.tsx` (cinematic hero)
@@ -71,6 +72,7 @@ No Three.js / GSAP / WebGL — the brief specifies restraint; Lenis + Framer Mot
 - `src/components/SectionHeading.tsx` (eyebrow + headline primitive)
 
 **Heavy rewrites**
+
 - `src/styles.css` — full token reset, dark-only
 - `src/routes/__root.tsx` — Geist fonts, dark `<body>`, mount SmoothScroll
 - `src/routes/index.tsx` — recomposed with new sections + v3.3.1 copy
@@ -81,6 +83,7 @@ No Three.js / GSAP / WebGL — the brief specifies restraint; Lenis + Framer Mot
 - `src/components/{ChapterTheGap,ChapterTheScan,ChapterTheResult,FrameworksSection,FeatureSpotlights,ArchitectureDiagram,ControlsExplorer,HomepageFAQ,AnnouncementBanner}.tsx` — restyled to tokens, copy updated
 
 **Deletions**
+
 - `src/components/ThemeToggle.tsx`, `CursorBlob.tsx` — incompatible with restraint brief
 - Hard-coded green glow gradients and `text-white`/`bg-white` literals across components
 

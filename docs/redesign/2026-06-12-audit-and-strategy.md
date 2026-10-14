@@ -14,7 +14,7 @@ Method: six parallel deep audits (design system, landing sections/conversion, mo
 - **Broken classes (silent bugs):** `text-cobalt-link` (6 uses), `border-silver-mist` (4), `text-text-dim` (2) are referenced but never mapped in `@theme` — Tailwind v4 generates **nothing** for them. Footer/hero "links" render black instead of blue. Navbar.tsx:163 already patches one instance with an inline style.
 - **Typography:** 24 distinct arbitrary `text-[Npx]` sizes (252 occurrences, incl. `text-[14.5px]`), 9 different inline `clamp()` heading recipes, 19 inline letter-spacing values. The purpose-built `display-1/2/3` utilities have 0/2/0 usages — the hero hand-rolls its own clamp inline.
 - **Radius:** ~15 distinct radii across three mechanisms; the global `--radius: 999px` is consumed by nothing.
-- **Live rendering bugs found in screenshots:** the Problem section stat renders **"$10,NaN000+"** (AnimatedStat's regex is double-escaped — the count-up has *never* worked); the navbar/hero logo is a **broken image** (it imports a Lovable-internal `/__l5e/assets-v1/...` URL that 404s outside Lovable hosting).
+- **Live rendering bugs found in screenshots:** the Problem section stat renders **"$10,NaN000+"** (AnimatedStat's regex is double-escaped — the count-up has _never_ worked); the navbar/hero logo is a **broken image** (it imports a Lovable-internal `/__l5e/assets-v1/...` URL that 404s outside Lovable hosting).
 
 ## 2. UX Audit
 
@@ -22,7 +22,7 @@ Method: six parallel deep audits (design system, landing sections/conversion, mo
 - **Accessibility:** zero `:focus-visible` styles site-wide (and explicit `outline:none` on the calculator slider); ExitIntentModal is a fake dialog (no focus trap/Escape/restore); Resources dropdown links stay keyboard-focusable while invisible; no `<main>` landmark on 5 of 8 routes; no skip link; heading outline broken (sections with `<p>` headlines, h3/h4 jumps).
 - **Contrast failures (WCAG AA):** `#86868b` tertiary text = 3.62:1 on white (used at 10–13px); azure eyebrows on navy = 3.58:1; green `#1A8C5F` on white = 4.23:1 at small sizes.
 - **Reduced motion:** `FadeUp` — the primitive wrapping ~27 homepage sections — ignores `prefers-reduced-motion`; zero CSS `@media (prefers-reduced-motion)` blocks.
-- **Layout bugs:** AnnouncementBanner renders in normal flow *behind* the fixed blurred navbar — illegible and its dismiss button unclickable; it also mounts post-hydration causing guaranteed CLS.
+- **Layout bugs:** AnnouncementBanner renders in normal flow _behind_ the fixed blurred navbar — illegible and its dismiss button unclickable; it also mounts post-hydration causing guaranteed CLS.
 - **Performance:** hero runs 10+ perpetual animations (three ~500px `blur(20px)` orbs, an 80s 3D orbit, a radar pulse animating `width/height` — relayout every frame, forever, never paused off-screen). 5 unauthenticated client-side GitHub API calls per landing view (60/hr/IP limit) silently fall back to **fabricated stats** ("47 stars"). ~35 unused npm packages kept alive by 46 orphaned shadcn files nothing imports. 370KB favicon.ico. Render-blocking Google Fonts with 11 weights; "SF Pro" names in font stacks never match (dead tokens).
 
 ## 3. Conversion Audit
@@ -36,7 +36,7 @@ Method: six parallel deep audits (design system, landing sections/conversion, mo
 
 ## 4. Visual Hierarchy Audit
 
-- 22 stacked sections with **three near-identical stat-card triads**, **two identical fake terminals** (same fabricated "67% · 19/29" output), and **two mockup systems** — while the only *real* product screenshots live in a component (`ScreenshotShowcase`) that is never rendered.
+- 22 stacked sections with **three near-identical stat-card triads**, **two identical fake terminals** (same fabricated "67% · 19/29" output), and **two mockup systems** — while the only _real_ product screenshots live in a component (`ScreenshotShowcase`) that is never rendered.
 - FeatureSpotlights consumes ~5 viewports with 200px lucide icons at 15% opacity as "visuals" — the #1 template-site tell.
 - ControlsExplorer dumps a 29-card searchable reference grid mid-funnel (~3 viewports), killing momentum before pricing.
 - Hero stacks 8 simultaneous effects (orbit ring, radar pulse, orbs, beam, marquee, floating cards, gradient word, mockup) — premium heroes pick one signature move.
@@ -44,17 +44,17 @@ Method: six parallel deep audits (design system, landing sections/conversion, mo
 
 ## 5. Landing Page Structure — Recommendation (22 → 9 sections)
 
-| # | Section | Action |
-|---|---------|--------|
-| 1 | **Hero** | Rewrite: calm, one signature visual (refined product mockup + ambient grid), kill orbit/orbs/pulse/marquee/pink gradient |
-| 2 | **The Gap** (ChapterTheGap + Problem merged) | Lead with "Your cloud is covered. Your endpoints are not." — architecture framing, no price outrage |
-| 3 | **How it works** (4 steps + terminal demo merged) | One definitive demonstration, early |
-| 4 | **Product** (FeatureSpotlights rewritten) | 4 spotlights, real screenshots replace giant icons; keep the excellent technical copy |
-| 5 | **Frameworks** | Keep card treatment, brand-consistent colors, fix "Pick your finish." → framework-truthful copy |
-| 6 | **Trust & Architecture** (ArchitectureDiagram + Trust cards merged) | The anchor trust band — "Nothing leaves your network. Ever." |
-| 7 | **Comparison** | Keep table, reframe headline around architecture not affordability, fix claims |
-| 8 | **Enterprise** | Keep (best section); fix CTA path, tone down unverifiable absolutes |
-| 9 | **Pricing preview + FAQ + Final CTA** | Single-sourced pricing data, rewritten FAQ phrasing, one CTA intent |
+| #   | Section                                                             | Action                                                                                                                   |
+| --- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 1   | **Hero**                                                            | Rewrite: calm, one signature visual (refined product mockup + ambient grid), kill orbit/orbs/pulse/marquee/pink gradient |
+| 2   | **The Gap** (ChapterTheGap + Problem merged)                        | Lead with "Your cloud is covered. Your endpoints are not." — architecture framing, no price outrage                      |
+| 3   | **How it works** (4 steps + terminal demo merged)                   | One definitive demonstration, early                                                                                      |
+| 4   | **Product** (FeatureSpotlights rewritten)                           | 4 spotlights, real screenshots replace giant icons; keep the excellent technical copy                                    |
+| 5   | **Frameworks**                                                      | Keep card treatment, brand-consistent colors, fix "Pick your finish." → framework-truthful copy                          |
+| 6   | **Trust & Architecture** (ArchitectureDiagram + Trust cards merged) | The anchor trust band — "Nothing leaves your network. Ever."                                                             |
+| 7   | **Comparison**                                                      | Keep table, reframe headline around architecture not affordability, fix claims                                           |
+| 8   | **Enterprise**                                                      | Keep (best section); fix CTA path, tone down unverifiable absolutes                                                      |
+| 9   | **Pricing preview + FAQ + Final CTA**                               | Single-sourced pricing data, rewritten FAQ phrasing, one CTA intent                                                      |
 
 **Removed:** TechCredibilityBar (fake logo-bar of your own web stack), GitHubStats (proves smallness; fabricated fallbacks), CostCalculator (invented competitor math, 4th price display), ControlsExplorer (reference docs, not a landing section), CodeSnippet (duplicate terminal), FounderNote (maximum anti-enterprise density), NotIncluded (2–3 honest items fold into FAQ), ExitIntentModal (gimmick + deceptive), WaitlistForm on landing (contradicts GA), DownloadCounter/CursorBlob/TypingHeadline/WordReveal/ParallaxMockup/GitHubStarButton/ThemeToggle/AnimatedStat-dup/ScrollProgress (dead or off-strategy).
 
@@ -63,7 +63,7 @@ Method: six parallel deep audits (design system, landing sections/conversion, mo
 **Principle: fewer, slower, intentional — every animation argues precision and trust.**
 
 1. **One motion module** (`src/lib/motion.ts`): duration scale (fast .2 / base .5 / slow .8 / hero 1.1), two easings (expo-out `[0.16,1,0.3,1]` for reveals; gentle spring for interactive), shared viewport config, stagger constants. Mirrored as CSS vars.
-2. **One `<Reveal>` primitive** (replaces FadeUp + ad-hoc motion.*): SSR-visible by default (no hidden content in server HTML), staggered children via variants, reduced-motion aware.
+2. **One `<Reveal>` primitive** (replaces FadeUp + ad-hoc motion.\*): SSR-visible by default (no hidden content in server HTML), staggered children via variants, reduced-motion aware.
 3. **Global guards:** `<MotionConfig reducedMotion="user">` at root + one CSS `prefers-reduced-motion` block.
 4. **Signature moments only:** masked word-stagger on the hero h1 (post-hydration), subtle mockup parallax, scroll-linked scan terminal, animated count-ups (fixed), hover micro-interactions on cards/buttons (translate + shadow-opacity, GPU-only).
 5. **Kill list:** orbit scene, floating blur orbs, radar pulse (animates layout properties), cursor blob, typing headline, magnetic button, scroll progress bar.

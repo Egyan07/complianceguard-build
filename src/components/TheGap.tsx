@@ -4,7 +4,8 @@ import { AnimatedStat } from "./AnimatedStatValue";
 const stats = [
   {
     stat: "221",
-    label: "Controls and obligations scored across SOC 2, ISO 27001, HIPAA, and GDPR in a single collection pass",
+    label:
+      "Controls and obligations scored across SOC 2, ISO 27001, HIPAA, and GDPR in a single collection pass",
   },
   {
     stat: "0",
@@ -43,8 +44,8 @@ export function TheGap() {
           <p className="mt-7 body-lg text-snow/70 max-w-2xl">
             Cloud compliance platforms see your AWS account. They cannot see the password policy,
             disk encryption, firewall rules, or event logs on the machines your business actually
-            runs on. That evidence lives on the endpoint, and auditors ask for it.
-            ComplianceGuard lives there too.
+            runs on. That evidence lives on the endpoint, and auditors ask for it. ComplianceGuard
+            lives there too.
           </p>
         </Reveal>
 

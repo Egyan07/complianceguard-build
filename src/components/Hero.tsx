@@ -135,8 +135,8 @@ export function Hero() {
         </h1>
 
         <p className="anim-rise anim-d-2 mt-6 body-lg md:text-[20px] text-ink-2 max-w-[620px]">
-          Cloud platforms scan your cloud. ComplianceGuard scans the machines your business runs
-          on, collecting, scoring, and signing SOC&nbsp;2, ISO&nbsp;27001, HIPAA, and GDPR evidence
+          Cloud platforms scan your cloud. ComplianceGuard scans the machines your business runs on,
+          collecting, scoring, and signing SOC&nbsp;2, ISO&nbsp;27001, HIPAA, and GDPR evidence
           locally. Nothing leaves your network.
         </p>
 

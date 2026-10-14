@@ -15,8 +15,8 @@ function NotFoundComponent() {
         </p>
         <h1 className="display-2">This page isn&rsquo;t part of the framework.</h1>
         <p className="mt-4 text-[17px] text-ink-2 leading-[1.65]">
-          We scanned this address and found no evidence it exists. Double-check the URL, or
-          head somewhere we know passes audit.
+          We scanned this address and found no evidence it exists. Double-check the URL, or head
+          somewhere we know passes audit.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Link to="/" className="btn-primary">
