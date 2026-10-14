@@ -9,7 +9,7 @@ import { buildMeta, DOWNLOAD_URL } from "@/lib/site";
 export const Route = createFileRoute("/resources/soc2-checklist")({
   head: () => ({
     ...buildMeta({
-      title: "SOC 2 Readiness Checklist | ComplianceGuard",
+      title: "SOC 2 Readiness Checklist (24 Items) | ComplianceGuard",
       description:
         "A practical SOC 2 readiness checklist covering access control, encryption, audit logging, incident response, vendor management, and change management — 24 items auditors check first.",
       path: "/resources/soc2-checklist",

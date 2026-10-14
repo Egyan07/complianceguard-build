@@ -24,7 +24,7 @@ import { buildMeta, DOWNLOAD_URL, SITE_URL, TIERS, VERSION, salesMailto } from "
 export const Route = createFileRoute("/")({
   head: () => ({
     ...buildMeta({
-      title: "ComplianceGuard | Endpoint Compliance Evidence for SOC 2, ISO 27001, HIPAA & GDPR",
+      title: "ComplianceGuard | SOC 2 evidence that never leaves your machine",
       description:
         "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows, macOS, and Linux endpoints. Four frameworks, one scan. Nothing leaves your network.",
       path: "/",
