@@ -23,6 +23,7 @@ const companyLinks = [
 const resourceLinks = [
   { label: "What is SOC 2?", to: "/resources/what-is-soc2" },
   { label: "SOC 2 checklist", to: "/resources/soc2-checklist" },
+  { label: "Vanta alternative", to: "/resources/vanta-alternative" },
   { label: "Documentation", href: `${GITHUB_URL}#readme` },
   { label: "Releases", href: `${GITHUB_URL}/releases` },
 ] as const;

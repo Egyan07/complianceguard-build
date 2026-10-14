@@ -58,8 +58,8 @@ function WhatIsSoc2Page() {
               <p>
                 Enterprise buyers and their legal teams increasingly require SOC 2 compliance before
                 signing contracts. A SOC 2 report proves that your systems and processes meet a
-                recognised security standard. Without it, you may lose deals to competitors who
-                have it.
+                recognised security standard. Without it, you may lose deals to competitors who have
+                it.
               </p>
             </Section>
 
@@ -116,6 +116,18 @@ function WhatIsSoc2Page() {
                 you need the report, is the most important thing you can do.
               </p>
             </Section>
+
+            <p className="mt-4 text-[17px] text-ink-2 leading-[1.65]">
+              Comparing platforms? Read our honest breakdown of{" "}
+              <a href="/resources/vanta-alternative" className="text-azure hover:underline">
+                ComplianceGuard as a Vanta alternative
+              </a>
+              , or work through the{" "}
+              <a href="/resources/soc2-checklist" className="text-azure hover:underline">
+                24-item SOC 2 readiness checklist
+              </a>{" "}
+              auditors start from.
+            </p>
 
             <Section title="How ComplianceGuard helps">
               <p>

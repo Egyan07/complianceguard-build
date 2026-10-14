@@ -15,6 +15,7 @@ const links = [
 const resourceLinks = [
   { to: "/resources/what-is-soc2", label: "What is SOC 2?" },
   { to: "/resources/soc2-checklist", label: "SOC 2 Checklist" },
+  { to: "/resources/vanta-alternative", label: "Vanta Alternative" },
 ] as const;
 
 function NavLink({ to, label }: { to: string; label: string }) {

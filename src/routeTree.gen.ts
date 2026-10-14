@@ -18,6 +18,7 @@ import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesWhatIsSoc2RouteImport } from './routes/resources/what-is-soc2'
+import { Route as ResourcesVantaAlternativeRouteImport } from './routes/resources/vanta-alternative'
 import { Route as ResourcesSoc2ChecklistRouteImport } from './routes/resources/soc2-checklist'
 
 const TrustRoute = TrustRouteImport.update({
@@ -65,6 +66,12 @@ const ResourcesWhatIsSoc2Route = ResourcesWhatIsSoc2RouteImport.update({
   path: '/resources/what-is-soc2',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesVantaAlternativeRoute =
+  ResourcesVantaAlternativeRouteImport.update({
+    id: '/resources/vanta-alternative',
+    path: '/resources/vanta-alternative',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ResourcesSoc2ChecklistRoute = ResourcesSoc2ChecklistRouteImport.update({
   id: '/resources/soc2-checklist',
   path: '/resources/soc2-checklist',
@@ -81,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/trust': typeof TrustRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
+  '/resources/vanta-alternative': typeof ResourcesVantaAlternativeRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
 export interface FileRoutesByTo {
@@ -93,6 +101,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/trust': typeof TrustRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
+  '/resources/vanta-alternative': typeof ResourcesVantaAlternativeRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
 export interface FileRoutesById {
@@ -106,6 +115,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/trust': typeof TrustRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
+  '/resources/vanta-alternative': typeof ResourcesVantaAlternativeRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
 }
 export interface FileRouteTypes {
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/trust'
     | '/resources/soc2-checklist'
+    | '/resources/vanta-alternative'
     | '/resources/what-is-soc2'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/trust'
     | '/resources/soc2-checklist'
+    | '/resources/vanta-alternative'
     | '/resources/what-is-soc2'
   id:
     | '__root__'
@@ -144,6 +156,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/trust'
     | '/resources/soc2-checklist'
+    | '/resources/vanta-alternative'
     | '/resources/what-is-soc2'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +170,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TrustRoute: typeof TrustRoute
   ResourcesSoc2ChecklistRoute: typeof ResourcesSoc2ChecklistRoute
+  ResourcesVantaAlternativeRoute: typeof ResourcesVantaAlternativeRoute
   ResourcesWhatIsSoc2Route: typeof ResourcesWhatIsSoc2Route
 }
 
@@ -225,6 +239,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesWhatIsSoc2RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/vanta-alternative': {
+      id: '/resources/vanta-alternative'
+      path: '/resources/vanta-alternative'
+      fullPath: '/resources/vanta-alternative'
+      preLoaderRoute: typeof ResourcesVantaAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/soc2-checklist': {
       id: '/resources/soc2-checklist'
       path: '/resources/soc2-checklist'
@@ -245,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TrustRoute: TrustRoute,
   ResourcesSoc2ChecklistRoute: ResourcesSoc2ChecklistRoute,
+  ResourcesVantaAlternativeRoute: ResourcesVantaAlternativeRoute,
   ResourcesWhatIsSoc2Route: ResourcesWhatIsSoc2Route,
 }
 export const routeTree = rootRouteImport
