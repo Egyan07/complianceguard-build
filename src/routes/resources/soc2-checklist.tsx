@@ -132,7 +132,7 @@ function AutoBadge() {
   );
 }
 
-function Soc2ChecklistPage() {
+export function Soc2ChecklistPage() {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
   // localStorage is browser-only — hydrate saved progress after mount.

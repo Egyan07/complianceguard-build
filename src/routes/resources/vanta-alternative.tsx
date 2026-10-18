@@ -125,7 +125,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-function VantaAlternativePage() {
+export function VantaAlternativePage() {
   return (
     <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />

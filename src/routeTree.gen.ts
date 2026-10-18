@@ -20,6 +20,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesWhatIsSoc2RouteImport } from './routes/resources/what-is-soc2'
 import { Route as ResourcesVantaAlternativeRouteImport } from './routes/resources/vanta-alternative'
 import { Route as ResourcesSoc2ChecklistRouteImport } from './routes/resources/soc2-checklist'
+import { Route as RVantaAlternativeRouteImport } from './routes/r/vanta-alternative'
+import { Route as RSoc2ChecklistRouteImport } from './routes/r/soc2-checklist'
 
 const TrustRoute = TrustRouteImport.update({
   id: '/trust',
@@ -77,6 +79,16 @@ const ResourcesSoc2ChecklistRoute = ResourcesSoc2ChecklistRouteImport.update({
   path: '/resources/soc2-checklist',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RVantaAlternativeRoute = RVantaAlternativeRouteImport.update({
+  id: '/r/vanta-alternative',
+  path: '/r/vanta-alternative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RSoc2ChecklistRoute = RSoc2ChecklistRouteImport.update({
+  id: '/r/soc2-checklist',
+  path: '/r/soc2-checklist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,6 +99,8 @@ export interface FileRoutesByFullPath {
   '/security': typeof SecurityRoute
   '/terms': typeof TermsRoute
   '/trust': typeof TrustRoute
+  '/r/soc2-checklist': typeof RSoc2ChecklistRoute
+  '/r/vanta-alternative': typeof RVantaAlternativeRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
   '/resources/vanta-alternative': typeof ResourcesVantaAlternativeRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
@@ -100,6 +114,8 @@ export interface FileRoutesByTo {
   '/security': typeof SecurityRoute
   '/terms': typeof TermsRoute
   '/trust': typeof TrustRoute
+  '/r/soc2-checklist': typeof RSoc2ChecklistRoute
+  '/r/vanta-alternative': typeof RVantaAlternativeRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
   '/resources/vanta-alternative': typeof ResourcesVantaAlternativeRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
@@ -114,6 +130,8 @@ export interface FileRoutesById {
   '/security': typeof SecurityRoute
   '/terms': typeof TermsRoute
   '/trust': typeof TrustRoute
+  '/r/soc2-checklist': typeof RSoc2ChecklistRoute
+  '/r/vanta-alternative': typeof RVantaAlternativeRoute
   '/resources/soc2-checklist': typeof ResourcesSoc2ChecklistRoute
   '/resources/vanta-alternative': typeof ResourcesVantaAlternativeRoute
   '/resources/what-is-soc2': typeof ResourcesWhatIsSoc2Route
@@ -129,6 +147,8 @@ export interface FileRouteTypes {
     | '/security'
     | '/terms'
     | '/trust'
+    | '/r/soc2-checklist'
+    | '/r/vanta-alternative'
     | '/resources/soc2-checklist'
     | '/resources/vanta-alternative'
     | '/resources/what-is-soc2'
@@ -142,6 +162,8 @@ export interface FileRouteTypes {
     | '/security'
     | '/terms'
     | '/trust'
+    | '/r/soc2-checklist'
+    | '/r/vanta-alternative'
     | '/resources/soc2-checklist'
     | '/resources/vanta-alternative'
     | '/resources/what-is-soc2'
@@ -155,6 +177,8 @@ export interface FileRouteTypes {
     | '/security'
     | '/terms'
     | '/trust'
+    | '/r/soc2-checklist'
+    | '/r/vanta-alternative'
     | '/resources/soc2-checklist'
     | '/resources/vanta-alternative'
     | '/resources/what-is-soc2'
@@ -169,6 +193,8 @@ export interface RootRouteChildren {
   SecurityRoute: typeof SecurityRoute
   TermsRoute: typeof TermsRoute
   TrustRoute: typeof TrustRoute
+  RSoc2ChecklistRoute: typeof RSoc2ChecklistRoute
+  RVantaAlternativeRoute: typeof RVantaAlternativeRoute
   ResourcesSoc2ChecklistRoute: typeof ResourcesSoc2ChecklistRoute
   ResourcesVantaAlternativeRoute: typeof ResourcesVantaAlternativeRoute
   ResourcesWhatIsSoc2Route: typeof ResourcesWhatIsSoc2Route
@@ -253,6 +279,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesSoc2ChecklistRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/r/vanta-alternative': {
+      id: '/r/vanta-alternative'
+      path: '/r/vanta-alternative'
+      fullPath: '/r/vanta-alternative'
+      preLoaderRoute: typeof RVantaAlternativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/r/soc2-checklist': {
+      id: '/r/soc2-checklist'
+      path: '/r/soc2-checklist'
+      fullPath: '/r/soc2-checklist'
+      preLoaderRoute: typeof RSoc2ChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -265,6 +305,8 @@ const rootRouteChildren: RootRouteChildren = {
   SecurityRoute: SecurityRoute,
   TermsRoute: TermsRoute,
   TrustRoute: TrustRoute,
+  RSoc2ChecklistRoute: RSoc2ChecklistRoute,
+  RVantaAlternativeRoute: RVantaAlternativeRoute,
   ResourcesSoc2ChecklistRoute: ResourcesSoc2ChecklistRoute,
   ResourcesVantaAlternativeRoute: ResourcesVantaAlternativeRoute,
   ResourcesWhatIsSoc2Route: ResourcesWhatIsSoc2Route,

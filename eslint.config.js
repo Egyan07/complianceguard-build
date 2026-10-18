@@ -6,7 +6,9 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".output", ".vinxi"] },
+  // .wrangler holds local miniflare state written by `wrangler dev`; walking it
+  // made `eslint .` hang for minutes, so it is excluded alongside build output.
+  { ignores: ["dist", ".output", ".vinxi", ".wrangler"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
