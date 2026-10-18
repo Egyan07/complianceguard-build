@@ -16,7 +16,16 @@ export type TocItem = { id: string; label: string };
  * earns jump-to-section links in search results) and a persistent download
  * card. It is hidden below `lg`, so mobile is unchanged.
  */
-export function ArticleShell({ toc, children }: { toc?: TocItem[]; children: ReactNode }) {
+export function ArticleShell({
+  toc,
+  rail,
+  children,
+}: {
+  toc?: TocItem[];
+  /** Page-specific panel pinned above the contents list (e.g. a progress card). */
+  rail?: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <div className="container-cg pb-24">
       <div className="mx-auto grid max-w-[1060px] grid-cols-1 gap-x-16 lg:grid-cols-[minmax(0,680px)_300px]">
@@ -24,6 +33,8 @@ export function ArticleShell({ toc, children }: { toc?: TocItem[]; children: Rea
 
         <aside aria-label="On this page" className="hidden lg:block">
           <div className="sticky top-28 space-y-7">
+            {rail}
+
             {toc && toc.length > 1 && (
               <nav className="border-l border-hairline pl-5">
                 <p className="mono-tag mb-3">On this page</p>

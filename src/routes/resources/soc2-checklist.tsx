@@ -13,7 +13,7 @@ export const Route = createFileRoute("/resources/soc2-checklist")({
     ...buildMeta({
       title: "SOC 2 Readiness Checklist (24 Items) | ComplianceGuard",
       description:
-        "A practical SOC 2 readiness checklist covering access control, encryption, audit logging, incident response, vendor management, and change management — 24 items auditors check first.",
+        "A 24-item SOC 2 readiness checklist: access control, encryption, audit logging, incident response, vendors and change management. 10 collect automatically.",
       path: "/resources/soc2-checklist",
       image: "/og/soc2-checklist.png",
       imageAlt: "24 SOC 2 checklist items, 10 collected from the machine.",
@@ -133,6 +133,16 @@ function AutoBadge() {
   );
 }
 
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/** Contents list for the rail — one entry per checklist group. */
+const TOC = groups.map((g) => ({ id: slugify(g.heading), label: g.heading }));
+
 export function Soc2ChecklistPage() {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
@@ -163,6 +173,17 @@ export function Soc2ChecklistPage() {
     0,
   );
 
+  const percent = Math.round((done / TOTAL_ITEMS) * 100);
+
+  function reset() {
+    setChecked({});
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // Storage unavailable — clearing in-memory state is still correct.
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />
@@ -174,7 +195,43 @@ export function Soc2ChecklistPage() {
           ornament="none"
         />
 
-        <ArticleShell>
+        <ArticleShell
+          toc={TOC}
+          rail={
+            <div className="card-fog p-5">
+              <div className="flex items-baseline justify-between">
+                <p className="mono-tag">Your progress</p>
+                <p className="text-[13px] font-semibold text-ink">{percent}%</p>
+              </div>
+              <p className="mt-2 text-[22px] leading-none font-semibold text-ink">
+                {done}
+                <span className="ml-1 text-[13px] font-normal text-ink-3">of {TOTAL_ITEMS}</span>
+              </p>
+              <div
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuemax={TOTAL_ITEMS}
+                aria-valuenow={done}
+                aria-label="Checklist progress"
+                className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white"
+              >
+                <div
+                  className="h-full rounded-full bg-azure transition-[width] duration-500"
+                  style={{ width: `${percent}%` }}
+                />
+              </div>
+              {done > 0 && (
+                <button
+                  type="button"
+                  onClick={reset}
+                  className="mt-3 text-[12px] text-ink-3 underline underline-offset-2 hover:text-ink"
+                >
+                  Reset progress
+                </button>
+              )}
+            </div>
+          }
+        >
           <p className="mono-tag">Last updated · October 2026</p>
 
           <p className="mt-6 text-[17px] text-ink-2 leading-[1.65]">
@@ -221,8 +278,8 @@ export function Soc2ChecklistPage() {
             </section>
           </Reveal>
 
-          {/* Progress */}
-          <div className="mt-10">
+          {/* Progress — inline on small screens, pinned in the rail from lg up */}
+          <div className="mt-10 lg:hidden">
             <div className="flex items-baseline justify-between">
               <p className="caption font-semibold text-ink">
                 {done} of {TOTAL_ITEMS} complete
@@ -277,7 +334,7 @@ export function Soc2ChecklistPage() {
           <div className="mt-12 space-y-12">
             {groups.map((group) => (
               <Reveal key={group.heading}>
-                <section>
+                <section id={slugify(group.heading)} className="scroll-mt-28">
                   <h2 className="text-[20px] font-semibold text-ink">{group.heading}</h2>
                   <div className="card-snow mt-4 overflow-hidden">
                     {group.items.map((item, i) => {
