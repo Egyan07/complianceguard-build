@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { LogoMark } from "./Logo";
 import { DOWNLOAD_URL, GITHUB_URL } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 const links = [
   { to: "/pricing", label: "Pricing" },
@@ -152,6 +153,7 @@ export function Navbar() {
           </a>
           <a
             href={DOWNLOAD_URL}
+            onClick={() => trackConversion("download_click", "navbar")}
             className="bg-azure text-snow text-[14px] font-medium px-4 py-1.5 rounded-full hover:bg-[var(--azure-hover)] transition-colors"
             style={{ letterSpacing: "-0.006em" }}
           >
@@ -199,7 +201,11 @@ export function Navbar() {
                 </Link>
               ))}
             </div>
-            <a href={DOWNLOAD_URL} className="btn-primary mt-3 mb-2">
+            <a
+              href={DOWNLOAD_URL}
+              className="btn-primary mt-3 mb-2"
+              onClick={() => trackConversion("download_click", "navbar-mobile")}
+            >
               Download
             </a>
           </nav>

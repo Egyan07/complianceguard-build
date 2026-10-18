@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { buildMeta, DOWNLOAD_URL, TIERS, salesMailto } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export const Route = createFileRoute("/pricing")({
   head: () =>
@@ -154,6 +155,12 @@ function PricingPage() {
                   <a
                     href={t.cta.href}
                     className={`mt-8 w-full text-center ${t.featured ? "btn-primary" : "btn-dark"}`}
+                    onClick={() =>
+                      trackConversion(
+                        t.name === "Free" ? "download_click" : "contact_sales_click",
+                        `pricing-${t.name.toLowerCase()}`,
+                      )
+                    }
                   >
                     {t.cta.label}
                   </a>
@@ -190,6 +197,7 @@ function PricingPage() {
               <a
                 href={salesMailto("ComplianceGuard Enterprise")}
                 className="relative btn-on-navy shrink-0"
+                onClick={() => trackConversion("contact_sales_click", "pricing-enterprise-band")}
               >
                 Contact Sales
               </a>
@@ -224,7 +232,11 @@ function PricingPage() {
               Download, run the readiness scan, and see exactly where you stand in minutes.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
-              <a href={DOWNLOAD_URL} className="btn-primary">
+              <a
+                href={DOWNLOAD_URL}
+                className="btn-primary"
+                onClick={() => trackConversion("download_click", "pricing-closing")}
+              >
                 Download Free
               </a>
               <Link to="/" className="btn-ghost">

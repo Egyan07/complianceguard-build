@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Shield, KeyRound, FileLock2, Download, ServerCog } from "lucide-react";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
 import { salesMailto } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 const HASHES = ["0x7a3f…b21c", "0x14de…9f08", "0xc9b2…5e7d", "0x4f80…ae33", "0x2bce…c640"];
 
@@ -109,7 +110,11 @@ export function EnterpriseSection() {
             Government, defence and regulated finance teams need evidence that proves itself without
             phoning home. Ships fully offline with a cryptographic audit trail.
           </p>
-          <a href={salesMailto("ComplianceGuard Enterprise")} className="btn-on-navy mt-8">
+          <a
+            href={salesMailto("ComplianceGuard Enterprise")}
+            className="btn-on-navy mt-8"
+            onClick={() => trackConversion("contact_sales_click", "enterprise-band")}
+          >
             Contact sales <span aria-hidden>&rsaquo;</span>
           </a>
         </div>

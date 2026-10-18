@@ -2,12 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { Github } from "lucide-react";
 import { LogoMark } from "./Logo";
 import { DOWNLOAD_URL, GITHUB_URL, VERSION, salesMailto } from "@/lib/site";
+import { trackConversion, type ConversionEvent } from "@/lib/analytics";
 
 const productLinks = [
   { label: "Product", to: "/" },
   { label: "Pricing", to: "/pricing" },
   { label: "Changelog", to: "/changelog" },
-  { label: "Download", href: DOWNLOAD_URL },
+  { label: "Download", href: DOWNLOAD_URL, track: "download_click" as const },
   { label: "GitHub", href: GITHUB_URL },
 ] as const;
 
@@ -17,7 +18,11 @@ const companyLinks = [
   { label: "Trust", to: "/trust" },
   { label: "Privacy", to: "/privacy" },
   { label: "Terms", to: "/terms" },
-  { label: "Contact sales", href: salesMailto("ComplianceGuard sales enquiry") },
+  {
+    label: "Contact sales",
+    href: salesMailto("ComplianceGuard sales enquiry"),
+    track: "contact_sales_click" as const,
+  },
 ] as const;
 
 const resourceLinks = [
@@ -32,32 +37,36 @@ const groupLabel = "text-[13px] font-semibold text-ink mb-3";
 const linkClass =
   "text-[13px] text-ink-2 hover:text-ink hover:underline transition-colors block py-1";
 
-type FooterLink = { label: string; to?: string; href?: string };
+type FooterLink = { label: string; to?: string; href?: string; track?: ConversionEvent };
 
 function FooterColumn({ label, links }: { label: string; links: readonly FooterLink[] }) {
   return (
     <nav aria-label={label}>
       <p className={groupLabel}>{label}</p>
       <ul>
-        {links.map((l) => (
-          <li key={l.label}>
-            {l.href ? (
-              <a
-                href={l.href}
-                className={linkClass}
-                {...(l.href.startsWith("http")
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {l.label}
-              </a>
-            ) : (
-              <Link to={l.to!} className={linkClass}>
-                {l.label}
-              </Link>
-            )}
-          </li>
-        ))}
+        {links.map((l) => {
+          const track = l.track;
+          return (
+            <li key={l.label}>
+              {l.href ? (
+                <a
+                  href={l.href}
+                  className={linkClass}
+                  onClick={track ? () => trackConversion(track, "footer") : undefined}
+                  {...(l.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link to={l.to!} className={linkClass}>
+                  {l.label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

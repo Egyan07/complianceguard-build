@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DOWNLOAD_URL } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export function MobileStickyCTA() {
   const [show, setShow] = useState(false);
@@ -19,6 +20,7 @@ export function MobileStickyCTA() {
   return (
     <a
       href={DOWNLOAD_URL}
+      onClick={() => trackConversion("download_click", "mobile-sticky")}
       className="md:hidden fixed inset-x-3 z-50 bg-azure text-snow text-center py-3 font-medium text-[15px] rounded-full"
       style={{
         bottom: "calc(12px + env(safe-area-inset-bottom))",

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/privacy")({
     buildMeta({
       title: "Privacy Policy | ComplianceGuard",
       description:
-        "How ComplianceGuard handles data: evidence stays in a local database on your machine, the website stores only emails you choose to submit, and no analytics trackers run.",
+        "How ComplianceGuard handles data: evidence stays in a local database on your machine, the website stores only emails you choose to submit, and analytics stay cookieless.",
       path: "/privacy",
     }),
   component: PrivacyPage,
@@ -41,7 +41,7 @@ function PrivacyPage() {
 
         <div className="container-cg pb-24">
           <div className="mx-auto max-w-[680px]">
-            <p className="mono-tag">Last updated · April 2026</p>
+            <p className="mono-tag">Last updated · October 2026</p>
 
             <Section title="What we collect">
               <p>
@@ -66,9 +66,11 @@ function PrivacyPage() {
 
             <Section title="Cookies and local storage">
               <p>
-                The ComplianceGuard website uses no tracking cookies and loads no analytics scripts.
-                We use localStorage and sessionStorage for interface preferences only, for example,
-                dismissed banners and saved checklist progress. This data never leaves your browser.
+                The ComplianceGuard website uses no tracking cookies. It loads one open-source
+                analytics script (Umami) that counts aggregate pageviews and button clicks without
+                cookies or personal data; no other analytics scripts run. We use localStorage and
+                sessionStorage for interface preferences only, for example, dismissed banners and
+                saved checklist progress. This data never leaves your browser.
               </p>
             </Section>
 
@@ -83,7 +85,9 @@ function PrivacyPage() {
                 >
                   supabase.com/privacy
                 </a>
-                . No other third-party data processors are used.
+                . The website also uses Umami, an open-source cookieless analytics service, to count
+                aggregate pageviews and button clicks — no cookies, no personal data, no cross-site
+                tracking. No other third-party data processors are used.
               </p>
             </Section>
 

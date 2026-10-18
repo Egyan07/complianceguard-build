@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import { DOWNLOAD_URL } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 /**
  * The honest disqualifier: three situations where ComplianceGuard is genuinely
@@ -119,6 +120,7 @@ export function FitCheck() {
               <a
                 href={DOWNLOAD_URL}
                 className="mt-2.5 block text-center text-[14px] text-link hover:underline"
+                onClick={() => trackConversion("download_click", "fitcheck")}
               >
                 Or download the app first
               </a>

@@ -20,6 +20,7 @@ import { Magnetic } from "@/components/Magnetic";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { DUR, EASE_EXPO, VIEWPORT } from "@/lib/motion";
 import { buildMeta, DOWNLOAD_URL, SITE_URL, TIERS, VERSION, salesMailto } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -218,6 +219,12 @@ function PricingPreview() {
                 <a
                   href={t.cta.href}
                   className={`${t.featured ? "btn-primary" : "btn-ghost"} mt-8 w-full`}
+                  onClick={() =>
+                    trackConversion(
+                      t.name === "Free" ? "download_click" : "contact_sales_click",
+                      `home-${t.name.toLowerCase()}`,
+                    )
+                  }
                 >
                   {t.cta.label}
                 </a>
@@ -265,11 +272,19 @@ function FinalCTA() {
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
             <Magnetic>
-              <a href={DOWNLOAD_URL} className="btn-on-navy btn-sheen">
+              <a
+                href={DOWNLOAD_URL}
+                className="btn-on-navy btn-sheen"
+                onClick={() => trackConversion("download_click", "home-bottom-cta")}
+              >
                 Download for free
               </a>
             </Magnetic>
-            <a href={salesMailto("ComplianceGuard sales enquiry")} className="btn-ghost-on-navy">
+            <a
+              href={salesMailto("ComplianceGuard sales enquiry")}
+              className="btn-ghost-on-navy"
+              onClick={() => trackConversion("contact_sales_click", "home-bottom-cta")}
+            >
               Contact sales
             </a>
           </div>

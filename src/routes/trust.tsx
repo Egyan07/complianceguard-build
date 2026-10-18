@@ -21,6 +21,7 @@ import {
   VERSION,
   salesMailto,
 } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export const Route = createFileRoute("/trust")({
   head: () =>
@@ -362,6 +363,7 @@ function TrustPage() {
                 <a
                   href={salesMailto("Question before evaluating ComplianceGuard")}
                   className="card-snow card-hover flex items-center gap-4 p-6"
+                  onClick={() => trackConversion("contact_sales_click", "trust-ask")}
                 >
                   <span className="w-11 h-11 rounded-2xl bg-azure text-white flex items-center justify-center shrink-0">
                     <Mail size={20} strokeWidth={1.8} />
@@ -408,10 +410,18 @@ function TrustPage() {
                 pay a cent.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
-                <a href={DOWNLOAD_URL} className="btn-primary btn-sheen">
+                <a
+                  href={DOWNLOAD_URL}
+                  className="btn-primary btn-sheen"
+                  onClick={() => trackConversion("download_click", "trust-cta")}
+                >
                   Download Free
                 </a>
-                <a href={salesMailto("ComplianceGuard pre-sales question")} className="btn-dark">
+                <a
+                  href={salesMailto("ComplianceGuard pre-sales question")}
+                  className="btn-dark"
+                  onClick={() => trackConversion("contact_sales_click", "trust-cta")}
+                >
                   Talk to a human
                 </a>
               </div>

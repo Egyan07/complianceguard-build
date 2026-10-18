@@ -48,10 +48,16 @@ function NotFoundComponent() {
   );
 }
 
-// Cloudflare Web Analytics — cookieless, no banner needed. The token is read
-// at build time from VITE_CF_BEACON_TOKEN (set it in .env alongside the
-// Supabase keys); the beacon is only injected when the token is present, so
-// the public repo never carries it and local/dev builds stay clean.
+// Umami — cookieless, no-consent analytics (the privacy policy promises
+// no cookies and no personal data). Website ID is read at build time from
+// VITE_UMAMI_WEBSITE_ID in .env; the script is only injected when the ID
+// is present, so dev/local builds stay clean. Auto-tracks pageviews (SPA
+// route changes included); the two conversion events are fired from
+// @/lib/analytics on CTA clicks.
+const UMAMI_WEBSITE_ID = import.meta.env.VITE_UMAMI_WEBSITE_ID as string | undefined;
+
+// Cloudflare Web Analytics — legacy slot, dormant until VITE_CF_BEACON_TOKEN
+// is set. Umami was chosen for conversion events (the CF beacon has none).
 const CF_BEACON_TOKEN = import.meta.env.VITE_CF_BEACON_TOKEN as string | undefined;
 
 export const Route = createRootRoute({
@@ -89,6 +95,15 @@ export const Route = createRootRoute({
             "Endpoint-level SOC 2, ISO 27001 and HIPAA compliance evidence on your machine, on your terms.",
         }),
       },
+      ...(UMAMI_WEBSITE_ID
+        ? [
+            {
+              src: "https://cloud.umami.is/script.js",
+              defer: true,
+              "data-website-id": UMAMI_WEBSITE_ID,
+            },
+          ]
+        : []),
       ...(CF_BEACON_TOKEN
         ? [
             {

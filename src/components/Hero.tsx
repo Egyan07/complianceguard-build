@@ -5,6 +5,7 @@ import { Magnetic } from "./Magnetic";
 import { TextRotate } from "./TextRotate";
 import Floating, { FloatingElement } from "./ParallaxFloating";
 import { DOWNLOAD_URL, VERSION } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 /**
  * Kinetic landing hero — a rotating value word plus on-brand tiles that drift
@@ -142,7 +143,11 @@ export function Hero() {
 
         <div className="anim-rise anim-d-3 mt-9 flex flex-col sm:flex-row gap-3 justify-center">
           <Magnetic>
-            <a href={DOWNLOAD_URL} className="btn-primary btn-sheen">
+            <a
+              href={DOWNLOAD_URL}
+              className="btn-primary btn-sheen"
+              onClick={() => trackConversion("download_click", "hero")}
+            >
               Download for free
             </a>
           </Magnetic>
