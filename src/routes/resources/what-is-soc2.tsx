@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { buildMeta, DOWNLOAD_URL } from "@/lib/site";
 import { trackConversion } from "@/lib/analytics";
+import { ArticleShell } from "@/components/ArticleShell";
 
 export const Route = createFileRoute("/resources/what-is-soc2")({
   head: () => ({
@@ -61,10 +62,32 @@ const FAQS = [
   },
 ];
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+const TOC: { id: string; label: string }[] = [
+  { id: "why-soc-2-matters-for-saas-companies", label: "Why SOC 2 matters for SaaS companies" },
+  { id: "who-requires-soc-2", label: "Who requires SOC 2?" },
+  { id: "soc-2-type-i-vs-type-ii", label: "SOC 2 Type I vs Type II" },
+  { id: "the-trust-services-criteria", label: "The Trust Services Criteria" },
+  { id: "what-evidence-do-auditors-need", label: "What evidence do auditors need?" },
+  { id: "how-long-does-soc-2-take", label: "How long does SOC 2 take?" },
+  { id: "how-much-does-soc-2-cost", label: "How much does SOC 2 cost?" },
+  { id: "common-mistakes-first-time-audits-make", label: "Common mistakes first-time audits make" },
+  { id: "how-complianceguard-helps", label: "How ComplianceGuard helps" },
+  { id: "beyond-soc-2-iso-27001-and-hipaa", label: "Beyond SOC 2: ISO 27001 and HIPAA" },
+  { id: "frequently-asked-questions", label: "Frequently asked questions" },
+];
+
+function Section({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <Reveal>
-      <section className="mt-14">
+      <section id={id} className="mt-14 scroll-mt-28">
         <h2 className="text-[24px] font-semibold text-ink">{title}</h2>
         <div className="mt-4 space-y-4 text-[17px] text-ink-2 leading-[1.65]">{children}</div>
       </section>
@@ -88,8 +111,8 @@ function WhatIsSoc2Page() {
           ornament="none"
         />
 
-        <article className="container-cg pb-24">
-          <div className="mx-auto max-w-[680px]">
+        <article>
+          <ArticleShell toc={TOC}>
             <p className="mono-tag">Last updated · October 2026</p>
 
             <p className="mt-6 text-[17px] text-ink-2 leading-[1.65]">
@@ -99,7 +122,10 @@ function WhatIsSoc2Page() {
               and Privacy.
             </p>
 
-            <Section title="Why SOC 2 matters for SaaS companies">
+            <Section
+              id="why-soc-2-matters-for-saas-companies"
+              title="Why SOC 2 matters for SaaS companies"
+            >
               <p>
                 Enterprise buyers and their legal teams increasingly require SOC 2 before signing
                 contracts. In procurement, the report has become a pass/fail gate: a security
@@ -117,7 +143,7 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="Who requires SOC 2?">
+            <Section id="who-requires-soc-2" title="Who requires SOC 2?">
               <p>
                 Nothing in law mandates SOC 2 the way HIPAA mandates safeguards for health data — it
                 is a market expectation, not a regulation. In practice, three groups ask for it:
@@ -135,7 +161,7 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="SOC 2 Type I vs Type II">
+            <Section id="soc-2-type-i-vs-type-ii" title="SOC 2 Type I vs Type II">
               <p>There are two types of SOC 2 reports, and the distinction matters to buyers.</p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="card-fog p-6">
@@ -162,7 +188,7 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="The Trust Services Criteria">
+            <Section id="the-trust-services-criteria" title="The Trust Services Criteria">
               <p>
                 SOC 2 audits are conducted against the AICPA Trust Services Criteria, the framework
                 that defines what auditors evaluate. The criteria span areas including logical
@@ -206,7 +232,7 @@ function WhatIsSoc2Page() {
               </Callout>
             </Section>
 
-            <Section title="What evidence do auditors need?">
+            <Section id="what-evidence-do-auditors-need" title="What evidence do auditors need?">
               <p>
                 Auditors need documented proof that your controls exist and work — and they work
                 from samples, not summaries. Expect to be asked for things like: the password and
@@ -229,7 +255,7 @@ function WhatIsSoc2Page() {
               </Callout>
             </Section>
 
-            <Section title="How long does SOC 2 take?">
+            <Section id="how-long-does-soc-2-take" title="How long does SOC 2 take?">
               <p>
                 A SOC 2 Type I audit typically takes 4–8 weeks from starting evidence collection to
                 receiving your report. A Type II audit adds an observation period — commonly 3–6
@@ -245,7 +271,7 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="How much does SOC 2 cost?">
+            <Section id="how-much-does-soc-2-cost" title="How much does SOC 2 cost?">
               <p>
                 Three cost lines: the audit fee, the compliance platform, and your team's time.
                 Audit fees for a first SOC 2 commonly land in the five figures and vary with scope —
@@ -274,7 +300,10 @@ function WhatIsSoc2Page() {
               auditors start from.
             </p>
 
-            <Section title="Common mistakes first-time audits make">
+            <Section
+              id="common-mistakes-first-time-audits-make"
+              title="Common mistakes first-time audits make"
+            >
               <p>
                 Most failed or painful SOC 2 engagements trace back to the same handful of errors:
                 scoping too broadly (every extra system multiplies evidence work), treating the
@@ -291,7 +320,7 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="How ComplianceGuard helps">
+            <Section id="how-complianceguard-helps" title="How ComplianceGuard helps">
               <p>
                 ComplianceGuard automates the evidence collection step. Instead of manually running
                 PowerShell scripts and copying output into spreadsheets, ComplianceGuard reads your
@@ -300,7 +329,10 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="Beyond SOC 2: ISO 27001 and HIPAA">
+            <Section
+              id="beyond-soc-2-iso-27001-and-hipaa"
+              title="Beyond SOC 2: ISO 27001 and HIPAA"
+            >
               <p>
                 If your clients are in Europe, they may require ISO 27001 certification instead of,
                 or in addition to, SOC 2. If you work with healthcare data, HIPAA compliance is
@@ -311,7 +343,7 @@ function WhatIsSoc2Page() {
               </p>
             </Section>
 
-            <Section title="Frequently asked questions">
+            <Section id="frequently-asked-questions" title="Frequently asked questions">
               <div className="space-y-3">
                 {FAQS.map((f) => (
                   <div key={f.q} className="card-fog p-6">
@@ -321,21 +353,20 @@ function WhatIsSoc2Page() {
                 ))}
               </div>
             </Section>
-          </div>
-
-          {/* Closing CTA */}
-          <Reveal className="mx-auto mt-20 max-w-[680px]">
-            <div className="card-fog p-8 md:p-10 text-center">
-              <h2 className="display-3">See your SOC 2 readiness score in under 2 minutes.</h2>
-              <a
-                href={DOWNLOAD_URL}
-                className="btn-primary mt-6 inline-flex"
-                onClick={() => trackConversion("download_click", "what-is-soc2-cta")}
-              >
-                Download Free
-              </a>
-            </div>
-          </Reveal>
+            {/* Closing CTA */}
+            <Reveal className="mt-20">
+              <div className="card-fog p-8 md:p-10 text-center">
+                <h2 className="display-3">See your SOC 2 readiness score in under 2 minutes.</h2>
+                <a
+                  href={DOWNLOAD_URL}
+                  className="btn-primary mt-6 inline-flex"
+                  onClick={() => trackConversion("download_click", "what-is-soc2-cta")}
+                >
+                  Download Free
+                </a>
+              </div>
+            </Reveal>
+          </ArticleShell>
         </article>
       </main>
       <Footer />

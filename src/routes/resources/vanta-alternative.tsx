@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { buildMeta, DOWNLOAD_URL, salesMailto } from "@/lib/site";
 import { trackConversion } from "@/lib/analytics";
+import { ArticleShell } from "@/components/ArticleShell";
 
 export const Route = createFileRoute("/resources/vanta-alternative")({
   head: () => ({
@@ -114,10 +115,33 @@ function CompareCell({ value, isCG }: { value: string; isCG: boolean }) {
   return <span className={isCG ? "text-azure font-medium" : "text-ink-2"}>{value}</span>;
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+const TOC: { id: string; label: string }[] = [
+  {
+    id: "why-endpoint-evidence-is-a-different-problem",
+    label: "Why endpoint evidence is a different problem",
+  },
+  { id: "the-honest-cost-comparison", label: "The honest cost comparison" },
+  { id: "when-vanta-is-the-right-choice", label: "When Vanta is the right choice" },
+  {
+    id: "when-complianceguard-is-the-right-choice",
+    label: "When ComplianceGuard is the right choice",
+  },
+  { id: "switching-cost-usually-zero", label: "Switching cost: usually zero" },
+  { id: "frequently-asked-questions", label: "Frequently asked questions" },
+];
+
+function Section({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <Reveal>
-      <section className="mt-14">
+      <section id={id} className="mt-14 scroll-mt-28">
         <h2 className="text-[24px] font-semibold text-ink">{title}</h2>
         <div className="mt-4 space-y-4 text-[17px] text-ink-2 leading-[1.65]">{children}</div>
       </section>
@@ -137,8 +161,8 @@ export function VantaAlternativePage() {
           ornament="none"
         />
 
-        <article className="container-cg pb-24">
-          <div className="mx-auto max-w-[680px]">
+        <article>
+          <ArticleShell toc={TOC}>
             <p className="mono-tag">Last updated · October 2026</p>
 
             <p className="mt-6 text-[17px] text-ink-2 leading-[1.65]">
@@ -196,7 +220,10 @@ export function VantaAlternativePage() {
               </p>
             </Reveal>
 
-            <Section title="Why endpoint evidence is a different problem">
+            <Section
+              id="why-endpoint-evidence-is-a-different-problem"
+              title="Why endpoint evidence is a different problem"
+            >
               <p>
                 Cloud compliance platforms work through integrations: connect AWS, your identity
                 provider, your ticketing system, your MDM, and the platform monitors those surfaces
@@ -217,7 +244,7 @@ export function VantaAlternativePage() {
               </p>
             </Section>
 
-            <Section title="The honest cost comparison">
+            <Section id="the-honest-cost-comparison" title="The honest cost comparison">
               <p>
                 Vanta's pricing is quote-based. Independent 2026 pricing guides consistently place
                 it between roughly $10,000 and $80,000+ per year depending on plan, headcount, and
@@ -235,7 +262,7 @@ export function VantaAlternativePage() {
               </p>
             </Section>
 
-            <Section title="When Vanta is the right choice">
+            <Section id="when-vanta-is-the-right-choice" title="When Vanta is the right choice">
               <p>
                 Honesty saves everyone time. If your company already runs a mature SaaS/identity
                 stack with MDM on every device, has in-house GRC staff who live in a platform UI
@@ -247,7 +274,10 @@ export function VantaAlternativePage() {
               </p>
             </Section>
 
-            <Section title="When ComplianceGuard is the right choice">
+            <Section
+              id="when-complianceguard-is-the-right-choice"
+              title="When ComplianceGuard is the right choice"
+            >
               <p>
                 You are a small team that wants the evidence without the platform fee. Your auditors
                 keep asking for endpoint artefacts your cloud tool cannot produce. You are
@@ -260,7 +290,7 @@ export function VantaAlternativePage() {
               </p>
             </Section>
 
-            <Section title="Switching cost: usually zero">
+            <Section id="switching-cost-usually-zero" title="Switching cost: usually zero">
               <p>
                 There is no migration. ComplianceGuard does not import your Vanta history, need your
                 SaaS credentials, or touch your cloud account unless you explicitly connect AWS.
@@ -274,7 +304,7 @@ export function VantaAlternativePage() {
 
             {/* FAQ */}
             <Reveal>
-              <section className="mt-14">
+              <section id="frequently-asked-questions" className="mt-14 scroll-mt-28">
                 <h2 className="text-[24px] font-semibold text-ink">Frequently asked questions</h2>
                 <div className="mt-6 space-y-6">
                   {FAQS.map((f) => (
@@ -302,34 +332,33 @@ export function VantaAlternativePage() {
               </Link>
               .
             </p>
-          </div>
-
-          {/* Closing CTA */}
-          <Reveal className="mx-auto mt-20 max-w-[680px]">
-            <div className="card-fog p-8 md:p-10 text-center">
-              <h2 className="display-3">See your own readiness score — free, in 2 minutes.</h2>
-              <p className="mx-auto mt-3 max-w-[520px] text-[16px] text-ink-2 leading-[1.6]">
-                Install, scan, done. No credit card, no annual commitment, and no evidence leaves
-                your machine while you decide.
-              </p>
-              <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                <a
-                  href={DOWNLOAD_URL}
-                  className="btn-primary inline-flex"
-                  onClick={() => trackConversion("download_click", "vanta-cta")}
-                >
-                  Download Free
-                </a>
-                <a
-                  href={salesMailto("ComplianceGuard vs Vanta question")}
-                  className="btn-ghost inline-flex"
-                  onClick={() => trackConversion("contact_sales_click", "vanta-cta")}
-                >
-                  Ask a question
-                </a>
+            {/* Closing CTA */}
+            <Reveal className="mt-20">
+              <div className="card-fog p-8 md:p-10 text-center">
+                <h2 className="display-3">See your own readiness score — free, in 2 minutes.</h2>
+                <p className="mx-auto mt-3 max-w-[520px] text-[16px] text-ink-2 leading-[1.6]">
+                  Install, scan, done. No credit card, no annual commitment, and no evidence leaves
+                  your machine while you decide.
+                </p>
+                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href={DOWNLOAD_URL}
+                    className="btn-primary inline-flex"
+                    onClick={() => trackConversion("download_click", "vanta-cta")}
+                  >
+                    Download Free
+                  </a>
+                  <a
+                    href={salesMailto("ComplianceGuard vs Vanta question")}
+                    className="btn-ghost inline-flex"
+                    onClick={() => trackConversion("contact_sales_click", "vanta-cta")}
+                  >
+                    Ask a question
+                  </a>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </ArticleShell>
         </article>
       </main>
       <Footer />
