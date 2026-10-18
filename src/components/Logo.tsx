@@ -1,8 +1,13 @@
+import { useId } from "react";
+
 /**
  * Canonical brand mark — self-contained SVG (no external asset).
  * Azure gradient tile + shield-check glyph, matching the favicon family.
  */
 export function LogoMark({ size = 24 }: { size?: number }) {
+  // The gradient id must be unique per instance: the mark renders in both the
+  // navbar and the footer, and duplicate ids are invalid HTML.
+  const gradientId = `cg-mark-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   return (
     <svg
       width={size}
@@ -14,7 +19,7 @@ export function LogoMark({ size = 24 }: { size?: number }) {
     >
       <defs>
         <linearGradient
-          id="cg-mark-g"
+          id={gradientId}
           x1="0"
           y1="0"
           x2="512"
@@ -25,7 +30,7 @@ export function LogoMark({ size = 24 }: { size?: number }) {
           <stop offset="100%" stopColor="#0040DD" />
         </linearGradient>
       </defs>
-      <rect width="512" height="512" rx="112" fill="url(#cg-mark-g)" />
+      <rect width="512" height="512" rx="112" fill={`url(#${gradientId})`} />
       <text
         x="256"
         y="256"

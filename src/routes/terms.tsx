@@ -10,7 +10,7 @@ export const Route = createFileRoute("/terms")({
     buildMeta({
       title: "Terms of Service | ComplianceGuard",
       description:
-        "The terms that govern using ComplianceGuard: the BSL 1.1 software license, license keys and paid tiers, acceptable use, and our no-warranty, no-liability stance.",
+        "Terms for using ComplianceGuard: the BSL 1.1 license, license keys and paid tiers, acceptable use, and our no-warranty, no-liability position.",
       path: "/terms",
     }),
   component: TermsPage,

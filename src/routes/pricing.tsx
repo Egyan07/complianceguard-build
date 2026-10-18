@@ -56,197 +56,197 @@ function PricingPage() {
   return (
     <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />
+      <main id="main" className="flex-1">
+        <PageHero
+          eyebrow="Pricing"
+          title={
+            <>
+              Flat pricing.
+              <br />
+              No per-seat math.
+            </>
+          }
+          subtitle="One flat rate per deployment, billed annually. Run it on your own infrastructure, or let us host the dashboard for you."
+          ornament="grid"
+        >
+          <div className="inline-flex items-center gap-1 p-1 rounded-full bg-snow border border-hairline">
+            <button
+              onClick={() => setManaged(false)}
+              aria-pressed={!managed}
+              className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
+                !managed ? "bg-ink text-white" : "text-ink-2"
+              }`}
+            >
+              Self-hosted
+            </button>
+            <button
+              onClick={() => setManaged(true)}
+              aria-pressed={managed}
+              className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
+                managed ? "bg-ink text-white" : "text-ink-2"
+              }`}
+            >
+              Managed hosting
+            </button>
+          </div>
+        </PageHero>
 
-      <PageHero
-        eyebrow="Pricing"
-        title={
-          <>
-            Flat pricing.
-            <br />
-            No per-seat math.
-          </>
-        }
-        subtitle="One flat rate per deployment, billed annually. Run it on your own infrastructure, or let us host the dashboard for you."
-        ornament="grid"
-      >
-        <div className="inline-flex items-center gap-1 p-1 rounded-full bg-snow border border-hairline">
-          <button
-            onClick={() => setManaged(false)}
-            aria-pressed={!managed}
-            className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
-              !managed ? "bg-ink text-white" : "text-ink-2"
-            }`}
-          >
-            Self-hosted
-          </button>
-          <button
-            onClick={() => setManaged(true)}
-            aria-pressed={managed}
-            className={`px-4 py-1.5 text-[13px] font-medium rounded-full transition ${
-              managed ? "bg-ink text-white" : "text-ink-2"
-            }`}
-          >
-            Managed hosting
-          </button>
-        </div>
-      </PageHero>
-
-      <section className="bg-snow pb-20">
-        <RevealGroup className="container-cg grid md:grid-cols-3 gap-5">
-          {TIERS.map((t) => {
-            const isManagedView = managed && t.managedMonthly !== null;
-            const monthly = isManagedView ? t.managedMonthly! : t.monthly;
-            const price = monthly === 0 ? "$0" : `$${monthly.toLocaleString("en-US")}`;
-            const cadence = monthly === 0 ? "forever" : "/month";
-            const sub =
-              monthly === 0
-                ? managed
-                  ? "Desktop app, runs on your machine"
-                  : null
-                : `billed annually &middot; $${(monthly * 12).toLocaleString("en-US")}/yr${
-                    !managed && t.name === "Enterprise" ? " flat" : ""
-                  }`;
-            return (
-              <RevealItem key={t.name} className="relative">
-                <div
-                  className={`${t.featured ? "card-snow" : "card-fog"} card-hover h-full p-8 flex flex-col`}
-                  style={t.featured ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
-                >
-                  {t.featured && (
-                    <span className="absolute -top-3 left-8 inline-flex items-center bg-azure text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                      Most popular
-                    </span>
-                  )}
-                  <p className="mono-tag mb-3">
-                    {t.name}
-                    {isManagedView ? " managed" : ""}
-                  </p>
-                  <div className="flex items-baseline gap-2">
-                    <span className="display-2 tabular-nums">{price}</span>
-                    <span className="text-ink-2">{cadence}</span>
-                  </div>
-                  {sub && <p className="mt-1 text-[13px] text-ink-2">{sub}</p>}
-                  <p className="mt-4 text-[15px] text-ink-2 leading-relaxed">{t.tagline}</p>
-                  <ul className="mt-6 space-y-3 text-[15px] text-ink flex-1">
-                    {t.features.map((x) => (
-                      <li key={x} className="flex gap-2">
-                        <Check
-                          size={16}
-                          className={`shrink-0 mt-1 ${t.featured ? "text-azure" : "text-ink-3"}`}
-                        />
-                        {x}
-                      </li>
-                    ))}
-                    {isManagedView && (
-                      <>
-                        <li className="flex gap-2">
-                          <Check size={16} className="shrink-0 mt-1 text-azure" />
-                          Zero server setup, and we handle uptime, backups, updates
-                        </li>
-                        <li className="flex gap-2">
-                          <Check size={16} className="shrink-0 mt-1 text-azure" />
-                          {t.name === "Enterprise"
-                            ? "Dedicated infrastructure + onboarding assistance"
-                            : "Onboarding assistance"}
-                        </li>
-                      </>
-                    )}
-                  </ul>
-                  <a
-                    href={t.cta.href}
-                    className={`mt-8 w-full text-center ${t.featured ? "btn-primary" : "btn-dark"}`}
-                    onClick={() =>
-                      trackConversion(
-                        t.name === "Free" ? "download_click" : "contact_sales_click",
-                        `pricing-${t.name.toLowerCase()}`,
-                      )
-                    }
+        <section className="bg-snow pb-20">
+          <RevealGroup className="container-cg grid md:grid-cols-3 gap-5">
+            {TIERS.map((t) => {
+              const isManagedView = managed && t.managedMonthly !== null;
+              const monthly = isManagedView ? t.managedMonthly! : t.monthly;
+              const price = monthly === 0 ? "$0" : `$${monthly.toLocaleString("en-US")}`;
+              const cadence = monthly === 0 ? "forever" : "/month";
+              const sub =
+                monthly === 0
+                  ? managed
+                    ? "Desktop app, runs on your machine"
+                    : null
+                  : `billed annually · $${(monthly * 12).toLocaleString("en-US")}/yr${
+                      !managed && t.name === "Enterprise" ? " flat" : ""
+                    }`;
+              return (
+                <RevealItem key={t.name} className="relative">
+                  <div
+                    className={`${t.featured ? "card-snow" : "card-fog"} card-hover h-full p-8 flex flex-col`}
+                    style={t.featured ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
                   >
-                    {t.cta.label}
-                  </a>
-                </div>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
+                    {t.featured && (
+                      <span className="absolute -top-3 left-8 inline-flex items-center bg-azure text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                        Most popular
+                      </span>
+                    )}
+                    <p className="mono-tag mb-3">
+                      {t.name}
+                      {isManagedView ? " managed" : ""}
+                    </p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="display-2 tabular-nums">{price}</span>
+                      <span className="text-ink-2">{cadence}</span>
+                    </div>
+                    {sub && <p className="mt-1 text-[13px] text-ink-2">{sub}</p>}
+                    <p className="mt-4 text-[15px] text-ink-2 leading-relaxed">{t.tagline}</p>
+                    <ul className="mt-6 space-y-3 text-[15px] text-ink flex-1">
+                      {t.features.map((x) => (
+                        <li key={x} className="flex gap-2">
+                          <Check
+                            size={16}
+                            className={`shrink-0 mt-1 ${t.featured ? "text-azure" : "text-ink-3"}`}
+                          />
+                          {x}
+                        </li>
+                      ))}
+                      {isManagedView && (
+                        <>
+                          <li className="flex gap-2">
+                            <Check size={16} className="shrink-0 mt-1 text-azure" />
+                            Zero server setup, and we handle uptime, backups, updates
+                          </li>
+                          <li className="flex gap-2">
+                            <Check size={16} className="shrink-0 mt-1 text-azure" />
+                            {t.name === "Enterprise"
+                              ? "Dedicated infrastructure + onboarding assistance"
+                              : "Onboarding assistance"}
+                          </li>
+                        </>
+                      )}
+                    </ul>
+                    <a
+                      href={t.cta.href}
+                      className={`mt-8 w-full text-center ${t.featured ? "btn-primary" : "btn-dark"}`}
+                      onClick={() =>
+                        trackConversion(
+                          t.name === "Free" ? "download_click" : "contact_sales_click",
+                          `pricing-${t.name.toLowerCase()}`,
+                        )
+                      }
+                    >
+                      {t.cta.label}
+                    </a>
+                  </div>
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
 
-        <Reveal>
-          <p className="mt-10 text-center caption text-ink-3 max-w-2xl mx-auto">
-            Self-hosted: your data stays entirely on your infrastructure. Managed: we host the
-            dashboard, and your endpoint evidence still never leaves your machines until you sync.
-          </p>
-        </Reveal>
-
-        {/* Enterprise air-gapped band */}
-        <div className="container-cg mt-14">
           <Reveal>
-            <div className="finish-azure on-dark relative overflow-hidden rounded-xl p-10 md:p-14 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="relative max-w-2xl">
-                <p className="mono-tag mb-3" style={{ color: "var(--azure-bright)" }}>
-                  Enterprise
-                </p>
-                <h3 className="display-3" style={{ color: "var(--snow)" }}>
-                  Air-gapped, tamper-evident, fully sovereign.
-                </h3>
-                <p className="mt-4 text-[15px] text-white/75 leading-relaxed">
-                  SHA-256 hash-chained audit log, RBAC (admin + auditor), custom PDF branding,
-                  NDJSON data export, and a hardened Docker bundle with zero outbound calls. For
-                  regulated industries, government, NHS/healthcare, legal, and finance.
-                </p>
-              </div>
-              <a
-                href={salesMailto("ComplianceGuard Enterprise")}
-                className="relative btn-on-navy shrink-0"
-                onClick={() => trackConversion("contact_sales_click", "pricing-enterprise-band")}
-              >
-                Contact Sales
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-fog py-24">
-        <div className="container-cg max-w-3xl">
-          <Reveal>
-            <p className="mono-tag mb-3">FAQ</p>
-            <h2 className="display-2">Common questions.</h2>
-          </Reveal>
-          <div className="mt-10 space-y-2">
-            {faqs.map((f, i) => (
-              <Reveal key={f.q} delay={i * 0.04}>
-                <FaqItem q={f.q} a={f.a} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Closing CTA */}
-      <section className="bg-snow py-20">
-        <Reveal>
-          <div className="container-cg text-center max-w-2xl">
-            <h2 className="display-2">Start with the free scan.</h2>
-            <p className="mt-3 text-ink-2">
-              Download, run the readiness scan, and see exactly where you stand in minutes.
+            <p className="mt-10 text-center caption text-ink-3 max-w-2xl mx-auto">
+              Self-hosted: your data stays entirely on your infrastructure. Managed: we host the
+              dashboard, and your endpoint evidence still never leaves your machines until you sync.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
-              <a
-                href={DOWNLOAD_URL}
-                className="btn-primary"
-                onClick={() => trackConversion("download_click", "pricing-closing")}
-              >
-                Download Free
-              </a>
-              <Link to="/" className="btn-ghost">
-                Back to Home
-              </Link>
+          </Reveal>
+
+          {/* Enterprise air-gapped band */}
+          <div className="container-cg mt-14">
+            <Reveal>
+              <div className="finish-azure on-dark relative overflow-hidden rounded-xl p-10 md:p-14 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="relative max-w-2xl">
+                  <p className="mono-tag mb-3" style={{ color: "var(--azure-bright)" }}>
+                    Enterprise
+                  </p>
+                  <h3 className="display-3" style={{ color: "var(--snow)" }}>
+                    Air-gapped, tamper-evident, fully sovereign.
+                  </h3>
+                  <p className="mt-4 text-[15px] text-white/75 leading-relaxed">
+                    SHA-256 hash-chained audit log, RBAC (admin + auditor), custom PDF branding,
+                    NDJSON data export, and a hardened Docker bundle with zero outbound calls. For
+                    regulated industries, government, NHS/healthcare, legal, and finance.
+                  </p>
+                </div>
+                <a
+                  href={salesMailto("ComplianceGuard Enterprise")}
+                  className="relative btn-on-navy shrink-0"
+                  onClick={() => trackConversion("contact_sales_click", "pricing-enterprise-band")}
+                >
+                  Contact Sales
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="bg-fog py-24">
+          <div className="container-cg max-w-3xl">
+            <Reveal>
+              <p className="mono-tag mb-3">FAQ</p>
+              <h2 className="display-2">Common questions.</h2>
+            </Reveal>
+            <div className="mt-10 space-y-2">
+              {faqs.map((f, i) => (
+                <Reveal key={f.q} delay={i * 0.04}>
+                  <FaqItem q={f.q} a={f.a} />
+                </Reveal>
+              ))}
             </div>
           </div>
-        </Reveal>
-      </section>
+        </section>
 
+        {/* Closing CTA */}
+        <section className="bg-snow py-20">
+          <Reveal>
+            <div className="container-cg text-center max-w-2xl">
+              <h2 className="display-2">Start with the free scan.</h2>
+              <p className="mt-3 text-ink-2">
+                Download, run the readiness scan, and see exactly where you stand in minutes.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+                <a
+                  href={DOWNLOAD_URL}
+                  className="btn-primary"
+                  onClick={() => trackConversion("download_click", "pricing-closing")}
+                >
+                  Download Free
+                </a>
+                <Link to="/" className="btn-ghost">
+                  Back to Home
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+      </main>
       <Footer />
     </div>
   );

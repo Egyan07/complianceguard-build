@@ -13,7 +13,7 @@ export const Route = createFileRoute("/resources/vanta-alternative")({
     ...buildMeta({
       title: "Vanta Alternative for SOC 2 Evidence | ComplianceGuard",
       description:
-        "Why teams switch from Vanta: endpoint-native evidence collection, air-gapped support, source-available code, and a free tier. Compare cost, coverage, and architecture.",
+        "Why teams switch from Vanta: endpoint-native evidence, air-gapped support, source-available code and a free tier. Compare cost, coverage and architecture.",
       path: "/resources/vanta-alternative",
       image: "/og/vanta-alternative.png",
       imageAlt: "Endpoint evidence a cloud tool cannot produce.",

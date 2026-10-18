@@ -13,7 +13,7 @@ export const Route = createFileRoute("/about")({
     buildMeta({
       title: "About | ComplianceGuard",
       description:
-        "ComplianceGuard collects, scores, and signs compliance evidence on the endpoint where it originates. SOC 2, ISO 27001, and HIPAA. Local-first and source-available.",
+        "Compliance evidence gathered where it originates: SOC 2, ISO 27001 and HIPAA, scored on the endpoint. Local-first, source-available, built by one developer.",
       path: "/about",
     }),
   component: AboutPage,

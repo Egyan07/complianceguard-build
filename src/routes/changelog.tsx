@@ -550,142 +550,147 @@ function ChangelogPage() {
   return (
     <div className="min-h-screen flex flex-col bg-snow">
       <Navbar />
+      <main id="main" className="flex-1">
+        <PageHero
+          eyebrow={`v${entries[0]?.version.replace(/^v/, "")} · ${entries[0]?.date}`}
+          title={
+            <>
+              Every change,
+              <br />
+              documented.
+            </>
+          }
+          subtitle="Shipped releases for ComplianceGuard: what changed, what hardened, what broke. Read it like a release log, not marketing."
+          ornament="glow"
+        />
 
-      <PageHero
-        eyebrow={`v${entries[0]?.version.replace(/^v/, "")} · ${entries[0]?.date}`}
-        title={
-          <>
-            Every change,
-            <br />
-            documented.
-          </>
-        }
-        subtitle="Shipped releases for ComplianceGuard: what changed, what hardened, what broke. Read it like a release log, not marketing."
-        ornament="glow"
-      />
-
-      {/* Sticky filter rail */}
-      <section className="bg-snow">
-        <div className="container-cg max-w-4xl">
-          <div
-            className="sticky top-20 z-20 -mx-2 px-2 py-3 backdrop-blur-md"
-            style={{
-              background: "color-mix(in srgb, var(--snow) 78%, transparent)",
-              borderBottom: "1px solid var(--hairline)",
-            }}
-          >
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter changelog by tag">
-              {FILTERS.map((f) => {
-                const active = filter === f;
-                return (
-                  <button
-                    key={f}
-                    type="button"
-                    onClick={() => setFilter(active && f !== "All" ? "All" : f)}
-                    aria-pressed={active}
-                    className="text-[13px] px-3.5 py-1.5 rounded-full transition-colors duration-200"
-                    style={{
-                      background: active ? "var(--ink)" : "var(--fog)",
-                      color: active ? "var(--snow)" : "var(--ink)",
-                    }}
-                  >
-                    {f}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="bg-snow py-12">
-        <div className="container-cg max-w-4xl">
-          {visible.length === 0 ? (
-            <p className="text-[15px] text-ink-2">No releases match this filter yet.</p>
-          ) : (
-            <ol className="relative space-y-5">
-              {/* Vertical rail */}
+        {/* Sticky filter rail */}
+        <section className="bg-snow">
+          <div className="container-cg max-w-4xl">
+            <div
+              className="sticky top-20 z-20 -mx-2 px-2 py-3 backdrop-blur-md"
+              style={{
+                background: "color-mix(in srgb, var(--snow) 78%, transparent)",
+                borderBottom: "1px solid var(--hairline)",
+              }}
+            >
               <div
-                aria-hidden
-                className="absolute left-[15px] top-2 bottom-2 w-px hidden md:block"
-                style={{ background: "linear-gradient(to bottom, var(--hairline), transparent)" }}
-              />
-              {visible.map((e, i) => (
-                <li key={e.version} className="relative md:pl-12">
-                  {/* Dot */}
-                  <span
-                    aria-hidden
-                    className="absolute left-[9px] top-7 w-[14px] h-[14px] rounded-full hidden md:block"
-                    style={{
-                      background: i === 0 ? "var(--azure)" : "var(--hairline)",
-                      boxShadow: i === 0 ? "0 0 0 4px var(--azure-soft)" : "0 0 0 4px var(--snow)",
-                    }}
-                  />
-                  <Reveal>
-                    <article
-                      className={`${i === 0 ? "card-snow" : "card-fog"} p-7 md:p-9`}
-                      style={i === 0 ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
+                className="flex flex-wrap gap-2"
+                role="group"
+                aria-label="Filter changelog by tag"
+              >
+                {FILTERS.map((f) => {
+                  const active = filter === f;
+                  return (
+                    <button
+                      key={f}
+                      type="button"
+                      onClick={() => setFilter(active && f !== "All" ? "All" : f)}
+                      aria-pressed={active}
+                      className="text-[13px] px-3.5 py-1.5 rounded-full transition-colors duration-200"
+                      style={{
+                        background: active ? "var(--ink)" : "var(--fog)",
+                        color: active ? "var(--snow)" : "var(--ink)",
+                      }}
                     >
-                      <div className="flex flex-wrap items-center gap-2 mb-4">
-                        <span className="mono-tag">{e.date}</span>
-                        <span className="text-ink-3/40">·</span>
-                        <span
-                          className="text-[12px] font-semibold px-2 py-0.5 rounded-full"
-                          style={{ background: "var(--ink)", color: "var(--snow)" }}
-                        >
-                          {e.version}
-                        </span>
-                        {i === 0 && (
-                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-azure text-white">
-                            Latest
-                          </span>
-                        )}
-                        {e.tags.map((t) => {
-                          const s = toneStyle[t.tone];
-                          return (
-                            <span
-                              key={t.label}
-                              className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                              style={{ background: s.bg, color: s.fg }}
-                            >
-                              {t.label}
-                            </span>
-                          );
-                        })}
-                      </div>
-                      <h2 className="display-3">{e.title}</h2>
-                      <ul className="mt-5 space-y-2.5 text-[15px] text-ink-2 leading-[1.7] list-disc pl-5 marker:text-azure">
-                        {e.bullets.map((b) => (
-                          <li key={b}>{b}</li>
-                        ))}
-                      </ul>
-                    </article>
-                  </Reveal>
-                </li>
-              ))}
-            </ol>
-          )}
-        </div>
-      </section>
-
-      {/* Subscribe */}
-      <section className="bg-fog py-20">
-        <Reveal>
-          <div className="container-cg max-w-2xl text-center">
-            <h2 className="display-2">Get release notes as we ship.</h2>
-            <p className="mt-3 text-ink-2">No marketing emails. Release notes only.</p>
-            <div className="mt-6">
-              <WaitlistForm
-                source="changelog_updates"
-                buttonLabel="Notify me of releases"
-                variant="onLight"
-              />
+                      {f}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </Reveal>
-      </section>
+        </section>
 
+        {/* Timeline */}
+        <section className="bg-snow py-12">
+          <div className="container-cg max-w-4xl">
+            {visible.length === 0 ? (
+              <p className="text-[15px] text-ink-2">No releases match this filter yet.</p>
+            ) : (
+              <ol className="relative space-y-5">
+                {/* Vertical rail */}
+                <div
+                  aria-hidden
+                  className="absolute left-[15px] top-2 bottom-2 w-px hidden md:block"
+                  style={{ background: "linear-gradient(to bottom, var(--hairline), transparent)" }}
+                />
+                {visible.map((e, i) => (
+                  <li key={e.version} className="relative md:pl-12">
+                    {/* Dot */}
+                    <span
+                      aria-hidden
+                      className="absolute left-[9px] top-7 w-[14px] h-[14px] rounded-full hidden md:block"
+                      style={{
+                        background: i === 0 ? "var(--azure)" : "var(--hairline)",
+                        boxShadow:
+                          i === 0 ? "0 0 0 4px var(--azure-soft)" : "0 0 0 4px var(--snow)",
+                      }}
+                    />
+                    <Reveal>
+                      <article
+                        className={`${i === 0 ? "card-snow" : "card-fog"} p-7 md:p-9`}
+                        style={i === 0 ? { boxShadow: "0 0 0 2px var(--azure)" } : undefined}
+                      >
+                        <div className="flex flex-wrap items-center gap-2 mb-4">
+                          <span className="mono-tag">{e.date}</span>
+                          <span className="text-ink-3/40">·</span>
+                          <span
+                            className="text-[12px] font-semibold px-2 py-0.5 rounded-full"
+                            style={{ background: "var(--ink)", color: "var(--snow)" }}
+                          >
+                            {e.version}
+                          </span>
+                          {i === 0 && (
+                            <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-azure text-white">
+                              Latest
+                            </span>
+                          )}
+                          {e.tags.map((t) => {
+                            const s = toneStyle[t.tone];
+                            return (
+                              <span
+                                key={t.label}
+                                className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                                style={{ background: s.bg, color: s.fg }}
+                              >
+                                {t.label}
+                              </span>
+                            );
+                          })}
+                        </div>
+                        <h2 className="display-3">{e.title}</h2>
+                        <ul className="mt-5 space-y-2.5 text-[15px] text-ink-2 leading-[1.7] list-disc pl-5 marker:text-azure">
+                          {e.bullets.map((b) => (
+                            <li key={b}>{b}</li>
+                          ))}
+                        </ul>
+                      </article>
+                    </Reveal>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        </section>
+
+        {/* Subscribe */}
+        <section className="bg-fog py-20">
+          <Reveal>
+            <div className="container-cg max-w-2xl text-center">
+              <h2 className="display-2">Get release notes as we ship.</h2>
+              <p className="mt-3 text-ink-2">No marketing emails. Release notes only.</p>
+              <div className="mt-6">
+                <WaitlistForm
+                  source="changelog_updates"
+                  buttonLabel="Notify me of releases"
+                  variant="onLight"
+                />
+              </div>
+            </div>
+          </Reveal>
+        </section>
+      </main>
       <Footer />
     </div>
   );

@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
     ...buildMeta({
       title: "ComplianceGuard | SOC 2 evidence that never leaves your machine",
       description:
-        "ComplianceGuard collects, scores, and signs compliance evidence directly from your Windows, macOS, and Linux endpoints. Four frameworks, one scan. Nothing leaves your network.",
+        "Collect, score and sign SOC 2 evidence straight from your Windows, macOS and Linux endpoints. Four frameworks, one scan, nothing leaves your network.",
       path: "/",
     }),
     scripts: [

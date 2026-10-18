@@ -9,6 +9,9 @@ import { SITE_URL } from "@/lib/site";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-snow px-4">
+      {/* React 19 hoists these into <head>; the route has no head of its own. */}
+      <title>Page not found | ComplianceGuard</title>
+      <meta name="robots" content="noindex" />
       <div className="max-w-md text-center">
         <p className="mono-tag mb-3" style={{ color: "var(--azure)" }}>
           404 &middot; not in the control library

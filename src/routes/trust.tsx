@@ -28,7 +28,7 @@ export const Route = createFileRoute("/trust")({
     buildMeta({
       title: "Trust | ComplianceGuard",
       description:
-        "ComplianceGuard's trust center: source-available under BSL 1.1, zero-knowledge by design, tamper-evident SHA-256 hash-chained audit logs you can verify yourself, honest flat pricing, and 54-control SOC 2 coverage.",
+        "The trust center: source-available code, zero-knowledge design, hash-chained audit logs you can verify, flat pricing, and honest SOC 2 coverage.",
       path: "/trust",
     }),
   component: TrustPage,

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/privacy")({
     buildMeta({
       title: "Privacy Policy | ComplianceGuard",
       description:
-        "How ComplianceGuard handles data: evidence stays in a local database on your machine, the website stores only emails you choose to submit, and analytics stay cookieless.",
+        "How ComplianceGuard handles data: evidence stays in a local database, the site stores only the emails you submit, and analytics are cookieless.",
       path: "/privacy",
     }),
   component: PrivacyPage,

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/security")({
     buildMeta({
       title: "Security | ComplianceGuard",
       description:
-        "ComplianceGuard's security architecture: zero-knowledge by design, HKDF-SHA256 credential encryption, offline Ed25519 license verification, SHA-256 hash-chained audit log, and BSL 1.1 open core.",
+        "How ComplianceGuard protects data: zero-knowledge design, encrypted AWS credentials, offline license checks, a hash-chained audit log, and open core.",
       path: "/security",
     }),
   component: SecurityPage,

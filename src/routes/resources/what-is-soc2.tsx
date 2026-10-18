@@ -12,7 +12,7 @@ export const Route = createFileRoute("/resources/what-is-soc2")({
     ...buildMeta({
       title: "What is SOC 2? | ComplianceGuard",
       description:
-        "SOC 2 is an AICPA security framework built on the Trust Services Criteria. Learn the difference between Type I and Type II, what evidence auditors need, how long an audit takes, and what it costs.",
+        "SOC 2 explained: Type I vs Type II, the Trust Services Criteria, the evidence auditors sample, how long an audit takes, and what it costs.",
       path: "/resources/what-is-soc2",
       image: "/og/what-is-soc2.png",
       imageAlt: "SOC 2 asks for a statement and the record behind it.",
