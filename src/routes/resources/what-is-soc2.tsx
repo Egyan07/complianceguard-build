@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { buildMeta, DOWNLOAD_URL } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export const Route = createFileRoute("/resources/what-is-soc2")({
   head: () => ({
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/resources/what-is-soc2")({
       description:
         "SOC 2 is an AICPA security framework built on the Trust Services Criteria. Learn the difference between Type I and Type II, what evidence auditors need, how long an audit takes, and what it costs.",
       path: "/resources/what-is-soc2",
+      image: "/og/what-is-soc2.png",
+      imageAlt: "SOC 2 asks for a statement and the record behind it.",
     }),
     scripts: [
       {
@@ -324,7 +327,11 @@ function WhatIsSoc2Page() {
           <Reveal className="mx-auto mt-20 max-w-[680px]">
             <div className="card-fog p-8 md:p-10 text-center">
               <h2 className="display-3">See your SOC 2 readiness score in under 2 minutes.</h2>
-              <a href={DOWNLOAD_URL} className="btn-primary mt-6 inline-flex">
+              <a
+                href={DOWNLOAD_URL}
+                className="btn-primary mt-6 inline-flex"
+                onClick={() => trackConversion("download_click", "what-is-soc2-cta")}
+              >
                 Download Free
               </a>
             </div>

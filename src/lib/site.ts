@@ -18,9 +18,22 @@ export const DEMO_VIDEO_URL = "/videos/complianceguard-demo.mp4";
 export const salesMailto = (subject: string) =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
 
-/** Absolute-URL meta builder — canonical/og tags must never be relative. */
-export function buildMeta(opts: { title: string; description: string; path: string }) {
+/**
+ * Absolute-URL meta builder — canonical/og tags must never be relative.
+ * `image` is a site-relative path to a 1200x630 card; omit it for the shared
+ * brand card. Width/height/alt are declared because link previews render the
+ * large card more reliably when the dimensions are known up front.
+ */
+export function buildMeta(opts: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  imageAlt?: string;
+}) {
   const url = `${SITE_URL}${opts.path}`;
+  const image = `${SITE_URL}${opts.image ?? "/og-image.png"}`;
+  const imageAlt = opts.imageAlt ?? opts.title;
   return {
     meta: [
       { title: opts.title },
@@ -28,10 +41,14 @@ export function buildMeta(opts: { title: string; description: string; path: stri
       { property: "og:title", content: opts.title },
       { property: "og:description", content: opts.description },
       { property: "og:url", content: url },
-      { property: "og:image", content: `${SITE_URL}/og-image.png` },
+      { property: "og:image", content: image },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: imageAlt },
       { name: "twitter:title", content: opts.title },
       { name: "twitter:description", content: opts.description },
-      { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
+      { name: "twitter:image", content: image },
+      { name: "twitter:image:alt", content: imageAlt },
     ],
     links: [{ rel: "canonical", href: url }],
   };

@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { buildMeta, DOWNLOAD_URL } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export const Route = createFileRoute("/resources/soc2-checklist")({
   head: () => ({
@@ -13,6 +14,8 @@ export const Route = createFileRoute("/resources/soc2-checklist")({
       description:
         "A practical SOC 2 readiness checklist covering access control, encryption, audit logging, incident response, vendor management, and change management — 24 items auditors check first.",
       path: "/resources/soc2-checklist",
+      image: "/og/soc2-checklist.png",
+      imageAlt: "24 SOC 2 checklist items, 10 collected from the machine.",
     }),
     scripts: [
       {
@@ -379,7 +382,11 @@ function Soc2ChecklistPage() {
                   ComplianceGuard collects the evidence for every Auto item above and shows your
                   evidence coverage across all 43 SOC 2 criteria it tracks.
                 </p>
-                <a href={DOWNLOAD_URL} className="btn-primary mt-6 inline-flex">
+                <a
+                  href={DOWNLOAD_URL}
+                  className="btn-primary mt-6 inline-flex"
+                  onClick={() => trackConversion("download_click", "checklist-cta")}
+                >
                   Download Free
                 </a>
               </div>

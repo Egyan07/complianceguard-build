@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { buildMeta, DOWNLOAD_URL, salesMailto } from "@/lib/site";
+import { trackConversion } from "@/lib/analytics";
 
 export const Route = createFileRoute("/resources/vanta-alternative")({
   head: () => ({
@@ -13,6 +14,8 @@ export const Route = createFileRoute("/resources/vanta-alternative")({
       description:
         "Why teams switch from Vanta: endpoint-native evidence collection, air-gapped support, source-available code, and a free tier. Compare cost, coverage, and architecture.",
       path: "/resources/vanta-alternative",
+      image: "/og/vanta-alternative.png",
+      imageAlt: "Endpoint evidence a cloud tool cannot produce.",
     }),
     scripts: [
       {
@@ -310,12 +313,17 @@ function VantaAlternativePage() {
                 your machine while you decide.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                <a href={DOWNLOAD_URL} className="btn-primary inline-flex">
+                <a
+                  href={DOWNLOAD_URL}
+                  className="btn-primary inline-flex"
+                  onClick={() => trackConversion("download_click", "vanta-cta")}
+                >
                   Download Free
                 </a>
                 <a
                   href={salesMailto("ComplianceGuard vs Vanta question")}
                   className="btn-ghost inline-flex"
+                  onClick={() => trackConversion("contact_sales_click", "vanta-cta")}
                 >
                   Ask a question
                 </a>
