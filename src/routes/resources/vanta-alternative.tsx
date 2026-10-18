@@ -57,19 +57,19 @@ export const Route = createFileRoute("/resources/vanta-alternative")({
 const FAQS = [
   {
     q: "Is ComplianceGuard a full replacement for Vanta?",
-    a: "For endpoint evidence, yes — ComplianceGuard reads password policies, firewall rules, disk encryption, audit logs, accounts, services, software inventory, and file permissions directly from Windows, macOS, and Linux machines, then scores them against 43 SOC 2 criteria. Where Vanta's strength is its catalog of cloud, identity, and MDM integrations, ComplianceGuard has no integration catalog by design: it collects from the machines themselves. Teams with heavy SaaS stacks often keep a cloud platform and add ComplianceGuard for the endpoint evidence neither side sees fully on its own.",
+    a: "For endpoint evidence, yes. ComplianceGuard reads password policies, firewall rules, disk encryption, audit logs, accounts, services, software inventory, and file permissions directly from Windows, macOS, and Linux machines, then scores them against 43 SOC 2 criteria. Where Vanta's strength is its catalog of cloud, identity, and MDM integrations, ComplianceGuard has no integration catalog by design: it collects from the machines themselves. Teams with heavy SaaS stacks often keep a cloud platform and add ComplianceGuard for the endpoint evidence neither side sees fully on its own.",
   },
   {
     q: "How much does Vanta actually cost?",
-    a: "Vanta does not publish exact pricing. Multiple independent 2026 pricing guides place it roughly between $10,000 and $80,000+ per year depending on plan, company size, and frameworks, billed as an annual platform fee. ComplianceGuard is free for a single machine with no time limit, then a flat $149/month (billed annually) for Pro with all four frameworks — no per-framework upsell and no annual platform fee on the free tier.",
+    a: "Vanta does not publish exact pricing. Multiple independent 2026 pricing guides place it roughly between $10,000 and $80,000+ per year depending on plan, company size, and frameworks, billed as an annual platform fee. ComplianceGuard is free for a single machine with no time limit, then a flat $149/month (billed annually) for Pro with all four frameworks, with no per-framework upsell and no annual platform fee on the free tier.",
   },
   {
     q: "Will my auditor accept evidence from ComplianceGuard?",
-    a: "Every evidence item is hashed with SHA-256 and mapped control-by-control to the AICPA Trust Services Criteria, the exact framework your SOC 2 auditor works from, and exported as a PDF evidence pack organized the way auditors expect. A formal SOC 2 report still requires a licensed CPA firm — ComplianceGuard gets you to that engagement with the evidence already collected instead of a spreadsheet full of screenshots.",
+    a: "Every evidence item is hashed with SHA-256 and mapped control-by-control to the AICPA Trust Services Criteria, the exact framework your SOC 2 auditor works from, and exported as a PDF evidence pack organized the way auditors expect. A formal SOC 2 report still requires a licensed CPA firm. ComplianceGuard gets you to that engagement with the evidence already collected instead of a spreadsheet full of screenshots.",
   },
   {
     q: "Do I need to choose between Vanta and ComplianceGuard?",
-    a: "No. They cover different evidence surfaces: Vanta sees your cloud and SaaS stack, ComplianceGuard sees the endpoints those machines actually run on. Many compliance-conscious teams run both. If you only buy one, the question is where your missing evidence lives — if auditors keep asking for password policy, disk encryption, firewall configuration, or event logs from real machines, that evidence is on the endpoint, and that is what ComplianceGuard collects.",
+    a: "No. They cover different evidence surfaces: Vanta sees your cloud and SaaS stack, ComplianceGuard sees the endpoints those machines actually run on. Many compliance-conscious teams run both. If you only buy one, the question is where your missing evidence lives: if auditors keep asking for password policy, disk encryption, firewall configuration, or event logs from real machines, that evidence is on the endpoint, and that is what ComplianceGuard collects.",
   },
   {
     q: "What about air-gapped or offline environments?",
@@ -77,7 +77,7 @@ const FAQS = [
   },
   {
     q: "How long does setup take?",
-    a: "Install the desktop app or self-hosted web app, run a scan, and you have a per-control readiness score in about 30 seconds — typically minutes from install to first evidence pack. No admin privileges, no API keys, no agent rollout. Cloud-platform onboarding typically runs days to weeks because it starts with connecting your SaaS and identity stack.",
+    a: "Install the desktop app or self-hosted web app, run a scan, and you have a per-control readiness score in about 30 seconds, typically minutes from install to first evidence pack. No admin privileges, no API keys, no agent rollout. Cloud-platform onboarding typically runs days to weeks because it starts with connecting your SaaS and identity stack.",
   },
 ];
 
@@ -157,7 +157,7 @@ export function VantaAlternativePage() {
         <PageHero
           eyebrow="Comparisons"
           title="Vanta alternative."
-          subtitle="Same frameworks, different evidence source: ComplianceGuard collects SOC 2, ISO 27001, HIPAA, and GDPR evidence on your own machines — with a free tier and no annual platform fee."
+          subtitle="Same frameworks, different evidence source: ComplianceGuard collects SOC 2, ISO 27001, HIPAA, and GDPR evidence on your own machines, with a free tier and no annual platform fee."
           ornament="none"
         />
 
@@ -169,7 +169,7 @@ export function VantaAlternativePage() {
               Vanta is the name most teams encounter first when a customer asks for a SOC 2 report.
               It is a capable cloud-compliance platform: it connects to your SaaS tools, identity
               provider, and cloud accounts, monitors integrations, and manages the audit workflow.
-              But three things send teams searching for a Vanta alternative — the annual price tag
+              But three things send teams searching for a Vanta alternative: the annual price tag
               that starts around five figures, a security posture that requires your evidence to
               leave your network, and a structural blind spot: a cloud platform sees your cloud, not
               the password policy, disk encryption state, firewall rules, and event logs on the
@@ -182,7 +182,7 @@ export function VantaAlternativePage() {
               itself, reads the operating system directly, scores what it finds against 43 SOC 2
               criteria (plus all 93 ISO 27001:2022 Annex A controls, 47 HIPAA safeguards, and 38
               GDPR obligations), and never sends a byte anywhere. This page compares the two
-              honestly — including the cases where Vanta is genuinely the better fit.
+              honestly, including the cases where Vanta is genuinely the better fit.
             </p>
 
             {/* Comparison table */}
@@ -227,11 +227,11 @@ export function VantaAlternativePage() {
               <p>
                 Cloud compliance platforms work through integrations: connect AWS, your identity
                 provider, your ticketing system, your MDM, and the platform monitors those surfaces
-                continuously. It is a clean model — until an auditor asks a question that lives
-                below the cloud layer. Is disk encryption enabled on the laptop that holds the
-                production database credentials? What is the local password policy on the domain
-                controller? Which firewall profile is active on the build machine? Which admin
-                accounts exist on the machine no MDM manages?
+                continuously. It is a clean model until an auditor asks a question that lives below
+                the cloud layer. Is disk encryption enabled on the laptop that holds the production
+                database credentials? What is the local password policy on the domain controller?
+                Which firewall profile is active on the build machine? Which admin accounts exist on
+                the machine no MDM manages?
               </p>
               <p>
                 Those answers live in the operating system, and reaching them the integration way
@@ -269,7 +269,7 @@ export function VantaAlternativePage() {
                 daily, needs the breadth of a 100+ app integration catalog, or wants a single vendor
                 for auditor networking and workflow management, Vanta's ecosystem is genuinely
                 stronger and ComplianceGuard is not trying to replace it. You may also have
-                contractual reasons — some enterprise buyers name specific platforms in their vendor
+                contractual reasons: some enterprise buyers name specific platforms in their vendor
                 requirements.
               </p>
             </Section>
@@ -284,9 +284,9 @@ export function VantaAlternativePage() {
                 pre-revenue or pre-PMF and need a SOC 2 readiness number today, for free, before
                 committing to an annual contract. You must pass evidence through an air gap, so
                 "works offline" is a hard requirement, not a checkbox. Or you simply believe the
-                code that reads your systems should be readable — ComplianceGuard is
-                source-available under BSL 1.1, with ~1,265 tests and every line of collection and
-                scoring logic auditable.
+                code that reads your systems should be readable. ComplianceGuard is source-available
+                under BSL 1.1, with ~1,265 tests and every line of collection and scoring logic
+                auditable.
               </p>
             </Section>
 
@@ -335,7 +335,7 @@ export function VantaAlternativePage() {
             {/* Closing CTA */}
             <Reveal className="mt-20">
               <div className="card-fog p-8 md:p-10 text-center">
-                <h2 className="display-3">See your own readiness score — free, in 2 minutes.</h2>
+                <h2 className="display-3">See your own readiness score, free, in 2 minutes.</h2>
                 <p className="mx-auto mt-3 max-w-[520px] text-[16px] text-ink-2 leading-[1.6]">
                   Install, scan, done. No credit card, no annual commitment, and no evidence leaves
                   your machine while you decide.

@@ -136,7 +136,7 @@ function WhatIsSoc2Page() {
               </p>
               <p>
                 The report also does real work beyond sales. Preparing for one forces the habits
-                that matter anyway — least-privilege access, encrypted devices, monitored changes,
+                that matter anyway: least-privilege access, encrypted devices, monitored changes,
                 tested incident response. Teams that complete a first audit almost universally
                 describe the same outcome: the security posture improved, and it stayed improved
                 because the controls are now evidenced rather than assumed.
@@ -145,7 +145,7 @@ function WhatIsSoc2Page() {
 
             <Section id="who-requires-soc-2" title="Who requires SOC 2?">
               <p>
-                Nothing in law mandates SOC 2 the way HIPAA mandates safeguards for health data — it
+                Nothing in law mandates SOC 2 the way HIPAA mandates safeguards for health data. It
                 is a market expectation, not a regulation. In practice, three groups ask for it:
                 enterprise procurement teams, security reviewers during vendor onboarding, and
                 cyber-insurance underwriters, who increasingly treat it as a signal that basic
@@ -154,10 +154,10 @@ function WhatIsSoc2Page() {
               </p>
               <p>
                 The flip side is scope: SOC 2 covers the systems <em>you</em> operate in delivering
-                your service — your cloud accounts, your laptops, your CI/CD — not your customers'
-                environments and not your product's security properties in the abstract. Agreeing
-                that boundary with your auditor before fieldwork starts is the single
-                highest-leverage decision in the whole process.
+                your service, meaning your cloud accounts, your laptops, and your CI/CD. It does not
+                cover your customers' environments, and it does not cover your product's security
+                properties in the abstract. Agreeing that boundary with your auditor before
+                fieldwork starts is the single highest-leverage decision in the whole process.
               </p>
             </Section>
 
@@ -198,24 +198,24 @@ function WhatIsSoc2Page() {
               </p>
               <ul className="space-y-2 text-[16px] text-ink-2">
                 <li>
-                  <strong className="text-ink">Security</strong> — the common criteria every report
+                  <strong className="text-ink">Security</strong>: the common criteria every report
                   includes: access controls, encryption, logging, incident response, vendor and
                   change management.
                 </li>
                 <li>
-                  <strong className="text-ink">Availability</strong> — uptime and capacity
+                  <strong className="text-ink">Availability</strong>: uptime and capacity
                   commitments you make in an SLA.
                 </li>
                 <li>
-                  <strong className="text-ink">Processing Integrity</strong> — that processing is
+                  <strong className="text-ink">Processing Integrity</strong>: that processing is
                   complete, valid, accurate, timely, and authorised.
                 </li>
                 <li>
-                  <strong className="text-ink">Confidentiality</strong> — information designated as
+                  <strong className="text-ink">Confidentiality</strong>: information designated as
                   confidential is protected as promised.
                 </li>
                 <li>
-                  <strong className="text-ink">Privacy</strong> — personal information is collected,
+                  <strong className="text-ink">Privacy</strong>: personal information is collected,
                   used, retained, and disposed of according to your notice.
                 </li>
               </ul>
@@ -234,9 +234,9 @@ function WhatIsSoc2Page() {
 
             <Section id="what-evidence-do-auditors-need" title="What evidence do auditors need?">
               <p>
-                Auditors need documented proof that your controls exist and work — and they work
-                from samples, not summaries. Expect to be asked for things like: the password and
-                MFA policy alongside proof it is enforced; firewall rules and disk-encryption status
+                Auditors need documented proof that your controls exist and work, and they work from
+                samples, not summaries. Expect to be asked for things like: the password and MFA
+                policy alongside proof it is enforced; firewall rules and disk-encryption status
                 from actual machines; a user access review with dates and approvals; audit logs
                 showing who accessed what; change-management records tying deployments to reviews;
                 AWS configuration snapshots; and an incident-response procedure with a drill or
@@ -250,7 +250,7 @@ function WhatIsSoc2Page() {
               </p>
               <Callout>
                 ComplianceGuard collects this evidence automatically from your machine and AWS
-                environment — each artifact mapped to the exact criterion it supports, so sample
+                environment. Each artifact is mapped to the exact criterion it supports, so sample
                 requests become a PDF export instead of a scramble.
               </Callout>
             </Section>
@@ -258,8 +258,8 @@ function WhatIsSoc2Page() {
             <Section id="how-long-does-soc-2-take" title="How long does SOC 2 take?">
               <p>
                 A SOC 2 Type I audit typically takes 4–8 weeks from starting evidence collection to
-                receiving your report. A Type II audit adds an observation period — commonly 3–6
-                months for a first report, sometimes 12 — before the auditor can issue the report,
+                receiving your report. A Type II audit adds an observation period, commonly 3–6
+                months for a first report and sometimes 12, before the auditor can issue the report,
                 because effectiveness has to be demonstrated over time, not at a moment.
               </p>
               <p>
@@ -274,7 +274,7 @@ function WhatIsSoc2Page() {
             <Section id="how-much-does-soc-2-cost" title="How much does SOC 2 cost?">
               <p>
                 Three cost lines: the audit fee, the compliance platform, and your team's time.
-                Audit fees for a first SOC 2 commonly land in the five figures and vary with scope —
+                Audit fees for a first SOC 2 commonly land in the five figures and vary with scope:
                 number of systems in the observation window, categories beyond Security, and whether
                 the firm is a Big Four or a specialist boutique. Platforms like Vanta and Drata are
                 typically reported in the $10k–$80k per year range depending on modules and company
@@ -283,7 +283,7 @@ function WhatIsSoc2Page() {
               <p>
                 The line item teams underestimate is internal time: writing policies, chasing
                 evidence, and preparing for sample requests. This is exactly where automation pays
-                back — ComplianceGuard's free tier scores your readiness at no cost, and paid tiers
+                back. ComplianceGuard's free tier scores your readiness at no cost, and paid tiers
                 are flat-priced rather than a percentage of headcount.
               </p>
             </Section>

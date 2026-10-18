@@ -45,11 +45,11 @@ const CHECKLIST_FAQS: Faq[] = [
   },
   {
     q: "How many of these items can be automated?",
-    a: "In this checklist, 10 of 24 items are marked Auto — password policy, MFA on admin accounts, account reviews, disk encryption, event log state, and more. ComplianceGuard collects the evidence for every Auto item in a single scan, so those rows become an evidence pack instead of a to-do list. The remaining 14 items are process controls: documented once, reviewed periodically.",
+    a: "In this checklist, 10 of 24 items are marked Auto: password policy, MFA on admin accounts, account reviews, disk encryption, event log state, and more. ComplianceGuard collects the evidence for every Auto item in a single scan, so those rows become an evidence pack instead of a to-do list. The remaining 14 items are process controls: documented once, reviewed periodically.",
   },
   {
     q: "What is the difference between SOC 2 Type I and Type II?",
-    a: "Type I assesses whether your controls are suitably designed at a single point in time — a snapshot. Type II assesses whether those controls operated effectively over a period, usually 3–12 months. Enterprise buyers almost always require Type II, so if a contract is waiting on you, plan for the observation window.",
+    a: "Type I assesses whether your controls are suitably designed at a single point in time, which means a snapshot. Type II assesses whether those controls operated effectively over a period, usually 3–12 months. Enterprise buyers almost always require Type II, so if a contract is waiting on you, plan for the observation window.",
   },
   {
     q: "Do I need an auditor to start collecting evidence?",
@@ -237,14 +237,14 @@ export function Soc2ChecklistPage() {
           <p className="mt-6 text-[17px] text-ink-2 leading-[1.65]">
             This is the checklist a SOC 2 auditor works from when they assess your readiness against
             the AICPA Trust Services Criteria. It covers {TOTAL_ITEMS} concrete items across six
-            control areas, from password policy to change management — the same categories that show
+            control areas, from password policy to change management, the same categories that show
             up in every readiness review, whether you are preparing for Type I or Type II.
           </p>
 
           <p className="mt-4 text-[17px] text-ink-2 leading-[1.65]">
             {AUTO_ITEMS} of the {TOTAL_ITEMS} items are marked <AutoBadge />: these are technical
             controls ComplianceGuard collects automatically from your machines and AWS account
-            during a single scan — evidence hashed, timestamped, and mapped to the criteria auditors
+            during a single scan: evidence hashed, timestamped, and mapped to the criteria auditors
             check. The rest are process controls your team documents once.
           </p>
 
@@ -256,7 +256,7 @@ export function Soc2ChecklistPage() {
               </h2>
               <div className="mt-4 space-y-4 text-[17px] text-ink-2 leading-[1.65]">
                 <p>
-                  SOC 2's Security category — the one every report includes — is built from common
+                  SOC 2's Security category, the one every report includes, is built from common
                   criteria that map directly onto this checklist. <strong>Access control</strong>{" "}
                   proves that only the right people can reach customer data.
                   <strong> Encryption</strong> proves the data is unreadable at rest and in transit.{" "}
@@ -267,7 +267,7 @@ export function Soc2ChecklistPage() {
                   not improvised.
                 </p>
                 <p>
-                  Auditors don't take your word for any of it — they request artefacts: a policy
+                  Auditors don't take your word for any of it. They request artefacts: a policy
                   export, a screenshot of a firewall profile, an event log with timestamps, a ticket
                   showing a code review. The most common reason a readiness review stalls isn't a
                   missing control; it's missing evidence for a control that already exists.
@@ -308,9 +308,9 @@ export function Soc2ChecklistPage() {
               <div className="mt-4 space-y-4 text-[17px] text-ink-2 leading-[1.65]">
                 <p>
                   Work top to bottom: the first pass is an evidence audit, not a fix sprint. Check
-                  an item only when you can point at the artefact that proves it — a policy
-                  document, a configuration export, a log with timestamps. Half-checked controls are
-                  what turn into audit findings.
+                  an item only when you can point at the artefact that proves it: a policy document,
+                  a configuration export, or a log with timestamps. Half-checked controls are what
+                  turn into audit findings.
                 </p>
                 <p>
                   For every item marked <AutoBadge />, the fastest path is to stop checking
@@ -322,8 +322,8 @@ export function Soc2ChecklistPage() {
                 </p>
                 <p>
                   Keep the checklist honest: mark the two controls you can't prove as
-                  <em> gaps</em>, not as done. Auditors score evidence coverage, not intention — and
-                  knowing your two real gaps on day one costs nothing, while discovering them during
+                  <em> gaps</em>, not as done. Auditors score evidence coverage, not intention.
+                  Knowing your two real gaps on day one costs nothing, while discovering them during
                   the observation window costs you the window.
                 </p>
               </div>
@@ -379,12 +379,12 @@ export function Soc2ChecklistPage() {
               <div className="mt-4 space-y-4 text-[17px] text-ink-2 leading-[1.65]">
                 <p>
                   Once every item is either checked or logged as a known gap, three things remain.
-                  First, <strong>close the gaps that are cheap to close</strong> — a missing
-                  firewall rule or a disabled audit log is an afternoon of work that removes a
-                  finding from your future report. Second, <strong>start the clock</strong>: a Type
-                  I can be assessed at a single point in time, but Type II requires your controls to
-                  operate continuously through an observation window, so the day you begin
-                  collecting evidence regularly is the day that window can start.
+                  First, <strong>close the gaps that are cheap to close</strong>: a missing firewall
+                  rule or a disabled audit log is an afternoon of work that removes a finding from
+                  your future report. Second, <strong>start the clock</strong>: a Type I can be
+                  assessed at a single point in time, but Type II requires your controls to operate
+                  continuously through an observation window, so the day you begin collecting
+                  evidence regularly is the day that window can start.
                 </p>
                 <p>
                   Third, <strong>make the checklist boring</strong>. Auditors return yearly and
@@ -421,8 +421,8 @@ export function Soc2ChecklistPage() {
             <a href="/resources/what-is-soc2" className="text-azure hover:underline">
               our plain-English guide to SOC 2
             </a>{" "}
-            — report types, timelines, and what the Trust Services Criteria actually cover — or see
-            how ComplianceGuard compares as a{" "}
+            covering report types, timelines, and what the Trust Services Criteria actually cover,
+            or see how ComplianceGuard compares as a{" "}
             <a href="/resources/vanta-alternative" className="text-azure hover:underline">
               Vanta alternative
             </a>

@@ -1,10 +1,9 @@
-import { Link } from "@tanstack/react-router";
 import { useReducedMotion } from "framer-motion";
 import { ShieldCheck, Check, Lock } from "lucide-react";
 import { Magnetic } from "./Magnetic";
 import { TextRotate } from "./TextRotate";
 import Floating, { FloatingElement } from "./ParallaxFloating";
-import { DOWNLOAD_URL, VERSION } from "@/lib/site";
+import { DOWNLOAD_URL } from "@/lib/site";
 import { trackConversion } from "@/lib/analytics";
 
 /**
@@ -111,17 +110,7 @@ export function Hero() {
 
       {/* Center column */}
       <div className="container-cg relative z-10 min-h-[88vh] flex flex-col items-center justify-center text-center py-28">
-        <Link
-          to="/changelog"
-          className="anim-rise inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors hover:bg-[rgba(0,113,227,0.12)]"
-          style={{ background: "var(--azure-soft)", color: "var(--azure)" }}
-        >
-          <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-azure" />v{VERSION} &middot; now
-          on Windows, macOS, and Linux
-          <span aria-hidden>&rsaquo;</span>
-        </Link>
-
-        <h1 className="anim-rise anim-d-1 display-1 mt-6 flex flex-col items-center">
+        <h1 className="anim-rise anim-d-1 display-1 flex flex-col items-center">
           <span>Compliance, on your</span>
           <TextRotate
             texts={ROTATING}
